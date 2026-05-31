@@ -197,6 +197,13 @@
   .techcount{text-align:center}
   .techcount p{color:#c2cfdf;font-size:.96rem;margin-top:12px}
   @media(min-width:760px){.techcount{text-align:left}}
+  .subnav{position:sticky;top:61px;z-index:55;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .subnav .wrap{display:flex;gap:16px;align-items:center;height:46px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  .subnav .wrap::-webkit-scrollbar{display:none}
+  .subnav a{font-size:.82rem;font-weight:700;color:var(--ink2);text-decoration:none;flex:none}
+  .subnav a:hover{color:var(--teal)}
+  .subnav .sn-cta{margin-left:auto;background:var(--teal);color:#fff;padding:7px 14px;border-radius:9px}
+  .reassure{background:rgba(15,125,116,.08);border:1px solid rgba(15,125,116,.22);color:#0c5a53;font-size:.78rem;font-weight:700;border-radius:9px;padding:9px 11px;margin:2px 0 10px;text-align:center}
   .chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-size:.84rem;color:var(--ink2)}
   .trustbar{background:var(--navy2);color:#dbe6f2}
   .trustbar .wrap{display:flex;gap:8px 24px;flex-wrap:wrap;justify-content:center;padding:13px 22px;font-size:.83rem}
@@ -252,6 +259,16 @@
   </div>
 </header>
 
+<nav class="subnav">
+  <div class="wrap">
+    <a href="#was">Was ist das?</a>
+    <a href="#wofuer">Für wen?</a>
+    <a href="#technik">Technologie</a>
+    <a href="#wissenschaft">Studien</a>
+    <a href="#anfrage" class="sn-cta">Termin →</a>
+  </div>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
@@ -261,7 +278,6 @@
         <h1>Ein starker Beckenboden –<br><span class="gold">in nur 28 Minuten.</span></h1>
         <p class="forwhom">Bei Blasenschwäche, nach der Geburt &amp; zur Vorsorge – ganz ohne OP, ohne Spritze.</p>
         <div class="answers"><span>💶 29,90 € einmalig</span><span>👕 vollbekleidet sitzen</span><span>🩺 ärztlich geleitet</span></div>
-        <div class="jumpnav"><a href="#was">Was ist das?</a><a href="#wofuer">Für wen?</a><a href="#technik">Technologie</a><a href="#anfrage">Termin sichern</a></div>
         <a href="#karte" class="distlink">📍 Wie weit ist Uchte von Ihnen? →</a>
         <div class="who">
           <div class="media"><img alt="Hischam El-Sobhi" src="assets-relounge/hischam-opt.jpg" onerror="this.style.display='none'"></div>
@@ -272,6 +288,7 @@
         <div class="price"><b>29,90 €</b><span>einmalig · kein Abo</span></div>
         <h3>Probe-Sitzung sichern</h3>
         <p class="note"><b>Sie müssen nicht anrufen – wir rufen Sie zurück</b> (meist innerhalb von 24 Std.). ⏳ Begrenzte Plätze pro Woche.</p>
+        <div class="reassure">🔒 100 % diskret · ärztliche Schweigepflicht · unverbindlich</div>
         <label class="consent"><input type="checkbox" id="consentBox" onchange="toggleForm(this)"><span>Ich willige ein, dass mich die Praxis zur Terminvereinbarung per Telefon, SMS oder E-Mail kontaktiert (<a href="https://www.allgemeinmedizin-uchte.de/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>).</span></label>
         <div class="formgate locked">
           <div class="gateov" onclick="rlFlash()">👆 Bitte oben kurz zustimmen – dann können Sie sich eintragen</div>
@@ -425,7 +442,7 @@
     <div class="why">
       <div class="col"><h3>Übungen zu Hause</h3><p>Schwer richtig zu treffen – die tiefe Beckenboden-Muskulatur lässt sich willentlich kaum gezielt ansteuern.</p></div>
       <div class="col"><h3>Vorlagen &amp; Einlagen</h3><p>Kaschieren nur das Symptom. Die Ursache – die schwache Muskulatur – bleibt unverändert.</p></div>
-      <div class="col good"><h3>✓ BetterPelvi</h3><p>Magnetfeld-Technologie erreicht <b>alle Schichten</b> des Beckenbodens – bis zu 20.000 Kontraktionen pro Sitzung, ganz von allein.</p></div>
+      <div class="col good"><h3>✓ BetterPelvi</h3><p>Magnetfeld-Technologie erreicht <b>alle Schichten</b> des Beckenbodens – über 12.500 Kontraktionen pro Sitzung, ganz von allein.</p></div>
     </div>
     <p class="punch" style="text-align:center">Das Problem waren nie Sie – sondern dass die tiefe Muskulatur nie wirklich erreicht wurde.</p>
   </div>
@@ -506,8 +523,8 @@
       </div>
       <div class="techcount">
         <div class="bignum"><span id="contCounter">0</span></div>
-        <div class="biglbl">Muskelkontraktionen pro Sitzung*</div>
-        <p>Bis zu <b style="color:#fff">20.000 gezielte Anspannungen</b> in nur ~28 Minuten – so viele Beckenboden-Übungen schaffen Sie selbst an keinem Tag der Welt.</p>
+        <div class="biglbl">Muskelkontraktionen pro Sitzung</div>
+        <p>Über <b style="color:#fff">12.500 gezielte Anspannungen</b> in nur ~28 Minuten – so viele Beckenboden-Übungen schaffen Sie selbst an keinem Tag der Welt.</p>
       </div>
     </div>
 
@@ -516,8 +533,7 @@
       <div class="step"><div class="ic">👕</div><h3>Vollbekleidet sitzen</h3><p>Nichts ausziehen, keine Vorbereitung, nicht-invasiv – einfach hinsetzen und entspannen.</p></div>
       <div class="step"><div class="ic">✅</div><h3>Ohne Nebenwirkungen</h3><p>Schmerzfrei &amp; sicher – Sie spüren nur ein leichtes, angenehmes Pulsieren.</p></div>
     </div>
-    <p style="text-align:center;color:#8aa0b8;font-size:.74rem;margin-top:16px">*je nach Programm &amp; Sitzungsdauer</p>
-    <div class="center" style="margin-top:20px"><a href="#anfrage" class="btn">Jetzt für 29,90 € selbst spüren →</a></div>
+    <div class="center" style="margin-top:24px"><a href="#anfrage" class="btn">Jetzt für 29,90 € selbst spüren →</a></div>
   </div>
 </section>
 
@@ -626,6 +642,18 @@
     <details>
       <summary>Was kostet die Probe-Sitzung?</summary>
       <div class="body"><p>Die Probe-Sitzung kostet <b>einmalig 29,90 €</b> – mehr nicht. <b>Keine Folgekosten, kein Abo.</b> Wenn es Ihnen guttut, gibt es ganz in Ruhe und freiwillig Vorteils-Pakete (z. B. 10er- oder größere Pakete, auch in Raten).</p></div>
+    </details>
+    <details>
+      <summary>Was passiert, nachdem ich mich eingetragen habe?</summary>
+      <div class="body"><p>Ganz einfach: Wir rufen Sie <b>innerhalb von ca. 24 Stunden</b> an, beantworten Ihre Fragen und vereinbaren einen Termin. <b>Sie müssen nichts vorbereiten</b> – kein Druck, kein Verkaufsgespräch.</p></div>
+    </details>
+    <details>
+      <summary>Bin ich zu etwas verpflichtet?</summary>
+      <div class="body"><p>Nein. Sie sichern sich nur die Probe-Sitzung für <b>einmalig 29,90 €</b>. Danach entscheiden Sie völlig frei, ob Sie weitermachen möchten.</p></div>
+    </details>
+    <details>
+      <summary>Ist mir das vielleicht unangenehm?</summary>
+      <div class="body"><p>Kein Grund zur Sorge: Sie bleiben <b>vollbekleidet</b> und sitzen einfach entspannt auf dem Stuhl. Alles läuft <b>diskret und ärztlich begleitet</b> ab – das ist bei uns Alltag.</p></div>
     </details>
 
     <div class="coop">
@@ -740,12 +768,12 @@
     var done=false;
     function run(){
       if(done) return; done=true;
-      var target=20000, start=null, dur=1900;
+      var target=12500, start=null, dur=1900;
       function step(ts){
         if(!start) start=ts;
         var p=Math.min((ts-start)/dur,1), e=1-Math.pow(1-p,3);
         el.textContent=Math.round(target*e).toLocaleString('de-DE');
-        if(p<1) requestAnimationFrame(step); else el.textContent='20.000';
+        if(p<1) requestAnimationFrame(step); else el.textContent='12.500';
       }
       requestAnimationFrame(step);
     }
