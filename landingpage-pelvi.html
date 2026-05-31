@@ -221,6 +221,11 @@
   .vnncard.n{border-top:4px solid #28a76e}
   .tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:99px;margin-bottom:8px}
   .t-rot{background:#fdecee;color:#b02531}.t-blau{background:#e9eff7;color:#345084}.t-gruen{background:#e7f6ee;color:#13694a}
+  .vnncard svg{width:100%;height:auto;display:block;padding:14px 14px 0}
+  .mannfig{max-width:560px;margin:22px auto 0;text-align:center}
+  .mannfig svg{width:100%;max-width:180px;height:auto;display:block;margin:0 auto 4px}
+  @keyframes wp{0%,100%{opacity:.14}50%{opacity:.5}}
+  .wpulse{animation:wp 2.2s ease-in-out infinite}
   .chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-size:.84rem;color:var(--ink2)}
   .trustbar{background:var(--navy2);color:#dbe6f2}
   .trustbar .wrap{display:flex;gap:8px 24px;flex-wrap:wrap;justify-content:center;padding:13px 22px;font-size:.83rem}
@@ -410,9 +415,9 @@
     <div class="center"><h2>Was das Training bewirkt</h2>
       <p>Sichtbar gemacht: So verändert sich die Beckenboden-Muskulatur (rot) – und damit der Halt für die Blase.</p></div>
     <div class="vnn">
-      <figure class="vnncard v"><img src="assets-pelvi/becken-vorher.jpg" alt="Beckenboden vorher" onerror="this.style.display='none'"><figcaption><span class="tag t-rot">Vorher</span>Schwache, dünne Muskulatur – die Blase wird kaum noch gestützt.</figcaption></figure>
-      <figure class="vnncard w"><img src="assets-pelvi/becken-waehrend.jpg" alt="Beckenboden während des Trainings" onerror="this.style.display='none'"><figcaption><span class="tag t-blau">Während</span>Das Magnetfeld aktiviert den Muskel – er zieht sich kräftig zusammen.</figcaption></figure>
-      <figure class="vnncard n"><img src="assets-pelvi/becken-nachher.jpg" alt="Beckenboden nachher" onerror="this.style.display='none'"><figcaption><span class="tag t-gruen">Nachher</span>Gekräftigte Muskulatur – die Blase wird wieder sicher gehalten.</figcaption></figure>
+      <figure class="vnncard v"><svg viewBox="0 0 240 200" role="img" aria-label="Beckenboden vorher – schwach"><path d="M58,46 Q30,96 72,138" fill="none" stroke="#c4ccd6" stroke-width="9" stroke-linecap="round"/><path d="M182,46 Q210,96 168,138" fill="none" stroke="#c4ccd6" stroke-width="9" stroke-linecap="round"/><rect x="113" y="36" width="14" height="20" rx="5" fill="#c4ccd6"/><ellipse cx="120" cy="122" rx="40" ry="36" fill="#e8a14e" stroke="#cf8636" stroke-width="2"/><path d="M62,104 Q120,178 178,104" fill="none" stroke="#dca7ac" stroke-width="8" stroke-linecap="round"/></svg><figcaption><span class="tag t-rot">Vorher</span>Schwache, dünne Muskulatur – die Blase wird kaum noch gestützt.</figcaption></figure>
+      <figure class="vnncard w"><svg viewBox="0 0 240 200" role="img" aria-label="Beckenboden während Training"><path d="M58,46 Q30,96 72,138" fill="none" stroke="#c4ccd6" stroke-width="9" stroke-linecap="round"/><path d="M182,46 Q210,96 168,138" fill="none" stroke="#c4ccd6" stroke-width="9" stroke-linecap="round"/><rect x="113" y="36" width="14" height="20" rx="5" fill="#c4ccd6"/><g class="wpulse" fill="none" stroke="#13a093" stroke-width="2"><ellipse cx="120" cy="116" rx="58" ry="50"/><ellipse cx="120" cy="116" rx="78" ry="68"/></g><ellipse cx="120" cy="110" rx="38" ry="33" fill="#e8a14e" stroke="#cf8636" stroke-width="2"/><path d="M64,100 Q120,150 176,100" fill="none" stroke="#d6453f" stroke-width="12" stroke-linecap="round"/><path d="M120,72 L120,50 M112,60 L120,50 L128,60" stroke="#0f7d74" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption><span class="tag t-blau">Während</span>Das Magnetfeld aktiviert den Muskel – er zieht sich kräftig zusammen.</figcaption></figure>
+      <figure class="vnncard n"><svg viewBox="0 0 240 200" role="img" aria-label="Beckenboden nachher – stark"><path d="M58,46 Q30,96 72,138" fill="none" stroke="#c4ccd6" stroke-width="9" stroke-linecap="round"/><path d="M182,46 Q210,96 168,138" fill="none" stroke="#c4ccd6" stroke-width="9" stroke-linecap="round"/><rect x="113" y="36" width="14" height="20" rx="5" fill="#c4ccd6"/><ellipse cx="120" cy="98" rx="38" ry="32" fill="#e8a14e" stroke="#cf8636" stroke-width="2"/><path d="M66,96 Q120,134 174,96" fill="none" stroke="#c0392f" stroke-width="16" stroke-linecap="round"/><path d="M66,96 Q120,134 174,96" fill="none" stroke="#ef8c84" stroke-width="5" stroke-linecap="round"/><circle cx="184" cy="52" r="14" fill="#28a76e"/><path d="M177,52 l5,5 9,-11" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption><span class="tag t-gruen">Nachher</span>Gekräftigte Muskulatur – die Blase wird wieder sicher gehalten.</figcaption></figure>
     </div>
     <div class="center" style="margin-top:24px"><a href="#anfrage" class="btn">Probe-Sitzung für 29,90 € sichern →</a></div>
   </div>
@@ -497,7 +502,7 @@
         </ul>
       </div>
     </div>
-    <figure style="max-width:560px;margin:22px auto 0;text-align:center"><img src="assets-pelvi/mann-becken.jpg" alt="Beckenboden-Muskulatur beim Mann" style="width:100%;border-radius:12px;border:1px solid var(--line)" onerror="this.style.display='none'"><figcaption style="font-size:.84rem;color:var(--muted);margin-top:8px">Auch beim Mann umschließt der Beckenboden Blase &amp; Harnröhre – und ist an der Erektion beteiligt.</figcaption></figure>
+    <figure class="mannfig"><svg viewBox="0 0 200 230" role="img" aria-label="Äußere Schicht beim Mann"><g class="wpulse" fill="none" stroke="#13a093" stroke-width="2"><ellipse cx="100" cy="120" rx="56" ry="84"/></g><rect x="90" y="18" width="20" height="28" rx="7" fill="#13243e"/><rect x="87" y="40" width="26" height="158" rx="13" fill="#d6453f"/><ellipse cx="100" cy="100" rx="31" ry="40" fill="#d6453f"/><ellipse cx="100" cy="172" rx="25" ry="31" fill="#d6453f"/><ellipse cx="100" cy="100" rx="12" ry="21" fill="#fbe0e2"/><ellipse cx="100" cy="172" rx="9" ry="14" fill="#fbe0e2"/></svg><figcaption style="font-size:.84rem;color:var(--muted)">Beim Mann ist die <b style="color:#b02531">äußere Schicht</b> (Schwellkörper-Muskeln) an Blasenkontrolle &amp; Erektion beteiligt.</figcaption></figure>
     <div class="duotip">💡 <b>Übrigens:</b> Viele Frauen informieren sich hier auch <b>für ihren Partner</b> – ein starker Beckenboden ist für Männer genauso wichtig. Sie können die Probe-Sitzung gerne auch <b>für ihn</b> anfragen.</div>
   </div>
 </section>
