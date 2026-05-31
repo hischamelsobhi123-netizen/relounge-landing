@@ -39,7 +39,7 @@
   .btn:hover{transform:translateY(-2px)}
   .btn-block{display:block;width:100%}
 
-  .hero{background:linear-gradient(105deg,rgba(9,16,28,.95) 0%,rgba(11,22,38,.82) 42%,rgba(11,22,38,.4) 100%),url('assets-pelvi/stuhl-dunkel.jpg');background-size:cover;background-position:right center;color:#fff;padding:42px 0 50px}
+  .hero{background:linear-gradient(125deg,#0b1426 0%,#13243e 55%,#0f5f59 145%);color:#fff;padding:42px 0 50px}
   .hero-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
   @media(min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr}}
   .eyebrow{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-l);border:1px solid rgba(216,178,119,.45);padding:6px 13px;border-radius:99px;margin-bottom:16px}
@@ -204,6 +204,11 @@
   .subnav a:hover{color:var(--teal)}
   .subnav .sn-cta{margin-left:auto;background:var(--teal);color:#fff;padding:7px 14px;border-radius:9px}
   .reassure{background:rgba(15,125,116,.08);border:1px solid rgba(15,125,116,.22);color:#0c5a53;font-size:.78rem;font-weight:700;border-radius:9px;padding:9px 11px;margin:2px 0 10px;text-align:center}
+  .prodshow{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 50px -28px rgba(19,36,62,.55)}
+  .prodshow img{width:100%;display:block}
+  .prodcap{position:absolute;left:0;right:0;bottom:0;padding:34px 22px 18px;background:linear-gradient(0deg,rgba(9,16,28,.85),rgba(9,16,28,0));color:#fff}
+  .prodcap b{font-family:Georgia,serif;font-size:1.3rem;display:block}
+  .prodcap span{font-size:.92rem;color:#dde6f0}
   .chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-size:.84rem;color:var(--ink2)}
   .trustbar{background:var(--navy2);color:#dbe6f2}
   .trustbar .wrap{display:flex;gap:8px 24px;flex-wrap:wrap;justify-content:center;padding:13px 22px;font-size:.83rem}
@@ -316,6 +321,16 @@
     <span>✔ Approbiert seit 1998</span><span>✔ Facharzt für Allgemeinmedizin</span><span>✔ Nicht-invasiv, ohne Nebenwirkungen</span><span>✔ Barrierefrei</span><span>✔ Kostenlose Parkplätze</span>
   </div>
 </div>
+
+<!-- PRODUKT-SHOWCASE -->
+<section style="padding:34px 0 6px">
+  <div class="wrap">
+    <div class="prodshow">
+      <img src="assets-pelvi/stuhl-dunkel.jpg" alt="Der BetterPelvi-Stuhl in unserer Praxis">
+      <div class="prodcap"><b>Der BetterPelvi-Stuhl</b><span>Hightech-Beckenbodentraining – Sie setzen sich einfach drauf.</span></div>
+    </div>
+  </div>
+</section>
 
 <!-- PROBLEM -->
 <section>
