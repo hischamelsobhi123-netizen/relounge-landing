@@ -169,6 +169,15 @@
   }
   .sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(19,36,62,.96);backdrop-filter:blur(8px);padding:11px 16px;z-index:80;border-top:1px solid rgba(255,255,255,.08)}
   .sticky .btn{width:100%;padding:15px}
+  .rlpop{display:none;position:fixed;inset:0;z-index:200;background:rgba(9,16,28,.72);backdrop-filter:blur(3px);align-items:center;justify-content:center;padding:20px}
+  .rlpop.show{display:flex}
+  .rlpop-card{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:32px 26px;text-align:center;position:relative;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+  .rlpop-x{position:absolute;top:8px;right:14px;border:0;background:none;font-size:1.7rem;color:var(--muted);cursor:pointer;line-height:1}
+  .rlpop-badge{display:inline-block;background:rgba(184,137,63,.14);color:var(--gold);font-weight:700;font-size:.72rem;letter-spacing:.06em;padding:5px 12px;border-radius:99px;margin-bottom:10px}
+  .rlpop-card h3{color:var(--navy);font-size:1.4rem;margin-bottom:8px}
+  .rlpop-card p{font-size:.95rem}
+  .rlpop-card .btn{margin-top:16px}
+  .rlpop-alt{font-size:.82rem;color:var(--muted);margin-top:12px}.rlpop-alt a{color:var(--teal);font-weight:700}
   @media(min-width:760px){.sticky{display:none}}
   body{padding-bottom:84px}@media(min-width:760px){body{padding-bottom:0}}
 </style>
@@ -448,6 +457,17 @@
 
 <div class="sticky"><a href="#anfrage" class="btn">Probe-Termin sichern</a></div>
 
+<div id="rlPop" class="rlpop">
+  <div class="rlpop-card">
+    <button class="rlpop-x" onclick="rlClose()" aria-label="Schließen">×</button>
+    <div class="rlpop-badge">★ Kennenlern-Angebot</div>
+    <h3>Bevor Sie gehen …</h3>
+    <p>Sichern Sie sich Ihre <b>reLounge-Probe-Sitzung für 29,90 €</b> – einmalig, unverbindlich, kein Abo. Sie müssen nichts weiter tun: <b>wir rufen Sie zurück.</b></p>
+    <a href="#anfrage" class="btn btn-block" onclick="rlClose()">Ja, Probe-Termin sichern</a>
+    <p class="rlpop-alt">Lieber direkt? <a href="https://wa.me/491624213357">WhatsApp</a> · <a href="tel:+4957632343">05763&nbsp;2343</a></p>
+  </div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   var PRAXIS=[52.4969913,8.9031641];
@@ -481,6 +501,18 @@
   window.addEventListener('load',initKarte);
 
   function toggleForm(cb){var g=document.querySelector('.formgate'); if(g){ if(cb.checked){g.classList.remove('locked');} else {g.classList.add('locked');} }}
+
+  // Exit-Intent / Scroll-Popup (einmal pro Besuch)
+  (function(){
+    var shown=false;
+    function rlShow(){ if(shown||sessionStorage.getItem('rl_pop'))return; var p=document.getElementById('rlPop'); if(!p)return; shown=true; try{sessionStorage.setItem('rl_pop','1');}catch(e){} p.classList.add('show'); }
+    window.rlClose=function(){ var p=document.getElementById('rlPop'); if(p)p.classList.remove('show'); };
+    document.addEventListener('mouseout',function(e){ if(e.clientY<=0){ rlShow(); } });
+    setTimeout(rlShow, 40000);
+    window.addEventListener('scroll',function(){ if((window.scrollY+window.innerHeight)/document.body.scrollHeight>0.6){ rlShow(); } });
+    document.addEventListener('click',function(e){ if(e.target&&e.target.id==='rlPop'){ window.rlClose(); } });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ window.rlClose(); } });
+  })();
 
   function qNext(n){
     document.querySelectorAll('#quiz .q').forEach(function(e){e.hidden=true;});
