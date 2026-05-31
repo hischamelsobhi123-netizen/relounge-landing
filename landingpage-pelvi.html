@@ -165,10 +165,13 @@
   .plcard{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 16px 34px -24px rgba(19,36,62,.45)}
   .plhead{display:flex;align-items:center;gap:10px;padding:16px 18px 12px;font-family:Georgia,serif;font-weight:700;color:var(--navy);font-size:1.04rem}
   .plhead .e{font-size:1.5rem;flex:none}
-  .plprob{margin:0 16px;background:#fdecee;border:1px solid #f4c4c9;border-radius:10px;padding:11px 13px;font-size:.9rem;color:#9c2230;display:flex;gap:9px;align-items:flex-start}
+  .plprob{margin:0 16px;background:#fdecee;border:1px solid #f4c4c9;border-left:4px solid #e0555f;border-radius:10px;padding:11px 13px;font-size:.9rem;color:#9c2230;display:flex;gap:9px;align-items:flex-start}
   .plprob::before{content:"✕";font-weight:800;color:#d63f47}
-  .plarrow{text-align:center;color:#9aa7b6;font-size:1.3rem;margin:7px 0;line-height:1}
-  .plsol{margin:0 16px 16px;background:#e7f6ee;border:1px solid #b3e2c8;border-radius:10px;padding:11px 13px;font-size:.9rem;color:#13694a;display:flex;gap:9px;align-items:flex-start;font-weight:600}
+  .pltrain{display:flex;align-items:center;justify-content:center;gap:8px;margin:11px 16px;font-size:.7rem;font-weight:800}
+  .pltrain::before,.pltrain::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(15,125,116,0),#bcd8d4)}
+  .pltrain::after{background:linear-gradient(90deg,#bcd8d4,rgba(15,125,116,0))}
+  .pltrain span{background:linear-gradient(135deg,#13a093,#0f7d74);color:#fff;letter-spacing:.04em;padding:6px 13px;border-radius:99px;white-space:nowrap}
+  .plsol{margin:0 16px 16px;background:#e7f6ee;border:1px solid #b3e2c8;border-left:4px solid #28a76e;border-radius:10px;padding:11px 13px;font-size:.9rem;color:#13694a;display:flex;gap:9px;align-items:flex-start;font-weight:600}
   .plsol::before{content:"✓";font-weight:800;color:#1f9d6b}
   .lay{list-style:none;margin-top:16px;display:grid;gap:11px}
   .lay li{display:flex;gap:11px;align-items:flex-start;font-size:.94rem;color:var(--ink2)}
@@ -323,37 +326,37 @@
       <div class="plcard">
         <div class="plhead"><span class="e">💧</span>Blasenschwäche &amp; Inkontinenz</div>
         <div class="plprob"><span>Urin geht ungewollt ab beim Husten, Lachen, Niesen oder Sport – bis hin zu Vorlagen.</span></div>
-        <div class="plarrow">↓</div>
+        <div class="pltrain"><span>🧲 BetterPelvi-Training</span></div>
         <div class="plsol"><span>Der Schließmuskel hält wieder dicht – Schluss mit ständiger Sorge.</span></div>
       </div>
       <div class="plcard">
         <div class="plhead"><span class="e">🚻</span>Ständiger Harndrang</div>
         <div class="plprob"><span>Dauernder Drang, häufige Toilettengänge, nachts mehrmals raus.</span></div>
-        <div class="plarrow">↓</div>
+        <div class="pltrain"><span>🧲 BetterPelvi-Training</span></div>
         <div class="plsol"><span>Mehr Kontrolle über die Blase – wieder durchschlafen &amp; entspannt unterwegs.</span></div>
       </div>
       <div class="plcard">
         <div class="plhead"><span class="e">👶</span>Nach der Geburt</div>
         <div class="plprob"><span>„Unten herum" fühlt sich schwach, instabil &amp; ungewohnt an.</span></div>
-        <div class="plarrow">↓</div>
+        <div class="pltrain"><span>🧲 BetterPelvi-Training</span></div>
         <div class="plsol"><span>Die Muskulatur wird gekräftigt – Stabilität &amp; Sicherheit kommen zurück.</span></div>
       </div>
       <div class="plcard">
         <div class="plhead"><span class="e">⬇️</span>Senkung &amp; Halteprobleme</div>
         <div class="plprob"><span>Druck- &amp; Schweregefühl im Becken, Gefühl von Instabilität.</span></div>
-        <div class="plarrow">↓</div>
+        <div class="pltrain"><span>🧲 BetterPelvi-Training</span></div>
         <div class="plsol"><span>Die Stützmuskulatur trägt wieder – das Becken wird stabilisiert.</span></div>
       </div>
       <div class="plcard">
         <div class="plhead"><span class="e">♂️</span>Männergesundheit</div>
         <div class="plprob"><span>Nachtröpfeln (auch nach Prostata-OP), schwächere Erektion.</span></div>
-        <div class="plarrow">↓</div>
+        <div class="pltrain"><span>🧲 BetterPelvi-Training</span></div>
         <div class="plsol"><span>Ein starker Beckenboden unterstützt Blasenkontrolle &amp; Erektionsfunktion.</span></div>
       </div>
       <div class="plcard">
         <div class="plhead"><span class="e">🛡️</span>Vorsorge &amp; Haltung</div>
         <div class="plprob"><span>Mit den Jahren baut der Beckenboden unbemerkt ab.</span></div>
-        <div class="plarrow">↓</div>
+        <div class="pltrain"><span>🧲 BetterPelvi-Training</span></div>
         <div class="plsol"><span>Früh kräftigen – stabiler Rumpf, entlasteter Rücken, vorbeugen.</span></div>
       </div>
     </div>
