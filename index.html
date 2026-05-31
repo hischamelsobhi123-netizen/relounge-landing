@@ -65,7 +65,7 @@
   .formcard .trust{font-size:.74rem;color:var(--muted);margin-top:10px;text-align:center}
 
   section{padding:54px 0}
-  .alt{background:#f4f1ea}
+  .alt{background:#f6f3ee}
   .navybg{background:var(--navy);color:#eaf0f7}.navybg h2{color:#fff}.navybg p{color:#c2cfdf}
   .lead{font-size:1.06rem}
   .punch{font-family:Georgia,serif;font-size:1.25rem;color:var(--navy);margin-top:20px;line-height:1.4}
@@ -151,6 +151,14 @@
   footer p{color:#aebed2;font-size:.86rem;margin-top:5px}
   .disc{font-size:.72rem;color:#6f8298;margin-top:22px;line-height:1.6;max-width:720px;margin-left:auto;margin-right:auto}
 
+  @media(max-width:600px){
+    h1{font-size:1.7rem}
+    h2{font-size:1.42rem}
+    .hero{background-position:62% center;padding:30px 0 40px}
+    .answers span{font-size:.8rem;padding:6px 10px}
+    section{padding:42px 0}
+    .punch{font-size:1.1rem}
+  }
   .sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(19,36,62,.96);backdrop-filter:blur(8px);padding:11px 16px;z-index:80;border-top:1px solid rgba(255,255,255,.08)}
   .sticky .btn{width:100%;padding:15px}
   @media(min-width:760px){.sticky{display:none}}
@@ -175,12 +183,10 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">Rücken · Nacken · Verspannungen</span>
-        <h1>Ihr Rücken kämpft jeden Tag.<br><span class="gold">Geben Sie ihm 20 Minuten, die wirklich etwas bewegen.</span></h1>
-        <p class="forwhom">Für Menschen mit Rücken-, Nacken- &amp; Verspannungsbeschwerden.</p>
-        <div class="answers"><span>💶 29,90 € einmalig</span><span>📍 Praxis in Uchte</span><span>🩺 ärztlich geleitet</span></div>
-        <p class="sub">Die <b>reLounge</b> verbindet Wärme, TENS und Elektrostimulation – aktiviert tiefe Muskulatur, fördert die Durchblutung, löst Verspannungen. Im Liegen.</p>
-        <a href="#karte" class="distlink">📍 Wie weit ist Uchte von Ihnen? → Entfernung ansehen</a>
+        <span class="eyebrow">Rücken · Nacken · Verspannungen · Uchte</span>
+        <h1>20 Minuten, die Ihrem Rücken<br><span class="gold">wirklich helfen.</span></h1>
+        <div class="answers"><span>💶 29,90 € einmalig</span><span>📍 in Uchte</span><span>🩺 ärztlich geleitet</span></div>
+        <a href="#karte" class="distlink">📍 Wie weit ist Uchte von Ihnen? →</a>
         <div class="who">
           <div class="media"><img alt="Hischam El-Sobhi" src="assets-relounge/hischam-opt.jpg" onerror="this.style.display='none'"></div>
           <div><b>Hischam El-Sobhi</b>Facharzt für Allgemeinmedizin · über 25 Jahre Erfahrung</div>
@@ -428,7 +434,9 @@
   <div class="wrap">
     <p><b>Arztpraxis Hischam El-Sobhi</b></p>
     <p>Mindener Straße 12 · 31600 Uchte · ☎ 05763 2343</p>
-    <p class="disc">Die reLounge ersetzt keine ärztliche Diagnose oder Therapie. Wirkungen können individuell unterschiedlich sein. Diese Seite enthält kein Heilversprechen. · Impressum · Datenschutz</p>
+    <p class="disc">Die reLounge ersetzt keine ärztliche Diagnose oder Therapie. Wirkungen können individuell unterschiedlich sein. Diese Seite enthält kein Heilversprechen.<br>
+      <a href="https://www.allgemeinmedizin-uchte.de/impressum.html" target="_blank" rel="noopener" style="color:#b9c8da;text-decoration:underline">Impressum</a> ·
+      <a href="https://www.allgemeinmedizin-uchte.de/datenschutz.html" target="_blank" rel="noopener" style="color:#b9c8da;text-decoration:underline">Datenschutz</a></p>
   </div>
 </footer>
 
@@ -436,7 +444,7 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  var PRAXIS=[52.5236,8.9163];
+  var PRAXIS=[52.4969913,8.9031641];
   var karte, meinMarker, linie;
   function initKarte(){
     if(typeof L==='undefined'){return;}
