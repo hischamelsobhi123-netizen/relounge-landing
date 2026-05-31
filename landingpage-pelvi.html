@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BetterPelvi Probe-Sitzung | Praxis Hischam El-Sobhi, Uchte</title>
+<style>
+  :root{
+    --bg:#fbfaf8; --ink:#15233a; --ink2:#3c4c63; --muted:#697892;
+    --navy:#13243e; --navy2:#1d3552; --gold:#b8893f; --gold-l:#d8b277;
+    --teal:#0f7d74; --rose:#b03a5b; --line:#e7e2d9; --card:#ffffff; --radius:18px; --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.serif{font-family:Georgia,ui-serif,serif;letter-spacing:-.01em}
+  h1{font-size:2.2rem;line-height:1.12;font-weight:700}
+  h2{font-size:1.7rem;line-height:1.15;font-weight:700;margin-bottom:12px}
+  h3{font-size:1.12rem;font-weight:700}
+  p{color:var(--ink2)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .gold{color:var(--gold)}.center{text-align:center;max-width:660px;margin:0 auto}
+
+  .media{position:relative;overflow:hidden;background:linear-gradient(135deg,#16304a,#0c1a2b);display:flex;align-items:center;justify-content:center}
+  .media .cap{position:absolute;color:#90a6c0;font-size:.78rem;text-align:center;padding:0 14px;z-index:0}
+  .media img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block}
+
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(251,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo .media{width:40px;height:40px;border-radius:9px}
+  .logo b{font-family:Georgia,serif;font-size:.98rem;color:var(--navy);line-height:1.1}
+  .logo span{display:block;font-size:.64rem;letter-spacing:.13em;color:var(--gold);text-transform:uppercase}
+  .nav-cta{background:var(--teal);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:10px 16px;border-radius:10px;white-space:nowrap}
+
+  .btn{display:inline-block;text-align:center;text-decoration:none;cursor:pointer;border:0;
+    background:linear-gradient(135deg,var(--gold-l),var(--gold));color:#241704;font-weight:800;
+    font-size:1.02rem;padding:16px 26px;border-radius:12px;box-shadow:0 14px 32px -12px rgba(184,137,63,.55);transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-block{display:block;width:100%}
+
+  .hero{background:linear-gradient(105deg,rgba(9,16,28,.95) 0%,rgba(12,40,52,.85) 45%,rgba(15,80,74,.7) 100%);color:#fff;padding:42px 0 50px}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+  @media(min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+  .eyebrow{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-l);border:1px solid rgba(216,178,119,.45);padding:6px 13px;border-radius:99px;margin-bottom:16px}
+  .hero h1{color:#fff}
+  .forwhom{color:#e7eef6;font-weight:600;margin-top:10px}
+  .answers{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .answers span{font-size:.84rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:7px 12px;border-radius:99px;color:#fff}
+  .hero .sub{font-size:1.0rem;color:#dde6f0;margin-top:16px;max-width:520px}
+  .distlink{display:inline-block;margin-top:14px;color:var(--gold-l);font-weight:700;font-size:.9rem;text-decoration:none;border-bottom:1px dashed rgba(216,178,119,.5)}
+  .hero .who{display:flex;align-items:center;gap:12px;margin-top:20px}
+  .hero .who .media{width:52px;height:52px;border-radius:50%;flex:none;border:2px solid rgba(216,178,119,.6)}
+  .hero .who div{font-size:.86rem;color:#cdd9e8}.hero .who b{color:#fff;display:block;font-family:Georgia,serif}
+
+  .formcard{background:#fff;border-radius:16px;padding:22px;box-shadow:0 30px 60px -25px rgba(0,0,0,.5)}
+  .formcard .price{display:flex;align-items:baseline;gap:10px;margin-bottom:2px}
+  .formcard .price b{font-family:Georgia,serif;font-size:1.9rem;color:var(--navy)}
+  .formcard .price span{font-size:.8rem;color:var(--teal);font-weight:700;background:rgba(15,125,116,.1);padding:3px 9px;border-radius:99px}
+  .formcard h3{color:var(--navy);margin:4px 0 2px}
+  .formcard .note{font-size:.82rem;color:var(--muted);margin-bottom:6px}
+  .formcard input,.formcard select{width:100%;padding:13px;border:1px solid var(--line);border-radius:10px;font-size:1rem;margin-top:9px;color:var(--ink);background:#fff}
+  .formcard input:focus,.formcard select:focus{outline:0;border-color:var(--teal)}
+  .formcard .btn{margin-top:12px}
+  .formcard .trust{font-size:.74rem;color:var(--muted);margin-top:10px;text-align:center}
+  .consent{display:block;font-size:.8rem;color:var(--ink2);margin:2px 0 12px;text-align:left;line-height:1.45;overflow:hidden;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#faf8f4;transition:box-shadow .2s,border-color .2s,background .2s}
+  .consent input{float:left;margin:3px 9px 0 0;width:18px;height:18px;cursor:pointer}
+  .consent span{display:block}
+  @keyframes consentpulse{0%,100%{box-shadow:0 0 0 0 rgba(184,137,63,0)}50%{box-shadow:0 0 0 7px rgba(184,137,63,.30)}}
+  .consent.flash{border-color:var(--gold);background:rgba(184,137,63,.13);animation:consentpulse .85s ease 2}
+  .next3{display:flex;gap:6px;margin-top:14px}
+  .next3 div{flex:1;text-align:center;font-size:.72rem;color:var(--muted)}
+  .next3 span{display:block;width:26px;height:26px;line-height:26px;border-radius:50%;background:rgba(15,125,116,.12);color:var(--teal);font-weight:800;margin:0 auto 4px}
+  .consent a{color:var(--teal)}
+  .formgate{position:relative}
+  .formgate.locked{min-height:440px}
+  .formgate.locked iframe{opacity:.5;pointer-events:none;filter:grayscale(.4)}
+  .gateov{display:none}
+  .formgate.locked .gateov{display:flex;position:absolute;inset:0;z-index:3;align-items:center;justify-content:center;text-align:center;color:var(--navy);font-weight:700;font-size:.92rem;background:rgba(246,243,238,.65);border-radius:10px;padding:0 22px;cursor:pointer}
+  .formph{border:2px dashed var(--line);border-radius:10px;min-height:430px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:.9rem;padding:24px;background:#faf8f4}
+  .formph b{color:var(--navy);font-family:Georgia,serif;font-size:1.05rem;display:block;margin-bottom:6px}
+
+  section{padding:54px 0}
+  .alt{background:#f6f3ee}
+  .navybg{background:var(--navy);color:#eaf0f7}.navybg h2{color:#fff}.navybg p{color:#c2cfdf}
+  .lead{font-size:1.06rem}
+  .punch{font-family:Georgia,serif;font-size:1.25rem;color:var(--navy);margin-top:20px;line-height:1.4}
+  .punch.light{color:#fff}
+
+  .split{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+  @media(min-width:820px){.split{grid-template-columns:1fr 1.15fr}}
+  .split.rev .imgcol{order:2}
+  .split .imgcol .media{height:360px;border-radius:var(--radius);box-shadow:0 24px 50px -28px rgba(19,36,62,.45)}
+  .credlist{list-style:none;margin-top:16px;display:grid;gap:9px}
+  .credlist li{font-size:.94rem;color:var(--ink2);display:flex;gap:10px}
+  .credlist li::before{content:"✓";color:var(--teal);font-weight:800}
+  .sig{font-family:Georgia,serif;font-style:italic;color:var(--gold);font-size:1.15rem;margin-top:14px}
+
+  .pains{list-style:none;margin-top:18px;display:grid;gap:11px}
+  .pains li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 17px;font-size:.95rem;color:var(--ink2);display:flex;gap:11px}
+  .pains li::before{content:"›";color:var(--gold);font-weight:800}
+
+  .why{display:grid;gap:16px;margin-top:22px}
+  @media(min-width:760px){.why{grid-template-columns:repeat(3,1fr)}}
+  .why .col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .why .col.good{border-color:var(--teal);box-shadow:0 16px 30px -22px rgba(15,125,116,.5)}
+  .why h3{font-size:1.02rem;color:var(--navy);margin-bottom:6px}
+  .why p{font-size:.9rem}
+
+  .steps{display:grid;gap:18px;margin-top:24px}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:24px}
+  .step .ic{width:46px;height:46px;border-radius:12px;background:rgba(216,178,119,.16);color:var(--gold-l);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:12px}
+  .step h3{color:#fff}.step p{color:#c2cfdf;font-size:.9rem}
+  .stat-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;justify-content:center}
+  .stat{flex:1;min-width:150px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;text-align:center}
+  .stat b{display:block;font-family:Georgia,serif;font-size:1.9rem;color:var(--gold-l)}
+  .stat span{font-size:.8rem;color:#c2cfdf}
+
+  .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px}
+  @media(min-width:760px){.gallery{grid-template-columns:repeat(4,1fr)}}
+  .gallery .media{aspect-ratio:4/3;border-radius:14px}
+  .award{display:flex;align-items:center;gap:20px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:30px}
+  .award .media{width:84px;height:84px;border-radius:12px;flex:none;background:#fff}
+  .award .media img{object-fit:contain}
+  .award b{font-family:Georgia,serif;font-size:1.05rem;color:var(--navy)}
+  .award p{font-size:.88rem;margin-top:4px}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:12px}
+  summary{cursor:pointer;font-weight:700;font-size:.98rem;list-style:none;color:var(--navy)}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";float:right;color:var(--gold);font-weight:800;font-size:1.2rem;line-height:1}
+  details[open] summary::after{content:"–"}
+  details .body{margin-top:12px}.details .body p,details .body p{font-size:.92rem}
+  .mini{list-style:none;display:grid;gap:8px;margin-top:6px}
+  .mini li{font-size:.93rem;color:var(--ink2);display:flex;gap:10px}.mini li::before{content:"✓";color:var(--teal);font-weight:800}
+
+  .coop{background:linear-gradient(160deg,#19222e,#11181f);color:#fff;border:1px solid rgba(216,178,119,.35);border-radius:var(--radius);padding:26px;margin-top:14px}
+  .coop h3{color:#fff}.coop p{color:#c2cfdf;font-size:.94rem;margin-top:6px}
+  .stufen{display:grid;gap:12px;margin-top:16px}
+  @media(min-width:680px){.stufen{grid-template-columns:repeat(3,1fr)}}
+  .stufe{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:16px}
+  .stufe span{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#241704;font-weight:800;align-items:center;justify-content:center}
+  .stufe b{display:block;color:#fff;font-family:Georgia,serif;margin:8px 0 4px}.stufe p{color:#c2cfdf;font-size:.86rem}
+
+  .tgrid{display:grid;gap:16px;margin-top:24px}
+  @media(min-width:760px){.tgrid{grid-template-columns:repeat(3,1fr)}}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .stars{color:var(--gold);letter-spacing:2px;margin-bottom:10px}
+  .tcard p{font-style:italic}.tcard .who2{color:var(--muted);font-size:.82rem;margin-top:12px}
+
+  .chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-size:.84rem;color:var(--ink2)}
+  .trustbar{background:var(--navy2);color:#dbe6f2}
+  .trustbar .wrap{display:flex;gap:8px 24px;flex-wrap:wrap;justify-content:center;padding:13px 22px;font-size:.83rem}
+
+  .quiz{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin-top:22px}
+  .quiz .qtitle{font-weight:700;color:var(--navy);font-size:1.05rem;margin-bottom:6px;font-family:Georgia,serif}
+  .quiz button{display:block;width:100%;text-align:left;background:#f4f1ea;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:10px;font-size:.98rem;color:var(--ink);cursor:pointer;transition:.15s;font-family:inherit}
+  .quiz button:hover{border-color:var(--teal);background:#eef6f5}
+  .quiz #qresult .btn{margin-top:16px}
+  .astep{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .astep .n{display:inline-flex;width:34px;height:34px;border-radius:10px;background:rgba(15,125,116,.12);color:var(--teal);font-weight:800;align-items:center;justify-content:center;margin-bottom:10px}
+  .astep h3{color:var(--navy);margin-bottom:5px}.astep p{font-size:.9rem}
+
+  footer{background:var(--navy);color:#aebed2;padding:46px 0 96px;text-align:center}
+  footer b{color:#fff;font-family:Georgia,serif}
+  footer p{color:#aebed2;font-size:.86rem;margin-top:5px}
+  .disc{font-size:.72rem;color:#6f8298;margin-top:22px;line-height:1.6;max-width:720px;margin-left:auto;margin-right:auto}
+
+  @media(max-width:600px){
+    h1{font-size:1.7rem}
+    h2{font-size:1.42rem}
+    .hero{padding:30px 0 40px}
+    .answers span{font-size:.8rem;padding:6px 10px}
+    section{padding:42px 0}
+    .punch{font-size:1.1rem}
+    .hero .who,.hero .distlink{display:none}
+  }
+  .sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(19,36,62,.96);backdrop-filter:blur(8px);padding:11px 16px;z-index:80;border-top:1px solid rgba(255,255,255,.08)}
+  .sticky .btn{width:100%;padding:15px}
+  .rlpop{display:none;position:fixed;inset:0;z-index:200;background:rgba(9,16,28,.72);backdrop-filter:blur(3px);align-items:center;justify-content:center;padding:20px}
+  .rlpop.show{display:flex}
+  .rlpop-card{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:32px 26px;text-align:center;position:relative;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+  .rlpop-x{position:absolute;top:8px;right:14px;border:0;background:none;font-size:1.7rem;color:var(--muted);cursor:pointer;line-height:1}
+  .rlpop-badge{display:inline-block;background:rgba(184,137,63,.14);color:var(--gold);font-weight:700;font-size:.72rem;letter-spacing:.06em;padding:5px 12px;border-radius:99px;margin-bottom:10px}
+  .rlpop-card h3{color:var(--navy);font-size:1.4rem;margin-bottom:8px}
+  .rlpop-card p{font-size:.95rem}
+  .rlpop-card .btn{margin-top:16px}
+  .rlpop-alt{font-size:.82rem;color:var(--muted);margin-top:12px}.rlpop-alt a{color:var(--teal);font-weight:700}
+  @media(min-width:760px){.sticky{display:none}}
+  body{padding-bottom:84px}@media(min-width:760px){body{padding-bottom:0}}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="logo">
+      <div class="media"><img alt="Praxis-Logo" src="assets-relounge/logo.jpg" onerror="this.style.display='none'"></div>
+      <div><b>Hischam El-Sobhi</b><span>Arztpraxis · Uchte</span></div>
+    </div>
+    <a href="#anfrage" class="nav-cta">Probe-Termin sichern</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Beckenboden · Blase · nach der Geburt · Uchte</span>
+        <h1>Ein starker Beckenboden –<br><span class="gold">in nur 28 Minuten.</span></h1>
+        <p class="forwhom">Bei Blasenschwäche, nach der Geburt &amp; zur Vorsorge – ganz ohne OP, ohne Spritze.</p>
+        <div class="answers"><span>💶 29,90 € einmalig</span><span>👕 vollbekleidet sitzen</span><span>🩺 ärztlich geleitet</span></div>
+        <a href="#karte" class="distlink">📍 Wie weit ist Uchte von Ihnen? →</a>
+        <div class="who">
+          <div class="media"><img alt="Hischam El-Sobhi" src="assets-relounge/hischam-opt.jpg" onerror="this.style.display='none'"></div>
+          <div><b>Hischam El-Sobhi</b>Facharzt für Allgemeinmedizin · über 25 Jahre Erfahrung</div>
+        </div>
+      </div>
+      <div id="anfrage" class="formcard">
+        <div class="price"><b>29,90 €</b><span>einmalig · kein Abo</span></div>
+        <h3>Probe-Sitzung sichern</h3>
+        <p class="note"><b>Sie müssen nicht anrufen – wir rufen Sie zurück</b> (meist innerhalb von 24 Std.). ⏳ Begrenzte Plätze pro Woche.</p>
+        <label class="consent"><input type="checkbox" id="consentBox" onchange="toggleForm(this)"><span>Ich willige ein, dass mich die Praxis zur Terminvereinbarung per Telefon, SMS oder E-Mail kontaktiert (<a href="https://www.allgemeinmedizin-uchte.de/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>).</span></label>
+        <div class="formgate locked">
+          <div class="gateov" onclick="rlFlash()">👆 Bitte oben kurz zustimmen – dann können Sie sich eintragen</div>
+          <!-- PLATZHALTER: hier das BetterPelvi-Formular aus GHL einbinden (wie bei reLounge). -->
+          <div class="formph">
+            <b>BetterPelvi-Anmeldeformular</b>
+            Wird in GHL erstellt und hier eingebunden<br>(Felder: Vorname, Nachname, Telefon, Wunschzeit) –<br>genau wie bei der reLounge-Seite.
+          </div>
+        </div>
+        <div class="next3">
+          <div><span>1</span>Eintragen</div>
+          <div><span>2</span>Wir rufen an</div>
+          <div><span>3</span>Probe-Termin</div>
+        </div>
+        <p class="trust">🔒 Kein Spam – wir rufen nur zur Terminabstimmung an.<br>🩺 Ärztlich geleitet · 📍 Uchte · ✓ unverbindlich</p>
+        <p style="text-align:center;font-size:.82rem;color:var(--muted);margin-top:8px">Lieber direkt? <a href="https://wa.me/491624213357" style="color:var(--teal);font-weight:700">WhatsApp</a> · <a href="tel:+4957632343" style="color:var(--teal);font-weight:700">05763 2343</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vertrauens-Leiste -->
+<div class="trustbar">
+  <div class="wrap">
+    <span>✔ Approbiert seit 1998</span><span>✔ Facharzt für Allgemeinmedizin</span><span>✔ Nicht-invasiv, ohne Nebenwirkungen</span><span>✔ Barrierefrei</span><span>✔ Kostenlose Parkplätze</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section>
+  <div class="wrap">
+    <h2>Kommt Ihnen das bekannt vor?</h2>
+    <p class="lead">Ein schwacher Beckenboden zeigt sich oft im Alltag – und kostet still Lebensqualität.</p>
+    <ul class="pains">
+      <li>Beim Husten, Lachen, Niesen oder Sport geht ungewollt Urin ab.</li>
+      <li>Ständiger Harndrang – Sie wissen schon, wo die nächste Toilette ist.</li>
+      <li>Nach der Geburt fühlt sich „unten herum" nichts mehr richtig fest an.</li>
+      <li>Beckenboden-Übungen zu Hause bringen kaum etwas – oder Sie wissen nicht, ob Sie sie richtig machen.</li>
+    </ul>
+    <p class="punch">Was kostet es Sie, so weiterzumachen – an Sicherheit, Spontanität und Lebensfreude?</p>
+  </div>
+</section>
+
+<!-- WARUM ANDERE LÖSUNGEN NICHT HALTEN -->
+<section class="alt">
+  <div class="wrap">
+    <div class="center"><h2>Warum die meisten Beckenboden-Lösungen nicht halten</h2></div>
+    <div class="why">
+      <div class="col"><h3>Übungen zu Hause</h3><p>Schwer richtig zu treffen – die tiefe Beckenboden-Muskulatur lässt sich willentlich kaum gezielt ansteuern.</p></div>
+      <div class="col"><h3>Vorlagen &amp; Einlagen</h3><p>Kaschieren nur das Symptom. Die Ursache – die schwache Muskulatur – bleibt unverändert.</p></div>
+      <div class="col good"><h3>✓ BetterPelvi</h3><p>Magnetfeld-Technologie erreicht <b>alle Schichten</b> des Beckenbodens – über 12.500 Kontraktionen pro Sitzung, ganz von allein.</p></div>
+    </div>
+    <p class="punch" style="text-align:center">Das Problem waren nie Sie – sondern dass die tiefe Muskulatur nie wirklich erreicht wurde.</p>
+  </div>
+</section>
+
+<!-- KARTE / ENTFERNUNG -->
+<section id="karte">
+  <div class="wrap" style="max-width:880px">
+    <div class="center"><h2>Wie weit ist die Praxis von Ihnen?</h2>
+      <p>Die BetterPelvi-Behandlung findet bei uns in <b>Uchte</b> statt. Sehen Sie auf einen Blick, wie nah Sie dran sind.</p></div>
+    <div id="map" style="height:360px;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-top:22px"></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:18px">
+      <button onclick="meineEntfernung()" class="btn" style="background:linear-gradient(135deg,#13a093,#0f7d74);color:#fff">📍 Entfernung zu mir berechnen</button>
+      <a class="btn" style="background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:none" href="https://www.google.com/maps/dir/?api=1&destination=Mindener+Stra%C3%9Fe+12+31600+Uchte" target="_blank" rel="noopener">🗺️ Route in Google Maps</a>
+    </div>
+    <p id="km" style="text-align:center;margin-top:16px;color:var(--ink2);font-size:1.05rem"></p>
+    <p style="text-align:center;font-size:.8rem;color:var(--muted);margin-top:4px">Ihr Standort wird nur in Ihrem Browser verwendet – wir speichern ihn nicht.</p>
+    <div style="margin-top:26px;text-align:center">
+      <p style="font-size:.92rem;color:var(--ink2);margin-bottom:12px">Viele unserer Gäste kommen aus dem Umkreis:</p>
+      <div style="display:flex;gap:9px;flex-wrap:wrap;justify-content:center">
+        <span class="chip">Minden</span><span class="chip">Nienburg</span><span class="chip">Diepholz</span><span class="chip">Stolzenau</span><span class="chip">Petershagen</span><span class="chip">Steyerberg</span><span class="chip">Rahden</span><span class="chip">Sulingen</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARZT -->
+<section class="alt">
+  <div class="wrap">
+    <div class="split">
+      <div class="imgcol"><div class="media"><img alt="Hischam El-Sobhi in der Praxis" src="assets-relounge/hischam-opt.jpg" onerror="this.style.display='none'"></div></div>
+      <div>
+        <span class="eyebrow" style="color:var(--gold);border-color:var(--line)">Ihr Arzt</span>
+        <h2>Eine ärztlich geleitete Praxis – kein anonymes Studio.</h2>
+        <p>Mein Name ist <b>Hischam El-Sobhi</b>, Facharzt für Allgemein- und Ernährungsmedizin. Seit über 25 Jahren begleite ich Menschen in Uchte – einfühlsam und diskret, gerade bei einem so persönlichen Thema wie dem Beckenboden. Bei neuen Gästen schaue ich nach Möglichkeit gern kurz persönlich vorbei – <b>denn Sie sollen sich ernst genommen fühlen.</b></p>
+        <ul class="credlist">
+          <li>Behandlung in der eigenen Praxis in Uchte</li>
+          <li>Diskret &amp; einfühlsam – für Frauen und Männer</li>
+          <li>Persönlich betreut von einem festen Team vor Ort</li>
+        </ul>
+        <p class="sig">– Hischam El-Sobhi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <div class="wrap">
+    <div class="split rev">
+      <div class="imgcol"><div class="media"><img alt="Das Praxis-Team" src="assets-relounge/team-opt.jpg" onerror="this.style.display='none'"></div></div>
+      <div>
+        <span class="eyebrow" style="color:var(--gold);border-color:var(--line)">Ihr Team vor Ort</span>
+        <h2>Bei uns sind Sie kein anonymer Termin.</h2>
+        <p>Viele kennen uns aus Uchte und der Umgebung. Unser Team nimmt sich Zeit für Sie – freundlich, diskret und von der ersten Sitzung an gut aufgehoben.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SO FUNKTIONIERT'S -->
+<section class="navybg">
+  <div class="wrap">
+    <div class="center"><h2>So funktioniert BetterPelvi</h2><p>Innovative Magnetfeld-Technologie – Sie sitzen einfach entspannt und vollbekleidet auf dem Stuhl.</p></div>
+    <div class="steps">
+      <div class="step"><div class="ic">🧲</div><h3>Magnetfeld-Technologie</h3><p>Gezielte Impulse erreichen tiefe Muskelschichten, die normale Übungen kaum ansprechen können.</p></div>
+      <div class="step"><div class="ic">💪</div><h3>Über 12.500 Kontraktionen</h3><p>In nur einer Sitzung – das entspricht tausenden Beckenboden-Übungen, ganz ohne Anstrengung.</p></div>
+      <div class="step"><div class="ic">👕</div><h3>Vollbekleidet sitzen</h3><p>Keine umständliche Vorbereitung, nicht-invasiv, ohne bekannte Nebenwirkungen.</p></div>
+    </div>
+    <p class="punch light" style="text-align:center">Sie müssen nichts tun außer sitzen – <b>die Technik übernimmt das Training.</b></p>
+    <div class="stat-row">
+      <div class="stat"><b>~28</b><span>Minuten pro Sitzung</span></div>
+      <div class="stat"><b>12.500+</b><span>Kontraktionen</span></div>
+      <div class="stat"><b>im Sitzen</b><span>vollbekleidet &amp; bequem</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section>
+  <div class="wrap">
+    <div class="center"><h2>So läuft Ihre Probe-Sitzung ab</h2><p>Ganz entspannt – Sie müssen sich um nichts kümmern.</p></div>
+    <div class="steps" style="margin-top:24px">
+      <div class="astep"><span class="n">1</span><h3>Ankommen &amp; Beratung</h3><p>Sie werden persönlich begrüßt, wir klären kurz Ihre Situation – diskret und ohne Druck.</p></div>
+      <div class="astep"><span class="n">2</span><h3>~28 Minuten BetterPelvi</h3><p>Sie sitzen vollbekleidet auf dem Stuhl, das Magnetfeld trainiert Ihren Beckenboden – individuell eingestellt.</p></div>
+      <div class="astep"><span class="n">3</span><h3>Kurzer Austausch</h3><p>Danach besprechen wir, wie es sich angefühlt hat – ganz ohne Druck.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="alt">
+  <div class="wrap">
+    <div class="center"><h2>BetterPelvi in unserer Praxis</h2><p>Moderne Anwendung in angenehmer, diskreter Atmosphäre.</p></div>
+    <div class="gallery">
+      <div class="media"><span class="cap">📷 BetterPelvi-Stuhl<br>(Foto folgt)</span><img alt="BetterPelvi-Stuhl" src="assets-pelvi/stuhl.jpg" onerror="this.style.display='none'"></div>
+      <div class="media"><span class="cap">📷 Anwendung<br>(Foto folgt)</span><img alt="Anwendung" src="assets-pelvi/anwendung.jpg" onerror="this.style.display='none'"></div>
+      <div class="media"><span class="cap">📷 Beckenboden-Animation<br>(Foto folgt)</span><img alt="Animation" src="assets-pelvi/animation.jpg" onerror="this.style.display='none'"></div>
+      <div class="media"><span class="cap">📷 Praxis<br>(Foto folgt)</span><img alt="Praxis" src="assets-pelvi/praxis.jpg" onerror="this.style.display='none'"></div>
+    </div>
+    <div class="award">
+      <div class="media"><span class="cap">🧲</span></div>
+      <div><b>Innovative Magnetfeld-Technologie</b><p>Hochmoderne, nicht-invasive Beckenboden-Aktivierung – ohne OP, ohne Spritze, ohne bekannte Nebenwirkungen.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SELBSTTEST -->
+<section id="check">
+  <div class="wrap" style="max-width:680px">
+    <div class="center"><h2>In 30 Sekunden: Ist BetterPelvi das Richtige für Sie?</h2><p>3 kurze Fragen – ganz unverbindlich.</p></div>
+    <div class="quiz" id="quiz">
+      <div class="q" data-q="0">
+        <p class="qtitle">1. Was beschäftigt Sie?</p>
+        <button onclick="qNext(1)">Blasenschwäche / Harndrang</button>
+        <button onclick="qNext(1)">Beckenboden nach der Geburt</button>
+        <button onclick="qNext(1)">Vorsorge / Männergesundheit</button>
+      </div>
+      <div class="q" data-q="1" hidden>
+        <p class="qtitle">2. Wie lange schon?</p>
+        <button onclick="qNext(2)">Seit Kurzem</button>
+        <button onclick="qNext(2)">Seit Wochen / Monaten</button>
+        <button onclick="qNext(2)">Schon lange / immer wieder</button>
+      </div>
+      <div class="q" data-q="2" hidden>
+        <p class="qtitle">3. Trifft eines davon auf Sie zu?</p>
+        <p style="font-size:.86rem;color:var(--muted);margin-bottom:4px">Herzschrittmacher · Metallimplantat im Behandlungsbereich · Schwangerschaft</p>
+        <button onclick="qResult(true)">Nein, nichts davon</button>
+        <button onclick="qResult(false)">Ja / bin unsicher</button>
+      </div>
+      <div class="q" id="qresult" hidden></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section>
+  <div class="wrap">
+    <div class="center"><h2>Diskret. Ärztlich begleitet. Ganz in Ihrer Nähe.</h2><p>Immer mehr Frauen und Männer aus der Region setzen auf moderne Beckenboden-Aktivierung statt nur auf Einlagen.</p></div>
+    <div class="tgrid">
+      <div class="tcard"><div class="stars">★★★★★</div><p>„Endlich kann ich wieder lachen und niesen, ohne ständig in Sorge zu sein."</p><div class="who2">— Platzhalter (echte Bewertung einsetzen)</div></div>
+      <div class="tcard"><div class="stars">★★★★★</div><p>„Nach der Geburt war alles geschwächt – die Sitzungen haben mir spürbar Sicherheit zurückgegeben."</p><div class="who2">— Platzhalter (echte Bewertung einsetzen)</div></div>
+      <div class="tcard"><div class="stars">★★★★★</div><p>„Total unkompliziert: vollbekleidet sitzen, entspannen – und der Beckenboden arbeitet."</p><div class="who2">— Platzhalter (echte Bewertung einsetzen)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EIGNUNG + KOOPERATION -->
+<section class="alt">
+  <div class="wrap" style="max-width:820px">
+    <div class="center"><h2>Ist BetterPelvi das Richtige für Sie?</h2><p>Tippen Sie auf die Punkte, um mehr zu erfahren.</p></div>
+    <details open>
+      <summary>Für wen ist BetterPelvi geeignet?</summary>
+      <div class="body"><ul class="mini">
+        <li>Blasenschwäche &amp; ungewollter Urinverlust (beim Husten, Lachen, Sport)</li>
+        <li>Rückbildung nach der Geburt</li>
+        <li>Ständiger Harndrang &amp; Beckenboden-Schwäche</li>
+        <li>Männergesundheit (z. B. nach Prostata-OP) &amp; Vorsorge</li>
+      </ul></div>
+    </details>
+    <details>
+      <summary>Wann ist es nicht geeignet?</summary>
+      <div class="body"><p>Bei Herzschrittmacher oder implantierten elektronischen Geräten, Metallimplantaten im Behandlungsbereich oder in der Schwangerschaft. Das klären wir gemeinsam kurz vor Ort ab.</p></div>
+    </details>
+    <details>
+      <summary>Was kostet die Probe-Sitzung?</summary>
+      <div class="body"><p>Die Probe-Sitzung kostet <b>einmalig 29,90 €</b> – mehr nicht. <b>Keine Folgekosten, kein Abo.</b> Wenn es Ihnen guttut, gibt es ganz in Ruhe und freiwillig Vorteils-Pakete (z. B. 10er- oder größere Pakete, auch in Raten).</p></div>
+    </details>
+
+    <div class="coop">
+      <h3>Und danach? Eine echte Praxis denkt weiter.</h3>
+      <p>Sie bleiben mit Ihrem Anliegen nicht allein – wir gehen Schritt für Schritt:</p>
+      <div class="stufen">
+        <div class="stufe"><span>1</span><b>BetterPelvi-Probe</b><p>Zuerst schauen wir, wie sich die Behandlung für Sie anfühlt.</p></div>
+        <div class="stufe"><span>2</span><b>Trainingsplan</b><p>Für ein stabiles Ergebnis ist Regelmäßigkeit wichtig – wir stellen ein passendes Paket zusammen.</p></div>
+        <div class="stufe"><span>3</span><b>Ganzheitlich denken</b><p>Bei Bedarf gehen wir tiefer – z. B. mit Beratung zu Ernährung, Vitalstoffen &amp; Bewegung.</p></div>
+      </div>
+      <p style="font-size:.84rem;color:#9fb1c8;margin-top:14px">Ganz ohne Druck – und nicht direkt nach Ihrer ersten Sitzung.</p>
+    </div>
+    <div class="center" style="margin-top:34px"><a href="#anfrage" class="btn">Jetzt Probe-Termin sichern</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Arztpraxis Hischam El-Sobhi</b></p>
+    <p>Mindener Straße 12 · 31600 Uchte · ☎ 05763 2343</p>
+    <p class="disc">BetterPelvi ersetzt keine ärztliche Diagnose oder Therapie. Wirkungen können individuell unterschiedlich sein. Diese Seite enthält kein Heilversprechen.<br>
+      <a href="https://www.allgemeinmedizin-uchte.de/impressum.html" target="_blank" rel="noopener" style="color:#b9c8da;text-decoration:underline">Impressum</a> ·
+      <a href="https://www.allgemeinmedizin-uchte.de/datenschutz.html" target="_blank" rel="noopener" style="color:#b9c8da;text-decoration:underline">Datenschutz</a></p>
+  </div>
+</footer>
+
+<div class="sticky"><a href="#anfrage" class="btn">Probe-Termin sichern</a></div>
+
+<div id="rlPop" class="rlpop">
+  <div class="rlpop-card">
+    <button class="rlpop-x" onclick="rlClose()" aria-label="Schließen">×</button>
+    <div class="rlpop-badge">Noch unsicher?</div>
+    <h3>Lassen Sie uns einfach kurz reden.</h3>
+    <p>Sie sind sich nicht sicher, ob BetterPelvi das Richtige für Sie ist? Hinterlassen Sie einfach Ihre Nummer – <b>wir rufen Sie an, beantworten Ihre Fragen und schauen gemeinsam, ob es für Sie passt.</b> Ganz unverbindlich, diskret, kein Druck.</p>
+    <a href="#anfrage" class="btn btn-block" onclick="rlClose()">Ja, ruft mich an</a>
+    <p class="rlpop-alt">Lieber sofort? <a href="https://wa.me/491624213357">WhatsApp</a> · <a href="tel:+4957632343">05763&nbsp;2343</a></p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  var PRAXIS=[52.4969913,8.9031641];
+  var karte, meinMarker, linie;
+  function initKarte(){
+    if(typeof L==='undefined'){return;}
+    karte=L.map('map',{scrollWheelZoom:false}).setView(PRAXIS,10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(karte);
+    L.marker(PRAXIS).addTo(karte).bindPopup('<b>Praxis Hischam El-Sobhi</b><br>Mindener Straße 12, Uchte').openPopup();
+  }
+  function entfernung(a,b){
+    var R=6371, r=function(x){return x*Math.PI/180;};
+    var dLat=r(b[0]-a[0]), dLon=r(b[1]-a[1]);
+    var s=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(r(a[0]))*Math.cos(r(b[0]))*Math.sin(dLon/2)*Math.sin(dLon/2);
+    return R*2*Math.atan2(Math.sqrt(s),Math.sqrt(1-s));
+  }
+  function meineEntfernung(){
+    var out=document.getElementById('km');
+    if(!navigator.geolocation){out.textContent='Ihr Browser unterstützt die Standort-Funktion leider nicht.';return;}
+    out.textContent='Standort wird ermittelt …';
+    navigator.geolocation.getCurrentPosition(function(p){
+      var u=[p.coords.latitude,p.coords.longitude];
+      var km=entfernung(u,PRAXIS);
+      out.innerHTML='📍 Sie sind <b>ca. '+Math.round(km)+' km</b> von unserer Praxis entfernt (Luftlinie).';
+      if(meinMarker){karte.removeLayer(meinMarker);} if(linie){karte.removeLayer(linie);}
+      meinMarker=L.marker(u).addTo(karte).bindPopup('Ihr Standort');
+      linie=L.polyline([u,PRAXIS],{color:'#0f7d74',weight:3,dashArray:'6'}).addTo(karte);
+      karte.fitBounds([u,PRAXIS],{padding:[45,45]});
+    },function(){ out.textContent='Standort konnte nicht ermittelt werden – bitte im Browser erlauben.'; });
+  }
+  window.addEventListener('load',initKarte);
+
+  function toggleForm(cb){var g=document.querySelector('.formgate'); if(g){ if(cb.checked){g.classList.remove('locked');window._rlEngaged=true;} else {g.classList.add('locked');} }}
+  function rlFlash(){ var c=document.querySelector('.consent'); if(!c)return; c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); try{c.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){} setTimeout(function(){c.classList.remove('flash');},2000); }
+
+  // Exit-Intent / Scroll-Popup (einmal pro Besuch)
+  (function(){
+    var shown=false, lastY=0, deepest=0;
+    function engaged(){ if(window._rlEngaged) return true; var ae=document.activeElement; if(ae&&ae.tagName==='IFRAME') return true; return false; }
+    function rlShow(){ if(shown||engaged()) return; try{ if(sessionStorage.getItem('rl_pop')) return; }catch(e){} var p=document.getElementById('rlPop'); if(!p) return; shown=true; try{ sessionStorage.setItem('rl_pop','1'); }catch(e){} p.classList.add('show'); }
+    window.rlClose=function(){ var p=document.getElementById('rlPop'); if(p)p.classList.remove('show'); };
+    document.addEventListener('mouseout',function(e){ if(e.clientY<=0){ rlShow(); } });
+    setTimeout(rlShow, 45000);
+    window.addEventListener('scroll',function(){
+      var y=window.scrollY, h=document.body.scrollHeight, vh=window.innerHeight;
+      if(y>deepest) deepest=y;
+      var warUnten=(deepest+vh)/h > 0.7;
+      if(warUnten && y < lastY-60){ rlShow(); }
+      lastY=y;
+    });
+    document.addEventListener('click',function(e){ if(e.target&&e.target.id==='rlPop'){ window.rlClose(); } });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ window.rlClose(); } });
+  })();
+
+  function qNext(n){
+    document.querySelectorAll('#quiz .q').forEach(function(e){e.hidden=true;});
+    var t=document.querySelector('#quiz .q[data-q="'+n+'"]'); if(t){t.hidden=false;}
+  }
+  function qResult(ok){
+    document.querySelectorAll('#quiz .q').forEach(function(e){e.hidden=true;});
+    var r=document.getElementById('qresult'); r.hidden=false;
+    if(ok){
+      r.innerHTML='<p class="qtitle">✅ Das passt sehr wahrscheinlich zu Ihnen!</p><p>Sichern Sie sich Ihre Probe-Sitzung – Sie müssen nichts weiter tun, wir rufen Sie zurück.</p><a href="#anfrage" class="btn">Probe-Termin sichern</a>';
+    } else {
+      r.innerHTML='<p class="qtitle">Das klären wir kurz gemeinsam – ganz sicher.</p><p>Punkte wie Herzschrittmacher, Implantate oder Schwangerschaft prüfen wir vorher persönlich ab. Tragen Sie sich einfach ein, wir rufen Sie an und besprechen alles in Ruhe.</p><a href="#anfrage" class="btn">Eintragen &amp; zurückrufen lassen</a>';
+    }
+  }
+</script>
+
+</body>
+</html>
