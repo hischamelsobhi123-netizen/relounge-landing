@@ -512,17 +512,27 @@
   }
   window.addEventListener('load',initKarte);
 
-  function toggleForm(cb){var g=document.querySelector('.formgate'); if(g){ if(cb.checked){g.classList.remove('locked');} else {g.classList.add('locked');} }}
+  function toggleForm(cb){var g=document.querySelector('.formgate'); if(g){ if(cb.checked){g.classList.remove('locked');window._rlEngaged=true;} else {g.classList.add('locked');} }}
   function rlFlash(){ var c=document.querySelector('.consent'); if(!c)return; c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); try{c.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){} setTimeout(function(){c.classList.remove('flash');},2000); }
 
   // Exit-Intent / Scroll-Popup (einmal pro Besuch)
   (function(){
-    var shown=false;
-    function rlShow(){ if(shown||sessionStorage.getItem('rl_pop'))return; var p=document.getElementById('rlPop'); if(!p)return; shown=true; try{sessionStorage.setItem('rl_pop','1');}catch(e){} p.classList.add('show'); }
+    var shown=false, lastY=0, deepest=0;
+    function engaged(){ if(window._rlEngaged) return true; var ae=document.activeElement; if(ae&&ae.tagName==='IFRAME') return true; return false; }
+    function rlShow(){ if(shown||engaged()) return; try{ if(sessionStorage.getItem('rl_pop')) return; }catch(e){} var p=document.getElementById('rlPop'); if(!p) return; shown=true; try{ sessionStorage.setItem('rl_pop','1'); }catch(e){} p.classList.add('show'); }
     window.rlClose=function(){ var p=document.getElementById('rlPop'); if(p)p.classList.remove('show'); };
+    // Desktop: Maus verlässt oben (Exit-Intent)
     document.addEventListener('mouseout',function(e){ if(e.clientY<=0){ rlShow(); } });
-    setTimeout(rlShow, 40000);
-    window.addEventListener('scroll',function(){ if((window.scrollY+window.innerHeight)/document.body.scrollHeight>0.6){ rlShow(); } });
+    // Zeit-Fallback
+    setTimeout(rlShow, 45000);
+    // Handy-Exit: war tief unten und scrollt wieder hoch
+    window.addEventListener('scroll',function(){
+      var y=window.scrollY, h=document.body.scrollHeight, vh=window.innerHeight;
+      if(y>deepest) deepest=y;
+      var warUnten=(deepest+vh)/h > 0.7;
+      if(warUnten && y < lastY-60){ rlShow(); }
+      lastY=y;
+    });
     document.addEventListener('click',function(e){ if(e.target&&e.target.id==='rlPop'){ window.rlClose(); } });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ window.rlClose(); } });
   })();
