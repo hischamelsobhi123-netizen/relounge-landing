@@ -63,14 +63,16 @@
   .formcard input:focus,.formcard select:focus{outline:0;border-color:var(--teal)}
   .formcard .btn{margin-top:12px}
   .formcard .trust{font-size:.74rem;color:var(--muted);margin-top:10px;text-align:center}
-  .consent{display:block;font-size:.8rem;color:var(--ink2);margin:2px 0 12px;text-align:left;line-height:1.45;overflow:hidden}
+  .consent{display:block;font-size:.8rem;color:var(--ink2);margin:2px 0 12px;text-align:left;line-height:1.45;overflow:hidden;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#faf8f4;transition:box-shadow .2s,border-color .2s,background .2s}
   .consent input{float:left;margin:3px 9px 0 0;width:18px;height:18px;cursor:pointer}
   .consent span{display:block}
+  @keyframes consentpulse{0%,100%{box-shadow:0 0 0 0 rgba(184,137,63,0)}50%{box-shadow:0 0 0 7px rgba(184,137,63,.30)}}
+  .consent.flash{border-color:var(--gold);background:rgba(184,137,63,.13);animation:consentpulse .85s ease 2}
   .consent a{color:var(--teal)}
   .formgate{position:relative}
   .formgate.locked iframe{opacity:.5;pointer-events:none;filter:grayscale(.4)}
   .gateov{display:none}
-  .formgate.locked .gateov{display:flex;position:absolute;inset:0;z-index:3;align-items:center;justify-content:center;text-align:center;color:var(--navy);font-weight:700;font-size:.9rem;background:rgba(246,243,238,.6);border-radius:10px;padding:0 22px}
+  .formgate.locked .gateov{display:flex;position:absolute;inset:0;z-index:3;align-items:center;justify-content:center;text-align:center;color:var(--navy);font-weight:700;font-size:.92rem;background:rgba(246,243,238,.65);border-radius:10px;padding:0 22px;cursor:pointer}
 
   section{padding:54px 0}
   .alt{background:#f6f3ee}
@@ -215,7 +217,7 @@
         <p class="note"><b>Sie müssen nicht anrufen – wir rufen Sie zurück.</b> Einfach eintragen, wir melden uns.</p>
         <label class="consent"><input type="checkbox" id="consentBox" onchange="toggleForm(this)"><span>Ich willige ein, dass mich die Praxis zur Terminvereinbarung per Telefon, SMS oder E-Mail kontaktiert (<a href="https://www.allgemeinmedizin-uchte.de/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>).</span></label>
         <div class="formgate locked">
-          <div class="gateov">↑ Bitte zuerst zustimmen, dann eintragen</div>
+          <div class="gateov" onclick="rlFlash()">👆 Bitte oben kurz zustimmen – dann können Sie sich eintragen</div>
           <iframe src="https://api.leadconnectorhq.com/widget/form/bTfBja2xxGK06TpXG8HW"
             style="width:100%;height:430px;border:none;border-radius:10px;background:#fff"
             id="inline-bTfBja2xxGK06TpXG8HW" data-layout="{'id':'INLINE'}"
@@ -501,6 +503,7 @@
   window.addEventListener('load',initKarte);
 
   function toggleForm(cb){var g=document.querySelector('.formgate'); if(g){ if(cb.checked){g.classList.remove('locked');} else {g.classList.add('locked');} }}
+  function rlFlash(){ var c=document.querySelector('.consent'); if(!c)return; c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); try{c.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){} setTimeout(function(){c.classList.remove('flash');},2000); }
 
   // Exit-Intent / Scroll-Popup (einmal pro Besuch)
   (function(){
