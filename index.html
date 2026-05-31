@@ -63,6 +63,13 @@
   .formcard input:focus,.formcard select:focus{outline:0;border-color:var(--teal)}
   .formcard .btn{margin-top:12px}
   .formcard .trust{font-size:.74rem;color:var(--muted);margin-top:10px;text-align:center}
+  .consent{display:flex;gap:9px;align-items:flex-start;font-size:.8rem;color:var(--ink2);margin:2px 0 12px;text-align:left;line-height:1.4}
+  .consent input{margin-top:3px;width:18px;height:18px;flex:none;cursor:pointer}
+  .consent a{color:var(--teal)}
+  .formgate{position:relative}
+  .formgate.locked iframe{opacity:.5;pointer-events:none;filter:grayscale(.4)}
+  .gateov{display:none}
+  .formgate.locked .gateov{display:flex;position:absolute;inset:0;z-index:3;align-items:center;justify-content:center;text-align:center;color:var(--navy);font-weight:700;font-size:.9rem;background:rgba(246,243,238,.6);border-radius:10px;padding:0 22px}
 
   section{padding:54px 0}
   .alt{background:#f6f3ee}
@@ -196,10 +203,14 @@
         <div class="price"><b>29,90 €</b><span>einmalig · kein Abo</span></div>
         <h3>Probe-Sitzung sichern</h3>
         <p class="note"><b>Sie müssen nicht anrufen – wir rufen Sie zurück.</b> Einfach eintragen, wir melden uns.</p>
-        <iframe src="https://api.leadconnectorhq.com/widget/form/bTfBja2xxGK06TpXG8HW"
-          style="width:100%;height:430px;border:none;border-radius:10px;background:#fff"
-          id="inline-bTfBja2xxGK06TpXG8HW" data-layout="{'id':'INLINE'}"
-          data-form-id="bTfBja2xxGK06TpXG8HW" title="reLounge Probe"></iframe>
+        <label class="consent"><input type="checkbox" id="consentBox" onchange="toggleForm(this)"> Ich willige ein, dass mich die Praxis zur Terminvereinbarung per Telefon, SMS oder E-Mail kontaktiert (<a href="https://www.allgemeinmedizin-uchte.de/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>).</label>
+        <div class="formgate locked">
+          <div class="gateov">↑ Bitte zuerst zustimmen, dann eintragen</div>
+          <iframe src="https://api.leadconnectorhq.com/widget/form/bTfBja2xxGK06TpXG8HW"
+            style="width:100%;height:430px;border:none;border-radius:10px;background:#fff"
+            id="inline-bTfBja2xxGK06TpXG8HW" data-layout="{'id':'INLINE'}"
+            data-form-id="bTfBja2xxGK06TpXG8HW" title="reLounge Probe"></iframe>
+        </div>
         <p class="trust">🔒 Kein Spam – wir rufen nur zur Terminabstimmung an.<br>🩺 Ärztlich geleitet · 📍 Uchte · ✓ unverbindlich</p>
         <p style="text-align:center;font-size:.82rem;color:var(--muted);margin-top:8px">Lieber direkt? <a href="https://wa.me/491624213357" style="color:var(--teal);font-weight:700">WhatsApp</a> · <a href="tel:+4957632343" style="color:var(--teal);font-weight:700">05763 2343</a></p>
       </div>
@@ -467,6 +478,8 @@
     },function(){ out.textContent='Standort konnte nicht ermittelt werden – bitte im Browser erlauben.'; });
   }
   window.addEventListener('load',initKarte);
+
+  function toggleForm(cb){var g=document.querySelector('.formgate'); if(g){ if(cb.checked){g.classList.remove('locked');} else {g.classList.add('locked');} }}
 
   function qNext(n){
     document.querySelectorAll('#quiz .q').forEach(function(e){e.hidden=true;});
