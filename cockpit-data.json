@@ -43,7 +43,8 @@
           "tasks": [
             {
               "t": "Konkurrenz-Analyse gemacht",
-              "done": true
+              "done": true,
+              "idee": "Vollständige Konkurrenz-Analyse für die Workshop-Nische (Abnehmen / Stoffwechsel / Hormone, Frauen 40+).\n\nWER WURDE ANALYSIERT:\n• Jan Bahmann = die Blaupause — fast identisches Modell (Webinar -> 6-Monats-Begleitung, Frauen 40+), aber nur COACH, kein Arzt.\n• Aktive Werber (live in der Meta-Werbebibliothek):\n   - Daniel van den Boom: 'Wunschgewicht in den Wechseljahren', sehr aktiv, Video-Hooks + Einzel-Testimonials.\n   - Easylife Deutschland: 177 aktive Anzeigen (!), Hook 'Stoffwechselanalyse kostenlos (statt 59 €)'.\n   - DAA Weiden: '6-Wochen Hormonbalance-Programm – nur bis 13.6.' (Verknappung) + kostenloser Hormon-Test.\n   - Quantum Leap: Quiz-Funnel ('Bauchfett ab 40 – Quiz').\n• Weitere Coaches: Agnes Lasota, Doreen Buceta-Hager, Daniela Dworzak, Körperverwandlung, MetaFlow u.a.\n\nWAS SICH HERAUSGESTELLT HAT (Gewinner-Muster):\n1. ALLE nutzen einen kostenlosen Quiz / Test / Analyse als Lead-Magnet — und WIR haben das 9-Fragen-Stoffwechseltyp-Quiz aus dem Webinar schon!\n2. Video-Ads dominieren überall (bestätigt die KI-Video-Pipeline).\n3. Einzel-Testimonials als eigene Anzeigen ('Das sagt Sandra über…').\n4. Stärkste Hooks: Wechseljahre/Menopause + 'Bauchfett ab 40'.\n5. Verknappung/Deadline treibt die Anmeldung.\n\nUNSER UNFAIRER VORTEIL: Fast NIEMAND in der Nische ist ein echter Arzt — alles Coaches/Ketten. 'Echter Arzt + echte Laborwerte + Ursachen' ist die unbesetzte Position.\n\nVolle Details: outputs/konkurrenz-deepdive.md + branchen-accounts-tracking.md"
             },
             {
               "t": "LP-A1 'Welcher Typ' gebaut",
@@ -59,7 +60,33 @@
             },
             {
               "t": "Kampagnen scharf schalten",
-              "done": false
+              "idee": "Die fertigen Kampagnen live schalten. Vorher müssen mehrere Zwischenschritte sitzen — erst wenn alle erledigt sind, gilt der Punkt als fertig.",
+              "steps": [
+                {
+                  "t": "Pixel anlegen (Vincent / selbst)",
+                  "done": false
+                },
+                {
+                  "t": "Landingpages in GHL hosten",
+                  "done": false
+                },
+                {
+                  "t": "Video-Creatives drehen + schneiden",
+                  "done": false
+                },
+                {
+                  "t": "Anzeigen-Muster (Vorschau) bestätigen",
+                  "done": false
+                },
+                {
+                  "t": "Budget + Targeting setzen",
+                  "done": false
+                },
+                {
+                  "t": "Live schalten",
+                  "done": false
+                }
+              ]
             }
           ]
         },
