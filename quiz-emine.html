@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emines The Walking Dead – Survival-Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--blood:#b3121b;--blood2:#7a0c12;--rot:#e23b2e;--gruen:#7aa12f;--ink:#0a0b0a;--card:#15140f;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Oswald',-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 50% -10%,#1c1a12,#070707 60%);color:#e9e4d6;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px;overflow-x:hidden}
+  .wrap{width:100%;max-width:560px}
+  .scanlines:before{content:"";position:fixed;inset:0;background:repeating-linear-gradient(rgba(0,0,0,0) 0 2px,rgba(0,0,0,.18) 2px 4px);pointer-events:none;z-index:50;mix-blend-mode:multiply}
+  .card{background:linear-gradient(180deg,rgba(30,28,20,.96),rgba(10,10,8,.97));border:1px solid #2c281c;border-radius:16px;padding:30px 24px;box-shadow:0 30px 80px -20px #000,0 0 0 1px rgba(179,18,27,.25) inset;position:relative;overflow:hidden}
+  .card:before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--blood2),var(--blood),var(--rot),var(--blood2));filter:saturate(1.2)}
+  .eyebrow{text-transform:uppercase;letter-spacing:.35em;font-size:.72rem;color:var(--rot);text-align:center;font-weight:600}
+  h1{font-family:'Creepster',fantasy;font-weight:400;letter-spacing:.02em;text-align:center;font-size:2.9rem;line-height:1;margin:8px 0 4px;color:#e7e2d2;text-shadow:0 0 18px rgba(179,18,27,.55),0 2px 0 #000;animation:flick 4s infinite}
+  @keyframes flick{0%,92%,100%{opacity:1}93%{opacity:.55}94%{opacity:1}96%{opacity:.4}97%{opacity:1}}
+  .sub{text-align:center;color:#b7b09c;margin-top:10px;font-size:1.02rem}
+  .name{color:var(--rot);font-weight:700}
+  .btn{display:block;width:100%;cursor:pointer;border:0;font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem;
+    padding:16px;border-radius:11px;margin-top:22px;color:#fff;background:linear-gradient(135deg,var(--rot),var(--blood2));box-shadow:0 14px 30px -10px var(--blood);transition:transform .12s}
+  .btn:hover{transform:translateY(-2px)}
+  .meta{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:#9b9684;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+  .bar{height:8px;border-radius:99px;background:#241f16;overflow:hidden;margin-bottom:22px}
+  .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blood),var(--rot));transition:width .4s}
+  .q{font-size:1.32rem;font-weight:600;line-height:1.25;margin-bottom:6px;min-height:64px}
+  .opt{display:block;width:100%;text-align:left;cursor:pointer;border:1px solid #322c1f;background:#1b1810;color:#e9e4d6;
+    font-family:'Oswald',sans-serif;font-size:1.04rem;padding:15px 16px;border-radius:11px;margin-top:11px;transition:.15s}
+  .opt:hover{border-color:var(--rot);background:#241d12}
+  .opt[disabled]{cursor:default}
+  .opt.right{border-color:var(--gruen);background:rgba(122,161,47,.18);color:#dff0b8}
+  .opt.wrong{border-color:var(--blood);background:rgba(179,18,27,.2);color:#ffd5d2;animation:shake .35s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+  .result{text-align:center}
+  .rank{font-family:'Creepster',fantasy;font-size:2.4rem;color:var(--rot);text-shadow:0 0 22px rgba(179,18,27,.6);margin:6px 0 4px;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+  .score{font-size:3.4rem;font-weight:700;color:#fff;line-height:1}
+  .score small{font-size:1.2rem;color:#9b9684}
+  .rdesc{color:#c3bca8;margin-top:12px;font-size:1.05rem}
+  .foot{text-align:center;font-size:.78rem;color:#7e795f;margin-top:22px;letter-spacing:.05em}
+  .heart{color:var(--gruen)}
+  .hidden{display:none}
+</style>
+</head>
+<body class="scanlines">
+<div class="wrap">
+  <div class="card">
+
+    <!-- START -->
+    <div id="start">
+      <div class="eyebrow">🧟 Survival-Test</div>
+      <h1>The Walking Dead</h1>
+      <p class="sub"><span class="name">Emine</span>, wie gut kennst du die Apokalypse?<br>8 Fragen entscheiden, ob du überlebst…</p>
+      <button class="btn" onclick="start()">▶ Quiz starten</button>
+      <p class="foot">In Sekunden gebaut – nur für dich. 🧠⚡</p>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="quiz" class="hidden">
+      <div class="meta"><span>Frage <b id="qnum">1</b>/8</span><span>Score <b id="qscore">0</b></span></div>
+      <div class="bar"><i id="qbar"></i></div>
+      <div class="q" id="qtext"></div>
+      <div id="qopts"></div>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result" class="hidden">
+      <div class="result">
+        <div class="eyebrow">Dein Überlebens-Rang</div>
+        <div class="rank" id="rrank"></div>
+        <div class="score"><span id="rscore">0</span><small>/8</small></div>
+        <p class="rdesc" id="rdesc"></p>
+        <button class="btn" onclick="start()">↻ Nochmal überleben</button>
+        <p class="foot">Gebaut in Sekunden – nur für <span class="name">Emine</span> <span class="heart">♥</span><br>So etwas ist ab jetzt möglich.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var Q=[
+    {q:"Was war Rick Grimes von Beruf, bevor die Welt unterging?",a:["Sheriff-Deputy","Arzt","Lehrer","Mechaniker"],c:0},
+    {q:"Welche Waffe trägt Daryl Dixon fast immer bei sich?",a:["Armbrust","Katana","Schrotflinte","Wurfaxt"],c:0},
+    {q:"Wie nennt die Gruppe die Untoten meistens?",a:["Walkers / Beißer","Zombies","Geister","Kriecher"],c:0},
+    {q:"Wie heißt Negans berüchtigter Baseballschläger?",a:["Lucille","Betty","Maggie","Stachel"],c:0},
+    {q:"Womit kämpft Michonne am liebsten?",a:["Katana (Schwert)","Langbogen","Speer","Kettensäge"],c:0},
+    {q:"Wie heißt Rick Grimes' Sohn?",a:["Carl","Shane","Glenn","Noah"],c:0},
+    {q:"Womit tarnen sich die „Whisperers“ (Flüsterer)?",a:["Mit der Haut von Walkern","Mit Tarnfarbe","Mit Müllsäcken","Mit Laub"],c:0},
+    {q:"Wie heißt die Gruppe, die Negan anführt?",a:["Die Saviors (Retter)","Die Wölfe","Terminus","Woodbury"],c:0}
+  ];
+  var i=0,score=0,locked=false;
+  function start(){i=0;score=0;locked=false;show('quiz');render();}
+  function show(id){['start','quiz','result'].forEach(function(x){document.getElementById(x).classList.add('hidden')});document.getElementById(id).classList.remove('hidden');}
+  function render(){
+    locked=false;
+    var item=Q[i];
+    document.getElementById('qnum').textContent=i+1;
+    document.getElementById('qscore').textContent=score;
+    document.getElementById('qbar').style.width=((i)/Q.length*100)+'%';
+    document.getElementById('qtext').textContent=item.q;
+    var box=document.getElementById('qopts');box.innerHTML='';
+    item.a.forEach(function(txt,idx){
+      var b=document.createElement('button');b.className='opt';b.textContent=txt;
+      b.onclick=function(){answer(idx,b);};
+      box.appendChild(b);
+    });
+  }
+  function answer(idx,btn){
+    if(locked)return;locked=true;
+    var item=Q[i];
+    var opts=document.querySelectorAll('#qopts .opt');
+    opts.forEach(function(o){o.setAttribute('disabled','');});
+    if(idx===item.c){btn.classList.add('right');score++;}
+    else{btn.classList.add('wrong');opts[item.c].classList.add('right');}
+    document.getElementById('qscore').textContent=score;
+    document.getElementById('qbar').style.width=((i+1)/Q.length*100)+'%';
+    setTimeout(function(){
+      i++;
+      if(i<Q.length){render();}else{finish();}
+    },1100);
+  }
+  function finish(){
+    show('result');
+    document.getElementById('rscore').textContent=score;
+    var rank,desc;
+    if(score>=8){rank="👑 Rick Grimes höchstpersönlich";desc="Perfekt! Du führst die Gruppe an – niemand überlebt besser als du.";}
+    else if(score>=6){rank="🔪 Hartgesottene Überlebende";desc="Die Apokalypse macht dir keine Angst. Stark!";}
+    else if(score>=4){rank="🔦 Nervöse Neuling";desc="Du hältst durch – aber bleib wachsam, da draußen lauert was.";}
+    else{rank="🧟 Walker-Futter";desc="Tja… du wärst an Tag 1 gebissen worden. Schau lieber nochmal eine Staffel. 😅";}
+    document.getElementById('rrank').textContent=rank;
+    document.getElementById('rdesc').textContent=desc;
+  }
+</script>
+</body>
+</html>
