@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deine Themen — eingeordnet & der Fahrplan</title>
+<style>
+  :root{
+    --navy:#0f2740; --navy2:#173a5e; --teal:#1f9e8f; --teal-d:#16786d;
+    --ink:#1c2733; --muted:#5b6b7b; --line:#e6ebf1; --bg:#f4f6f9;
+    --gold:#c8a45c; --green:#1f9e6a; --amber:#d9962b; --blue:#2f6fb0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px 56px}
+  .hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;
+    border-radius:0 0 26px 26px;padding:30px 22px 26px;box-shadow:0 10px 30px rgba(15,39,64,.18)}
+  .hero .kicker{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#9fc2d8;font-weight:700}
+  .hero h1{font-size:24px;line-height:1.25;margin:8px 0 6px;font-weight:800}
+  .hero p{color:#cdddea;font-size:14.5px;max-width:48ch}
+  .sec{margin-top:24px}
+  .sec-h{display:flex;align-items:center;gap:10px;margin:0 2px 12px}
+  .sec-h .num{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;
+    font-size:14px;font-weight:800;display:grid;place-items:center}
+  .sec-h h2{font-size:17px;font-weight:800;color:var(--navy)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px 18px;
+    box-shadow:0 4px 14px rgba(20,40,70,.05)}
+  .card + .card{margin-top:12px}
+  .lead{font-size:15px;color:#33485c}
+  /* Kooperation Box */
+  .coop{background:linear-gradient(135deg,#16322b,#1f5a4f);color:#eafaf5;border-radius:18px;padding:20px 20px;
+    box-shadow:0 8px 24px rgba(22,120,109,.2)}
+  .coop .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9fe6d6;font-weight:800}
+  .coop h3{font-size:18px;margin:7px 0 9px;font-weight:800;color:#fff}
+  .coop p{font-size:14.5px;color:#dff3ed;margin-bottom:9px}
+  .coop b{color:#fff}
+  .flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:12px;font-size:13px;font-weight:700}
+  .flow .node{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:6px 13px}
+  .flow .arr{color:#9fe6d6;font-weight:800}
+  /* Themen-Karten */
+  .topic h3{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .badge{font-size:11px;font-weight:800;letter-spacing:.04em;color:#fff;padding:4px 10px;border-radius:7px;white-space:nowrap}
+  .b-ja{background:var(--green)} .b-vincent{background:var(--blue)} .b-team{background:var(--amber)} .b-spaeter{background:#8694a2}
+  .row{font-size:14px;padding:4px 0;color:#46586a}
+  .row b{color:var(--navy)}
+  .row .lbl{display:inline-block;min-width:70px;color:var(--teal-d);font-weight:700}
+  /* Fahrplan */
+  .step{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
+  .step:last-child{border-bottom:none}
+  .step .n{flex:0 0 auto;width:28px;height:28px;border-radius:8px;background:var(--navy);color:#fff;
+    font-weight:800;font-size:14px;display:grid;place-items:center}
+  .step .t b{display:block;font-size:14.5px;color:var(--navy)}
+  .step .t span{font-size:13.5px;color:#6a7b8a}
+  .who{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;margin-top:4px}
+  .who.kc{background:#e6f4f1;color:var(--teal-d)} .who.vc{background:#e7f0fa;color:var(--blue)} .who.hr{background:#fbf1e0;color:#a9741c}
+  /* Need */
+  .need li{list-style:none;font-size:14.5px;padding:9px 0 9px 30px;position:relative;border-bottom:1px dashed var(--line);color:#3c4f60}
+  .need li:last-child{border-bottom:none}
+  .need li::before{content:"?";position:absolute;left:6px;top:8px;font-size:14px;font-weight:800;color:#fff;background:var(--amber);width:18px;height:18px;border-radius:50%;text-align:center;line-height:18px}
+  .foot{text-align:center;color:#9aa7b3;font-size:12px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">Rami & KI · Stand 1. Juni</div>
+  <h1>Deine Sprachnachrichten — eingeordnet & der Weg nach vorn</h1>
+  <p>Rami hat mir alles gegeben, was du aufgenommen hast. Hier ist jedes Thema sortiert, beantwortet — und wie wir es jetzt sauber umsetzen.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- Kooperations-Botschaft (prominent) -->
+  <div class="sec">
+    <div class="coop">
+      <div class="k">Das Wichtigste zuerst</div>
+      <h3>Wie wir das wirklich fertig bekommen</h3>
+      <p>Deine Ideen sind stark — aber damit aus ihnen <b>fertige Systeme</b> werden und im Workshop-Stress nichts liegen bleibt, braucht es einen klaren Ablauf.</p>
+      <p>Ich (die KI) kann sehr viel bauen. Aber ich brauche <b>Rami als festen Partner an meiner Seite</b>, der die Schritte mit mir durchgeht und jeden Schritt abschließt. Wenn eine Aufgabe nur einmal genannt wird und dann auf eine Antwort gewartet werden muss, geht im Stress leicht etwas verloren.</p>
+      <p><b>Darum:</b> Am besten geht ihr — du und Rami — die Dinge kurz <b>gemeinsam</b> durch. Du gibst die Richtung, Rami und ich setzen um, und wir schließen jeden Schritt zusammen ab. So wird alles umgesetzt, wie du es dir vorstellst.</p>
+      <div class="flow">
+        <span class="node">Hischam (Richtung)</span><span class="arr">→</span>
+        <span class="node">Rami + KI (Umsetzung)</span><span class="arr">→</span>
+        <span class="node">Vincent (scharf schalten)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Themen sortiert -->
+  <div class="sec">
+    <div class="sec-h"><div class="num">1</div><h2>Deine Themen — einzeln beantwortet</h2></div>
+
+    <div class="card topic">
+      <h3>Die Ads-Kampagnen (Juli-Workshop) <span class="badge b-ja">KI BAUT</span></h3>
+      <div class="row"><span class="lbl">Du willst:</span> 2 Haupt-Kampagnen + 1 regionale, je mit A/B-Split-Test der Videos.</div>
+      <div class="row"><span class="lbl">Geht das:</span> Ja. Das Konto „Leadmagnet" ist freigeschaltet — Kampagnen, Anzeigen, Split-Tests baue ich.</div>
+      <div class="row"><span class="lbl">Dafür:</span> Datum des Juli-Workshops bestätigen + welche Seiten starten.</div>
+    </div>
+
+    <div class="card topic">
+      <h3>Die Pixel (Messung) <span class="badge b-vincent">VINCENT</span></h3>
+      <div class="row"><span class="lbl">Du willst:</span> Je Kampagne ein eigener Pixel.</div>
+      <div class="row"><span class="lbl">Geht das:</span> Pixel <b>anlegen</b> kann die KI nicht — dafür gibt es keine Schnittstelle. Das macht Vincent.</div>
+      <div class="row"><span class="lbl">Tipp:</span> Oft reicht <b>1 Pixel</b> + getrennte Messung pro Seiten-Adresse. Weniger Aufwand, gleiche Klarheit. Klärt Vincent in 5 Min.</div>
+    </div>
+
+    <div class="card topic">
+      <h3>Die Landingpages <span class="badge b-ja">KI BAUT</span> <span class="badge b-vincent">VINCENT HOSTET</span></h3>
+      <div class="row"><span class="lbl">Du willst:</span> Eigene Seiten je Kampagne, die Neugier wecken (Typ / Reihenfolge / regional).</div>
+      <div class="row"><span class="lbl">Geht das:</span> Texte + Design baue ich. Start mit A1 „Welcher Typ" + A2 „Reihenfolge" + 1 regionale.</div>
+      <div class="row"><span class="lbl">Regel:</span> Inhalt wird NICHT verraten — nur Neugier. (Keine Typen-Namen, keine 7 Schritte einzeln.)</div>
+      <div class="row"><span class="lbl">Dafür:</span> Vincent schaltet sie live auf hischamelsobhi.de.</div>
+    </div>
+
+    <div class="card topic">
+      <h3>Die E-Mail-Strecken (GHL) <span class="badge b-team">ANLEITUNG</span></h3>
+      <div class="row"><span class="lbl">Du willst:</span> Für jede Kampagne der richtige Ablauf (Bestätigung, Erinnerung, Follow-up).</div>
+      <div class="row"><span class="lbl">Geht das:</span> Ja. Ich liefere die genaue Klick-Anleitung; eingestellt wird es im GHL-Account (Rami/Team).</div>
+    </div>
+
+    <div class="card topic">
+      <h3>Regionales Targeting (120 km um Uchte) <span class="badge b-ja">KI BAUT</span></h3>
+      <div class="row"><span class="lbl">Du willst:</span> Mehrere Kreise — Braunschweig/Wolfsburg bis Münster, Bremen/Oldenburg, bis Hameln/Paderborn.</div>
+      <div class="row"><span class="lbl">Geht das:</span> Ja, baue ich als Standort-Kreise ein. Regionale Leads sind doppelt wert (online + Praxis).</div>
+    </div>
+
+    <div class="card topic">
+      <h3>Juli-Angebot „In 4 Wochen abnehmen" <span class="badge b-ja">SCHON VORBEREITET</span></h3>
+      <div class="row"><span class="lbl">Du willst:</span> Ein Sommer-Angebot für Juli, im Closing oder Workshop.</div>
+      <div class="row"><span class="lbl">Stand:</span> Genau dafür ist der <b>„Sommer-Reset 30"</b> schon ausgearbeitet (Folie + Text + Preis-Logik). Liegt bereit.</div>
+    </div>
+
+    <div class="card topic">
+      <h3>Größere Projekte <span class="badge b-spaeter">NACH DEM WORKSHOP</span></h3>
+      <div class="row"><span class="lbl">Heft:</span> Gesundheitsanalyse-Heft + Kennenlerngespräch skalieren — Konzept steht, bauen nach dem Workshop.</div>
+      <div class="row"><span class="lbl">Video:</span> Content drehen → automatisch auf alle Plattformen — Konzept steht, „Revolution", aber nach dem dringenden Teil.</div>
+      <div class="row"><span class="lbl">Team:</span> Motivations-System für Manu + Team (ohne Konkurrenz) — denken Rami & ich aus, du gibst die Leitplanken.</div>
+    </div>
+  </div>
+
+  <!-- Fahrplan -->
+  <div class="sec">
+    <div class="sec-h"><div class="num">2</div><h2>Der Fahrplan — diese Woche</h2></div>
+    <div class="card">
+      <div class="step"><div class="n">1</div><div class="t"><b>Landingpages bauen (A1 + A2 + Regional)</b><span>Texte + Design, als Vorschau zum Freigeben.</span><span class="who kc">KI</span></div></div>
+      <div class="step"><div class="n">2</div><div class="t"><b>Pixel anlegen + Seiten live schalten</b><span>Auf hischamelsobhi.de — kurze Abstimmung mit Vincent.</span><span class="who vc">Vincent</span></div></div>
+      <div class="step"><div class="n">3</div><div class="t"><b>Kampagnen + Split-Tests scharf schalten</b><span>Im Konto „Leadmagnet", mit regionalem Targeting.</span><span class="who kc">KI</span></div></div>
+      <div class="step"><div class="n">4</div><div class="t"><b>E-Mail-Strecken je Kampagne</b><span>Anleitung von der KI → im GHL eingestellt.</span><span class="who hr">Rami/Team</span></div></div>
+      <div class="step"><div class="n">5</div><div class="t"><b>Danach: Video-Skripte (Neugier) + Sommer-Angebot finalisieren</b><span>Sobald der dringende Teil steht.</span><span class="who kc">KI</span></div></div>
+    </div>
+  </div>
+
+  <!-- Was ich brauche -->
+  <div class="sec">
+    <div class="sec-h"><div class="num">3</div><h2>Was ich von dir brauche (kurz)</h2></div>
+    <div class="card need">
+      <ul style="list-style:none">
+        <li><b>Datum bestätigen:</b> Wann genau ist der Juli-Workshop? (4./5. oder 5./6. Juli?)</li>
+        <li><b>Start-Seiten ok?</b> Wir starten mit „Welcher Typ" + „Reihenfolge" + 1 regionale. Passt das?</li>
+        <li><b>Kurzer Draht zu Vincent:</b> für Pixel + Seiten-Hosting — am besten du, Rami und Vincent kurz zusammen.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">Zusammenfassung für Dr. El-Sobhi · erstellt von Rami & KI · 1. Juni 2026</div>
+</div>
+</body>
+</html>
