@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sommer-Strategie — Workshop 6./7. Juni</title>
+<style>
+  :root{
+    --navy:#0f2740; --navy2:#173a5e; --teal:#1f9e8f; --teal-d:#16786d;
+    --ink:#1c2733; --muted:#5b6b7b; --line:#e6ebf1;
+    --bg:#f4f6f9; --gold:#c8a45c; --green:#1f9e6a; --amber:#d9962b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px 56px}
+  /* Header */
+  .hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;
+    border-radius:0 0 26px 26px;padding:30px 22px 26px;box-shadow:0 10px 30px rgba(15,39,64,.18)}
+  .hero .kicker{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#9fc2d8;font-weight:700}
+  .hero h1{font-size:25px;line-height:1.25;margin:8px 0 6px;font-weight:800}
+  .hero p{color:#cdddea;font-size:14.5px;max-width:46ch}
+  /* Section */
+  .sec{margin-top:24px}
+  .sec-h{display:flex;align-items:center;gap:10px;margin:0 2px 12px}
+  .sec-h .num{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;
+    font-size:14px;font-weight:800;display:grid;place-items:center}
+  .sec-h h2{font-size:17px;font-weight:800;color:var(--navy)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px 18px;
+    box-shadow:0 4px 14px rgba(20,40,70,.05)}
+  .card + .card{margin-top:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .chip{background:#eef4f3;color:var(--teal-d);border:1px solid #d6e8e4;border-radius:999px;
+    padding:6px 12px;font-size:13px;font-weight:600}
+  .lead{font-size:15px;color:#33485c}
+  /* Answer cards */
+  .ans{display:flex;gap:13px;align-items:flex-start}
+  .ans .badge{flex:0 0 auto;font-size:12px;font-weight:800;letter-spacing:.04em;color:#fff;
+    padding:5px 11px;border-radius:8px;margin-top:2px;white-space:nowrap}
+  .b-yes{background:var(--green)} .b-split{background:var(--amber)} .b-key{background:var(--navy)}
+  .ans h3{font-size:15.5px;font-weight:800;margin-bottom:3px;color:var(--navy)}
+  .ans p{font-size:14px;color:#46586a}
+  .ans small{color:#7c8a98}
+  /* Two ways */
+  .ways{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.ways{grid-template-columns:1fr}}
+  .way{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;position:relative;overflow:hidden}
+  .way.reco{border-color:var(--teal);box-shadow:0 6px 20px rgba(31,158,143,.16)}
+  .way .tag{position:absolute;top:0;right:0;background:var(--teal);color:#fff;font-size:11px;font-weight:800;
+    letter-spacing:.06em;padding:5px 12px;border-radius:0 0 0 12px}
+  .way h3{font-size:15.5px;color:var(--navy);font-weight:800;margin-bottom:4px}
+  .way.reco h3{margin-top:20px}
+  .way .sub{font-size:12.5px;color:#8694a2;margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .way ul{list-style:none;font-size:13.5px;color:#46586a}
+  .way li{padding:5px 0 5px 22px;position:relative}
+  .way li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+  .way li.minus::before{background:#d98a8a}
+  /* Ladder */
+  .ladder{display:flex;flex-direction:column;gap:9px}
+  .rung{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);
+    border-radius:13px;padding:13px 16px}
+  .rung .price{flex:0 0 auto;font-size:18px;font-weight:800;color:var(--navy);min-width:78px}
+  .rung .what b{display:block;font-size:14.5px;color:var(--navy)}
+  .rung .what span{font-size:13px;color:#6a7b8a}
+  .rung.r1{border-left:5px solid #9fb3c4}
+  .rung.r2{border-left:5px solid var(--teal)}
+  .rung.r3{border-left:5px solid var(--gold)}
+  /* Checklist */
+  .check li{list-style:none;font-size:14px;padding:9px 0 9px 30px;position:relative;border-bottom:1px dashed var(--line);color:#3c4f60}
+  .check li:last-child{border-bottom:none}
+  .check li::before{content:"☐";position:absolute;left:4px;top:7px;font-size:16px;color:var(--teal)}
+  .reco-line{background:linear-gradient(135deg,#102a44,#1d4a6e);
+    color:#fff;border-radius:16px;padding:18px 20px;margin-top:14px}
+  .reco-line .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8fc6bd;font-weight:800}
+  .reco-line p{font-size:15.5px;margin-top:6px;font-weight:600}
+  .foot{text-align:center;color:#9aa7b3;font-size:12px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="wrap" style="padding:0">
+    <div class="kicker">Workshop 6./7. Juni · Strategie</div>
+    <h1>Dein Sommer-Thema — kurz beantwortet</h1>
+    <p>Du hast eine starke Frage gestellt. Hier die klare Sicht darauf — zum in Ruhe Weiterdenken.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 1. Anliegen gespiegelt -->
+  <div class="sec">
+    <div class="sec-h"><div class="num">1</div><h2>Worum es dir geht</h2></div>
+    <div class="card">
+      <p class="lead">Der Workshop liegt <b>kurz vor den Sommerferien</b>. Viele Frauen denken: „Tolles Konzept — aber nach dem Urlaub." Und „nach dem Urlaub" wird oft zu „nie". Deine Überlegung: Wie fange ich diese Frauen auf, ohne mein Hauptangebot zu schwächen? Drei Fragen dahinter:</p>
+      <div class="chips">
+        <span class="chip">Kleines Zusatz-Angebot — ja oder nein?</span>
+        <span class="chip">Preis im Workshop nennen?</span>
+        <span class="chip">Reichen 30-Min-Gespräche?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Antworten -->
+  <div class="sec">
+    <div class="sec-h"><div class="num">2</div><h2>Die klaren Antworten</h2></div>
+
+    <div class="card">
+      <div class="ans">
+        <span class="badge b-yes">JA</span>
+        <div>
+          <h3>Preis im Workshop nennen</h3>
+          <p>Nicht verstecken. Transparenz ist hier dein Verbündeter — sie passt zu deiner ärztlichen Haltung „Vertrauen statt Verkauf". Ein versteckter Preis erzeugt Misstrauen und verlängert die Gespräche. Der Preis gehört auf die Folie — direkt nach dem Wert-Anker.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ans">
+        <span class="badge b-split">STAFFELN</span>
+        <div>
+          <h3>Gesprächs-Länge: nicht pauschal 30 Minuten</h3>
+          <p><b>30 Min</b> reichen für eine einfache Entscheidung (kleines Angebot). Für den vollen <b>6-Monats-Weg (2.997 €)</b> nimm dir lieber <b>45–60 Min</b> — deine tiefe Gesprächsführung (Standort, Höchstgewicht, Zuhören) braucht den Raum, und jeder Abschluss ist viel wert.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ans">
+        <span class="badge b-key">KERN</span>
+        <div>
+          <h3>Kleines Sommer-Angebot — die eigentliche Entscheidung</h3>
+          <p>Grundsätzlich klug. Aber: ein neues Produkt mit eigener Logistik (Shakes, 20–30 Labortests, Gruppencalls) in wenigen Tagen aufzubauen ist riskant — ein halbfertiges Angebot schadet mehr als keines. Darum zwei Wege ↓</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Zwei Wege -->
+  <div class="sec">
+    <div class="sec-h"><div class="num">3</div><h2>Zwei Wege — du entscheidest</h2></div>
+    <div class="ways">
+      <div class="way reco">
+        <span class="tag">JETZT EMPFOHLEN</span>
+        <h3>A · Die schlanke Sommer-Brücke</h3>
+        <div class="sub">Sofort startklar · keine neue Logistik</div>
+        <ul>
+          <li>„Starte <b>jetzt</b> mit Erstgespräch + Werten + Fahrplan"</li>
+          <li>„Der intensive Teil beginnt entspannt <b>nach dem Urlaub</b>"</li>
+          <li>Fängt dieselben Zauderer auf</li>
+          <li>Kein Shake-/Labor-Stress vor dem 6. Juni</li>
+          <li>Kannibalisiert dein Hauptangebot nicht</li>
+        </ul>
+      </div>
+      <div class="way">
+        <h3>B · Das volle „Sommer-Reset 30"</h3>
+        <div class="sub">Eigenes 30-Tage-Produkt · 890 €</div>
+        <ul>
+          <li>30 Tage, Start sofort, 890 € · <b>100 % anrechenbar</b></li>
+          <li>Eigene Folie + Erzähltext stehen schon bereit</li>
+          <li class="minus">Braucht Shakes, Labor, 4 Gruppencalls — knapp</li>
+          <li class="minus">HWG-Prüfung nötig vor Ankündigung</li>
+          <li>Besser <b>sauber für die nächste Runde</b> bauen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Preis-Leiter -->
+  <div class="sec">
+    <div class="sec-h"><div class="num">4</div><h2>So bleibt die Preis-Leiter sauber</h2></div>
+    <div class="ladder">
+      <div class="rung r1"><div class="price">490 €</div><div class="what"><b>Stoffwechsel-Check</b><span>Nur Diagnose — Labor + Plan, keine Begleitung</span></div></div>
+      <div class="rung r2"><div class="price">890 €</div><div class="what"><b>Sommer-Reset 30</b><span>30-Tage-Aktion — Test + Programm + Calls (falls Weg B)</span></div></div>
+      <div class="rung r3"><div class="price">2.997 €</div><div class="what"><b>6-Monats-Weg</b><span>Volle ärztliche Begleitung — dein Hauptangebot, bleibt der Star</span></div></div>
+    </div>
+  </div>
+
+  <!-- 5. Weiterdenken -->
+  <div class="sec">
+    <div class="sec-h"><div class="num">5</div><h2>Was du noch entscheiden / klären musst</h2></div>
+    <div class="card check">
+      <ul style="list-style:none">
+        <li>Weg A (Brücke) oder Weg B (volles Produkt) für diesen Workshop?</li>
+        <li>Bei Weg B: Shake-Lieferant + Labor-Kapazität bis 6. Juni machbar?</li>
+        <li>Zwei Gesprächs-Längen (30 / 60 Min) — wer bucht welchen Slot?</li>
+        <li>HWG: Wirkaussagen vorsichtig formulieren (Fach-Check vor Ads/Ankündigung)</li>
+      </ul>
+    </div>
+
+    <div class="reco-line">
+      <div class="k">Mein Vorschlag in einem Satz</div>
+      <p>Preis nennen (ja), Gespräche staffeln (30/60) — und den Sommer jetzt über die schlanke Brücke abfangen. Das volle „Sommer-Reset 30" bauen wir sauber für die nächste Runde.</p>
+    </div>
+  </div>
+
+  <div class="foot">Strategie-Übersicht für Dr. El-Sobhi · Stand 1. Juni 2026 · zum Weiterdenken, keine endgültige Entscheidung</div>
+</div>
+</body>
+</html>
