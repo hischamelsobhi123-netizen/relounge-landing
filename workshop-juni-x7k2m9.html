@@ -352,11 +352,27 @@ fbq('track', 'PageView');
   .ticker .tt .ago{color:var(--muted);font-size:11px}
   .ticker .tx{position:absolute;top:5px;right:8px;border:none;background:none;color:#b9c4cf;font-size:16px;cursor:pointer;line-height:1}
   @media(max-width:600px){.ticker{left:10px;right:10px;max-width:none;bottom:78px}}
+  /* ===== Video-Testimonial-Galerie ===== */
+  .vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
+  .vcard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:0 4px 14px rgba(20,40,70,.06);display:flex;flex-direction:column}
+  .vcard video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;display:block}
+  .vcard .vt{padding:11px 13px 13px;font-size:13.5px;font-weight:800;color:var(--navy);line-height:1.3}
+  .vcard .vt .vstar{display:block;color:#f0c14b;letter-spacing:1px;font-size:12px;font-weight:700;margin-bottom:4px}
+  .vcard.vhidden{display:none}
+  .vmore{display:block;margin:18px auto 0;max-width:340px;background:#fff;color:var(--teal-d);
+    border:2px solid var(--teal);border-radius:12px;padding:13px 20px;font-size:15px;font-weight:800;
+    cursor:pointer;text-align:center;transition:background .15s}
+  .vmore:hover{background:var(--soft)}
+  .vnote{text-align:center;color:var(--muted);font-size:13px;margin-top:12px}
+  @media(max-width:900px){.vgrid{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:600px){
     .hero h1{font-size:25px}.types{grid-template-columns:1fr}.pl{grid-template-columns:1fr}
     .me img{width:120px;height:120px}.stats{grid-template-columns:1fr 1fr}
     .wn{grid-template-columns:1fr}.bonuses{grid-template-columns:1fr}
     .guarantee{flex-direction:column;text-align:center}
+    .vgrid{grid-template-columns:repeat(2,1fr);gap:10px}
+    .vcard .vt{font-size:12px;padding:9px 10px 11px}
   }
 </style>
 </head>
@@ -606,26 +622,27 @@ fbq('track', 'PageView');
   </div>
 </section>
 
-<!-- TESTIMONIALS (Frauen — Zielgruppe gespiegelt) -->
+<!-- VIDEO-TESTIMONIALS (echte Patienten) -->
 <section>
   <div class="wrap">
-    <h2>Was Teilnehmerinnen sagen</h2>
-    <!-- ⚠ PLATZHALTER: durch echte, freigegebene Frauen-Stimmen aus Praxis/Workshop ersetzen -->
-    <div class="tcard">
-      <div class="s">★★★★★</div>
-      <p>„Nach Jahren Diät-Frust habe ich endlich verstanden, warum mein Körper blockiert. Ich musste nicht mehr hungern – und trotzdem tut sich endlich was."</p>
-      <div class="who">— Andrea, 52 <span class="ph">Beispiel-Stimme</span></div>
+    <h2 style="text-align:center">Echte Menschen. Echte Ergebnisse.</h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:6px">Hör dir an, was Patientinnen und Patienten von Hischam El-Sobhi erlebt haben.</p>
+    <div class="vgrid" id="vgrid">
+      <div class="vcard"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t01.jpg"><source src="lp-juni-assets/testimonials/t01.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>38 Kilo weniger – und mental stärker</div></div>
+      <div class="vcard"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t02.jpg"><source src="lp-juni-assets/testimonials/t02.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>19 Kilo weniger, Beschwerden weg</div></div>
+      <div class="vcard"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t03.jpg"><source src="lp-juni-assets/testimonials/t03.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Endlich wieder besser schlafen</div></div>
+      <div class="vcard"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t04.jpg"><source src="lp-juni-assets/testimonials/t04.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Heute fitter und voller Energie</div></div>
+      <div class="vcard vhidden"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t05.jpg"><source src="lp-juni-assets/testimonials/t05.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Gesund alt werden – für die Tochter</div></div>
+      <div class="vcard vhidden"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t06.jpg"><source src="lp-juni-assets/testimonials/t06.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Wieder Dinge erleben können</div></div>
+      <div class="vcard vhidden"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t07.jpg"><source src="lp-juni-assets/testimonials/t07.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Mehr Selbstwert, neues Körpergefühl</div></div>
+      <div class="vcard vhidden"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t08.jpg"><source src="lp-juni-assets/testimonials/t08.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Ernährung als Energie-Booster</div></div>
+      <div class="vcard vhidden"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t09.jpg"><source src="lp-juni-assets/testimonials/t09.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Mentales Coaching als Augenöffner</div></div>
+      <div class="vcard vhidden"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t10.jpg"><source src="lp-juni-assets/testimonials/t10.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Untersuchung mit spürbarem Effekt</div></div>
+      <div class="vcard vhidden"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t11.jpg"><source src="lp-juni-assets/testimonials/t11.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Dankbar für professionelle Begleitung</div></div>
+      <div class="vcard vhidden"><video preload="none" playsinline controls poster="lp-juni-assets/testimonials/t12.jpg"><source src="lp-juni-assets/testimonials/t12.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Eine Reise, die er nicht missen möchte</div></div>
     </div>
-    <div class="tcard">
-      <div class="s">★★★★★</div>
-      <p>„Mein Schilddrüsenwert war immer ‚in Ordnung'. Erst hier habe ich erfahren, was wirklich gemessen werden muss. Das hat alles verändert."</p>
-      <div class="who">— Birgit, 47 <span class="ph">Beispiel-Stimme</span></div>
-    </div>
-    <div class="tcard">
-      <div class="s">★★★★★</div>
-      <p>„Ich dachte 20 Jahre lang, ich bin zu schwach. Jetzt weiß ich meinen Stoffwechseltyp – allein das zu wissen, hat alles verändert."</p>
-      <div class="who">— Sandra, 41 <span class="ph">Beispiel-Stimme</span></div>
-    </div>
+    <button class="vmore" id="vmore" type="button">Mehr Erfolgsgeschichten zeigen ▾</button>
+    <div class="vnote">Echte Patientenstimmen aus der Praxis von Hischam El-Sobhi.</div>
   </div>
 </section>
 
@@ -682,29 +699,6 @@ fbq('track', 'PageView');
   </div>
 </section>
 
-<!-- WEITERE TESTIMONIALS (Frauen) -->
-<section class="alt">
-  <div class="wrap">
-    <h2>Bereits über 1.000 begeisterte Teilnehmerinnen</h2>
-    <!-- ⚠ PLATZHALTER: durch echte, freigegebene Frauen-Stimmen ersetzen -->
-    <div class="tcard">
-      <div class="s">★★★★★</div>
-      <p>„Endlich wieder Energie. Ich wache morgens auf und bin nicht mehr wie gerädert – und nehme zum ersten Mal seit Jahren wieder ab."</p>
-      <div class="who">— Petra, 49 <span class="ph">Beispiel-Stimme</span></div>
-    </div>
-    <div class="tcard">
-      <div class="s">★★★★★</div>
-      <p>„12 Kilo weniger, ganz ohne Crash-Diät. Und das Wichtigste: es bleibt diesmal weg, weil ich endlich verstehe, was mein Körper braucht."</p>
-      <div class="who">— Manuela, 55 <span class="ph">Beispiel-Stimme</span></div>
-    </div>
-    <div class="tcard">
-      <div class="s">★★★★★</div>
-      <p>„Ich habe verstanden, dass es nie an meiner Disziplin lag. Diese eine Erkenntnis war für mich Gold wert."</p>
-      <div class="who">— Claudia, 44 <span class="ph">Beispiel-Stimme</span></div>
-    </div>
-  </div>
-</section>
-
 <!-- GARANTIE / RISIKO-UMKEHR -->
 <section>
   <div class="wrap">
@@ -728,10 +722,9 @@ fbq('track', 'PageView');
       <span class="badge">💻 Online via Zoom</span>
       <span class="badge">📅 Sa. 6. + So. 7. Juni · 10–14 Uhr</span>
     </div>
-    <div class="tcard" style="max-width:480px;margin:14px auto 0">
+    <div class="tcard" style="max-width:480px;margin:14px auto 0;text-align:center">
       <div class="s">★★★★★</div>
-      <p>„Das Beste, was ich für mich getan habe. In zwei Stunden habe ich mehr verstanden als in Jahren des Ausprobierens."</p>
-      <div class="who">— Kerstin, 46 <span class="ph">Beispiel-Stimme</span></div>
+      <p style="font-style:normal">Über <b>1.000 Teilnehmerinnen</b> waren schon dabei – sieh dir oben die echten Erfahrungsberichte an.</p>
     </div>
     <!-- ===== GHL-FORMULAR HIER EINBINDEN (zweite Platzierung) =====
          Inhalt der .heroform durch GHL-iframe ersetzen:
@@ -786,8 +779,7 @@ fbq('track', 'PageView');
     Zentrum für Gesundheit · Hischam El-Sobhi · Facharzt für Allgemein- und Ernährungsmedizin · Uchte
     <p class="disc">Dieser Workshop dient der gesundheitlichen Aufklärung und ersetzt keine individuelle ärztliche Beratung oder Behandlung. Es werden keine Heilversprechen gegeben; Ergebnisse sind individuell verschieden.</p>
     <p class="disc">This site is not a part of the Facebook website or Facebook Inc. This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
-    <!-- ⚠ VOR LAUNCH PFLICHT: echte Impressum- + Datenschutz-URLs einsetzen (Rechtspflicht + Meta lehnt Ads ohne ab) -->
-    <p style="margin-top:8px"><a href="#impressum-einsetzen">Impressum</a> · <a href="#datenschutz-einsetzen">Datenschutz</a> · <a href="https://hischamelsobhi.de">Zur Website</a></p>
+    <p style="margin-top:8px"><a href="https://hischamelsobhi.de/impressum" target="_blank" rel="noopener">Impressum</a> · <a href="https://hischamelsobhi.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a> · <a href="https://hischamelsobhi.de/agb" target="_blank" rel="noopener">AGB</a> · <a href="https://hischamelsobhi.de/widerrufsbelehrung" target="_blank" rel="noopener">Widerruf</a></p>
     <p style="margin-top:6px">© 2026 Zentrum für Gesundheit</p>
   </div>
 </div>
@@ -919,6 +911,24 @@ fbq('track', 'PageView');
       setTimeout(function(){ tk.classList.remove('show'); },5500);
     }
     setTimeout(function(){ zeigeTicker(); setInterval(zeigeTicker,13000); },8000);
+  }
+
+  // --- Video-Testimonials: "Mehr zeigen" ---
+  var vmore=document.getElementById('vmore');
+  if(vmore){
+    vmore.addEventListener('click',function(){
+      var hidden=document.querySelectorAll('.vcard.vhidden');
+      if(hidden.length){
+        hidden.forEach(function(c){ c.classList.remove('vhidden'); });
+        vmore.textContent='Weniger anzeigen ▴';
+      } else {
+        // wieder einklappen: ab dem 5. Video verstecken
+        var cards=document.querySelectorAll('#vgrid .vcard');
+        cards.forEach(function(c,i){ if(i>=4) c.classList.add('vhidden'); });
+        vmore.textContent='Mehr Erfolgsgeschichten zeigen ▾';
+        document.getElementById('vgrid').scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
   }
 
   // --- Lead-Event: feuert, wenn das GHL-Formular abgeschickt wurde (Conversion fürs Pixel) ---
