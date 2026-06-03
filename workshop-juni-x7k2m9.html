@@ -103,7 +103,7 @@ fbq('track', 'PageView');
 <style>
   :root{
     --navy:#0f2740; --navy2:#173a5e; --teal:#1f9e8f; --teal-d:#16786d;
-    --ink:#1c2733; --muted:#5b6b7b; --line:#e6ebf1; --bg:#f4f6f9;
+    --ink:#1c2733; --muted:#5b6b7b; --line:#e2e8ef; --bg:#e6ebf1; --card:#f3f6f9;
     --gold:#c8a45c; --green:#1f9e6a; --soft:#eef4f3; --red:#e8362a;
     --cta:#f2663d; --cta-d:#dd5128;
   }
@@ -126,7 +126,8 @@ fbq('track', 'PageView');
     100%{box-shadow:0 0 0 0 rgba(242,102,61,0);transform:scale(1)}}
   .pulse{animation:pulseCta 1.2s ease-out 3}
   /* Topbar */
-  .topbar{background:#fff;border-bottom:1px solid var(--line);padding:10px 0}
+  .topbar{background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08);padding:10px 0}
+  .topbar .lim{color:#cfe0ec !important}
   .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
   .topbar img{height:38px}
   .topbar .lim{font-size:12.5px;color:var(--muted);font-weight:600;text-align:right}
@@ -175,7 +176,7 @@ fbq('track', 'PageView');
   .heroform .safe{text-align:center;font-size:12px;color:var(--muted);margin-top:10px;display:flex;
     align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
   /* Section */
-  section{padding:32px 0;border-bottom:1px solid var(--line);background:#fff}
+  section{padding:32px 0;border-bottom:1px solid var(--line);background:var(--card)}
   section.alt{background:var(--bg)}
   .me{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
   .me img{width:150px;height:150px;object-fit:cover;border-radius:16px;flex-shrink:0}
@@ -285,8 +286,10 @@ fbq('track', 'PageView');
   /* Popup */
   .pop{position:fixed;inset:0;z-index:100;background:rgba(8,18,30,.72);display:none;align-items:center;justify-content:center;padding:20px}
   .pop.show{display:flex}
-  .pop .box{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:34px 22px 24px;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-  .pop .x{position:absolute;top:8px;right:12px;width:34px;height:34px;font-size:24px;color:#99a;cursor:pointer;line-height:1;border:none;background:#f2f4f7;border-radius:50%}
+  .pop .box{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:48px 22px 24px;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .pop .x{position:absolute;top:12px;right:12px;width:36px;height:36px;font-size:22px;color:#6b7886;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;border:none;background:#eef1f5;border-radius:50%;line-height:1;z-index:2;padding:0}
+  .pop .x:hover{background:#e2e7ee;color:var(--navy)}
   .pop h3{color:var(--navy);font-size:20px;margin-bottom:8px;padding:0 8px}
   .pop p{font-size:14.5px;margin-bottom:14px}
   .pop input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:15px 14px;font-size:16px;margin-bottom:10px;font-family:inherit}
@@ -356,7 +359,8 @@ fbq('track', 'PageView');
   .ticker .tt b{color:var(--navy)}
   .ticker .tt .ago{color:var(--muted);font-size:11px}
   .ticker .tx{position:absolute;top:5px;right:8px;border:none;background:none;color:#b9c4cf;font-size:16px;cursor:pointer;line-height:1}
-  @media(max-width:600px){.ticker{left:10px;right:10px;max-width:none;bottom:78px}}
+  @media(max-width:600px){.ticker{left:10px;right:auto;max-width:255px;bottom:86px;padding:9px 11px 9px 10px}
+    .ticker .tav{width:32px;height:32px;font-size:13px}.ticker .tt{font-size:11.5px}}
   /* ===== Video-Testimonial-Galerie ===== */
   .vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
   .vcard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
@@ -735,6 +739,7 @@ fbq('track', 'PageView');
       <h3>Jetzt kostenlos anmelden</h3>
       <div class="hint">In 30 Sekunden angemeldet – dein Ticket kommt sofort per Mail</div>
       <iframe src="https://api.leadconnectorhq.com/widget/form/SvmVPJwfcKllG5IZ2Ydk"
+        loading="lazy"
         style="width:100%;min-height:480px;border:none;border-radius:8px;background:transparent"
         id="inline-SvmVPJwfcKllG5IZ2Ydk-bottom"
         data-layout="{'id':'INLINE'}"
@@ -902,16 +907,16 @@ fbq('track', 'PageView');
     var namen=[['Maria','vor 2 Minuten'],['Sandra','vor 4 Minuten'],['Petra','vor 1 Minute'],['Claudia','vor 6 Minuten'],
       ['Andrea','gerade eben'],['Birgit','vor 3 Minuten'],['Manuela','vor 5 Minuten'],['Kerstin','vor 8 Minuten'],
       ['Nicole','vor 2 Minuten'],['Sabine','vor 7 Minuten'],['Heike','gerade eben'],['Gabi','vor 4 Minuten']];
-    var ti=0;
+    var ti=Math.floor(Math.random()*namen.length);  // zufälliger Start -> nicht immer derselbe Name
     function zeigeTicker(){
       if(tkClosed) return;
       var n=namen[ti%namen.length]; ti++;
       tAv.textContent=n[0].charAt(0);
       tTxt.innerHTML='<b>'+n[0]+'</b> hat sich gerade angemeldet<br><span class="ago">'+n[1]+'</span>';
       tk.classList.add('show');
-      setTimeout(function(){ tk.classList.remove('show'); },5500);
+      setTimeout(function(){ tk.classList.remove('show'); },4500);
     }
-    setTimeout(function(){ zeigeTicker(); setInterval(zeigeTicker,13000); },8000);
+    setTimeout(function(){ zeigeTicker(); setInterval(zeigeTicker,22000); },14000);
   }
 
   // --- Hero-Parallax: Hintergrund zieht beim Scrollen sanft mit ---
@@ -965,7 +970,7 @@ fbq('track', 'PageView');
 </script>
 
 <!-- GHL-Formular-Loader (Höhen-Anpassung der eingebetteten Formulare) -->
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+<script async src="https://link.msgsndr.com/js/form_embed.js"></script>
 
 </body>
 </html>
