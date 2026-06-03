@@ -383,9 +383,17 @@ fbq('track', 'PageView');
     <div class="heroform">
       <h3>Sichere dir deinen kostenlosen Platz</h3>
       <div class="hint">Begrenzt auf 500 Teilnehmerinnen – sei dabei, bevor es losgeht</div>
-      <div class="field"><label>Dein Vorname</label><span class="ic">👤</span><input type="text" placeholder="z. B. Maria" aria-label="Vorname"></div>
-      <div class="field"><label>Deine E-Mail-Adresse</label><span class="ic">✉️</span><input type="email" placeholder="z. B. maria@email.de" aria-label="E-Mail"></div>
-      <button type="button">Ja, ich will dabei sein →</button>
+      <iframe src="https://api.leadconnectorhq.com/widget/form/SvmVPJwfcKllG5IZ2Ydk"
+        style="width:100%;min-height:480px;border:none;border-radius:8px;background:transparent"
+        id="inline-SvmVPJwfcKllG5IZ2Ydk-top"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-activation-type="alwaysActivated"
+        data-deactivation-type="neverDeactivate"
+        data-form-name="Formular workshop test"
+        data-layout-iframe-id="inline-SvmVPJwfcKllG5IZ2Ydk-top"
+        data-form-id="SvmVPJwfcKllG5IZ2Ydk"
+        title="Workshop-Anmeldung"></iframe>
       <div class="safe">🔒 Kein Spam. Deine Daten bleiben bei uns – jederzeit abmeldbar.</div>
       <div class="formbadges"><span>🔒 DSGVO-konform</span><span>👨‍⚕️ Ärztlich geführt</span><span>✓ 100 % kostenlos</span></div>
     </div>
@@ -731,10 +739,18 @@ fbq('track', 'PageView');
          <script src="https://link.msgsndr.com/js/form_embed.js"></script> -->
     <div class="heroform" style="box-shadow:0 10px 30px rgba(20,40,70,.1);border:1px solid var(--line)">
       <h3>Jetzt kostenlos anmelden</h3>
-      <div class="hint">Vorname + E-Mail genügt – Ticket kommt sofort per Mail</div>
-      <div class="field"><label>Dein Vorname</label><span class="ic">👤</span><input type="text" placeholder="z. B. Maria" aria-label="Vorname"></div>
-      <div class="field"><label>Deine E-Mail-Adresse</label><span class="ic">✉️</span><input type="email" placeholder="z. B. maria@email.de" aria-label="E-Mail"></div>
-      <button type="button">Ja, ich will dabei sein →</button>
+      <div class="hint">In 30 Sekunden angemeldet – dein Ticket kommt sofort per Mail</div>
+      <iframe src="https://api.leadconnectorhq.com/widget/form/SvmVPJwfcKllG5IZ2Ydk"
+        style="width:100%;min-height:480px;border:none;border-radius:8px;background:transparent"
+        id="inline-SvmVPJwfcKllG5IZ2Ydk-bottom"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-activation-type="alwaysActivated"
+        data-deactivation-type="neverDeactivate"
+        data-form-name="Formular workshop test"
+        data-layout-iframe-id="inline-SvmVPJwfcKllG5IZ2Ydk-bottom"
+        data-form-id="SvmVPJwfcKllG5IZ2Ydk"
+        title="Workshop-Anmeldung"></iframe>
       <div class="safe">🔒 Kein Spam. Jederzeit abmeldbar.</div>
       <div class="formbadges"><span>🔒 DSGVO-konform</span><span>👨‍⚕️ Ärztlich geführt</span><span>✓ 100 % kostenlos</span></div>
     </div>
@@ -904,8 +920,25 @@ fbq('track', 'PageView');
     }
     setTimeout(function(){ zeigeTicker(); setInterval(zeigeTicker,13000); },8000);
   }
+
+  // --- Lead-Event: feuert, wenn das GHL-Formular abgeschickt wurde (Conversion fürs Pixel) ---
+  var leadGefeuert=false;
+  window.addEventListener('message',function(ev){
+    try{
+      var o=(ev.origin||'')+'';
+      if(o.indexOf('leadconnectorhq')===-1 && o.indexOf('msgsndr')===-1) return;
+      var d=ev.data;
+      var s=(typeof d==='string')?d:JSON.stringify(d||'');
+      if(/submit|submission|form-?submitted|onFormSubmit|thank/i.test(s) && !/height|resize|scroll/i.test(s)){
+        if(!leadGefeuert && window.fbq){ fbq('track','Lead'); leadGefeuert=true; }
+      }
+    }catch(e){}
+  });
 })();
 </script>
+
+<!-- GHL-Formular-Loader (Höhen-Anpassung der eingebetteten Formulare) -->
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 
 </body>
 </html>
