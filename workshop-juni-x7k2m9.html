@@ -626,7 +626,7 @@ fbq('track', 'PageView');
       <span class="new">100 % kostenlos</span>
       <p>Das Wissen aus über 25 Jahren ärztlicher Praxis – am 6. + 7. Juni gibt Hischam El-Sobhi es dir kostenlos weiter. Ohne Verpflichtung, ohne versteckte Kosten.</p>
     </div>
-    <a href="#anmelden" class="btn">Kostenlosen Platz sichern →</a>
+    <a href="#anmeldeform" class="btn">Kostenlosen Platz sichern →</a>
   </div>
 </section>
 
@@ -725,27 +725,8 @@ fbq('track', 'PageView');
       <div class="s">★★★★★</div>
       <p style="font-style:normal">Über <b>1.000 Teilnehmerinnen</b> waren schon dabei – sieh dir oben die echten Erfahrungsberichte an.</p>
     </div>
-    <!-- ===== GHL-FORMULAR HIER EINBINDEN (zweite Platzierung) =====
-         Inhalt der .heroform durch GHL-iframe ersetzen:
-         <iframe src="https://api.leadconnectorhq.com/widget/form/<FORM-ID>" style="width:100%;border:none;min-height:300px"></iframe>
-         <script src="https://link.msgsndr.com/js/form_embed.js"></script> -->
-    <div class="heroform" style="box-shadow:0 10px 30px rgba(20,40,70,.1);border:1px solid var(--line)">
-      <h3>Jetzt kostenlos anmelden</h3>
-      <div class="hint">In 30 Sekunden angemeldet – dein Ticket kommt sofort per Mail</div>
-      <iframe src="https://api.leadconnectorhq.com/widget/form/SvmVPJwfcKllG5IZ2Ydk"
-        style="width:100%;min-height:480px;border:none;border-radius:8px;background:transparent"
-        id="inline-SvmVPJwfcKllG5IZ2Ydk-bottom"
-        data-layout="{'id':'INLINE'}"
-        data-trigger-type="alwaysShow"
-        data-activation-type="alwaysActivated"
-        data-deactivation-type="neverDeactivate"
-        data-form-name="Formular workshop test"
-        data-layout-iframe-id="inline-SvmVPJwfcKllG5IZ2Ydk-bottom"
-        data-form-id="SvmVPJwfcKllG5IZ2Ydk"
-        title="Workshop-Anmeldung"></iframe>
-      <div class="safe">🔒 Kein Spam. Jederzeit abmeldbar.</div>
-      <div class="formbadges"><span>🔒 DSGVO-konform</span><span>👨‍⚕️ Ärztlich geführt</span><span>✓ 100 % kostenlos</span></div>
-    </div>
+    <a href="#anmeldeform" class="btn">Jetzt kostenlos anmelden →</a>
+    <div class="safe" style="text-align:center;margin-top:10px;color:var(--muted);font-size:13px">🔒 Kein Spam · 👨‍⚕️ Ärztlich geführt · ✓ 100 % kostenlos</div>
     <div class="countdown dark" style="margin-top:18px">
       <div class="cl">Der Workshop startet in</div>
       <div class="cgrid">
@@ -793,7 +774,7 @@ fbq('track', 'PageView');
 <!-- STICKY-CTA (erscheint beim Scrollen) -->
 <div class="sticky" id="sticky">
   <span class="sn">Kostenlos · Sa. 6. + So. 7. Juni · nur 500 Plätze</span>
-  <a href="#anmelden">Jetzt kostenlos anmelden →</a>
+  <a href="#anmeldeform">Jetzt kostenlos anmelden →</a>
 </div>
 
 <!-- EXIT-POPUP -->
@@ -846,10 +827,10 @@ fbq('track', 'PageView');
   // Popup-Submit scrollt zum echten Formular (bis GHL-Form eingebunden ist)
   document.getElementById('popSubmit').addEventListener('click',function(){
     schliesse();
-    var t=document.getElementById('anmelden');
+    var t=document.getElementById('anmeldeform');
     if(t){ try{ t.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){} }
     // GHL-Fallback: native Anker-Navigation (scrollt auch dort zuverlässig, smooth via CSS)
-    setTimeout(function(){ window.location.hash='anmelden'; },40);
+    setTimeout(function(){ window.location.hash='anmeldeform'; },40);
   });
 
   // --- Aufmerksamkeits-Puls auf dem sichtbaren Anmelde-Button (periodisch) ---
