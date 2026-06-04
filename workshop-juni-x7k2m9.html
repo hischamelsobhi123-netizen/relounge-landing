@@ -410,18 +410,8 @@ fbq('track', 'PageView');
     <p class="sub">Es gibt 3 Stoffwechseltypen. Finde im kostenlosen Workshop heraus, welcher du bist – und was wirklich hilft.</p>
     <img class="heroteam" src="lp-juni-assets/hero-bg-team.webp" alt="Hischam El-Sobhi und sein Praxis-Team">
     <div class="heroname"><span class="st" style="color:#f0c14b;letter-spacing:1px">★★★★★</span><br><b>Hischam El-Sobhi</b> &amp; sein Team · Facharzt für Allgemein- &amp; Ernährungsmedizin<br>25+ Jahre Erfahrung · 2.300+ Patientinnen begleitet</div>
-    <div class="heroform" id="anmeldeform">
-      <h3>Sichere dir deinen kostenlosen Platz</h3>
-      <div class="hint">Begrenzt auf 500 Teilnehmerinnen – sei dabei, bevor es losgeht</div>
-      <iframe src="https://api.leadconnectorhq.com/widget/form/SvmVPJwfcKllG5IZ2Ydk"
-        style="width:100%;min-height:560px;border:none;border-radius:8px;background:transparent;display:block"
-        id="inline-SvmVPJwfcKllG5IZ2Ydk-top"
-        data-layout="{'id':'INLINE'}"
-        data-form-id="SvmVPJwfcKllG5IZ2Ydk"
-        title="Workshop-Anmeldung"></iframe>
-      <div class="safe">🔒 Kein Spam. Deine Daten bleiben bei uns – jederzeit abmeldbar.</div>
-      <div class="formbadges"><span>🔒 DSGVO-konform</span><span>👨‍⚕️ Ärztlich geführt</span><span>✓ 100 % kostenlos</span></div>
-    </div>
+    <a href="#formular" class="btn">Jetzt kostenlos meinen Platz sichern →</a>
+    <div style="text-align:center;font-size:12.5px;color:#cfe0ec;margin-top:8px">🔒 Begrenzt auf 500 Teilnehmerinnen · 100 % kostenlos</div>
     <div class="countdown" id="cd-hero">
       <div class="cl">Der Workshop startet in</div>
       <div class="cgrid">
@@ -438,6 +428,23 @@ fbq('track', 'PageView');
     <a href="#mehr-erfahren" class="heromore">↓ Mehr über das Konzept erfahren</a>
   </div>
 </div>
+
+<!-- FORMULAR-SEKTION (isoliert & stabil — iframe-Höhe kann hier nichts mehr kaputtmachen) -->
+<section id="formular" style="padding-top:26px">
+  <div class="wrap">
+    <h2 style="text-align:center">Sichere dir deinen kostenlosen Platz</h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:14px">In 30 Sekunden angemeldet – dein Ticket kommt sofort per Mail. Begrenzt auf 500 Teilnehmerinnen.</p>
+    <div class="heroform" style="box-shadow:0 10px 30px rgba(20,40,70,.1);border:1px solid var(--line)">
+      <iframe src="https://api.leadconnectorhq.com/widget/form/SvmVPJwfcKllG5IZ2Ydk"
+        style="width:100%;min-height:560px;border:none;border-radius:8px;background:transparent;display:block"
+        id="inline-SvmVPJwfcKllG5IZ2Ydk-main"
+        data-layout="{'id':'INLINE'}"
+        data-form-id="SvmVPJwfcKllG5IZ2Ydk"
+        title="Workshop-Anmeldung"></iframe>
+      <div class="safe">🔒 Kein Spam · 👨‍⚕️ Ärztlich geführt · ✓ 100 % kostenlos · jederzeit abmeldbar</div>
+    </div>
+  </div>
+</section>
 
 <!-- TRUST-LEISTE (echte Partner — bestätigt von Ramy 2026-06-04) -->
 <section>
@@ -630,7 +637,7 @@ fbq('track', 'PageView');
       <span class="new">100 % kostenlos</span>
       <p>Das Wissen aus über 25 Jahren ärztlicher Praxis – am 6. + 7. Juni gibt Hischam El-Sobhi es dir kostenlos weiter. Ohne Verpflichtung, ohne versteckte Kosten.</p>
     </div>
-    <a href="#anmeldeform" class="btn">Kostenlosen Platz sichern →</a>
+    <a href="#formular" class="btn">Kostenlosen Platz sichern →</a>
   </div>
 </section>
 
@@ -729,7 +736,7 @@ fbq('track', 'PageView');
       <div class="s">★★★★★</div>
       <p style="font-style:normal">Über <b>1.000 Teilnehmerinnen</b> waren schon dabei – sieh dir oben die echten Erfahrungsberichte an.</p>
     </div>
-    <a href="#anmeldeform" class="btn">Jetzt kostenlos anmelden →</a>
+    <a href="#formular" class="btn">Jetzt kostenlos anmelden →</a>
     <div class="safe" style="text-align:center;margin-top:10px;color:var(--muted);font-size:13px">🔒 Kein Spam · 👨‍⚕️ Ärztlich geführt · ✓ 100 % kostenlos</div>
     <div class="countdown dark" style="margin-top:18px">
       <div class="cl">Der Workshop startet in</div>
@@ -778,7 +785,7 @@ fbq('track', 'PageView');
 <!-- STICKY-CTA (erscheint beim Scrollen) -->
 <div class="sticky" id="sticky">
   <span class="sn">Kostenlos · Sa. 6. + So. 7. Juni · nur 500 Plätze</span>
-  <a href="#anmeldeform">Jetzt kostenlos anmelden →</a>
+  <a href="#formular">Jetzt kostenlos anmelden →</a>
 </div>
 
 <!-- EXIT-POPUP -->
@@ -831,10 +838,10 @@ fbq('track', 'PageView');
   // Popup-Submit scrollt zum echten Formular (bis GHL-Form eingebunden ist)
   document.getElementById('popSubmit').addEventListener('click',function(){
     schliesse();
-    var t=document.getElementById('anmeldeform');
+    var t=document.getElementById('formular');
     if(t){ try{ t.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){} }
     // GHL-Fallback: native Anker-Navigation (scrollt auch dort zuverlässig, smooth via CSS)
-    setTimeout(function(){ window.location.hash='anmeldeform'; },40);
+    setTimeout(function(){ window.location.hash='formular'; },40);
   });
 
   // --- Aufmerksamkeits-Puls auf dem sichtbaren Anmelde-Button (periodisch) ---
