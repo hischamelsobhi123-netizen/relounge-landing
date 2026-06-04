@@ -824,17 +824,20 @@ fbq('track', 'PageView');
   });
 
   // --- Popup: Exit-Intent (Desktop) ODER 55% Scroll / 30s (Mobil), einmal pro Session ---
-  var pop=document.getElementById('pop'), gezeigt=false;
-  function zeige(){ if(gezeigt||sessionStorage.getItem('pop_seen'))return; gezeigt=true; sessionStorage.setItem('pop_seen','1'); pop.classList.add('show'); }
+  var pop=document.getElementById('pop'), gezeigt=false, formularErreicht=false;
+  function zeige(){ if(gezeigt||formularErreicht||sessionStorage.getItem('pop_seen'))return; gezeigt=true; sessionStorage.setItem('pop_seen','1'); pop.classList.add('show'); }
   function schliesse(){ pop.classList.remove('show'); }
   document.getElementById('popX').addEventListener('click',schliesse);
   pop.addEventListener('click',function(e){ if(e.target===pop) schliesse(); });
+  // Popup NUR bei echtem Exit-Intent (Desktop: Maus verlässt oben) — kein nerviger 30s-/Scroll-Trigger mehr
   document.addEventListener('mouseout',function(e){ if(e.clientY<=0) zeige(); });
-  setTimeout(zeige,30000);
+  // Sobald der Nutzer das Formular erreicht (will sich anmelden) → Popup dauerhaft AUS
+  var formEl=document.getElementById('formular');
   window.addEventListener('scroll',function(){
-    var sp=(window.scrollY+window.innerHeight)/document.body.scrollHeight;
-    if(sp>0.55) zeige();
-  });
+    if(formEl && !formularErreicht){
+      if(formEl.getBoundingClientRect().top < window.innerHeight*0.75){ formularErreicht=true; }
+    }
+  },{passive:true});
   // Popup-Submit scrollt zum echten Formular (bis GHL-Form eingebunden ist)
   document.getElementById('popSubmit').addEventListener('click',function(){
     schliesse();
