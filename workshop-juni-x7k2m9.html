@@ -134,10 +134,10 @@ fbq('track', 'PageView');
   /* Hero */
   .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:18px 0 30px}
   .herobg{position:absolute;left:-3%;right:-3%;top:-25%;height:150%;z-index:0;will-change:transform;pointer-events:none;
-    filter:blur(3px);
+    transform:translateZ(0);backface-visibility:hidden;
     background:
       linear-gradient(180deg, rgba(11,26,44,.82) 0%, rgba(12,30,50,.86) 50%, var(--navy) 88%),
-      url('lp-juni-assets/hero-bg-hischam.webp') center 16%/cover no-repeat}
+      url('lp-juni-assets/hero-bg-hischam-blur.webp') center 16%/cover no-repeat}
   .hero .kicker,.hero h1,.hero .sub{text-shadow:0 2px 12px rgba(8,18,30,.5)}
   /* Team-Banner (scharf, zeigt das ganze Team) */
   .heroteam{display:block;width:100%;max-width:440px;margin:14px auto 8px;border-radius:16px;
@@ -904,7 +904,7 @@ fbq('track', 'PageView');
     function parallax(){
       var r=heroEl.getBoundingClientRect();
       if(r.bottom>0 && r.top<window.innerHeight){
-        herobg.style.transform='translateY('+(window.scrollY*0.18)+'px)';
+        herobg.style.transform='translate3d(0,'+(window.scrollY*0.18)+'px,0)';
       }
       ptick=false;
     }
