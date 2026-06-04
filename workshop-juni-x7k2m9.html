@@ -132,16 +132,20 @@ fbq('track', 'PageView');
   .topbar img{height:38px}
   .topbar .lim{font-size:12.5px;color:var(--muted);font-weight:600;text-align:right}
   /* Hero */
-  .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:18px 0 30px}
-  .herobg{position:absolute;left:-3%;right:-3%;top:-25%;height:150%;z-index:0;will-change:transform;pointer-events:none;
-    transform:translateZ(0);backface-visibility:hidden;
+  .hero{position:relative;overflow:hidden;color:#fff;padding:18px 0 30px;
     background:
       linear-gradient(180deg, rgba(11,26,44,.82) 0%, rgba(12,30,50,.86) 50%, var(--navy) 88%),
-      url('lp-juni-assets/hero-bg-hischam-blur.webp') center 16%/cover no-repeat}
+      url('lp-juni-assets/hero-bg-hischam-blur.webp') center 16%/cover no-repeat,
+      var(--navy)}
   .hero .kicker,.hero h1,.hero .sub{text-shadow:0 2px 12px rgba(8,18,30,.5)}
   /* Team-Banner (scharf, zeigt das ganze Team) */
   .heroteam{display:block;width:100%;max-width:440px;margin:14px auto 8px;border-radius:16px;
     border:3px solid rgba(255,255,255,.28);box-shadow:0 14px 38px rgba(0,0,0,.42)}
+  /* sekundärer Hero-Button "Mehr erfahren" */
+  .heromore{display:block;width:fit-content;margin:14px auto 0;color:#eaf2f8;text-decoration:none;font-size:14.5px;
+    font-weight:700;border:1.5px solid rgba(255,255,255,.4);border-radius:11px;padding:11px 22px;
+    background:rgba(255,255,255,.08);transition:background .15s}
+  .heromore:active{background:rgba(255,255,255,.16)}
   /* Hero-CTA (above the fold) */
   .herocta{display:block;max-width:440px;margin:16px auto 6px;background:var(--cta);color:#fff;text-align:center;
     text-decoration:none;font-size:17.5px;font-weight:800;padding:17px 22px;border-radius:14px;
@@ -400,7 +404,6 @@ fbq('track', 'PageView');
 
 <!-- HERO -->
 <div class="hero" id="top">
-  <div class="herobg" id="herobg"></div>
   <div class="wrap">
     <div class="kicker">Kostenloses Online-Event für Frauen ab 35 · Sa. 6. + So. 7. Juni</div>
     <h1>Es liegt nicht an deiner Disziplin.<br><span class="hl">Dein Körper funktioniert anders.</span></h1>
@@ -432,6 +435,7 @@ fbq('track', 'PageView');
       <div>📅 <span><b>Sa. 6. + So. 7. Juni 2026</b> · jeweils 10–13 Uhr</span></div>
       <div>💻 <span>Online &amp; live · 💰 100 % kostenlos</span></div>
     </div>
+    <a href="#mehr-erfahren" class="heromore">↓ Mehr über das Konzept erfahren</a>
   </div>
 </div>
 
@@ -518,7 +522,7 @@ fbq('track', 'PageView');
 </section>
 
 <!-- FÜR WEN / FÜR WEN NICHT -->
-<section>
+<section id="mehr-erfahren">
   <div class="wrap">
     <h2 style="text-align:center" class="reveal">Ist dieser Workshop das Richtige für dich?</h2>
     <div class="wn">
@@ -895,22 +899,6 @@ fbq('track', 'PageView');
       setTimeout(function(){ tk.classList.remove('show'); },4500);
     }
     setTimeout(function(){ zeigeTicker(); setInterval(zeigeTicker,22000); },14000);
-  }
-
-  // --- Hero-Parallax: Hintergrund zieht beim Scrollen sanft mit ---
-  var herobg=document.getElementById('herobg'), heroEl=document.querySelector('.hero');
-  if(herobg && heroEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    var ptick=false;
-    function parallax(){
-      var r=heroEl.getBoundingClientRect();
-      if(r.bottom>0 && r.top<window.innerHeight){
-        herobg.style.transform='translate3d(0,'+(window.scrollY*0.18)+'px,0)';
-      }
-      ptick=false;
-    }
-    window.addEventListener('scroll',function(){ if(!ptick){ptick=true;requestAnimationFrame(parallax);} },{passive:true});
-    window.addEventListener('resize',parallax,{passive:true});
-    parallax();
   }
 
   // --- Video-Testimonials: "Mehr zeigen" ---
