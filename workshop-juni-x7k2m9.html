@@ -835,7 +835,13 @@ fbq('track', 'PageView');
     if(sp>0.55) zeige();
   });
   // Popup-Submit scrollt zum echten Formular (bis GHL-Form eingebunden ist)
-  document.getElementById('popSubmit').addEventListener('click',function(){ schliesse(); document.getElementById('anmelden').scrollIntoView({behavior:'smooth'}); });
+  document.getElementById('popSubmit').addEventListener('click',function(){
+    schliesse();
+    var t=document.getElementById('anmelden');
+    if(t){ try{ t.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){} }
+    // GHL-Fallback: native Anker-Navigation (scrollt auch dort zuverlässig, smooth via CSS)
+    setTimeout(function(){ window.location.hash='anmelden'; },40);
+  });
 
   // --- Aufmerksamkeits-Puls auf dem sichtbaren Anmelde-Button (periodisch) ---
   function imBlick(el){ if(!el)return false; var r=el.getBoundingClientRect(); return r.top<window.innerHeight-40 && r.bottom>60; }
