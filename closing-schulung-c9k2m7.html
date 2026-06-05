@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Closing-Schulung · Zentrum für Gesundheitsmedizin</title>
+<style>
+  :root{
+    --bg:#0d0f14; --bg2:#141822; --card:#1b202c; --card2:#222838;
+    --line:#2c3447; --text:#f3f4f8; --muted:#9aa3b5; --soft:#c7cdda;
+    --red:#e8362a; --red-soft:rgba(232,54,42,.14); --gold:#d8b471; --green:#46c08a; --yellow:#e8c14a;
+    --shadow:0 24px 60px rgba(0,0,0,.45);
+    --r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 800px at 70% -10%,#1a2030 0%,var(--bg) 60%);
+    color:var(--text);overflow:hidden;
+  }
+  /* Stage */
+  .stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:4.5vh 4vw 9vh}
+  .slide{
+    display:none;width:100%;max-width:1100px;max-height:86vh;overflow-y:auto;
+    background:linear-gradient(160deg,var(--card) 0%,var(--bg2) 100%);
+    border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);
+    padding:48px 56px;animation:in .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .slide.active{display:block}
+  @keyframes in{from{opacity:0;transform:translateY(16px) scale(.99)}to{opacity:1;transform:none}}
+  .slide::-webkit-scrollbar{width:8px}
+  .slide::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+
+  /* Typo */
+  .kicker{display:inline-block;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+  h1{font-size:46px;line-height:1.08;letter-spacing:-.02em;margin-bottom:10px}
+  h2{font-size:34px;line-height:1.12;letter-spacing:-.015em;margin-bottom:18px}
+  h3{font-size:20px;margin-bottom:8px}
+  p{font-size:18px;line-height:1.55;color:var(--soft)}
+  .lead{font-size:21px;color:var(--text)}
+  .red{color:var(--red)} .gold{color:var(--gold)} .muted{color:var(--muted)}
+  b,strong{color:#fff}
+  ul{list-style:none}
+  li{font-size:18px;line-height:1.5;color:var(--soft);padding-left:28px;position:relative;margin-bottom:12px}
+  li::before{content:"";position:absolute;left:4px;top:9px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+  li.ok::before{content:"✓";background:none;color:var(--green);left:0;top:0;font-weight:900;font-size:18px}
+  li.no::before{content:"✕";background:none;color:var(--red);left:0;top:0;font-weight:900;font-size:18px}
+
+  /* Cards & grid */
+  .grid{display:grid;gap:16px;margin-top:8px}
+  .g2{grid-template-columns:1fr 1fr} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card .n{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.1em}
+  .card h3{font-size:18px;margin:6px 0 6px}
+  .card p{font-size:15.5px;line-height:1.45}
+  .pill{display:inline-block;background:var(--red-soft);color:#ff8a80;border:1px solid rgba(232,54,42,.4);font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px}
+  .quote{border-left:3px solid var(--red);background:rgba(232,54,42,.06);padding:16px 22px;border-radius:0 12px 12px 0;font-size:20px;color:#fff;font-style:italic;margin:14px 0}
+  .big{font-size:30px;font-weight:800;color:#fff}
+  .story{font-size:21px;line-height:1.7;color:var(--soft)}
+  .story b{color:#fff}
+  .ask{border:2px solid var(--gold);background:rgba(216,180,113,.08);padding:18px 24px;border-radius:14px;margin:16px 0}
+  .ask .q{display:block;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  .open{border:2px dashed var(--gold);border-radius:12px;padding:18px 22px;margin-top:10px;color:var(--gold);font-size:22px;font-weight:700}
+  .open small{display:block;color:var(--muted);font-size:14px;margin-top:8px;font-weight:400}
+  .tag-q{display:inline-block;background:rgba(216,180,113,.16);color:var(--gold);border:1px solid rgba(216,180,113,.4);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+  /* Teil-Trenner */
+  .divider{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:60vh}
+  .divider .part{font-size:15px;letter-spacing:.34em;color:var(--gold);font-weight:800;text-transform:uppercase}
+  .divider h1{font-size:56px;margin:16px 0 14px}
+  .divider .sub{font-size:20px;color:var(--soft);max-width:660px;line-height:1.5}
+  .steps3{counter-reset:st;display:grid;gap:14px;margin-top:10px}
+  .stp{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px 20px 16px 60px;position:relative}
+  .stp::before{counter-increment:st;content:counter(st);position:absolute;left:16px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .stp.last::before{background:var(--gold);color:#1a1208}
+
+  /* Flow diagram */
+  .flow{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+  .node{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px 20px;position:relative}
+  .node.start{border-color:var(--gold);background:linear-gradient(135deg,rgba(216,180,113,.12),var(--card2))}
+  .node .tag{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+  .branch{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .arrow{text-align:center;color:var(--muted);font-size:22px;line-height:1}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;font-size:15px;margin-right:10px;flex:0 0 auto}
+  .step{display:flex;align-items:flex-start;gap:4px;margin-bottom:14px}
+  .step .body h3{margin-bottom:2px}
+  .step .body p{font-size:15.5px}
+
+  /* price anchor */
+  .anchor{display:flex;align-items:center;justify-content:center;gap:30px;margin:22px 0;flex-wrap:wrap}
+  .price{text-align:center}
+  .price .v{font-size:52px;font-weight:900;letter-spacing:-.02em}
+  .price.old .v{color:var(--muted);text-decoration:line-through;font-size:38px}
+  .price.new .v{color:var(--red)}
+  .price small{display:block;color:var(--muted);font-size:14px;margin-top:4px}
+
+  /* placeholder */
+  .ph{border:2px dashed rgba(216,180,113,.5);background:rgba(216,180,113,.05)}
+  .ph .pill{background:rgba(216,180,113,.14);color:var(--gold);border-color:rgba(216,180,113,.4)}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:16px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+  th{color:var(--gold);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+  td b{color:#fff}
+
+  /* footer / nav */
+  .bar{position:fixed;left:0;right:0;bottom:0;height:60px;display:flex;align-items:center;justify-content:space-between;
+       padding:0 24px;background:linear-gradient(0deg,var(--bg) 30%,transparent);z-index:20}
+  .brand{font-size:13px;color:var(--muted);letter-spacing:.04em}
+  .brand b{color:var(--gold)}
+  .nav{display:flex;align-items:center;gap:10px}
+  button.nb{background:var(--card2);color:var(--text);border:1px solid var(--line);width:42px;height:42px;border-radius:12px;font-size:20px;cursor:pointer;transition:.15s}
+  button.nb:hover{background:var(--red);border-color:var(--red)}
+  button.nb:disabled{opacity:.3;cursor:default}
+  .count{font-size:14px;color:var(--muted);min-width:58px;text-align:center}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--red);z-index:30;transition:width .35s ease}
+  .hint{position:fixed;bottom:70px;right:24px;font-size:12px;color:var(--muted);opacity:.7}
+  .toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .toc a{font-size:14px;color:var(--soft);background:var(--card2);border:1px solid var(--line);padding:8px 14px;border-radius:10px;cursor:pointer}
+  .toc a:hover{border-color:var(--gold);color:#fff}
+  @media(max-width:640px){.slide{padding:30px 24px}h1{font-size:32px}h2{font-size:25px}.g2,.g3,.g4,.branch{grid-template-columns:1fr}.anchor{gap:14px}.price .v{font-size:40px}}
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+<div class="stage" id="stage">
+
+  <!-- 1 TITEL -->
+  <section class="slide active">
+    <span class="kicker">Closing-Schulung · Donnerstag &amp; Freitag</span>
+    <h1>Vom Verkäufer<br>zum <span class="red">Therapeuten.</span></h1>
+    <p class="lead" style="margin-top:14px;max-width:640px">Unsere Methode für hochpreisige Abschlüsse — als klares, wiederholbares Skript. Für Patricia, Emine, Ramy &amp; Karim.</p>
+    <div class="toc">
+      <a onclick="goId('teil1')">▸ Teil 1 · Das Gespräch</a>
+      <a onclick="goId('empathie')">Empathie-Übung</a>
+      <a onclick="goId('abschluss')">Abschluss-Psychologie</a>
+      <a onclick="goId('einstieg')">Gesprächs-Einstieg</a>
+      <a onclick="goId('wege')">Gesprächs-Wege</a>
+      <a onclick="goId('hebel')">Schlüssel-Hebel</a>
+      <a onclick="goId('bausteine')">Bausteine</a>
+      <a onclick="goId('teil2')">▸ Teil 2 · Abschluss &amp; Bezahlung</a>
+      <a onclick="goId('timing')">Timing &amp; Mindset (Sonntag)</a>
+      <a onclick="goId('preis')">Preis-Teil &amp; Pakete</a>
+      <a onclick="goId('einwand')">Einwand-Handling</a>
+      <a onclick="goId('ehrlichkeit')">Ehrlichkeit framen</a>
+      <a onclick="goId('bezahlung')">Bezahlung</a>
+      <a onclick="goId('flags')">Rote Flags</a>
+    </div>
+    <p class="muted" style="margin-top:24px;font-size:14px">Mit Pfeiltasten ← → oder den Knöpfen unten navigieren · F = Vollbild</p>
+  </section>
+
+  <!-- TEIL-1-DECKBLATT -->
+  <section class="slide" data-sec="teil1">
+    <div class="divider">
+      <span class="part">Teil 1</span>
+      <h1>Das <span class="red">Gespräch</span> führen</h1>
+      <p class="sub">Von der ersten Sekunde bis zum Angebot: Empathie, Haltung, die richtigen Fragen — und warum der Abschluss am Ende nur noch logisch ist.</p>
+    </div>
+  </section>
+
+  <!-- NEU: ÜBUNGS-EINSTIEG -->
+  <section class="slide" data-sec="empathie">
+    <span class="kicker">So beginnen wir</span>
+    <h2>Bevor wir über Technik reden — <span class="red">eine Übung.</span></h2>
+    <div class="ask">
+      <span class="q">Aufgabe an euch</span>
+      <p class="lead" style="color:#fff">Setzt euch hin. Hört genau zu. Und benutzt das, was euch ausmacht: <b>eure Empathie.</b></p>
+    </div>
+    <p class="story" style="margin-top:14px">Ich erzähle euch jetzt von einer Frau. Stellt sie euch so genau vor, als säße sie gleich vor euch — mit allem, was sie mitbringt.</p>
+    <p class="muted" style="margin-top:16px;font-size:14px">→ Regie: Nimm dir 4–5 Minuten. Frei erzählen, langsam, Details ausmalen. Volltext: <b>closing-schulung-empathie-geschichte.md</b></p>
+  </section>
+
+  <!-- GESCHICHTE · KAPITEL 1 -->
+  <section class="slide">
+    <span class="kicker">Stell sie dir vor</span>
+    <h2>Nennen wir sie <span class="red">Sabine.</span> 47.</h2>
+    <p class="story" style="margin-top:8px">Von außen <b>funktioniert</b> sie. Job, Familie, immer für alle da. Sie lächelt. Niemand ahnt, was sie jeden Morgen durchmacht, bevor sie das Haus verlässt.</p>
+  </section>
+
+  <!-- GESCHICHTE · KAPITEL 2 -->
+  <section class="slide">
+    <span class="kicker">Jeder Morgen</span>
+    <h2>Der Blick, den sie <span class="red">meidet.</span></h2>
+    <p class="story" style="margin-top:8px">Erster Gedanke des Tages: nicht der Tag — ihr Körper. Im Bad der kurze Moment vor dem Spiegel, in dem sie <b>wegschaut</b>. Der Schrank: wieder das weite Oberteil. Nicht, weil es gefällt. Weil es <b>versteckt</b>.</p>
+  </section>
+
+  <!-- GESCHICHTE · KAPITEL 3 -->
+  <section class="slide">
+    <span class="kicker">Wie es anfing</span>
+    <h2>„Nimm dir nicht so viel, <span class="red">Mädchen.</span>"</h2>
+    <p class="story" style="margin-top:8px">Sie war vielleicht zwölf. Ein Satz beim Essen, nicht böse gemeint — aber geblieben. Seitdem ist Essen nie nur Essen, immer auch ein <b>Urteil</b>.<br><br>Dann die Diäten. Alle. Manche hielten <b>drei Wochen</b>. Dann kam alles zurück — und mehr. Mit jedem Mal wurde der Glaube an sich selbst kleiner.</p>
+  </section>
+
+  <!-- GESCHICHTE · KAPITEL 4 -->
+  <section class="slide">
+    <span class="kicker">Ihr Leben heute</span>
+    <h2>Sie trägt es <span class="red">ganz allein.</span></h2>
+    <ul style="margin-top:8px">
+      <li>Schläft schlecht, wacht um drei auf. Eine Müdigkeit, die kein Schlaf nimmt.</li>
+      <li>Sagt Verabredungen ab. Geht nicht mehr schwimmen.</li>
+      <li>Letzter Strandurlaub: im T-Shirt. Auf Fotos steht sie hinten.</li>
+    </ul>
+    <p class="story" style="margin-top:12px"><b>Niemand weiß das.</b></p>
+  </section>
+
+  <!-- GESCHICHTE · KAPITEL 5 -->
+  <section class="slide">
+    <span class="kicker">Die Abende mit dem Handy</span>
+    <h2>Sie tippt ein Wort ein: <span class="red">„Abnehmen."</span></h2>
+    <p class="story" style="margin-top:8px">Video um Video. Sie <b>speichert</b> — das eine, das nächste, das übernächste. Jedes Mal: <i>„das mache ich morgen."</i> Morgen kommt. Sie schaut es nie wieder an.<br><br>Hunderte gespeicherte Videos. Ein <b>Friedhof aus guten Vorsätzen</b>. Geblieben ist nur: der Algorithmus hat verstanden. Ab jetzt zeigt das Handy nur noch das — die ständige Erinnerung an das, was sie nicht schafft.</p>
+  </section>
+
+  <!-- GESCHICHTE · KAPITEL 6 -->
+  <section class="slide">
+    <span class="kicker">Der eine Tag</span>
+    <h2>Diesmal war etwas <span class="red">anders.</span></h2>
+    <p class="story" style="margin-top:8px">Auf Instagram, eigentlich nur zur Ablenkung — sieht sie <b>unsere Werbung</b>. Sie verspricht nicht die nächste Übung. Sie sagt: vielleicht lag es nie an deiner <b>Disziplin</b>. Vielleicht steckt ein <b>System</b> dahinter. Ein <b>Arzt</b> schaut drauf.<br><br>Sie meldet sich an. Acht Stunden Workshop. Sie hört den Preis — <b>2.997 €</b>. Wenig auf dem Konto. Und trotzdem klickt sie auf den Termin.</p>
+  </section>
+
+  <!-- GESCHICHTE · KAPITEL 7 / ÜBERGANG -->
+  <section class="slide" data-sec="geschichte">
+    <span class="kicker">Und jetzt?</span>
+    <h1>Genau diese Frau sitzt<br><span class="red">gleich vor dir.</span></h1>
+    <div class="quote" style="margin-top:20px;font-size:22px">Sie kommt nicht, um überzeugt zu werden. Sie kommt mit dem <b>letzten Rest Hoffnung</b>, den sie hat.<br><br>Die Frage ist nicht, ob du ihr etwas verkaufst — sondern ob du der <b>Erste bist, der sie wirklich sieht.</b></div>
+  </section>
+
+  <!-- NEU: EMPATHIE = STÄRKE -->
+  <section class="slide">
+    <span class="kicker">Warum ausgerechnet ihr das könnt</span>
+    <h2>Eure Empathie ist nicht euer Problem.<br>Sie ist euer <span class="red">Werkzeug.</span></h2>
+    <p class="lead">Wer abschließt, ringt oft mit genau einem Moment — wenn es ernst wird. Das liegt <b>nicht</b> an fehlender Technik. Es liegt daran, dass ihr fühlt, was die andere fühlt.</p>
+    <div class="quote" style="margin-top:16px">Ihr kennt ihr Leiden — <b>und</b> ihr kennt die Lösung. Wenn beides zusammenkommt, ist Führen keine Anmaßung. Es ist eure <b>Pflicht ihr gegenüber.</b></div>
+  </section>
+
+  <!-- 2 GRUNDHALTUNG -->
+  <section class="slide">
+    <span class="kicker">Das Fundament</span>
+    <h2>Du verkaufst nicht. Du <span class="red">vertiefst.</span></h2>
+    <div class="quote">„Deine Aufgabe ist NICHT verkaufen, sondern vertiefen. Das Gefühl ‚du interessierst dich wirklich für mich' schließt ab — nicht der Pitch."</div>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card"><div class="n">01</div><h3>Sie haben schon Vertrauen</h3><p>Sonst wären sie nicht im Gespräch. Sie wollen wissen, ob es <b>individuell für sie</b> passt.</p></div>
+      <div class="card"><div class="n">02</div><h3>Wer sich öffnet, will ändern</h3><p>Menschen öffnen sich nur aus <b>Hoffnung</b>. Wer das tut, will fast immer kaufen.</p></div>
+      <div class="card"><div class="n">03</div><h3>Hyperfokus-Zuhören</h3><p>Was sagt sie? <b>Wie</b> sagt sie es? <b>Warum</b>? Den Inhalt UND den Ton analysieren.</p></div>
+    </div>
+  </section>
+
+  <!-- 3 30/70 -->
+  <section class="slide">
+    <span class="kicker">Die wichtigste Regel</span>
+    <h2><span class="red">30 %</span> reden — <span class="gold">70 %</span> zuhören.</h2>
+    <p class="lead">Wenn du redest, hört sie auf, sich zu öffnen. Stelle Fragen. Höre. Schweige, wenn nötig.</p>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="card"><h3 class="gold">Ärztlicher Vorteil</h3><p>Du fragst nach Werten, Medikamenten, Schlaf, Heißhunger. Das positioniert dich vom ersten Moment anders als jeder Coach.</p></div>
+      <div class="card"><h3 class="gold">Zum Kern-Schmerz</h3><p>„Ich will abnehmen" ist nicht der Schmerz. Der echte Schmerz: <i>Ich erkenne mich nicht mehr.</i></p></div>
+      <div class="card"><h3 class="gold">Bei Tränen</h3><p>Wahrnehmen, darauf eingehen, fragen warum. Nicht ignorieren, nicht weiterpitchen.</p></div>
+    </div>
+  </section>
+
+  <!-- NEU: DAS PROBLEM MIT DEM ABSCHLUSS -->
+  <section class="slide" data-sec="abschluss">
+    <span class="kicker">Der Knackpunkt</span>
+    <h2>Warum der Abschluss <span class="red">unangenehm</span> wird.</h2>
+    <p class="lead">Bei den meisten kippt es an genau einer Stelle: wenn die Frage kommt — <i>„Willst du das mit uns machen?"</i> Doch der Fehler passiert nicht in diesem Moment. Er ist <b>vorher</b> passiert.</p>
+    <div class="quote" style="margin-top:16px;font-size:23px">Der Abschluss ist kein Moment, den du überstehen musst.<br>Er ist die <b>logische Schlussfolgerung</b> aus allem davor.</div>
+    <p style="margin-top:14px">Wenn du dir das Gespräch <b>erarbeitest</b>, ist die Frage am Ende nicht mehr unangenehm — sie ergibt sich von selbst.</p>
+  </section>
+
+  <!-- NEU: GELD-REFRAME -->
+  <section class="slide">
+    <span class="kicker">Versetz dich in sie</span>
+    <h2>Sie <span class="red">will</span> kaufen. Sonst wäre sie nicht hier.</h2>
+    <ul style="margin-top:8px">
+      <li>2.997 € klingt nach viel. <b>Ihr Leiden wiegt schwerer.</b></li>
+      <li>Sie hat sich für dieses Gespräch <b>angemeldet</b> — niemand tut das zufällig.</li>
+      <li>Wir bieten es bewusst <b>nicht</b> im Workshop an: dort würde sie noch nicht kaufen. Im Gespräch schon.</li>
+    </ul>
+    <div class="quote" style="margin-top:16px">Deine Aufgabe ist nicht, sie zu überzeugen, dass sie es will. <b>Sie will.</b> Deine Aufgabe ist, ihr den letzten Haken zu nehmen.</div>
+  </section>
+
+  <!-- NEU: WAS FRAGT SIE SICH (INTERAKTIV) -->
+  <section class="slide">
+    <span class="tag-q">Frage an euch · denkt mit</span>
+    <h2>Was fragt <span class="red">sie</span> sich gerade?</h2>
+    <p class="lead">Sie hat 8 Stunden Workshop gesehen. Sie sitzt im Gespräch. Sie will nur noch <b>eine einzige Sache</b> klären.</p>
+    <ul style="margin-top:14px">
+      <li class="ok">Sie vertraut uns</li>
+      <li class="ok">Es ist ein echter Arzt</li>
+      <li class="ok">Das Konzept hat sie im Workshop gespürt</li>
+    </ul>
+    <div class="open">❓&nbsp;&nbsp;________________________________<br><small>Was ist ihr letzter Haken? — lasst die Gruppe antworten, bevor ihr weiterblättert.</small></div>
+  </section>
+
+  <!-- NEU: DIE 3 LETZTEN HAKEN (AUFLÖSUNG) -->
+  <section class="slide">
+    <span class="kicker">Ihr letzter Haken — aufgelöst</span>
+    <h2>Drei Zweifel. Alle heißen: <span class="red">„Gilt das für MICH?"</span></h2>
+    <div class="grid g3" style="margin-top:10px">
+      <div class="card"><div class="n">ZWEIFEL 1</div><h3>„Passt das individuell zu mir?"</h3><p>Ist das auf meine Situation zugeschnitten — oder ein Programm von der Stange?</p></div>
+      <div class="card"><div class="n">ZWEIFEL 2</div><h3>„Schaffe ich es — diesmal wirklich?"</h3><p>Setze ich mich diesmal <b>ernsthaft</b> damit auseinander, oder bricht es wieder ab wie immer?</p><span class="pill" style="margin-top:8px">⚠️ Ramy: Formulierung prüfen</span></div>
+      <div class="card"><div class="n">ZWEIFEL 3</div><h3>„Greift das Konzept überhaupt auf mich?"</h3><p>Sie kennt bisher nur <b>Vertrauen</b> — kein Konzept. Wirkt das in meinem Körper, mit meiner Geschichte?</p></div>
+    </div>
+  </section>
+
+  <!-- NEU: WIR NEHMEN IHR DIE ENTSCHEIDUNG AB -->
+  <section class="slide">
+    <span class="kicker">Ein Teil der Begleitung</span>
+    <h2>Wir nehmen ihr die <span class="red">Entscheidung</span> ab.</h2>
+    <ul style="margin-top:8px">
+      <li>Wir haben keine Zeit, das ganze Konzept zu erklären — <b>und das ist gut so.</b></li>
+      <li>Wer alles erklärt bekommt, <b>muss überlegen.</b> Und Überlegen heißt: alleine, später, ohne uns. Sie <b>will</b> nicht überlegen.</li>
+      <li>Führung ist Teil dessen, was sie kauft.</li>
+    </ul>
+    <div class="quote" style="margin-top:16px">Sie würde niemals so viel Geld ausgeben, wenn wir sie nicht <b>führen.</b> Genau das ist die Begleitung.</div>
+  </section>
+
+  <!-- NEU: TRANSFORMATION -->
+  <section class="slide">
+    <span class="kicker">Was sie wirklich will</span>
+    <h2>Sie will nicht abnehmen.<br>Sie will die <span class="red">Transformation.</span></h2>
+    <p class="lead">Sie will nicht „Kilos verlieren". Sie will das, was im Workshop gezeigt wurde: die Transformation über die <b>5 Säulen</b>, ganzheitlich begleitet.</p>
+    <div class="quote" style="margin-top:16px">Sie will das <b>Ergebnis</b> — nicht das Wissen. Sie muss gar nicht alles verstehen, um es zu wollen.</div>
+  </section>
+
+  <!-- NEU: DIE OFFENE FRAGE -->
+  <section class="slide">
+    <span class="kicker">Was immer offen bleibt</span>
+    <h2>„Aber greift das überhaupt auf <span class="red">MICH</span>?"</h2>
+    <p class="lead">Egal wie gut wir sind, wie viel Vertrauen da ist — dieser eine Zweifel bleibt in jedem Menschen. Den kannst du <b>nicht mit mehr Information</b> wegnehmen.</p>
+    <div class="quote" style="margin-top:16px">Nur so nimmst du ihn: indem sie spürt, dass wir <b>genau ihr Thema</b> erkannt haben.</div>
+  </section>
+
+  <!-- NEU: MENTAL / KÖRPERLICH -->
+  <section class="slide">
+    <span class="kicker">Deshalb das Closing</span>
+    <h2>Finde ihr <span class="red">echtes</span> Thema — mental oder körperlich.</h2>
+    <ul style="margin-top:8px">
+      <li><b>60 Minuten.</b> Mehr haben wir nicht. Wir beschränken uns auf das, was sie wirklich umtreibt.</li>
+      <li>Nicht, weil es am Ende drauf ankommt — sie bekommt <b>sowieso alles</b>: Labor, Coaching, die volle Begleitung.</li>
+      <li>Sondern, damit sie das <b>Gefühl</b> hat: die haben genau das Richtige für mich.</li>
+    </ul>
+    <p class="pill" style="margin-top:16px">⚠️ Redest du übers falsche Thema, will sie „nachdenken" — weil ihr eigentliches Thema nie zur Sprache kam. Und das erzählt sie nicht von selbst (oder erst nach 2 Stunden — die du nicht hast).</p>
+  </section>
+
+  <!-- NEU: ABSCHLUSS = LOGISCHE SCHLUSSFOLGERUNG (HÖHEPUNKT) -->
+  <section class="slide">
+    <span class="kicker">Der ganze Trick</span>
+    <h1>Stimmt die Reihenfolge,<br>ist der Abschluss nur noch <span class="red">logisch.</span></h1>
+    <div class="quote" style="margin-top:20px;font-size:23px">Am Ende musst du nicht einmal fragen <i>„Willst du das?"</i> — wenn die Reihenfolge stimmt, <b>will sie längst.</b><br><br>Kein Sprung. Keine Überwindung. Eine logische Schlussfolgerung.</div>
+  </section>
+
+  <!-- NEU: DER ÜBERGANG IST KEINE FRAGE, SONDERN EIN PLAN -->
+  <section class="slide">
+    <span class="kicker">So klingt der Übergang</span>
+    <h2>Du fragst nicht. Du stellst den <span class="red">Plan</span> fest.</h2>
+    <p class="lead">Du baust nicht alles auf und fragst dann „passt das für dich?". Du hast vorher schon Punkte gesetzt — <i>„Du bist ja heute hier, weil…"</i> — und sprichst am Ende ruhig von der Arzt-Seite aus:</p>
+    <div class="quote" style="margin-top:14px">„Von unserer Seite aus können wir nur sagen: <b>Wir können dir auf jeden Fall helfen.</b> Wir würden starten mit der Mikrobiom-Untersuchung, dann … und dann … — und genau dort ansetzen, wo es bei dir hängt."</div>
+    <p style="margin-top:12px">Kein „Willst du?". Sondern ein Plan, der <b>schon in Bewegung ist.</b></p>
+  </section>
+
+  <!-- NEU: UNSERE LÖSUNG, NIE IHRE PROBLEME → VERLUST -->
+  <section class="slide">
+    <span class="kicker">Der feine, entscheidende Unterschied</span>
+    <h2>Unsere <span class="red">Lösung</span> — nie ihre Probleme.</h2>
+    <ul style="margin-top:8px">
+      <li>Du sprichst genau die Punkte an, die sie als Problem genannt hat — aber <b>nicht als „deine Probleme"</b> (das wäre manipulativ), sondern als <b>unsere passgenaue Lösung</b> dafür.</li>
+      <li>Ziel-Gefühl bei ihr: <i>„Die haben genau MEIN Problem angesprochen — und genau die Lösung dafür, passend für mich."</i> → ihr letzter Haken löst sich.</li>
+    </ul>
+    <div class="quote" style="margin-top:16px">Dann fühlt sich ein Nein nicht wie eine abgelehnte Frage an — sondern wie ein <b>Verlust</b>, wenn sie jetzt NICHT startet.</div>
+    <p class="muted" style="margin-top:12px;font-size:14px">→ Kurz klarstellen: „Also, wir machen das und das — bei dir wäre das der Plan, und das bekommen wir auf jeden Fall hin."</p>
+  </section>
+
+  <!-- NEU: GESPRÄCHS-EINSTIEG / AUTORITÄT LADEN -->
+  <section class="slide" data-sec="einstieg">
+    <span class="kicker">So fängst du an</span>
+    <h2>Autorität laden — vom <span class="red">ersten Satz</span> an.</h2>
+    <div class="grid" style="gap:12px;margin-top:6px">
+      <div class="card"><p>„Hallo, ich bin Emine. Du hast dich für den Workshop angemeldet." <span class="muted">→ sie antwortet</span></p></div>
+      <div class="card"><p>„Genau. Wir gehen jetzt einmal alles zusammen durch. Ich stelle dir ein paar Fragen, wir schauen, wo deine Situation steht — Diagnosen, Medikamente, der Schwerpunkt. Danach wissen wir beide, worum es geht."</p></div>
+      <div class="card"><p>→ und <b>sofort</b> in die gezielten Fragen.</p></div>
+    </div>
+    <div class="quote" style="margin-top:16px">So spürt sie ab Sekunde eins: <b>Die macht das nicht zum ersten Mal.</b> Sobald sie redet, trägt deine Führung das ganze Gespräch.</div>
+  </section>
+
+  <!-- 4 WEGE-DIAGRAMM -->
+  <section class="slide" data-sec="wege">
+    <span class="kicker">Gesprächs-Wege-Diagramm</span>
+    <h2>Schritt 1 — immer zuerst: <span class="red">den Standort klären.</span></h2>
+    <div class="flow">
+      <div class="node start">
+        <span class="tag">Erste Frage im Gespräch</span>
+        <p class="big" style="margin-top:4px">„Hast du den Workshop gesehen? Beide Tage — Samstag UND Sonntag?"</p>
+        <p style="margin-top:6px">Zweck: Kennt die Person das <b>Angebot + den Preis</b>? Danach richtet sich der ganze Pfad.</p>
+      </div>
+      <div class="arrow">▼ &nbsp; verzweigt in zwei Wege &nbsp; ▼</div>
+      <div class="branch">
+        <div class="node" style="border-color:var(--green)">
+          <span class="tag" style="color:var(--green)">Pfad A · kennt das Angebot</span>
+          <p style="margin-top:6px">Sie weiß, was kommt und was es kostet. → Direkt vertiefen, Schmerz &amp; Wunsch herausarbeiten, dann Angebot einordnen.</p>
+        </div>
+        <div class="node" style="border-color:var(--yellow)">
+          <span class="tag" style="color:var(--yellow)">Pfad B · kennt es NICHT</span>
+          <p style="margin-top:6px">Kam nur über E-Mail o. Ä. rein. → Erst Kontext &amp; Programm aufbauen, bevor irgendetwas verkauft wird. Komplett andere Herangehensweise.</p>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:16px">→ Gibt dir Struktur und verhindert, dass du am Kunden vorbeiredest.</p>
+  </section>
+
+  <!-- 5 DIE 6 BLÖCKE -->
+  <section class="slide">
+    <span class="kicker">Gesprächs-Architektur · ~60 Minuten</span>
+    <h2>Der Bogen: <span class="red">6 Blöcke</span> bis zum Angebot.</h2>
+    <table>
+      <tr><th>#</th><th>Block</th><th>Dauer</th><th>Ziel</th></tr>
+      <tr><td><b>1</b></td><td>Ankommen &amp; Vertrauen</td><td>3–5 Min</td><td>Sie öffnet sich</td></tr>
+      <tr><td><b>2</b></td><td>IST: Geschichte &amp; Typ</td><td>8–10 Min</td><td>Welcher Typ, was schon versucht</td></tr>
+      <tr><td><b>3</b></td><td>Schmerz: Was kostet es?</td><td>5–7 Min</td><td>Kern-Schmerz an die Oberfläche</td></tr>
+      <tr><td><b>4</b></td><td>Wunsch &amp; Future Pace</td><td>5–7 Min</td><td>Sie sieht das neue Leben</td></tr>
+      <tr><td><b>5</b></td><td>Hindernisse &amp; Bereitschaft</td><td>5 Min</td><td>Einwände vorab kennen</td></tr>
+      <tr><td><b>6</b></td><td>Spiegel &amp; Übergang</td><td>3–5 Min</td><td>Sie fühlt sich gesehen</td></tr>
+      <tr><td class="gold">—</td><td class="gold"><b>Angebot-Präsentation</b></td><td class="gold">12 Min</td><td class="gold">Erst jetzt — nicht früher</td></tr>
+    </table>
+    <p class="pill" style="margin-top:16px">⚠️ Bleiben nach Block 6 weniger als 15 Min → Angebot auf 2. Termin. Lieber sauber als gehetzt.</p>
+  </section>
+
+  <!-- 6 BLÖCKE DETAIL -->
+  <section class="slide">
+    <span class="kicker">Die Blöcke 3–6 im Kern</span>
+    <h2>Schmerz → Wunsch → Spiegel.</h2>
+    <div class="grid g2">
+      <div class="card"><div class="n">BLOCK 3 · SCHMERZ</div><h3>„Was kostet dich das täglich?"</h3><p>Nicht Geld — <b>Energie, Zeit, Stimmung.</b> Wo zuckt sie? Lange Pausen sind Gold. Nicht unterbrechen.</p></div>
+      <div class="card"><div class="n">BLOCK 4 · WUNSCH</div><h3>„Wofür willst du das wirklich?"</h3><p>Es geht nicht ums Gewicht. <b>Schweig mind. 5 Sek.</b> Sie soll es selbst aussprechen: „Ich will wieder ich sein."</p></div>
+      <div class="card"><div class="n">BLOCK 5 · HINDERNISSE</div><h3>„Was hat dich bisher gestoppt?"</h3><p>Einwände vorab raus — nicht um zu verkaufen, um <b>einzuordnen.</b> Bereitschaft checken (grün / gelb / rot).</p></div>
+      <div class="card"><div class="n">BLOCK 6 · SPIEGEL</div><h3>Ihre Geschichte zurückgeben</h3><p>Mit <b>ihren Worten</b>, in deiner Stimme. „Habe ich dich richtig verstanden?" → Erst danach das Angebot.</p></div>
+    </div>
+  </section>
+
+  <!-- 7 SCHLÜSSEL-HEBEL INTRO -->
+  <section class="slide" data-sec="hebel">
+    <span class="kicker">Das Eigene an unserer Methode</span>
+    <h2>Die <span class="red">Schlüssel-Hebel.</span></h2>
+    <p class="lead">Vier Werkzeuge, die unser Closing von „normalem Verkaufen" unterscheiden. Sie machen den Abschluss <b>für die Kundin nachvollziehbar</b> — statt ihn ihr aufzudrücken.</p>
+    <div class="grid g4" style="margin-top:20px">
+      <div class="card"><h3 class="red">Gewichts-Flow</h3><p>Differenz sichtbar machen</p></div>
+      <div class="card"><h3 class="red">Höchstgewicht</h3><p>Die Tür zur Geschichte</p></div>
+      <div class="card"><h3 class="red">100 %-Frage</h3><p>Sie sagt, wie du closen sollst</p></div>
+      <div class="card"><h3 class="red">Bausteine zeigen</h3><p>Sichtbar machen, was sie nicht kennt</p></div>
+    </div>
+  </section>
+
+  <!-- 8 GEWICHTS-FLOW -->
+  <section class="slide">
+    <span class="kicker">Hebel 1 · Gewichts-Flow</span>
+    <h2>Die Differenz <span class="red">sichtbar</span> machen.</h2>
+    <div class="anchor">
+      <div class="price"><div class="v" style="color:#fff">110</div><small>aktuelles Gewicht</small></div>
+      <div style="font-size:30px;color:var(--muted)">→</div>
+      <div class="price"><div class="v gold">70</div><small>Wunschgewicht</small></div>
+      <div style="font-size:30px;color:var(--muted)">=</div>
+      <div class="price new"><div class="v">40 kg</div><small>die Dimension</small></div>
+    </div>
+    <ul style="margin-top:10px">
+      <li>Aktuelles Gewicht fragen → Wunschgewicht fragen → <b>Differenz aussprechen.</b> Psychologischer Effekt: Sie versteht selbst die Dimension.</li>
+      <li>In Zeit übersetzen: <b>„40 kg — das braucht realistisch ca. 12 Monate."</b> → rechtfertigt eine längere Begleitung.</li>
+      <li>Logik: längere Begleitung = schwierigere Ausgangslage = mehr Diagnostik = höhere Laborkosten. <b>So wird der Preis nachvollziehbar.</b></li>
+    </ul>
+  </section>
+
+  <!-- 9 HÖCHSTGEWICHT -->
+  <section class="slide">
+    <span class="kicker">Hebel 2 · Höchstgewicht-Frage</span>
+    <h2>„Ist das dein <span class="red">Höchstgewicht?</span>"</h2>
+    <div class="branch" style="margin-top:6px">
+      <div class="node" style="border-color:var(--green)">
+        <span class="tag" style="color:var(--green)">Antwort JA</span>
+        <p style="margin-top:6px">„Wie kam das? Was ist aktuell passiert?" → Sie öffnet sich, redet oft ~5 Min frei. Mit gezielten Fragen vertiefen (z. B. Schlaf). <b>Genau zuhören.</b></p>
+      </div>
+      <div class="node" style="border-color:var(--yellow)">
+        <span class="tag" style="color:var(--yellow)">Antwort NEIN</span>
+        <p style="margin-top:6px">Nach dem früheren Höchstgewicht fragen: „Wie hast du es mal geschafft zu reduzieren?" → Sie hat schon Fortschritte gemacht. „Was ist <b>jetzt</b> das eigentliche Problem?"</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">Wahrer Zweck der Gewichtsfrage ist NICHT die Zahl — sondern: die Kundin muss spüren, dass du <b>alles</b> über ihre Situation weißt. Ohne dieses Gefühl kein Close.</div>
+  </section>
+
+  <!-- 10 100% FRAGE -->
+  <section class="slide">
+    <span class="kicker">Hebel 3 · Die 100 %-Frage</span>
+    <h2>Sie sagt dir, <span class="red">womit</span> du closen sollst.</h2>
+    <div class="quote">„Wenn du 100 % hast und sie aufteilst auf ein <b>mentales</b> und ein <b>körperliches</b> Problem — wie teilst du auf?"</div>
+    <div class="branch" style="margin-top:8px">
+      <div class="node"><span class="tag">Sagt „mental"</span><p style="margin-top:6px">→ Schwerpunkt auf <b>mentale Begleitung</b>: Coaching, wöchentliche Gruppencalls, Kurse.</p></div>
+      <div class="node"><span class="tag">Sagt „körperlich"</span><p style="margin-top:6px">→ Schwerpunkt auf <b>Labordiagnostik</b> &amp; körperliche Begleitung.</p></div>
+    </div>
+    <p style="margin-top:16px">Dann: <b>ihre Probleme in unser System einordnen</b> und zeigen, wie das System genau ihren Bereich abdeckt.</p>
+  </section>
+
+  <!-- 11 BAUSTEINE (PLATZHALTER) -->
+  <section class="slide" data-sec="bausteine">
+    <span class="kicker">Hebel 4 · Bausteine sichtbar machen</span>
+    <h2>Kunden kennen die Bausteine <span class="red">nicht.</span></h2>
+    <p class="lead">Die meisten wissen nicht, was ein „Gruppencall" oder „Coaching" ist. Jeder Baustein wird im Gespräch <b>erklärt &amp; dargestellt</b> — sonst kann sie den Wert nicht sehen.</p>
+    <div class="grid g3 ph-wrap" style="margin-top:18px">
+      <div class="card ph"><div class="n">BAUSTEIN</div><h3>Coaching / Gruppencalls</h3><p class="muted">Wöchentlich, online, mentale Ebene.</p><span class="pill" style="margin-top:8px">⏳ Wartet auf Ramys 1–2 Sätze</span></div>
+      <div class="card ph"><div class="n">BAUSTEIN</div><h3>Kurse</h3><p class="muted">Mentale Ebene, on-demand.</p><span class="pill" style="margin-top:8px">⏳ Wartet auf Ramys 1–2 Sätze</span></div>
+      <div class="card ph"><div class="n">BAUSTEIN</div><h3>Labordiagnostik</h3><p class="muted">5 Achsen, körperliche Ebene.</p><span class="pill" style="margin-top:8px">⏳ Wartet auf Ramys 1–2 Sätze</span></div>
+      <div class="card ph"><div class="n">BAUSTEIN</div><h3>6 / 12 Monate Betreuung</h3><p class="muted">Das A und O — Zeit für echte Veränderung.</p><span class="pill" style="margin-top:8px">⏳ Wartet auf Ramys 1–2 Sätze</span></div>
+      <div class="card ph"><div class="n">BAUSTEIN</div><h3>WhatsApp 1:1-Begleitung</h3><p class="muted">Unterstützung im Alltag.</p><span class="pill" style="margin-top:8px">⏳ Wartet auf Ramys 1–2 Sätze</span></div>
+      <div class="card ph"><div class="n">BAUSTEIN</div><h3>Monatlich 1:1 ärztlich</h3><p class="muted">Persönlicher Termin mit dem Arzt.</p><span class="pill" style="margin-top:8px">⏳ Wartet auf Ramys 1–2 Sätze</span></div>
+    </div>
+  </section>
+
+  <!-- PAUSE -->
+  <section class="slide" data-sec="pause">
+    <div class="divider">
+      <span class="part">Ende Teil 1</span>
+      <h1>Kurze <span class="red">Pause.</span> ☕</h1>
+      <p class="sub">Bis hierher: das ganze Gespräch — Empathie, Haltung, die richtigen Fragen, der Spiegel.<br>Nach der Pause kommt <b>Teil 2</b>: der eigentliche Abschluss — Pakete, Anker, Preis, Ratenzahlung und die Einwände.</p>
+      <p class="muted" style="margin-top:18px;font-size:14px">→ Durchatmen. Fragen sammeln. Dann geht's an das, worauf alles hinausläuft.</p>
+    </div>
+  </section>
+
+  <!-- TEIL-2-DECKBLATT -->
+  <section class="slide" data-sec="teil2">
+    <div class="divider">
+      <span class="part">Teil 2</span>
+      <h1>Der <span class="red">Abschluss</span> &amp; die Bezahlung</h1>
+      <p class="sub">Preis nennen, die Entscheidung herbeiführen — und gemeinsam durch die Bezahlung gehen. Den Druck nehmen, dabei bleiben, bis es wirklich steht.</p>
+    </div>
+  </section>
+
+  <!-- TIMING 1: WARUM SONNTAG -->
+  <section class="slide" data-sec="timing">
+    <span class="kicker">Wen hast du vor dir? · Der Timing-Effekt</span>
+    <h2>Warum closet <span class="red">Sonntag</span> so viel besser als Mittwoch.</h2>
+    <p class="lead">Die Leute tragen sich nach dem Workshop für einen Tag ein — Sonntag, Montag, Dienstag, Mittwoch. <b>Nicht</b> weil die Mittwoch-Leute weniger wollen oder schlechter sind.</p>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card" style="border-color:rgba(70,192,138,.4)">
+        <h3 class="gold" style="color:var(--green)">Sonntag — direkt nach dem Workshop</h3>
+        <p style="margin-top:6px">Der <b>Workshop-Effekt ist noch enorm hoch.</b> Sie ist richtig motiviert, alles ist frisch, sie <b>fühlt</b> die Veränderung. → leichter Abschluss.</p>
+      </div>
+      <div class="card" style="border-color:rgba(232,54,42,.4)">
+        <h3 class="gold" style="color:var(--red)">Dienstag / Mittwoch</h3>
+        <p style="margin-top:6px">Die Motivation ist über die Tage <b>schon gesunken.</b> Der Alltag hat sie wieder. Hier kommen die mit dem <b>größten Geld-Einwand</b> — oft schon mit dem Mindset rein: „Ich schließe hier nichts Großes ab."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMING 2: MOTIVATIONS-LOCH = GRUNDPROBLEM -->
+  <section class="slide">
+    <span class="kicker">Warum das wichtig ist zu verstehen</span>
+    <h2>Das Motivations-Loch ist <span class="red">ihr eigentliches Problem.</span></h2>
+    <p class="lead">Die Motivation verschwindet über die Zeit — bei fast jedem. Genau deshalb kriegen es so viele am Ende allein nicht hin und landen…</p>
+    <ul style="margin-top:10px">
+      <li>…im <b>nächsten Workshop</b>, beim <b>nächsten Arzt</b>, beim nächsten Ernährungsberater, bei Jan Bahrmann, bei wem auch immer.</li>
+      <li>Ist die Motivation weg, wird das Problem nicht gelöst — und genau <b>dadurch hält sich ihr Gewicht.</b> Das ist ihr Alltags-Grundproblem, ganz unabhängig von uns.</li>
+    </ul>
+    <div class="quote" style="margin-top:16px">Deshalb ist <b>unsere Begleitung</b> der eigentliche Wert: Wir halten die Motivation und die Reihenfolge — das, was sie allein nie schafft. Und deshalb gehen wir bei den „späten" Leuten <b>anders</b> ran (gleich beim Einwand-Teil).</div>
+  </section>
+
+  <!-- EINWAND: BUDGET VOR PREIS -->
+  <section class="slide">
+    <span class="kicker">Reihenfolge im Preis-Teil</span>
+    <h2>Erst Leidensdruck, dann Budget — <span class="red">dann</span> der Preis.</h2>
+    <ul style="margin-top:8px">
+      <li>Den Preis <b>nie</b> nennen, bevor der Schmerz sitzt und du das Budget grob kennst — sonst <b>Preisschock</b>.</li>
+      <li>„Was kostet dich das Nichtstun — jeden Tag?" → Leidensdruck nochmal spürbar machen.</li>
+      <li>Dann das Angebot auf sie <b>zuschneiden</b>. Nicht umgekehrt.</li>
+    </ul>
+    <div class="quote" style="margin-top:16px">Der häufigste teure Fehler: den Preis zu früh nennen — und danach beim ersten Zögern zu schnell nachgeben. Die <b>Reihenfolge</b> entscheidet.</div>
+  </section>
+
+  <!-- 12 PREIS-ANKER -->
+  <section class="slide" data-sec="preis">
+    <span class="kicker">Preis-Teil · zweite Gesprächshälfte</span>
+    <h2>Erst hoch ankern — dann wirkt der Preis <span class="red">leicht.</span></h2>
+    <div class="anchor">
+      <div class="price old"><div class="v">4.997 €</div><small>zuerst nennen (Anker)</small></div>
+      <div style="font-size:30px;color:var(--muted)">→</div>
+      <div class="price new"><div class="v">2.997 €</div><small>wirkt jetzt wie „ein Klacks"</small></div>
+    </div>
+    <ul style="margin-top:8px">
+      <li>Nie direkt mit dem niedrigen Preis starten — das klingt billig. <b>Immer hoch ankern.</b></li>
+      <li>Beim Kauf fühlt sich die Kundin nicht „billig", sondern: <b>„ich starte jetzt eine Begleitung."</b></li>
+    </ul>
+  </section>
+
+  <!-- 13 STILLE + 6/12 -->
+  <section class="slide">
+    <span class="kicker">Preis-Teil · die Psychologie</span>
+    <h2>Preis nennen → <span class="red">Stille</span> aushalten.</h2>
+    <div class="grid g2">
+      <div class="card"><h3 class="gold">Stille aushalten</h3><p>Nach der Preisnennung <b>NICHT</b> weiterreden. Preis nennen → Stille → dann ruhig: <i>„Willst du das Ganze mit uns machen?"</i></p></div>
+      <div class="card"><h3 class="gold">6 statt 12 Monate</h3><p>„Eigentlich bräuchtest du 12 Monate — in deinem Fall starten wir mit <b>6</b>." Senkt die Hürde, hält die Tür für Anschluss (~2.000 €) offen.</p></div>
+      <div class="card"><h3 class="gold">Du selbst + die Wahrheit</h3><p>Am Ende einfach echt sein und die Wahrheit sagen. Kein Druck-Closing, keine „begrenzten Plätze".</p></div>
+      <div class="card"><h3 class="gold">Arzt im Gespräch</h3><p>Ob <b>Hischam</b> dabei war, erhöht den Abschluss deutlich → fest einplanen.</p></div>
+    </div>
+  </section>
+
+  <!-- 14 PREISLEITER -->
+  <section class="slide">
+    <span class="kicker">Zur Orientierung</span>
+    <h2>Die <span class="red">Preis-Leiter</span> — nicht verwechseln.</h2>
+    <table>
+      <tr><th>Stufe</th><th>Was</th><th>Preis</th></tr>
+      <tr><td>Stoffwechsel-Check</td><td>nur Diagnose (Labor + Plan)</td><td><b>490 €</b></td></tr>
+      <tr><td>Sommer-Reset 30</td><td>30-Tage-Aktion, 100 % anrechenbar</td><td><b>890 €</b></td></tr>
+      <tr><td>6-Monats-Weg ⭐</td><td>volle ärztliche Begleitung (Hauptprodukt)</td><td><b class="red">2.997 €</b></td></tr>
+      <tr><td class="muted">Anker-Paket</td><td class="muted">nur als Anker zuerst genannt</td><td class="muted">~4.997 €</td></tr>
+    </table>
+  </section>
+
+  <!-- PAKET-LOGIK 1: WARUM DAS GRÖSSERE MEHR KOSTET -->
+  <section class="slide">
+    <span class="kicker">Pakete darstellen · die logische Staffel</span>
+    <h2>Jedes Paket muss sich <span class="red">logisch</span> erklären — mehr Preis = mehr drin.</h2>
+    <p class="lead">Stell die Pakete so dar, dass jeder selbst versteht, wo er hingehört. Beispiel: mentales Thema + sie braucht die <b>Darmdiagnostik</b> → dann passt das größere Paket, und das muss man <b>begründen</b>.</p>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card">
+        <div class="n">BASIS · 6 MONATE</div>
+        <h3 style="margin-top:4px">6-Monats-Weg — <span class="red">2.997 €</span></h3>
+        <p style="margin-top:6px">6 Monate Begleitung · 2 Coachings · Basislabor · Gruppencalls · WhatsApp · 1:1 ärztlich. <b>Ohne</b> Darmdiagnostik.</p>
+      </div>
+      <div class="card ph">
+        <div class="n" style="color:var(--gold)">GRÖSSER · 9 MONATE <span class="pill">⚠️ Preis bestätigen</span></div>
+        <h3 style="margin-top:4px">9-Monats-Paket <span class="muted">(ca. +2.000 €)</span></h3>
+        <p style="margin-top:6px">Alles aus dem 6-Monats-Paket <b>plus</b>: <b>Darmdiagnostik</b> · 1 Coaching mehr · <b>3 Monate</b> mehr Begleitung.</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px"><b>Warum die Darmdiagnostik erst im 9-Monats-Paket?</b> Allein das Labor kostet ca. <b>300 €</b>, dazu 1 Coaching mehr (1 Std. mit Dr. El-Sobhi = <b>500 €</b>) → schon ~800 € mehr. Wer die Darmdiagnostik braucht, braucht eh die <b>längere Begleitung</b>. So ist klar: das größere Paket ist teurer, <b>weil mehr drin ist</b> — nicht „einfach so".</div>
+  </section>
+
+  <!-- PAKET-LOGIK 2: IMMER DIE RATE MITNENNEN -->
+  <section class="slide">
+    <span class="kicker">Preis nennen · sofort die Rate dazu</span>
+    <h2>Nenne nie nur den Gesamtpreis — <span class="red">immer die Rate dazu.</span></h2>
+    <p class="lead">Der Raten-Preis muss von uns <b>offen daliegen</b> und direkt mitkommen. Dann wirkt die Summe nicht mehr riesig — und der Unterschied zwischen den Paketen wird greifbar.</p>
+    <div class="anchor" style="margin-top:10px">
+      <div class="price new"><div class="v">2.997 €</div><small>Gesamt</small></div>
+      <div style="font-size:30px;color:var(--muted)">=</div>
+      <div class="price"><div class="v" style="color:var(--green)">140 €</div><small>pro Monat (24×)</small></div>
+    </div>
+    <ul style="margin-top:8px">
+      <li>„Das Paket ist X € — das sind z. B. <b>140 € oder 175 € im Monat</b>." → klingt sofort machbar.</li>
+      <li>So ordnet sich jede Kundin selbst ein und versteht, <b>wofür</b> der Unterschied steht.</li>
+    </ul>
+  </section>
+
+  <!-- EINWAND-BLOCK INTRO -->
+  <section class="slide" data-sec="einwand">
+    <span class="kicker">Der Moment der Wahrheit</span>
+    <h2>Sie sagt nicht sofort Ja. <span class="red">Und jetzt?</span></h2>
+    <p class="lead">Hier — nicht im Aufbau — entscheidet sich, ob du abschließt. Der häufigste Fehler: den Einwand bestätigen und aufgeben. Damit gibst du ihr selbst die <b>Erlaubnis zum Nein</b>.</p>
+    <div class="quote" style="margin-top:16px">„Kein Geld" und „ich muss überlegen" sind <b>kein Ende</b>. Sie sind der Anfang des eigentlichen Gesprächs.</div>
+  </section>
+
+  <!-- EHRLICHKEIT 1: KEINE EINWANDBEHANDLUNG -->
+  <section class="slide" data-sec="ehrlichkeit">
+    <span class="kicker">So gehen WIR mit Einwänden um</span>
+    <h2>Keine klassische Einwandbehandlung — <span class="red">Ehrlichkeit framen.</span></h2>
+    <p class="lead">Du musst keine harte Einwand-Technik fahren. Niemand muss sich trauen, dreimal „Woran liegt's denn? Woran liegt's denn?" nachzubohren — das ist zu viel und fühlt sich falsch an.</p>
+    <div class="grid g2" style="margin-top:12px">
+      <div class="card" style="border-color:rgba(232,54,42,.4)"><h3 style="color:var(--red)">Nicht das ✕</h3><p style="margin-top:6px">Druck-Technik, „woran liegt's denn"-Bohren, Einwände „wegargumentieren".</p></div>
+      <div class="card" style="border-color:rgba(70,192,138,.4)"><h3 style="color:var(--green)">Sondern das ✓</h3><p style="margin-top:6px">Auf <b>Ehrlichkeit</b> gehen. Ehrlich fragen, ehrlich reden, <b>gemeinsam</b> eine Lösung finden.</p></div>
+    </div>
+    <div class="quote" style="margin-top:14px">Wichtig zu wissen: Das geht nur, <b>wenn das ganze Gespräch zuvor auf Ehrlichkeit beruht hat</b> — und wir bewiesen haben, dass wir ehrlich reden.</div>
+  </section>
+
+  <!-- EHRLICHKEIT 2: EHRLICHKEIT BEWEISEN -->
+  <section class="slide">
+    <span class="kicker">Wie du Ehrlichkeit VORHER beweist</span>
+    <h2>Stuf das Paket <span class="red">ehrlich</span> runter — das ist dein Kapital.</h2>
+    <p class="lead">Beim Pakete-Darstellen fängst du oben an (Anker). Aber wenn jemand weniger braucht, sagst du es <b>ehrlich</b> — und genau das macht dich am Ende glaubwürdig:</p>
+    <div class="quote" style="margin-top:12px">„Bei dir wäre das große Paket eigentlich <b>zu viel</b> — du willst ja gar nicht so viel abnehmen. <b>Aber</b> die Darmdiagnostik wäre für dich sehr sinnvoll, du hast ja gesagt, dein Schlaf ist schlecht — und genau da würden wir anfangen."</div>
+    <p style="margin-top:14px">→ Du verkaufst ihr <b>nicht</b> das Teuerste. Du knüpfst an <b>ihre eigenen Worte</b> an. Sie spürt: „Die sind ehrlich, die wollen mir nicht einfach was andrehen." Diese bewiesene Ehrlichkeit ziehst du beim Geld-Einwand wieder heraus.</p>
+  </section>
+
+  <!-- EHRLICHKEIT 3: LASS UNS EINE LÖSUNG FINDEN -->
+  <section class="slide">
+    <span class="kicker">Der ehrliche Satz am Einwand</span>
+    <h2>„Lass uns eine <span class="red">Lösung</span> finden." — und die gibt es fast immer.</h2>
+    <p class="lead">Frag ehrlich: <i>„Sag mal, woran hapert's denn jetzt? Woran liegt's?"</i> Die meisten Einwände drehen sich am Ende ums <b>Geld</b>. Dann — ehrlich, weil ihr ja schon ehrlich über alle Probleme geredet habt:</p>
+    <ul style="margin-top:10px">
+      <li>„Wir haben so offen geredet — <b>lass uns auch hier eine Lösung finden.</b>"</li>
+      <li>Wir haben so viele Möglichkeiten: <b>nur die Diagnostik (490 €)</b>, <b>Sommer-Reset (890 €)</b>, der kleine Einstieg… <b>es gibt für jeden etwas.</b></li>
+      <li>Sie ist <b>wegen einer Lösung</b> hier. Und weil wir uns so genau gekümmert und zugehört haben, muss sie das Gefühl haben: <b>„Mit denen finde ich eine Lösung."</b></li>
+    </ul>
+    <div class="quote" style="margin-top:14px">Wir finden bei fast jedem eine Lösung — selbst beim Geld-Einwand. Und wenn es nur der <b>Einstieg in ein kleines Programm</b> ist.</div>
+  </section>
+
+  <!-- EINWAND: GELD ODER FUNKTIONIERT -->
+  <section class="slide">
+    <span class="kicker">Der Geld-Einwand</span>
+    <h2>„Ist es wirklich das Geld — oder ob es für dich <span class="red">funktioniert</span>?"</h2>
+    <p class="lead">Diese eine Frage trennt den echten Einwand vom Vorwand. Stell sie ruhig — und schweig.</p>
+    <div class="branch" style="margin-top:14px">
+      <div class="node"><span class="tag" style="color:var(--gold)">„… eher, ob es funktioniert"</span><p style="margin-top:6px">→ zurück zum <b>Wert</b>: ihr echtes Thema, unsere Lösung, der Plan. Der Haken war nie das Geld.</p></div>
+      <div class="node"><span class="tag" style="color:var(--gold)">„… wirklich das Geld"</span><p style="margin-top:6px">→ jetzt baust du die <b>Brücke</b> (nächste Folie). Nicht aufgeben.</p></div>
+    </div>
+  </section>
+
+  <!-- EINWAND: DIE BRÜCKE -->
+  <section class="slide">
+    <span class="kicker">Statt aufzugeben: die Brücke</span>
+    <h2>Ein kleinerer Einstieg ist besser als ein <span class="red">Nein.</span></h2>
+    <ul style="margin-top:8px">
+      <li><b>Stoffwechsel-Check 490 €</b> oder <b>Sommer-Reset 890 €</b> (100 % anrechenbar) → ein echter erster Schritt.</li>
+      <li><b>6- statt 12-Monats-Einstieg</b> → Hürde runter, Tür offen für den Anschluss.</li>
+      <li>„Ich muss mit meinem Mann reden" → <i>„Was würde er ehrlicherweise sagen?"</i> / <i>„Entscheidest du das selbst oder gemeinsam?"</i></li>
+    </ul>
+    <div class="quote" style="margin-top:16px">Ein kleiner Start, der wirkt, bringt sie weiter als ein höfliches „überleg's dir". Und sie <b>kommt zurück</b>.</div>
+  </section>
+
+  <!-- EINWAND: BRÜCKE TYPGENAU (MENTAL) -->
+  <section class="slide">
+    <span class="kicker">Den Einstieg typgenau zuschneiden</span>
+    <h2>Welcher Einstieg passt — weißt du nur, weil du <span class="red">zugehört</span> hast.</h2>
+    <p class="lead">Knüpf an ihre eigenen Worte an: <i>„Du hast ja gesagt, dir geht's nicht nur um die Kilos, sondern um …"</i> — diesen Schritt kannst du nur gehen, wenn du genau hingehört hast.</p>
+    <div class="card" style="margin-top:14px">
+      <div class="n">WENN MENTAL DAS THEMA IST</div>
+      <p style="margin-top:6px">„Bei dir ist es die <b>mentale Begleitung</b> — da zieht ein zu kleines Paket oft nicht richtig. Lass uns mit den <b>6 Monaten</b> starten und schauen, wo du dann stehst. Geht's dir besser, ist der größte Teil schon geschafft — du hast wieder Energie, kannst wieder arbeiten — und entscheidest <b>von dort aus</b>, ob wir weitermachen."</p>
+    </div>
+    <p class="muted" style="margin-top:12px;font-size:14px">→ Die meisten sagen hier schon Ja.</p>
+  </section>
+
+  <!-- EINWAND: BRÜCKE TYPGENAU (KÖRPERLICH) -->
+  <section class="slide">
+    <span class="kicker">Der andere Weg</span>
+    <h2>Körperliches Thema? Erst <span class="red">checken</span>, dann starten.</h2>
+    <div class="card" style="margin-top:8px">
+      <div class="n">WENN KÖRPERLICH DAS THEMA IST</div>
+      <p style="margin-top:6px">„Lass uns doch erst mal das <b>Diagnostik-Paket</b> machen — alles abchecken, einen Monat starten, die <b>Entgiftung</b>. Von da aus schauen wir weiter."</p>
+    </div>
+    <div class="quote" style="margin-top:16px">Es gibt für jeden einen Einstieg. Die Frage ist nie <b>ob</b> sie einsteigt — sondern <b>welcher</b> Einstieg passt. Und das richtet sich nach ihrem Typ.</div>
+  </section>
+
+  <!-- STEP BY STEP 1: DER HARTNÄCKIGE GELD-EINWAND -->
+  <section class="slide">
+    <span class="kicker">Wenn das Geld der echte, harte Einwand ist</span>
+    <h2>Hartnäckig kein Geld? → <span class="red">Step by Step.</span></h2>
+    <p class="lead">Manche reden 5, 6, 7 Minuten lang nur ums Geld und sagen hartnäckig: „Nein, das ist nichts für mich." Das sind oft die <b>Dienstag-/Mittwoch-Leute</b> — sie kamen schon mit dem Mindset rein: „Ich schließe hier nichts Großes ab."</p>
+    <div class="steps3" style="margin-top:12px">
+      <div class="stp">Nicht das große Paket erzwingen — <b>etwas Kleineres abschließen:</b> Stoffwechsel-Check <b>490 €</b> oder Sommer-Reset <b>890 €</b>.</div>
+      <div class="stp">Sie kommt in die <b>Praxis</b>, erlebt: wir sind echt, es bringt wirklich was. <b>Das ist der erste Step.</b></div>
+      <div class="stp last">Von dort holen sich <b>die meisten das größere Paket</b> nach — sie mussten erst überzeugt sein.</div>
+    </div>
+    <p class="pill" style="margin-top:14px">⚠️ Step by Step nur bei den Leuten, die wirklich kein Geld haben. <b>Alle anderen kaufen direkt</b> und klären es direkt.</p>
+  </section>
+
+  <!-- STEP BY STEP 2: DAS BESTE VERSUCHT -->
+  <section class="slide">
+    <span class="kicker">Wenn am Ende trotzdem ein Nein kommt</span>
+    <h2>Dann haben wir von unserer Seite <span class="red">das Beste versucht.</span></h2>
+    <p class="lead">Sie muss über das ganze Gespräch das Gefühl haben, dass wir uns auf <b>ihre individuelle Einstellung angepasst</b> haben. Wenn dann — trotz allem Vertrauen — ein klares „nein, das möchte ich nicht" kommt, stellst du genau das dar:</p>
+    <div class="quote" style="margin-top:12px">„Wir haben alles analysiert, wir sind genau drangeblieben, wir haben verstanden, woran es bei dir liegt. Und an <b>diesem</b> Problem liegt es ja gar nicht — es liegt am Geld."</div>
+    <p style="margin-top:14px">→ Wenn es wirklich, absolut <b>nur</b> das Geld ist, ist es ein <b>anderer Umgang</b> (kein Wert-Thema mehr). Du hast sauber geführt — ehrlich, gründlich, individuell. Das ist alles, was von unserer Seite geht.</p>
+  </section>
+
+  <!-- EINWAND: VERBOTENE SÄTZE -->
+  <section class="slide">
+    <span class="kicker">Die teuersten Sätze</span>
+    <h2>Diese Sätze geben ihr die <span class="red">Erlaubnis zum Nein.</span></h2>
+    <div class="grid g2" style="margin-top:10px">
+      <div class="card" style="border-color:rgba(232,54,42,.4)">
+        <h3 style="color:var(--red)">Nie sagen ✕</h3>
+        <ul style="margin-top:6px">
+          <li class="no">„Ich will dich auf keinen Fall überreden."</li>
+          <li class="no">„Wir wollen nicht, dass du dich verschuldest."</li>
+          <li class="no">„Überleg's dir in Ruhe."</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(70,192,138,.4)">
+        <h3 style="color:var(--green)">Stattdessen ✓</h3>
+        <ul style="margin-top:6px">
+          <li class="ok">„Was bräuchtest du, um heute Ja zu sagen?"</li>
+          <li class="ok">„Lass uns schauen, wie wir das machbar machen."</li>
+          <li class="ok">„Wann startest du — heute oder zum Monatsanfang?"</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EINWAND: MIKRO-COMMITMENT -->
+  <section class="slide">
+    <span class="kicker">Niemals offen enden lassen</span>
+    <h2>Bei „später": fester Termin + <span class="red">eine Bedingung.</span></h2>
+    <p class="lead">Du legst die Entscheidung nie ohne Deadline in ihre Hand. Sonst bestimmt der Alltag — und der sagt immer „nicht jetzt".</p>
+    <ul style="margin-top:10px">
+      <li>Immer eine <b>Closing-Frage</b> stellen — auch wenn das Nein wahrscheinlich ist.</li>
+      <li>Bei „ich überlege" → <b>fester Termin</b>: „Wann sprechen wir wieder — Dienstag 18 Uhr?"</li>
+      <li>Plus die Bedingung: „Was muss sich bis dahin geklärt haben, damit du dann startest?"</li>
+    </ul>
+  </section>
+
+  <!-- BEZAHL-BLOCK 1: DRUCK NEHMEN / DABEI BLEIBEN -->
+  <section class="slide" data-sec="bezahlung">
+    <span class="kicker">Die Haltung beim Abschluss</span>
+    <h2>Wir lassen sie nicht allein — auch <span class="red">nicht bei der Bezahlung.</span></h2>
+    <p class="lead">Der Abschluss endet nicht mit dem Ja. Wir machen die Bezahlung <b>gemeinsam, im Gespräch.</b> Kein Druck — aber auch kein „mach das mal später allein".</p>
+    <div class="quote" style="margin-top:16px">Wer rausgeht, um es „später in Ruhe" zu machen, entscheidet sich oft dagegen. Nicht aus Zweifel — aus <b>Alltag.</b> Deshalb bleiben wir dabei. Wenn's länger dauert: kein Problem.</div>
+  </section>
+
+  <!-- BEZAHL-BLOCK 2: EINWAND "SCHICK'S MIR" -->
+  <section class="slide">
+    <span class="kicker">Häufiger Einwand</span>
+    <h2>„Schick's mir doch, ich mach das <span class="red">dann selbst.</span>"</h2>
+    <p class="lead">Klingt harmlos — ist aber genau der Moment, in dem viele verloren gehen. Sie sind eigentlich schon dabei, aber der Alltag schluckt die Entscheidung.</p>
+    <div class="quote" style="margin-top:16px">Deine Antwort muss <b>selbstverständlich</b> wirken — keine Rechtfertigung, kein Druck. Du nimmst ihr Arbeit ab, du drängst nicht.</div>
+  </section>
+
+  <!-- BEZAHL-BLOCK 3: WARUM JETZT ZUSAMMEN -->
+  <section class="slide">
+    <span class="kicker">Falls die Frage kommt: „Warum jetzt?"</span>
+    <h2>„Der einzige Grund, warum wir das <span class="red">hier zusammen</span> machen…"</h2>
+    <ul style="margin-top:8px">
+      <li>…ich muss, sobald es durchgeht, manuell Dinge hinterlegen — <b>deine Bonis</b>, den <b>Verweis an die Paketpacker</b>.</li>
+      <li>…wir stellen sicher, dass die <b>Zahlung durchgeht</b> — bei Klarna/PayPal wird sie öfter mal abgelehnt.</li>
+      <li>…falls beides nicht klappt, richten wir <b>zusammen</b> die Ratenzahlung über uns ein. Das macht man einmal gemeinsam.</li>
+    </ul>
+    <p class="muted" style="margin-top:14px;font-size:14px">→ Ton: ruhig, selbstverständlich, hilfreich. Es ist normal, dass wir das zusammen machen — nicht der Rede wert.</p>
+  </section>
+
+  <!-- BEZAHL-BLOCK 4: RATENZAHLUNG ERKLÄREN + FRAGE -->
+  <section class="slide">
+    <span class="kicker">So führst du in die Bezahlung</span>
+    <h2>Die Ratenzahlung läuft über <span class="red">PayPal &amp; Klarna.</span></h2>
+    <div class="quote" style="margin-top:6px">„Die Ratenzahlung funktioniert über PayPal und Klarna. <b>Hast du denn schon mal mit PayPal oder Klarna bezahlt?</b>"</div>
+    <p style="margin-top:14px"><b>Falls sie fragt „warum?":</b></p>
+    <p class="lead">„Damit wir wissen, dass es <b>hinterlegt</b> ist — dann ist es ganz simpel, wir prüfen es kurz. Und wenn's nicht funktioniert, kein Problem: dann machen wir die Ratenzahlung über uns."</p>
+  </section>
+
+  <!-- BEZAHL-BLOCK 5: REIHENFOLGE DER ZAHLWEGE -->
+  <section class="slide">
+    <span class="kicker">Die Reihenfolge — eigene Ratenzahlung immer zuletzt</span>
+    <h2>Klarna → PayPal → <span class="red">(Notlösung) wir.</span></h2>
+    <div class="steps3">
+      <div class="stp"><b>Klarna-Ratenzahlung</b> — der erste Weg.</div>
+      <div class="stp">Klappt nicht? → <b>PayPal-Ratenzahlung.</b></div>
+      <div class="stp last">Gar nichts? → <b>Notlösung: Ratenzahlung über uns.</b> Bieten wir per se nicht an — läuft normal über die Zahlungsdienstleister.</div>
+    </div>
+    <p class="pill" style="margin-top:16px">💰 Warum PayPal/Klarna bevorzugt: Wir bekommen die <b>volle Summe in 30 Tagen</b> aufs Konto — die Kundin zahlt trotzdem in Raten.</p>
+  </section>
+
+  <!-- BEZAHL-BLOCK 6: KEIN KONTO / NOCH NIE GENUTZT -->
+  <section class="slide">
+    <span class="kicker">Wenn sie Klarna/PayPal noch nie genutzt hat</span>
+    <h2>„Das richten wir einmal kurz <span class="red">zusammen</span> ein."</h2>
+    <p class="lead">Manche haben noch kein Konto oder nie damit bezahlt. Kein Hindernis:</p>
+    <ul style="margin-top:8px">
+      <li>Sie macht es <b>am Handy</b>, du bist dabei und hilfst bei Fragen.</li>
+      <li>„Das haben wir schon mit <b>vielen</b> gemacht" — nimmt die Unsicherheit.</li>
+      <li>So bleibt sie <b>im Gespräch</b>, statt allein loszuziehen und es zu verschieben.</li>
+    </ul>
+  </section>
+
+  <!-- BEZAHL-BLOCK 7: MERKSATZ -->
+  <section class="slide">
+    <span class="kicker">Das Wichtigste in einem Satz</span>
+    <h2>Niemand geht allein raus.<br>Wir bleiben dabei, <span class="red">bis es steht.</span></h2>
+    <div class="grid g2" style="margin-top:10px">
+      <div class="card"><h3 class="gold">Fast immer</h3><p>PayPal- oder Klarna-Ratenzahlung → volle Summe in 30 Tagen.</p></div>
+      <div class="card"><h3 class="gold">Nur ganz selten</h3><p>Eigene Ratenzahlung als Notlösung — wenn beides nicht geht.</p></div>
+    </div>
+  </section>
+
+  <!-- 15 ROTE FLAGS -->
+  <section class="slide" data-sec="flags">
+    <span class="kicker">Wann du NICHT verkaufst</span>
+    <h2><span class="red">Rote Flags</span> — Vertrauen schlägt Abschluss.</h2>
+    <p>Trifft eines zu → geh NICHT zum Angebot. Bleib ehrlich, du gewinnst Vertrauen für später.</p>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><p><b>Schwere Depression</b><br><span class="muted">„Lass uns in 3 Monaten nochmal sprechen."</span></p></div>
+      <div class="card"><p><b>Akute Essstörung</b><br><span class="muted">An eine Kollegin verweisen.</span></p></div>
+      <div class="card"><p><b>Sucht</b><br><span class="muted">Erst Stabilität für die andere Sache.</span></p></div>
+      <div class="card"><p><b>Akute Lebenskrise</b><br><span class="muted">„Nimm dir Zeit — in 4–6 Wochen reden."</span></p></div>
+      <div class="card"><p><b>Nur aus Höflichkeit da</b><br><span class="muted">Vom Partner geschickt, kein eigener Schmerz.</span></p></div>
+      <div class="card"><p><b>Echte Zahlungs-Notlage</b><br><span class="muted">Kostenlose Ressourcen statt Verkauf.</span></p></div>
+    </div>
+  </section>
+
+  <!-- 16 DO / DONT -->
+  <section class="slide">
+    <span class="kicker">Quick-Reference</span>
+    <h2>Dos &amp; Don'ts.</h2>
+    <div class="grid g2">
+      <div class="card" style="border-color:rgba(70,192,138,.4)">
+        <h3 class="gold" style="color:var(--green)">DO ✓</h3>
+        <ul style="margin-top:8px">
+          <li class="ok">Frage stellen — dann mind. 5 Sek schweigen</li>
+          <li class="ok">Ihre Worte zurückspiegeln</li>
+          <li class="ok">Ärztliche Begriffe sparsam &amp; präzise nutzen</li>
+          <li class="ok">Schmerz anerkennen, bevor du Hoffnung gibst</li>
+          <li class="ok">Bei Tränen für Offenheit bedanken</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(232,54,42,.4)">
+        <h3 class="gold" style="color:var(--red)">DON'T ✕</h3>
+        <ul style="margin-top:8px">
+          <li class="no">Kein Gewicht / keine Heilung versprechen</li>
+          <li class="no">Nie „das schaffen wir locker"</li>
+          <li class="no">Nicht diagnostizieren — nur einordnen</li>
+          <li class="no">Kein Plätze-Druck</li>
+          <li class="no">Nicht vom Schmerz direkt zum Preis springen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 ABSCHLUSS -->
+  <section class="slide">
+    <span class="kicker">Sonntag = erster echter Closing-Tag</span>
+    <h1>Regeln + Disziplin +<br><span class="red">PayPal/Klarna</span> = neue Zahlen.</h1>
+    <ul style="margin-top:18px;max-width:680px">
+      <li>Standort zuerst klären — dann der 6-Block-Bogen.</li>
+      <li>30 % reden, 70 % zuhören. Vertiefen statt verkaufen.</li>
+      <li>Hoch ankern, Stille aushalten, Raten aktiv anbieten.</li>
+      <li>Pro Closer: Analyse + Training (Ramy, Patricia, Emine) · Karim = Produkt-Fokus.</li>
+    </ul>
+    <p class="lead gold" style="margin-top:22px">Jetzt umsetzen. Wir rasieren.</p>
+  </section>
+
+</div>
+
+<div class="bar">
+  <div class="brand">Zentrum für Gesundheitsmedizin · <b>Closing-Schulung</b></div>
+  <div class="nav">
+    <button class="nb" id="prev" onclick="prev()">‹</button>
+    <span class="count" id="count">1 / 17</span>
+    <button class="nb" id="next" onclick="next()">›</button>
+  </div>
+</div>
+<div class="hint">← → blättern · F Vollbild</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function render(){
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('count').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('bar').style.width=((i+1)/slides.length*100)+'%';
+    document.getElementById('prev').disabled=i===0;
+    document.getElementById('next').disabled=i===slides.length-1;
+    document.querySelector('.slide.active').scrollTop=0;
+  }
+  function next(){if(i<slides.length-1){i++;render();}}
+  function prev(){if(i>0){i--;render();}}
+  function go(n){i=Math.max(0,Math.min(slides.length-1,n));render();}
+  function goId(id){const el=document.querySelector('[data-sec="'+id+'"]');if(el){const idx=slides.indexOf(el);if(idx>=0)go(idx);}}
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next();}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev();}
+    if(e.key==='Home'){go(0);} if(e.key==='End'){go(slides.length-1);}
+    if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+  // Klick auf rechte/linke Hälfte zum Blättern (außer auf Links/Buttons)
+  document.getElementById('stage').addEventListener('click',e=>{
+    if(e.target.closest('a,button')) return;
+    const x=e.clientX/window.innerWidth;
+    if(x>0.6)next(); else if(x<0.4)prev();
+  });
+  render();
+</script>
+</body>
+</html>

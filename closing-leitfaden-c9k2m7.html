@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Closing-Leitfaden · Der Gesprächs-Spickzettel</title>
+<style>
+  :root{
+    --ink:#1a2330; --muted:#5d6b7e; --line:#dfe5ee;
+    --bg:#eef1f6; --card:#ffffff;
+    --teal:#0d8a8a; --teal-d:#0a6e6e; --teal-bg:#e6f5f5;
+    --red:#e8362a; --red-bg:#fdeceb;
+    --gold:#b07d12; --gold-bg:#fcf4e3;
+    --green:#1f8a4c; --green-bg:#e8f6ee;
+    --navy:#1a2742;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.5;
+    padding:28px 16px;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+
+  /* HEADER */
+  header{
+    background:linear-gradient(135deg,var(--navy),#243456);
+    color:#fff;border-radius:18px;padding:26px 30px;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(20,30,55,.18);
+  }
+  header h1{font-size:27px;letter-spacing:.2px;margin-bottom:6px}
+  header h1 .dot{color:#ff6f61}
+  header p{color:#c4cee0;font-size:14.5px;max-width:760px}
+  .rules{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .rule{
+    background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);
+    border-radius:10px;padding:9px 13px;font-size:13px;flex:1;min-width:210px;
+  }
+  .rule b{color:#7fe3e3;display:block;font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+
+  /* PART BANNER */
+  .part{
+    display:flex;align-items:center;gap:12px;margin:26px 0 14px;
+  }
+  .part .badge{
+    font-size:13px;font-weight:800;color:#fff;background:var(--teal);
+    padding:5px 12px;border-radius:20px;letter-spacing:.5px;white-space:nowrap;
+  }
+  .part.two .badge{background:var(--green)}
+  .part h2{font-size:19px;color:var(--navy)}
+  .part .hr{flex:1;height:2px;background:var(--line);border-radius:2px}
+
+  /* STATION CARD */
+  .station{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;box-shadow:0 3px 10px rgba(30,40,60,.05);position:relative;
+  }
+  .station + .arrow{ }
+  .st-head{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+  .st-num{
+    width:30px;height:30px;border-radius:9px;background:var(--teal-bg);color:var(--teal-d);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0;
+  }
+  .station.key .st-num{background:var(--red-bg);color:var(--red)}
+  .st-title{font-size:16.5px;font-weight:800;color:var(--navy)}
+  .st-sub{font-size:12.5px;color:var(--muted);font-weight:600}
+
+  /* question lines */
+  .q{
+    background:var(--teal-bg);border-left:3px solid var(--teal);
+    border-radius:0 8px 8px 0;padding:7px 12px;margin:7px 0;font-size:14.5px;font-weight:600;color:#0a5a5a;
+  }
+  .q::before{content:"„";font-weight:800}
+  .q::after{content:"“";font-weight:800}
+  .note{font-size:13px;color:var(--muted);margin:5px 0 2px}
+  ul.tight{margin:4px 0 2px 18px;font-size:13.5px}
+  ul.tight li{margin:2px 0}
+
+  /* WHY box (Ramys Logik) */
+  .why{
+    background:var(--gold-bg);border:1px solid #f0dca8;border-radius:9px;
+    padding:8px 12px;margin-top:10px;font-size:13px;color:#6e5208;
+  }
+  .why b{color:var(--gold)}
+
+  /* ARROW between stations */
+  .arrow{display:flex;justify-content:center;align-items:center;height:30px;color:var(--teal);}
+  .arrow svg{width:22px;height:30px}
+  .part.two ~ .arrow, .two-zone .arrow{color:var(--green)}
+
+  /* SPLIT (Option A / B) */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+  .opt{
+    border-radius:12px;padding:13px 15px;border:1.5px solid;
+  }
+  .opt.a{background:#eef7ff;border-color:#bcdcff}
+  .opt.b{background:#fff3ee;border-color:#ffd2bd}
+  .opt h4{font-size:13.5px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+  .opt.a h4{color:#1666c4}
+  .opt.b h4{color:#c4521a}
+  .tag{font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;color:#fff}
+  .opt.a .tag{background:#1666c4}
+  .opt.b .tag{background:#c4521a}
+  .opt p, .opt li{font-size:13px;color:#33414f}
+  .opt ul{margin:4px 0 0 16px}
+  .split-q{
+    text-align:center;font-size:14.5px;font-weight:800;color:var(--navy);
+    background:#fff;border:2px dashed var(--line);border-radius:10px;padding:8px;margin-bottom:10px;
+  }
+
+  /* PART 2 accent */
+  .two-zone .st-num{background:var(--green-bg);color:var(--green)}
+  .two-zone .q{background:var(--green-bg);border-left-color:var(--green);color:#0f5e32}
+
+  /* PRICE strip */
+  .anchor{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0}
+  .price-pill{font-weight:800;padding:6px 13px;border-radius:10px;font-size:15px}
+  .price-pill.high{background:#f0f0f0;color:#9aa3ad;text-decoration:line-through}
+  .price-pill.low{background:var(--green);color:#fff}
+  .anchor .ar{color:var(--muted);font-size:18px}
+
+  /* bridge table */
+  .bridge{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .brow{background:#f7faf8;border:1px solid #d8ebdf;border-radius:9px;padding:9px 12px;font-size:13px}
+  .brow b{color:var(--green);display:block;margin-bottom:2px;font-size:12.5px}
+
+  /* FOOTER blocks */
+  .foot{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+  .fcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .fcard h3{font-size:15px;color:var(--navy);margin-bottom:9px;display:flex;align-items:center;gap:8px}
+  .fcard.red h3{color:var(--red)}
+  .fcard ul{margin-left:17px;font-size:13.5px}
+  .fcard li{margin:4px 0}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .dos .col h4{font-size:13px;margin-bottom:5px}
+  .dos .do h4{color:var(--green)}
+  .dos .dont h4{color:var(--red)}
+  .dos ul{margin-left:16px;font-size:12.5px}
+  .dos li{margin:3px 0}
+
+  /* checklist */
+  .check{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px}
+  .check h3{font-size:15px;color:var(--navy);margin-bottom:10px}
+  .check .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px}
+  .check .item{font-size:13.5px;border-bottom:1px dotted var(--line);padding:5px 0;color:var(--muted)}
+  .check .item b{color:var(--ink)}
+
+  .pageftr{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
+
+  /* MINDSET / TIMING box */
+  .mindset{
+    background:linear-gradient(135deg,#fff,#f3f7fb);border:1px solid var(--line);
+    border-radius:14px;padding:16px 18px;margin-bottom:18px;box-shadow:0 3px 10px rgba(30,40,60,.05);
+  }
+  .mindset .mh{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+  .mindset .mh .ic{width:26px;height:26px;border-radius:7px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .mindset .mh b{font-size:15.5px;color:var(--navy)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+  .tcard{border-radius:11px;padding:11px 13px;font-size:13px}
+  .tcard.hot{background:var(--green-bg);border:1px solid #bfe6cd}
+  .tcard.cold{background:var(--red-bg);border:1px solid #f3c4bf}
+  .tcard b{display:block;font-size:13px;margin-bottom:3px}
+  .tcard.hot b{color:var(--green)} .tcard.cold b{color:var(--red)}
+
+  /* PAUSE divider */
+  .pause{
+    text-align:center;background:linear-gradient(135deg,var(--navy),#243456);color:#fff;
+    border-radius:14px;padding:20px;margin:22px 0;
+  }
+  .pause .lbl{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7fe3e3;font-weight:800}
+  .pause h3{font-size:20px;color:#fff;margin:5px 0 4px}
+  .pause p{font-size:13px;color:#c4cee0}
+
+  /* PRINT */
+  @media print{
+    body{background:#fff;padding:0;font-size:11.5px}
+    .wrap{max-width:100%}
+    header{box-shadow:none;border-radius:10px}
+    .station,.fcard,.check{box-shadow:none;break-inside:avoid}
+    .split,.bridge{break-inside:avoid}
+    .part{break-after:avoid}
+    .no-print{display:none}
+  }
+  @media(max-width:720px){
+    .split,.bridge,.foot,.check .grid,.dos{grid-template-columns:1fr}
+    .rules{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Closing-Leitfaden <span class="dot">·</span> Der Gesprächs-Spickzettel</h1>
+    <p>Zum Hinlegen neben das Gespräch. Folge dem Fluss von oben nach unten. An den Weggabelungen entscheidest du je nach Antwort der Kundin: <b>Option A</b> oder <b>Option B</b>.</p>
+    <div class="rules">
+      <div class="rule"><b>Grundhaltung</b>Du bist Therapeut, nicht Verkäufer. Du <b>vertiefst</b>, du verkaufst nicht.</div>
+      <div class="rule"><b>30 / 70</b>Du sprichst max. 30 %, sie 70 %. Frage → dann <b>schweigen</b> (mind. 5 Sek.).</div>
+      <div class="rule"><b>Effekt des Sammelns</b>Je mehr du fragst, desto mehr fühlt sie: „Der interessiert sich wirklich für mich.“</div>
+    </div>
+  </header>
+
+  <!-- TIMING / MINDSET -->
+  <div class="mindset">
+    <div class="mh"><div class="ic">⏱</div><b>Wen hast du vor dir? — Der Timing-Effekt (Sonntag vs. Mittwoch)</b></div>
+    <p class="note" style="margin:0 0 4px">Die Leute tragen sich nach dem Workshop für einen Tag ein. <b>Nicht</b> weil Mittwoch-Leute weniger wollen — sondern weil die Workshop-Motivation über die Tage sinkt.</p>
+    <div class="two-col">
+      <div class="tcard hot"><b>☀ Sonntag — direkt nach dem Workshop</b>Workshop-Effekt noch enorm hoch, hochmotiviert, alles frisch → <b>leichter Abschluss.</b></div>
+      <div class="tcard cold"><b>📉 Dienstag / Mittwoch</b>Motivation gesunken, Alltag hat sie wieder. Hier kommen die mit <b>großem Geld-Einwand</b> — oft schon mit „ich schließe nichts Großes ab" rein. → <b>Step-by-Step</b> (siehe Station 10).</div>
+    </div>
+    <div class="why" style="margin-top:10px"><b>Warum das zählt:</b> Genau dieses Motivations-Loch ist ihr <b>Alltags-Grundproblem</b> — deshalb landen viele sonst beim nächsten Arzt / Workshop / Ernährungsberater. <b>Unsere Begleitung</b> hält die Motivation + Reihenfolge = der eigentliche Wert.</div>
+  </div>
+
+  <!-- ============ TEIL 1 ============ -->
+  <div class="part one">
+    <span class="badge">TEIL 1</span>
+    <h2>Das Gespräch &nbsp;·&nbsp; vertiefen, nicht verkaufen</h2>
+    <span class="hr"></span>
+  </div>
+
+  <!-- 0 Standort -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">0</div>
+      <div><div class="st-title">Standort klären — ZUERST</div><div class="st-sub">Kennt sie das Angebot + den Preis?</div></div>
+    </div>
+    <div class="q">Hast du den Workshop gesehen? Beide Tage — Samstag UND Sonntag?</div>
+    <div class="split" style="margin-top:8px">
+      <div class="opt a"><h4><span class="tag">A</span> Ja, kennt Angebot &amp; Preis</h4><p>Normaler Pfad — du baust auf dem auf, was sie schon weiß.</p></div>
+      <div class="opt b"><h4><span class="tag">B</span> Nein / nur über Mail rein</h4><p>Anderer Pfad — Angebot ist ihr fremd. Erst Verständnis aufbauen, langsamer führen.</p></div>
+    </div>
+    <div class="why"><b>Warum zuerst?</b> Gibt dir Struktur und verhindert, dass du am Kunden vorbeiredest.</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 1 Ankommen & Geschichte -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">1</div>
+      <div><div class="st-title">Ankommen &amp; Geschichte</div><div class="st-sub">Sie soll sich öffnen</div></div>
+    </div>
+    <div class="q">Wie geht es dir seit dem Workshop?</div>
+    <div class="q">Erzähl mir deine Geschichte mit dem Gewicht — wann hat das angefangen, und was war damals los?</div>
+    <div class="note">Hören: Ton (resigniert? hoffnungsvoll?) · Lebensereignisse (Trennung, Schwangerschaft, Pflege, Wechseljahre) · Trigger-Sätze („bei mir hilft nichts“).</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 2 GEWICHTS-FLOW (KEY) -->
+  <div class="station key">
+    <div class="st-head">
+      <div class="st-num">2</div>
+      <div><div class="st-title">⭐ Gewichts-Flow</div><div class="st-sub">Nach den Eckdaten — aber VOR Diagnosen &amp; Medikamenten</div></div>
+    </div>
+    <div class="note"><b>Erst die Eckdaten:</b> Größe · aktuelles Gewicht · Wunschgewicht.</div>
+    <div class="q">Wie ist dein Gewicht aktuell? … Und wo möchtest du hin?</div>
+    <div class="note">→ <b>Differenz sichtbar machen</b> (z. B. 110 → 70 = 40 kg). Dann einordnen: „40 kg — das braucht realistisch ca. 12 Monate.“ &nbsp;<i>(rechtfertigt die längere Begleitung → mehr Diagnostik → Preis nachvollziehbar.)</i></div>
+
+    <div class="split-q" style="margin-top:12px">Schlüssel-Frage: „Ist das dein Höchstgewicht?“</div>
+    <div class="split">
+      <div class="opt a">
+        <h4><span class="tag">JA</span> Höchstgewicht = jetzt</h4>
+        <ul>
+          <li>„Wie kam das? Was ist aktuell passiert?“</li>
+          <li>→ sie redet oft <b>~5 Min frei</b></li>
+          <li>gezielt vertiefen (z. B. Schlaf), genau zuhören</li>
+        </ul>
+      </div>
+      <div class="opt b">
+        <h4><span class="tag">NEIN</span> War schon mal schwerer</h4>
+        <ul>
+          <li>„Was war dein Höchstgewicht? Wie hast du reduziert?“</li>
+          <li>„Was war damals los?“ → sie hat <b>schon Fortschritte</b> gemacht</li>
+          <li>„Was ist JETZT das eigentliche Problem — Gesundheit? Körper?“</li>
+        </ul>
+      </div>
+    </div>
+    <div class="why"><b>Warum die Gewichtsfrage genau HIER (vor Diagnosen/Medikamenten)?</b> Weil sie übers Gewicht zuerst ausführlich & frei erzählt (~5 Min) — das öffnet sie. Danach folgt das „Spiel mit den Diagnosen“ und „Spiel mit den Medikamenten“, wo nochmal viel notiert & nachgefragt wird. <b>Wahrer Zweck:</b> nicht die Zahl — sie soll spüren, dass du <b>ALLES</b> über ihre Situation weißt. Ohne diese Frage kein Abschluss. (Die Leute erwarten sie eh, reagieren meist humorvoll.)</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 3 Diagnosen -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">3</div>
+      <div><div class="st-title">„Das Spiel mit den Diagnosen“</div><div class="st-sub">Notieren · nachfragen · vertiefen</div></div>
+    </div>
+    <div class="q">Welche Diagnosen hast du aktuell?</div>
+    <div class="note">Garten-Typ aus dem Workshop einordnen — je nach Buchstabe gezielt fragen:</div>
+    <ul class="tight">
+      <li><b>A · Alarm:</b> Nachts wach (3 Uhr)? Heißhunger abends/Süßes? Blutdruck? Migräne/Reizdarm?</li>
+      <li><b>B · Bunker:</b> Frierst du leicht? Schilddrüse (TSH/T3/T4) gemessen? Insulinresistenz/Hashimoto/Fettleber/PCO? Zunehmen trotz wenig essen?</li>
+      <li><b>C · Crash:</b> Morgens schwer raus? Schläfst, aber nicht erholt? Fatigue/Burnout-Verdacht?</li>
+      <li><b>M · Misch:</b> „Was führt gerade — Alarm, Bunker oder Crash? Was ist alt, was neu?“</li>
+    </ul>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 4 Medikamente -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">4</div>
+      <div><div class="st-title">„Das Spiel mit den Medikamenten“</div><div class="st-sub">Notieren · nachfragen · vertiefen</div></div>
+    </div>
+    <div class="q">Welche Medikamente nimmst du regelmäßig?</div>
+    <div class="note">+ ärztliche Pflicht-Fragen: Schlaf (Stunden/durchschlafen?) · Periode / Wechseljahre / postmenopausal? · Schmerzen — wo?</div>
+    <div class="why"><b>Dein ärztlicher Vorteil:</b> Diese medizinischen Fragen positionieren dich vom ersten Moment anders als jeder Coach. Das ist deine Stärke — nutze sie.</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 5 Schmerz -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">5</div>
+      <div><div class="st-title">Schmerz — was kostet es?</div><div class="st-sub">Langsam. Schweigen. Sie sprechen lassen.</div></div>
+    </div>
+    <div class="q">Was kostet dich das täglich? Nicht Geld — Energie, Zeit, Stimmung.</div>
+    <div class="q">Wann hast du dich das letzte Mal im Spiegel angesehen und gedacht: das bin ich?</div>
+    <div class="note">Kernsatz dieser Zielgruppe: <b>„Ich erkenne mich nicht mehr.“</b> Lange Pausen = Goldwert, nicht unterbrechen. Bei Tränen: kurz für Offenheit bedanken, dann weiter.</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 6 Wunsch -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">6</div>
+      <div><div class="st-title">Wunsch &amp; Future Pace</div><div class="st-sub">Sie sieht das neue Leben — in Bildern</div></div>
+    </div>
+    <div class="q">Stell dir vor, wir sitzen in einem Jahr wieder zusammen, du bist deinen Weg gegangen — wie sieht dein Morgen aus?</div>
+    <div class="q">Und ganz ehrlich: wofür willst du das wirklich? Es geht nicht ums Gewicht — es geht um etwas dahinter.</div>
+    <div class="note">Schweig mind. 5 Sek. Merk dir die wichtigste Person, die sie nennt (brauchst du beim Spiegel).</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 7 100%-Frage (KEY split) -->
+  <div class="station key">
+    <div class="st-head">
+      <div class="st-num">7</div>
+      <div><div class="st-title">⭐ Die 100%-Frage</div><div class="st-sub">Sie sagt dir selbst, womit du closen sollst</div></div>
+    </div>
+    <div class="split-q">„Wenn du 100 % auf <b>mental</b> und <b>körperlich</b> aufteilst — wie teilst du auf?“</div>
+    <div class="split">
+      <div class="opt a">
+        <h4><span class="tag">MENTAL</span> Schwerpunkt Kopf</h4>
+        <ul><li>Erkläre v. a. die <b>mentale Begleitung</b></li><li>Coaching + wöchentliche Gruppencalls + Kurse</li></ul>
+      </div>
+      <div class="opt b">
+        <h4><span class="tag">KÖRPER</span> Schwerpunkt Körper</h4>
+        <ul><li>Schwerpunkt <b>Labordiagnostik</b> / körperliche Begleitung</li><li>Mikrobiom, Werte, Entgiftung</li></ul>
+      </div>
+    </div>
+    <div class="why"><b>Du fragst eigentlich:</b> „Womit bringe ich dich zum Ja?“ Danach ihre Probleme in unser System einordnen und zeigen, dass das System genau ihren Bereich abdeckt. <i>(Merk dir die Antwort — du brauchst sie bei der Einwand-Brücke in Teil 2.)</i></div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 8 Spiegel -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">8</div>
+      <div><div class="st-title">Spiegel — sie fühlt sich gesehen</div><div class="st-sub">Keine Sales-Phase. Du wiederholst ihre Worte.</div></div>
+    </div>
+    <div class="q">Lass mich kurz zusammenfassen, was ich von dir gehört habe — damit du siehst, dass ich dich verstanden habe…</div>
+    <div class="note">Ihre Geschichte mit IHREN Worten zurückspiegeln (Typ, Diagnose, Schmerz, Wunsch, wichtigste Person). Erst „Ja, genau“ abwarten → dann ärztliche Einordnung → dann Übergang: <b>„Und genau dafür habe ich etwas aufgebaut.“</b></div>
+  </div>
+
+  <!-- PAUSE -->
+  <div class="pause">
+    <div class="lbl">Ende Teil 1</div>
+    <h3>☕ Kurze Pause</h3>
+    <p>Bis hier: das ganze Gespräch (Vertiefung &amp; Spiegel). Danach Teil 2 — der eigentliche Abschluss: Pakete, Anker, Preis, Raten &amp; Einwände.</p>
+  </div>
+
+  <!-- ============ TEIL 2 ============ -->
+  <div class="two-zone">
+  <div class="part two">
+    <span class="badge">TEIL 2</span>
+    <h2>Abschluss &amp; Bezahlung &nbsp;·&nbsp; der Abschluss ist eine logische Schlussfolgerung</h2>
+    <span class="hr"></span>
+  </div>
+
+  <!-- 9 Preis -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">9</div>
+      <div><div class="st-title">Preis-Anker &amp; Übergang</div><div class="st-sub">Hoch ankern → Stille → Plan feststellen</div></div>
+    </div>
+    <div class="anchor">
+      <span class="price-pill high">4.997 €</span>
+      <span class="ar">→ macht</span>
+      <span class="price-pill low">2.997 €</span>
+      <span class="note" style="margin:0">wirkt wie „ein Klacks“. (Niedrig starten lässt es billig wirken.)</span>
+    </div>
+    <div class="note"><b>Ablauf:</b> Preis nennen → <b>STILLE aushalten</b> (nicht nachlabern) → ruhig: „Willst du das Ganze mit uns machen?“</div>
+    <div class="why"><b>⭐ Der Übergang ist KEINE Frage, sondern eine Plan-Feststellung:</b> Nicht „Willst du das jetzt machen?“. Sondern: <i>„Von unserer Seite können wir nur sagen: wir können dir auf jeden Fall helfen. Wir würden starten mit der Mikrobiom-Untersuchung, dann …, dann … — bei dir wäre das der Plan, das bekommen wir hin.“</i> → Beschreibt UNSERE passgenaue Lösung (nie „ihre Probleme“ nennen). Dann fühlt sich ein Nein wie ein <b>Verlust</b> an. &nbsp; Arzt (Hischam) im Gespräch dabei = deutlich höhere Rate.</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- PAKET-LOGIK -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num" style="font-size:18px">€</div>
+      <div><div class="st-title">Pakete logisch staffeln</div><div class="st-sub">Mehr Preis = mehr drin · und immer die Rate dazu</div></div>
+    </div>
+    <div class="split" style="margin-top:4px">
+      <div class="opt a">
+        <h4><span class="tag">BASIS</span> 6-Monats-Weg · 2.997 €</h4>
+        <p>6 Mon. Begleitung · 2 Coachings · Basislabor · Gruppencalls · WhatsApp · 1:1 ärztlich. <b>Ohne</b> Darmdiagnostik.</p>
+      </div>
+      <div class="opt b">
+        <h4><span class="tag">GRÖSSER</span> 9-Monats-Paket · ⚠️ ca. +2.000 €</h4>
+        <p>Alles aus 6 Mon. <b>plus</b> Darmdiagnostik · 1 Coaching mehr · 3 Monate mehr Begleitung.</p>
+      </div>
+    </div>
+    <div class="why"><b>Warum Darmdiagnostik erst im 9-Monats-Paket?</b> Labor allein ca. <b>300 €</b> + 1 Coaching mehr (1 Std. Dr. El-Sobhi = <b>500 €</b>) → schon ~800 € mehr; wer sie braucht, braucht eh die längere Begleitung. So ist klar: teurer, <b>weil mehr drin ist</b>. &nbsp; <b>Immer die Rate mitnennen:</b> „2.997 € = 140 €/Monat“ → wirkt sofort machbar, Unterschied wird greifbar.</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 10 Einwand-Brücke -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">10</div>
+      <div><div class="st-title">Einwand-Brücke — über Ehrlichkeit, nicht Technik</div><div class="st-sub">„Kein Geld“ ist der Anfang, nicht das Ende</div></div>
+    </div>
+    <div class="why" style="background:#eef7ff;border-color:#bcdcff;color:#1a3c5e;margin-top:0;margin-bottom:10px"><b>Keine klassische Einwandbehandlung</b> (kein „woran liegt's denn, woran liegt's denn"-Bohren). Stattdessen <b>Ehrlichkeit framen</b> — geht nur, wenn das ganze Gespräch zuvor ehrlich war. <b>Ehrlichkeit beweist du vorher</b> beim Pakete-Darstellen: ehrlich runterstufen — <i>„Das große Paket wäre für dich zu viel, du willst ja nicht so viel abnehmen. Aber die Darmdiagnostik ist sinnvoll — dein Schlaf ist schlecht, da fangen wir an."</i> → sie spürt: die drehen mir nichts an. Dann am Einwand: <i>„Wir haben so offen geredet — lass uns auch hier eine Lösung finden."</i> <b>Es gibt immer eine</b> (490 / 890 / nur Diagnostik). Sie ist wegen einer Lösung da.</div>
+    <div class="q">Ist es wirklich das Geld — oder ob es für dich funktioniert?</div>
+    <div class="note">→ sagt sie „funktioniert“ = zurück zum Wert. Sagt sie „Geld“ = Brücke bauen. <b>Es gibt für jeden einen Einstieg — die Frage ist nie OB, sondern WELCHER</b> (richtet sich nach ihrem Typ aus der 100%-Frage):</div>
+    <div class="split" style="margin-top:8px">
+      <div class="opt a">
+        <h4><span class="tag">MENTAL</span> Einstieg</h4>
+        <p>„Lass uns mit den <b>6 Monaten</b> starten und schauen, wo du dann stehst. Geht's dir besser, ist der größte Teil geschafft — du hast Energie, kannst wieder arbeiten — und entscheidest von dort aus.“</p>
+      </div>
+      <div class="opt b">
+        <h4><span class="tag">KÖRPER</span> Einstieg</h4>
+        <p>„Lass uns erst das <b>Diagnostik-Paket (490 €)</b> machen — alles abchecken, einen Monat starten, die Entgiftung. Von da aus weiter.“</p>
+      </div>
+    </div>
+    <div class="bridge">
+      <div class="brow"><b>Brücken-Pakete (auch in Raten)</b>Stoffwechsel-Check 490 € · Sommer-Reset 890 € (100 % anrechenbar) · 6- statt 12-Monats-Einstieg</div>
+      <div class="brow"><b>„Mit Mann besprechen“</b>„Was würde er ehrlicherweise sagen?“ / „Entscheidest du das selbst oder gemeinsam?“</div>
+    </div>
+    <div class="why" style="background:var(--red-bg);border-color:#f3c4bf;color:#7a261d"><b>RAUS — verbotene Selbstsabotage-Sätze:</b> „ich überrede dich nicht“ · „du sollst dich nicht verschulden“ · „überleg's in Ruhe“. &nbsp;<b>Stattdessen:</b> „Was bräuchtest du, um heute Ja zu sagen?“ · „Wann startest du — heute oder zum Monatsanfang?“ &nbsp; Bei „später“: immer fester Rückruftermin + „Was muss sich bis dahin ändern?“</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- STEP BY STEP -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num" style="font-size:15px">↘</div>
+      <div><div class="st-title">Hartnäckig kein Geld? → Step by Step</div><div class="st-sub">Wenn 5–7 Min nur ums Geld gehen (oft Di/Mi-Leute)</div></div>
+    </div>
+    <div class="bridge">
+      <div class="brow"><b>1 · Etwas Kleineres abschließen</b>Nicht das große Paket erzwingen → Stoffwechsel-Check 490 € oder Sommer-Reset 890 €.</div>
+      <div class="brow"><b>2 · In der Praxis überzeugen</b>Sie erlebt: wir sind echt, es bringt was. Von dort holen sich die meisten das größere Paket nach.</div>
+    </div>
+    <div class="note" style="margin-top:8px">⚠️ Step-by-Step <b>nur</b> bei Leuten, die wirklich kein Geld haben (kamen mit „ich schließe nichts Großes ab" rein). <b>Alle anderen kaufen direkt.</b></div>
+    <div class="why" style="margin-top:10px"><b>Wenn trotz allem ein klares Nein kommt:</b> Sie muss gespürt haben, dass wir uns auf ihre individuelle Einstellung eingestellt haben. Dann ehrlich darstellen: <i>„Wir haben alles analysiert, sind drangeblieben, verstanden woran's liegt — und an diesem Problem liegt's ja gar nicht, es liegt am Geld."</i> → ist es wirklich <b>nur</b> Geld = anderer Umgang. Wir haben von unserer Seite das Beste versucht.</div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 30"><path d="M11 0v22M3 16l8 8 8-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <!-- 11 Bezahlung -->
+  <div class="station">
+    <div class="st-head">
+      <div class="st-num">11</div>
+      <div><div class="st-title">Bezahlung zusammen — niemand geht allein raus</div><div class="st-sub">Der Abschluss endet nicht mit dem Ja</div></div>
+    </div>
+    <div class="q">Die Ratenzahlung läuft über PayPal und Klarna. Hast du schon mal mit PayPal oder Klarna bezahlt?</div>
+    <div class="anchor">
+      <span class="price-pill low" style="background:var(--teal)">1. Klarna-Raten</span><span class="ar">→ klappt nicht →</span>
+      <span class="price-pill low" style="background:var(--teal)">2. PayPal</span><span class="ar">→ →</span>
+      <span class="price-pill" style="background:#f0f0f0;color:#6b7480">3. Notlösung: eigene Raten</span>
+    </div>
+    <div class="note">Eigene Ratenzahlung <b>nie aktiv anbieten</b> — nur Notlösung. Vorteil PayPal/Klarna: volle Summe in 30 Tagen aufs Konto, Kundin zahlt trotzdem in Raten.</div>
+    <div class="why"><b>Einwand „schick's mir, ich mach das selbst“</b> — selbstverständlich bleiben: <i>„Der einzige Grund, warum wir das hier zusammen machen: ich muss, sobald es durchgeht, manuell die Bonis + den Verweis an die Paketpacker hinterlegen, und wir stellen sicher, dass die Zahlung durchgeht (wird bei Klarna/PayPal oft abgelehnt).“</i> &nbsp; Kein Konto / nie genutzt: „Das richten wir einmal kurz zusammen ein“ → sie macht's am Handy, du bist Support → hält sie im Gespräch.</div>
+  </div>
+  </div><!-- /two-zone -->
+
+  <!-- ============ FOOTER ============ -->
+  <div class="foot">
+    <div class="fcard red">
+      <h3>🚩 Rote Flags — NICHT verkaufen</h3>
+      <ul>
+        <li>Akute schwere Depression / durchgehendes Weinen</li>
+        <li>Akute Essstörung (Anorexie/Bulimie/BED)</li>
+        <li>Sucht (Alkohol, Medikamente) angedeutet</li>
+        <li>Schwere Lebenskrise gerade (Trennung, Tod, Job-Verlust)</li>
+        <li>Nur „aus Höflichkeit“ da (vom Partner geschickt)</li>
+        <li>Kann objektiv nicht zahlen (akute Notlage)</li>
+      </ul>
+      <div class="note" style="margin-top:7px">→ ehrlich bleiben, auf später vertrösten. Vertrauen ist wertvoller als ein Abschluss.</div>
+    </div>
+    <div class="fcard">
+      <h3>✓ Dos &amp; ✗ Don'ts</h3>
+      <div class="dos">
+        <div class="col do">
+          <h4>✓ DO</h4>
+          <ul>
+            <li>Frage → 5 Sek. schweigen</li>
+            <li>Ihre Worte zurückspiegeln</li>
+            <li>Ärztl. Begriffe sparsam &amp; präzise</li>
+            <li>Schmerz anerkennen vor Hoffnung</li>
+            <li>Für Offenheit / Tränen danken</li>
+          </ul>
+        </div>
+        <div class="col dont">
+          <h4>✗ DON'T</h4>
+          <ul>
+            <li>Kein Gewicht/Heilung versprechen</li>
+            <li>Nie „das schaffen wir locker“</li>
+            <li>Kein Druck („begrenzte Plätze“)</li>
+            <li>Nicht unterbrechen beim Weinen</li>
+            <li>Nicht von Schmerz direkt zum Preis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkliste -->
+  <div class="check">
+    <h3>📝 Sofort nach dem Gespräch notieren (5 Min)</h3>
+    <div class="grid">
+      <div class="item"><b>Buchstabe / Garten:</b> __________</div>
+      <div class="item"><b>Hauptdiagnose(n):</b> __________</div>
+      <div class="item"><b>Wichtigster Schmerz (ihre Worte):</b> __________</div>
+      <div class="item"><b>Tieferer Wunsch (ihre Worte):</b> __________</div>
+      <div class="item"><b>Wichtigste Person:</b> __________</div>
+      <div class="item"><b>100% mental / körperlich:</b> ____ / ____</div>
+      <div class="item"><b>Bekanntes Hindernis:</b> __________</div>
+      <div class="item"><b>Entscheidung:</b> ☐ Ja ☐ Bedenkzeit ☐ Nein → Rückruf: ______</div>
+    </div>
+  </div>
+
+  <p class="pageftr no-print">Drucken / als PDF speichern: <b>Strg + P</b> → Ziel „Als PDF speichern“ · Health Reset Coaching · Dr. El-Sobhi</p>
+
+</div>
+</body>
+</html>
