@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Zentrum fuer Gesundheit//Workshop Juli//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ws-juli-tag2@hischamelsobhi.de
+DTSTAMP:20260606T120000Z
+DTSTART:20260705T080000Z
+DTEND:20260705T110000Z
+SUMMARY:Gesundheits-Workshop mit Hischam El-Sobhi - Tag 2
+DESCRIPTION:Tag 2 deines kostenlosen Live-Workshops via Zoom. Den Zoom-Zugang bekommst du rechtzeitig vor dem Start per E-Mail.
+LOCATION:Online via Zoom
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Workshop Tag 2 startet in 1 Stunde
+END:VALARM
+END:VEVENT
+END:VCALENDAR
