@@ -76,7 +76,28 @@
   .notes{margin-top:22px;color:var(--muted);font-size:.84rem;line-height:1.6;}
   .notes b{color:var(--ink);}
 
+  /* Upgrade-Sektion */
+  .upg{margin-top:46px;text-align:center;}
+  .upg h2{font-size:1.55rem;margin-bottom:6px;letter-spacing:-.01em;}
+  .upg .sub{color:var(--muted);max-width:640px;margin:0 auto 26px;font-size:1.02rem;}
+  .bridges{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left;}
+  .bridge{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;}
+  .bridge-head{color:#fff;padding:15px 20px;font-weight:800;font-size:1.1rem;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .bridge.d .bridge-head{background:linear-gradient(150deg,#1b87a3,#0e5266);}
+  .bridge.p .bridge-head{background:linear-gradient(150deg,#46597097,#26384c),#3a4d63;}
+  .bridge-head .plus{background:rgba(255,255,255,.22);padding:4px 13px;border-radius:20px;font-size:.95rem;white-space:nowrap;}
+  .bridge-items{padding:6px 20px;}
+  .bi{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line);}
+  .bi:last-child{border-bottom:none;}
+  .bi .ico{font-size:1.55rem;line-height:1.1;flex-shrink:0;}
+  .bi b{display:block;font-size:1.04rem;margin-bottom:1px;}
+  .bi small{color:var(--muted);font-size:.9rem;line-height:1.4;}
+  .bridge-foot{padding:14px 20px;font-size:.92rem;font-weight:600;}
+  .bridge.d .bridge-foot{background:var(--teal-bg);color:var(--teal-d);}
+  .bridge.p .bridge-foot{background:var(--plat-bg);color:var(--plat-d);}
+
   @media(max-width:860px){
+    .bridges{grid-template-columns:1fr;}
     .grid{grid-template-columns:1fr;gap:16px;}
     .pkg.pop{transform:none;}
     .ribbon{top:14px;right:-32px;}
@@ -202,6 +223,36 @@
 
   </div>
 
+  <!-- So entsteht der Unterschied -->
+  <div class="upg">
+    <h2>So entsteht der Unterschied</h2>
+    <p class="sub">Jede Stufe kostet 1.000 € mehr – dafür bekommst du jedes Mal <b>drei Dinge zusätzlich</b>: mehr Zeit, mehr persönliche Termine und mehr Diagnostik.</p>
+    <div class="bridges">
+
+      <div class="bridge d">
+        <div class="bridge-head"><span>Gold&nbsp;→&nbsp;Diamant</span><span class="plus">+1.000 €</span></div>
+        <div class="bridge-items">
+          <div class="bi"><span class="ico">⏱️</span><div><b>3 Monate länger begleitet</b><small>Alles läuft 3 Monate weiter: ca. 13 zusätzliche Gruppencalls, WhatsApp-Begleitung, Ernährungsmanager &amp; Akademie.</small></div></div>
+          <div class="bi"><span class="ico">👨‍⚕️</span><div><b>1 Coaching mehr mit dem Arzt</b><small>Ein zusätzlicher 1:1-Termin (je 1 Std) – Wert ca. 500 €.</small></div></div>
+          <div class="bi"><span class="ico">🔬</span><div><b>Deutlich mehr Diagnostik</b><small>IgG-Unverträglichkeitstest (Wert 276 €) + Mikrobiom-Analyse (Wert 221,50 €) – zusammen ≈ 498 €.</small></div></div>
+        </div>
+        <div class="bridge-foot">Allein Coaching + Diagnostik ≈ 1.000 € – die 3 Monate zusätzliche Begleitung bekommst du obendrauf.</div>
+      </div>
+
+      <div class="bridge p">
+        <div class="bridge-head"><span>Diamant&nbsp;→&nbsp;Platin</span><span class="plus">+1.000 €</span></div>
+        <div class="bridge-items">
+          <div class="bi"><span class="ico">⏱️</span><div><b>Nochmal 3 Monate länger</b><small>12 Monate ärztliche Begleitung statt 9 – ca. 13 weitere Gruppencalls, durchgehend WhatsApp, Ernährungsmanager &amp; Akademie.</small></div></div>
+          <div class="bi"><span class="ico">👨‍⚕️</span><div><b>1 Coaching mehr mit dem Arzt</b><small>Der vierte 1:1-Termin (je 1 Std) – Wert ca. 500 €.</small></div></div>
+          <div class="bi"><span class="ico">🔬</span><div><b>Tiefste Diagnostik</b><small>Größere Mikrobiom-Analyse (300 € statt 221,50 €) + Hormon-Speicheltest (107 €) + zusätzliche Blutabnahme zur Verlaufskontrolle.</small></div></div>
+        </div>
+        <div class="bridge-foot">Bei 12 Monaten schaut der Arzt am längsten und tiefsten hin – mehr Zeit, mehr Kontrolle, das größte Diagnostik-Paket.</div>
+      </div>
+
+    </div>
+    <p class="sub" style="margin:22px auto 0;font-size:.96rem">Der Grundgedanke: Du zahlst nicht für „mehr Material", sondern für <b>mehr gemeinsame Zeit mit dem Arzt</b> und dafür, dass über einen längeren Zeitraum jemand auf dich schaut – das ist der eigentliche Hebel für ein dauerhaftes Ergebnis.</p>
+  </div>
+
   <!-- Vergleichstabelle -->
   <div class="table-wrap">
     <table>
@@ -234,7 +285,8 @@
 
   <div class="notes">
     <p>* <b>Gruppencalls:</b> Jeden Donnerstag findet ein Gruppencall statt. Die genannten Zahlen sind Richtwerte über die Laufzeit – fällt ein Termin einmal aus (z. B. Urlaub oder Krankheit), verschiebt sich die Anzahl leicht.</p>
-    <p style="margin-top:8px">Ratenzahlung über Klarna oder PayPal möglich. Alle Diagnostik-Werte sind Richtwerte der jeweiligen Laboruntersuchung. Ärztlich begleitetes Gesundheitsprogramm – keine Heilversprechen.</p>
+    <p style="margin-top:8px"><b>Ratenzahlung</b> über Klarna oder PayPal möglich. Die monatliche Rate enthält die Finanzierungs-Zinsen – die Gesamtsumme liegt dadurch etwas über dem Einmalpreis. Bei Einmalzahlung zahlst du genau den ausgewiesenen Paketpreis.</p>
+    <p style="margin-top:8px">Alle Diagnostik-Werte sind Richtwerte der jeweiligen Laboruntersuchung. Ärztlich begleitetes Gesundheitsprogramm – keine Heilversprechen.</p>
   </div>
 
 </div>
