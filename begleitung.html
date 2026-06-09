@@ -96,8 +96,28 @@
   .bridge.d .bridge-foot{background:var(--teal-bg);color:var(--teal-d);}
   .bridge.p .bridge-foot{background:var(--plat-bg);color:var(--plat-d);}
 
+  /* Was du wirklich bekommst */
+  .value{background:linear-gradient(155deg,#0e5266,#14313d);color:#fff;border-radius:22px;padding:34px 30px;margin-top:46px;box-shadow:var(--shadow);}
+  .value-doc{text-align:center;max-width:690px;margin:0 auto 22px;}
+  .doc-badge{display:inline-block;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);color:#fff;font-weight:700;font-size:.86rem;padding:6px 16px;border-radius:30px;margin-bottom:14px;}
+  .value-doc h2{font-size:1.6rem;margin-bottom:8px;letter-spacing:-.01em;}
+  .value-doc p{opacity:.9;font-size:1.05rem;}
+  .value-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .vi{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;}
+  .vi .ico{font-size:1.7rem;line-height:1.05;flex-shrink:0;}
+  .vi b{display:block;font-size:1.06rem;margin-bottom:3px;}
+  .vi small{opacity:.84;font-size:.9rem;line-height:1.45;}
+  /* Garantie */
+  .guarantee{display:flex;align-items:center;gap:22px;background:var(--gold-bg);border:1px solid #ecdcae;border-radius:18px;padding:22px 26px;margin-top:28px;}
+  .seal{flex-shrink:0;width:90px;height:90px;border-radius:50%;background:linear-gradient(150deg,#caa53d,#9c7414);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:2rem;font-weight:800;line-height:.85;box-shadow:0 6px 18px rgba(156,116,20,.35);text-align:center;}
+  .seal small{font-size:.66rem;font-weight:700;letter-spacing:.06em;opacity:.95;margin-top:2px;}
+  .guarantee h3{font-size:1.2rem;color:#7a5a0a;margin-bottom:4px;}
+  .guarantee p{color:#6a5526;font-size:.98rem;}
+
   @media(max-width:860px){
     .bridges{grid-template-columns:1fr;}
+    .value-grid{grid-template-columns:1fr;}
+    .guarantee{flex-direction:column;text-align:center;}
     .grid{grid-template-columns:1fr;gap:16px;}
     .pkg.pop{transform:none;}
     .ribbon{top:14px;right:-32px;}
@@ -223,6 +243,21 @@
 
   </div>
 
+  <!-- Was du wirklich bekommst -->
+  <div class="value">
+    <div class="value-doc">
+      <div class="doc-badge">👨‍⚕️ Dr. Hischam El-Sobhi · Hausarzt seit über 25 Jahren · Ernährungsmedizin &amp; TCM</div>
+      <h2>Was du wirklich bekommst</h2>
+      <p>Du zahlst nicht für Tests und Material – du bekommst einen <b>Arzt, der über Monate auf dich schaut</b>. Das ist der eigentliche Wert, und der Grund, warum es funktioniert, wo Diäten und Coaches gescheitert sind.</p>
+    </div>
+    <div class="value-grid">
+      <div class="vi"><span class="ico">🔍</span><div><b>Er erkennt dein Muster</b><small>Das, was du selbst nicht siehst – warum dein Körper festhält. Aus über 2.000 begleiteten Patientinnen.</small></div></div>
+      <div class="vi"><span class="ico">🧭</span><div><b>Die richtige Reihenfolge</b><small>Nicht WAS du machst entscheidet, sondern in welcher Reihenfolge. Genau das steuert der Arzt für dich.</small></div></div>
+      <div class="vi"><span class="ico">🤝</span><div><b>Du bist nie allein</b><small>Wöchentliche Gruppencalls, tägliche WhatsApp-Begleitung und feste 1:1-Termine – durchgehend, nicht nur an den Coaching-Tagen.</small></div></div>
+      <div class="vi"><span class="ico">🛡️</span><div><b>Ärztlich begleitet = Sicherheit</b><small>Kein Raten, keine Diät aus dem Internet – ein erfahrener Arzt trägt die Verantwortung mit.</small></div></div>
+    </div>
+  </div>
+
   <!-- So entsteht der Unterschied -->
   <div class="upg">
     <h2>So entsteht der Unterschied</h2>
@@ -281,6 +316,15 @@
         <tr><td>Preis</td><td>2.997 €</td><td class="col-d">3.997 €</td><td>4.997 €</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Garantie-Band -->
+  <div class="guarantee">
+    <div class="seal">28<small>TAGE</small></div>
+    <div>
+      <h3>28-Tage-Geld-zurück-Garantie</h3>
+      <p>Mach 4 Wochen aktiv mit. Wenn es nicht zu dir passt, bekommst du dein Geld zurück – ohne Diskussion. Du gehst kein Risiko ein: der erste Schritt liegt bei uns.</p>
+    </div>
   </div>
 
   <div class="notes">
