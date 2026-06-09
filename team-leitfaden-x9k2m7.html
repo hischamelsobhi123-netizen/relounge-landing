@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gesprächsleitfaden – Termine aus dem Workshop</title>
+<style>
+  :root{
+    --bg:#eef2f5; --card:#ffffff; --ink:#1c2b33; --muted:#5b6b75;
+    --line:#e2e8ee; --blue:#157089; --blue-d:#0e5266; --blue-soft:#e7f3f7;
+    --coral:#ff6a55; --coral-d:#e5523e;
+    --p1:#e4572e; --p2:#e8901c; --p3:#3f9d6d;
+    --green-soft:#e9f6ef; --yellow-soft:#fff6e3;
+    --shadow:0 6px 22px rgba(20,50,70,.10);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    font-size:18px;line-height:1.55;}
+  .wrap{max-width:880px;margin:0 auto;padding:18px 16px 80px;}
+  header.top{position:sticky;top:0;z-index:20;background:var(--bg);
+    padding:10px 0 12px;margin-bottom:6px;}
+  h1{font-size:1.45rem;margin:.1em 0 .5em;letter-spacing:-.01em;}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;}
+  .tab{flex:1;min-width:160px;border:2px solid var(--line);background:#fff;
+    color:var(--muted);font-weight:700;font-size:1rem;padding:13px 12px;
+    border-radius:14px;cursor:pointer;transition:.15s;text-align:center;}
+  .tab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:var(--shadow);}
+  .hint{color:var(--muted);font-size:.92rem;margin:6px 2px 16px;}
+
+  /* search */
+  .search{width:100%;padding:14px 16px;font-size:1.05rem;border:2px solid var(--line);
+    border-radius:14px;margin-bottom:18px;background:#fff;}
+  .search:focus{outline:none;border-color:var(--blue);}
+
+  /* group + tiles */
+  .grouplabel{display:flex;align-items:center;gap:9px;font-weight:800;
+    font-size:1.02rem;margin:20px 4px 10px;}
+  .dot{width:13px;height:13px;border-radius:50%;display:inline-block;}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:11px;}
+  .tile{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--blue);
+    border-radius:14px;padding:14px 16px;cursor:pointer;transition:.13s;box-shadow:var(--shadow);}
+  .tile:hover{transform:translateY(-2px);border-left-color:var(--coral);}
+  .tile .nm{font-weight:800;font-size:1.12rem;}
+  .tile .th{color:var(--muted);font-size:.9rem;margin-top:3px;}
+  .tile.p1{border-left-color:var(--p1)} .tile.p2{border-left-color:var(--p2)} .tile.p3{border-left-color:var(--p3)}
+  .badge{display:inline-block;font-size:.72rem;font-weight:800;padding:2px 8px;border-radius:20px;
+    color:#fff;margin-left:6px;vertical-align:middle;}
+  .badge.p1{background:var(--p1)} .badge.p2{background:var(--p2)} .badge.p3{background:var(--p3)}
+  .badge.man{background:#3a6ea5}
+
+  /* detail */
+  .back{display:inline-flex;align-items:center;gap:7px;background:#fff;border:2px solid var(--line);
+    color:var(--blue-d);font-weight:700;font-size:1rem;padding:10px 16px;border-radius:12px;cursor:pointer;margin-bottom:14px;}
+  .back:hover{border-color:var(--blue);}
+  .dname{font-size:1.7rem;font-weight:800;letter-spacing:-.01em;margin:0 0 2px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:18px 20px;box-shadow:var(--shadow);margin:14px 0;}
+  .card h3{margin:0 0 12px;font-size:1.04rem;text-transform:uppercase;letter-spacing:.04em;color:var(--blue-d);}
+
+  /* bars */
+  .bars{display:grid;gap:9px;}
+  .bar{display:grid;grid-template-columns:140px 1fr 42px;align-items:center;gap:10px;font-size:.92rem;}
+  .bar .track{background:#eef1f4;border-radius:8px;height:13px;overflow:hidden;}
+  .bar .fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#5bb0c6,#157089);}
+  .bar.hi .fill{background:linear-gradient(90deg,#ff8a76,#e4572e);}
+  .bar .pct{text-align:right;font-weight:700;color:var(--muted);}
+
+  /* einstieg */
+  .say{background:var(--green-soft);border:1px solid #cfe9da;border-radius:14px;padding:18px 20px;
+    font-size:1.18rem;line-height:1.5;position:relative;}
+  .say.blue{background:var(--blue-soft);border-color:#c5e3eb;}
+  .say.coral{background:#fff0ed;border-color:#ffd5cc;}
+  .say::before{content:"„";font-size:2.4rem;color:var(--blue);line-height:0;position:absolute;top:20px;left:8px;opacity:.25;}
+  .say em{font-style:normal;background:#fff;padding:0 4px;border-radius:4px;box-shadow:inset 0 -8px 0 rgba(255,106,85,.18);}
+
+  /* leitfragen */
+  ol.q{list-style:none;counter-reset:q;margin:0;padding:0;display:grid;gap:11px;}
+  ol.q li{counter-increment:q;background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px 14px 54px;position:relative;font-size:1.1rem;}
+  ol.q li::before{content:counter(q);position:absolute;left:14px;top:13px;width:28px;height:28px;
+    background:var(--blue);color:#fff;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.95rem;}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;color:var(--blue-d);background:var(--blue-soft);
+    padding:1px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;}
+
+  .note{background:var(--yellow-soft);border:1px solid #f4e2b8;border-radius:12px;padding:13px 16px;font-size:.98rem;}
+  .note b{color:#9a6b00;}
+
+  /* accordion */
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:11px 0;box-shadow:var(--shadow);overflow:hidden;}
+  summary{cursor:pointer;padding:16px 18px;font-weight:800;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"▾";color:var(--muted);transition:.2s;}
+  details[open] summary::after{transform:rotate(180deg);}
+  .acc-body{padding:2px 18px 18px;}
+  .step{margin:0 0 14px;}
+  .step .lbl{font-weight:800;color:var(--blue-d);font-size:.86rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px;}
+  .step .txt{background:#f8fafb;border-left:4px solid var(--blue);border-radius:8px;padding:11px 14px;font-size:1.05rem;}
+  .arrow{color:var(--muted);font-size:.9rem;margin:4px 2px 0;font-style:italic;}
+
+  table.obj{width:100%;border-collapse:collapse;font-size:1rem;}
+  table.obj td{border-bottom:1px solid var(--line);padding:11px 8px;vertical-align:top;}
+  table.obj td:first-child{font-weight:700;width:42%;color:var(--blue-d);}
+
+  .rules{display:grid;gap:9px;margin:6px 0 0;}
+  .rule{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px;font-size:1.04rem;}
+  .rule b{color:var(--blue-d);}
+  .pill{display:inline-block;background:var(--coral);color:#fff;font-weight:800;border-radius:20px;padding:5px 14px;font-size:.95rem;}
+
+  .hide{display:none!important;}
+  footer{color:var(--muted);font-size:.8rem;text-align:center;margin-top:30px;}
+  @media(max-width:560px){
+    body{font-size:17px} .wrap{padding:14px 12px 70px}
+    .bar{grid-template-columns:108px 1fr 38px;font-size:.86rem}
+    ol.q li{font-size:1.04rem}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>📞 Gesprächsleitfaden – Termine setzen</h1>
+    <div class="tabs">
+      <button class="tab active" id="tabA" onclick="showTab('A')">📋 Fragebogen-Teilnehmer</button>
+      <button class="tab" id="tabB" onclick="showTab('B')">⏱️ Längste Teilnehmer</button>
+    </div>
+  </header>
+
+  <!-- ============ ANSICHT A: NAMENSLISTE ============ -->
+  <div id="viewListA">
+    <p class="hint">Tippe auf einen Namen → du siehst den fertigen Leitfaden, angepasst auf diese Person.</p>
+    <input class="search" id="search" placeholder="🔍 Name suchen …" oninput="renderList()">
+    <div id="list"></div>
+  </div>
+
+  <!-- ============ ANSICHT A: DETAIL ============ -->
+  <div id="viewDetailA" class="hide"></div>
+
+  <!-- ============ ANSICHT B: LÄNGSTE TEILNEHMER ============ -->
+  <div id="viewB" class="hide"></div>
+
+  <footer>Intern · Zentrum für Gesundheit · Stand 06/2026</footer>
+</div>
+
+<script>
+/* ---------- gemeinsame Bausteine ---------- */
+const GRUND = [
+  ["Wir verkaufen nichts – wir buchen einen Termin.","Die Auswertung am Telefon NICHT erklären. Sie macht nur neugierig. Aufgelöst wird im Termin. Über Preise/Pakete reden wir gar nicht."],
+  ["Wir drängen NIE.","Wer Druck spürt, macht zu. Wir bieten etwas Wertvolles an. Sagt jemand ehrlich nein, ist das okay. Genau wenn du locker bleibst, sagen die meisten Ja."],
+  ["Mehr zuhören als reden.","Ihre eigenen Worte sind deine stärksten Argumente. Hak nach: „Erzähl mal …“, „Wie meinst du das?“"]
+];
+
+function ablaufSteps(vn){return [
+  ["1 · Eröffnung (warm + echter Grund)",`Hallo ${vn}, hier ist [dein Name] vom Team von Hischam, dem Zentrum für Gesundheit. Hast du kurz eine Minute? … Schön. Ich melde mich persönlich bei dir, weil du beim Workshop dabei warst und danach die Gesundheits-Analyse ausgefüllt hast – deine Auswertung liegt gerade vor mir.`,"Pause. Sie reagiert."],
+  ["2 · Workshop-Anker (sie ins Gefühl holen)",`Bevor wir da reinschauen – wie war der Workshop für dich? Was ist bei dir am meisten hängengeblieben?`,"Zuhören. Was sie sagt, brauchst du gleich."],
+  ["3 · Standort klären",`Hast du beide Tage gesehen, Tag 1 und Tag 2?`,""],
+  ["4 · DEIN EINSTIEG → siehe oben","(der persönliche Satz oben – Auswertung anteasern, NICHT auflösen)","Danach: ihre Reaktion → Pfad A/B/C unten."],
+  ["5 · DEINE LEITFRAGEN → siehe oben","(eine nach der anderen, zuhören, nachhaken)","Sobald sie ihren Punkt bestätigt: aufhören zu graben."],
+  ["6 · Termin als logische Folge (kein „willst du?“)",`Und genau deshalb machen wir Folgendes: Wir nehmen uns einen festen Termin und gehen deine komplette Auswertung in Ruhe zusammen durch – was wirklich dahintersteckt und was für dich der richtige Weg wäre. Das ist kostenlos und unverbindlich. Was passt dir besser – eher Anfang oder Ende der Woche?`,"Alternativ-Frage statt Ja/Nein."],
+  ["7 · Fest machen + absichern",`Also [Tag, Uhrzeit] – schreibst du dir das fest ein? Wir reservieren die Zeit fest für dich mit [Arzt/Experte]. Du bekommst gleich eine Bestätigung und am Tag davor eine kurze Erinnerung. Ich freu mich, bis dahin, ${vn}!`,"Eingrenzen → bestätigen lassen → Erinnerung ankündigen."]
+];}
+
+function pfade(vn){return [
+  ["✅ Pfad A – sie identifiziert sich („Ja, genau so ist das“)","green",
+   `Das dachte ich mir. Und weißt du was – das ist eine gute Nachricht, weil man genau da ansetzen kann. Lass uns das in Ruhe anschauen.`,
+   "Kurz bestätigen → direkt zu Schritt 6 (Termin)."],
+  ["🟡 Pfad B – sie spielt es runter („so schlimm ist das nicht“)","blue",
+   `Total verständlich – und ehrlich, „schlimm“ muss das gar nicht sein. Das Spannende ist: Du hast die Fragen selbst beantwortet, und das kam von allein raus. Bei den meisten ist es so – man hat sich so dran gewöhnt, dass man es kaum noch merkt. Genau dafür ist die Auswertung da. Und so ein Termin ist für dich dann am angenehmsten – du musst gar kein großes Problem mitbringen, wir schauen einfach gemeinsam drauf. Wollen wir das machen?`,
+   "Nicht dagegenhalten – entlasten und den Termin entspannt framen."],
+  ["🟠 Pfad C – sie sieht keinen Bedarf („hab ich im Griff“)","coral",
+   `Schön, dass du das sagst – und ehrlich, das ist sogar gut. Dann geht's bei dir nicht ums „Reparieren“, sondern eher ums Feintunen. Darf ich kurz fragen: Was hat dich denn überhaupt zum Workshop und zur Analyse gebracht? Irgendwas war ja da.`,
+   "Einmal sanft umdrehen. Kommt ein echter Punkt → zurück zu Pfad B."]
+];}
+
+const LOSLASSEN = `Pass auf – ich will dir ganz sicher nichts aufdrücken. Wenn du sagst, für dich passt das gerade nicht, ist das völlig in Ordnung. Ich schick dir deine Auswertung rüber, und wenn du irgendwann doch draufschauen willst, meldest du dich einfach. Alles Gute dir!`;
+
+const EINWAENDE = [
+  ["„Schick mir die Auswertung einfach.“","Mach ich gern – aber die Zahlen allein bringen dich nicht weiter, die muss man im Zusammenhang deuten. Genau das machen wir im Termin, damit's dir wirklich was bringt."],
+  ["„Keine Zeit.“","Versteh ich – deshalb sind's auch nur 30 Minuten, und das geht abends oder am Wochenende. Was wär dir lieber?"],
+  ["„Was kostet das?“","Der Termin ist komplett kostenlos. Da schauen wir erst mal, ob wir überhaupt der richtige Weg für dich sind."],
+  ["„Muss ich überlegen / mit Mann reden.“","Klar. Lass uns den Termin trotzdem locker halten – du kannst jederzeit absagen. Solang der Workshop frisch ist, bringt er dir am meisten."],
+  ["„Bin schon bei einem Arzt.“","Stark, dass du dran bist. Genau deshalb lohnt der Blick – wir schauen, ob was fehlt. Kostet dich nichts außer 30 Minuten."]
+];
+
+/* ---------- Personendaten ---------- */
+let P=null;
+const ENC="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";
+
+const PRIOLBL={1:["🔴 Priorität 1 – sofort anrufen","var(--p1)"],2:["🟠 Priorität 2 – hohe Belastung","var(--p2)"],3:["🟡 Priorität 3 – Einstieg sauber wählen","var(--p3)"]};
+const WLAB=["Erschöpfung","Stress/Schlaf","Alltag","Vorgeschichte"];
+const vorname=n=>n.split(" ")[0];
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+/* ---------- Liste rendern ---------- */
+function renderList(){
+  const term=(document.getElementById('search').value||"").toLowerCase();
+  const box=document.getElementById('list'); box.innerHTML="";
+  [1,2,3].forEach(pr=>{
+    const items=P.filter(x=>x.p===pr && x.n.toLowerCase().includes(term));
+    if(!items.length) return;
+    const gl=PRIOLBL[pr];
+    const lab=document.createElement('div'); lab.className='grouplabel';
+    lab.innerHTML=`<span class="dot" style="background:${gl[1]}"></span>${gl[0]}`;
+    box.appendChild(lab);
+    const grid=document.createElement('div'); grid.className='tiles';
+    items.forEach(x=>{
+      const i=P.indexOf(x);
+      const top=WLAB[x.w.indexOf(Math.max(...x.w))];
+      const t=document.createElement('div'); t.className=`tile p${x.p}`;
+      t.onclick=()=>openDetail(i);
+      t.innerHTML=`<div class="nm">${esc(x.n)}${x.mann?'<span class="badge man">Mann</span>':''}</div>
+        <div class="th">Einstieg über: <b>${top}</b></div>`;
+      grid.appendChild(t);
+    });
+    box.appendChild(grid);
+  });
+}
+
+/* ---------- Detail rendern ---------- */
+function openDetail(i){
+  const x=P[i], vn=vorname(x.n);
+  const bars=x.w.map((v,k)=>`<div class="bar ${v>=70?'hi':''}"><span>${WLAB[k]}</span>
+     <span class="track"><span class="fill" style="width:${v}%"></span></span><span class="pct">${v}</span></div>`).join("");
+  const qs=x.q.map(q=>`<li>${esc(q[0])}<span class="tag">${q[1]}</span></li>`).join("");
+  const steps=ablaufSteps(vn).map(s=>`<div class="step"><div class="lbl">${s[0]}</div>
+     <div class="txt">${s[1]}</div>${s[2]?`<div class="arrow">→ ${s[2]}</div>`:''}</div>`).join("");
+  const pf=pfade(vn).map(p=>`<div class="step"><div class="lbl">${p[0]}</div>
+     <div class="say ${p[1]}" style="font-size:1.05rem">${p[2]}</div><div class="arrow">→ ${p[3]}</div></div>`).join("")
+     +`<div class="step"><div class="lbl">Wenn weiter klar kein Interesse → ehrlich loslassen (kein Krampf)</div>
+       <div class="say coral" style="font-size:1.05rem">${LOSLASSEN}</div>
+       <div class="arrow">→ Tür bleibt offen. Sehr oft kommt genau hier: „Naja, schaden kann's ja nicht – machen wir einen Termin.“ Faustregel: max. 1× nachfassen.</div></div>`;
+  const ew=EINWAENDE.map(e=>`<tr><td>${e[0]}</td><td>${e[1]}</td></tr>`).join("");
+
+  document.getElementById('viewDetailA').innerHTML=`
+    <button class="back" onclick="closeDetail()">← Zurück zur Namensliste</button>
+    <h2 class="dname">${esc(x.n)} ${x.mann?'<span class="badge man">Mann</span>':''}<span class="badge p${x.p}">Prio ${x.p}</span></h2>
+    <div class="card"><h3>Ihre Auswertung</h3><div class="bars">${bars}</div></div>
+    ${x.hinweis?`<div class="note">⚠️ <b>Achtung:</b> ${esc(x.hinweis)}</div>`:''}
+    <div class="card"><h3>1 · Dein Einstieg (Auswertung anteasern – nicht erklären!)</h3>
+      <div class="say ${x.ein}">${x.e}</div></div>
+    <div class="card"><h3>2 · Deine Leitfragen (zum Reden bringen)</h3>
+      <ol class="q">${qs}</ol>
+      <p class="arrow" style="margin-top:12px">Eine nach der anderen. Zuhören, nachhaken („Erzähl mal …“). Sobald sie ihren Punkt bestätigt: aufhören zu graben.</p></div>
+    <details><summary>📋 Kompletter Gesprächsablauf (Eröffnung → Termin → Absichern)</summary>
+      <div class="acc-body">${steps}</div></details>
+    <details><summary>🔀 Wenn sie sich NICHT identifiziert (Pfad A / B / C)</summary>
+      <div class="acc-body">${pf}</div></details>
+    <details><summary>🛡️ Einwände am Telefon</summary>
+      <div class="acc-body"><table class="obj"><tbody>${ew}</tbody></table>
+      <p class="arrow" style="margin-top:10px">Nie über Preise/Pakete reden – das gehört ins Erstgespräch. Nicht erreicht? 3–5 Versuche zu verschiedenen Zeiten + WhatsApp + Mail.</p></div></details>
+  `;
+  document.getElementById('viewListA').classList.add('hide');
+  document.getElementById('viewDetailA').classList.remove('hide');
+  window.scrollTo(0,0);
+}
+function closeDetail(){
+  document.getElementById('viewDetailA').classList.add('hide');
+  document.getElementById('viewListA').classList.remove('hide');
+  window.scrollTo(0,0);
+}
+
+/* ---------- Ansicht B: längste Teilnehmer ---------- */
+function renderB(){
+  const grund=GRUND.map(g=>`<div class="rule"><b>${g[0]}</b><br>${g[1]}</div>`).join("");
+  const steps=[
+    ["1 · Eröffnung (warm + echter Grund)",`Hallo [Name], hier ist [dein Name] vom Team von Hischam, dem Zentrum für Gesundheit. Hast du kurz eine Minute? … Schön. Ich melde mich, weil du bei unserem Workshop dabei warst – und mir ist aufgefallen, dass du <em>richtig lange / bis zum Schluss</em> dabei warst. Das machen echt die wenigsten. Deswegen wollte ich mich persönlich bei dir melden.`,"Pause. Sie reagiert meist positiv."],
+    ["2 · Türöffner-Frage (sie zum Reden bringen) ⭐",`Magst du mir kurz erzählen – was hat dich denn am meisten gepackt? Wo hast du dich am ehesten wiedererkannt?`,"Jetzt redet SIE. Du sagst wenig: „Erzähl mal …“, „Wie meinst du das?“ – und hältst Pausen aus."],
+    ["3 · Standort klären",`Hast du beide Tage gesehen, Tag 1 und Tag 2?`,""],
+    ["4 · Vertiefen (ihr Thema finden)",`Du hast gerade [ihr Punkt] gesagt – ist das ein Thema, das dich schon länger begleitet? … Wo stehst du gerade, und wo willst du eigentlich hin? … Was hast du schon alles probiert?`,"Eine Frage nach der anderen. Sie soll spüren: du interessierst dich wirklich – du verkaufst nicht."],
+    ["5 · Die Brücke (ihre Worte spiegeln)",`Weißt du was mir auffällt? Du beschreibst genau das, womit ganz viele zu uns kommen – [ihr Thema kurz spiegeln]. Und das ist kein Disziplin-Problem, das hat fast immer einen Grund, den man finden kann.`,""],
+    ["6 · Termin als logische Folge (kein „willst du?“)",`Genau dafür bieten wir ein kostenloses, persönliches Erstgespräch an. Da schauen wir uns deine Situation in Ruhe an und finden raus, woran's bei dir wirklich liegt. Unverbindlich. Was passt dir besser – eher Anfang oder Ende der Woche?`,"Alternativ-Frage statt Ja/Nein."],
+    ["7 · Fest machen + absichern",`Also [Tag, Uhrzeit] – schreibst du dir das fest ein? Wir reservieren die Zeit fest für dich. Du kriegst gleich eine Bestätigung und am Tag davor eine Erinnerung. Freu mich, bis dahin!`,"Eingrenzen → bestätigen → Erinnerung."]
+  ].map(s=>`<div class="step"><div class="lbl">${s[0]}</div><div class="txt">${s[1]}</div>${s[2]?`<div class="arrow">→ ${s[2]}</div>`:''}</div>`).join("");
+
+  const reden=[
+    ["Offene Fragen","„Wie…?“, „Was…?“, „Erzähl mal…“ statt „Hast du…?“."],
+    ["Pausen aushalten","Nach deiner Frage 2–3 Sek Stille → sie füllt sie. Wer zu schnell nachschiebt, redet sie zu."],
+    ["Spiegeln","Ihr letztes Wort als Frage zurück: Sie: „…ständig kaputt.“ Du: „Ständig kaputt?“ → sie erzählt weiter."],
+    ["Nicht lösen, sammeln","Nicht unterbrechen, nicht sofort die Lösung liefern. Die Lösung kommt im Termin. Ihre Worte merken – für die Brücke."]
+  ].map(r=>`<div class="rule"><b>${r[0]}</b> – ${r[1]}</div>`).join("");
+
+  const ew=EINWAENDE.map(e=>`<tr><td>${e[0]}</td><td>${e[1]}</td></tr>`).join("");
+
+  document.getElementById('viewB').innerHTML=`
+    <div class="card" style="border-left:6px solid var(--coral)">
+      <h3>🎣 Der Aufhänger</h3>
+      <p style="margin:.2em 0">Diese Leute waren <b>am längsten dabei</b> – echtes Interesse. Du sagst ihnen genau das, ehrlich. Kein Trick: ein echtes Kompliment + ein echter Grund für deinen Anruf.</p>
+      <div class="say coral">Mir ist aufgefallen, dass du <em>richtig lange dabei</em> warst – deshalb melde ich mich persönlich.</div>
+    </div>
+    <div class="card"><h3>🧭 3 Grundregeln</h3><div class="rules">${grund}</div>
+      <p style="text-align:center;margin:14px 0 2px"><span class="pill">„Ich bringe sie zum Reden. Der Rest ergibt sich.“</span></p></div>
+    <div class="card"><h3>Der Gesprächs-Ablauf</h3>${steps}</div>
+    <div class="card"><h3>🗣️ Technik: Leute zum Reden bringen</h3><div class="rules">${reden}</div></div>
+    <details><summary>🛡️ Einwände am Telefon</summary><div class="acc-body">
+      <table class="obj"><tbody>${ew}</tbody></table></div></details>
+    <details><summary>🟠 Wenn sie nicht ins Gespräch kommt / kein Interesse</summary><div class="acc-body">
+      <div class="step"><div class="lbl">Einmal sanft nachfassen</div>
+        <div class="txt">Darf ich kurz fragen – du warst ja nicht ohne Grund so lange im Workshop. Was war's, das dich da gehalten hat?</div>
+        <div class="arrow">→ Meist kommt doch ein echter Punkt → zurück zu Schritt 4.</div></div>
+      <div class="step"><div class="lbl">Wenn weiter kein Interesse → ehrlich loslassen</div>
+        <div class="say coral" style="font-size:1.05rem">Pass auf, ich will dir nichts aufdrücken. Wenn's für dich gerade nicht passt, völlig in Ordnung. Wenn du später doch mal reinschauen willst, meld dich einfach. Alles Gute dir!</div>
+        <div class="arrow">→ Tür bleibt offen. Oft kommt genau hier: „Naja, schaden kann's ja nicht.“ Max. 1× nachfassen.</div></div>
+    </div></details>
+    <div class="card"><h3>📵 Nicht erreicht?</h3>
+      <p style="margin:.2em 0">3–5 Versuche zu verschiedenen Tageszeiten + WhatsApp + Mail. Nie nach einem Versuch aufgeben.</p>
+      <div class="say blue" style="font-size:1.02rem">Hallo [Name], hier [dein Name] vom Team von Hischam 🙂 Du warst bei unserem Workshop dabei – und mir ist aufgefallen, dass du richtig lange dabei warst. Deshalb wollte ich mich kurz persönlich melden. Wann passt dir ein kurzer Rückruf, eher vormittags oder nachmittags?</div></div>
+  `;
+}
+
+/* ---------- Tabs ---------- */
+function showTab(t){
+  document.getElementById('tabA').classList.toggle('active',t==='A');
+  document.getElementById('tabB').classList.toggle('active',t==='B');
+  closeDetail();
+  document.getElementById('viewListA').classList.toggle('hide',t!=='A');
+  document.getElementById('viewB').classList.toggle('hide',t!=='B');
+  window.scrollTo(0,0);
+}
+
+
+async function unlock(pw){
+  try{
+    const raw=Uint8Array.from(atob(ENC),c=>c.charCodeAt(0));
+    const salt=raw.slice(0,16),iv=raw.slice(16,28),ct=raw.slice(28);
+    const e=new TextEncoder();
+    const bk=await crypto.subtle.importKey("raw",e.encode(pw),"PBKDF2",false,["deriveKey"]);
+    const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:200000,hash:"SHA-256"},bk,{name:"AES-GCM",length:256},false,["decrypt"]);
+    const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv},key,ct);
+    P=JSON.parse(new TextDecoder().decode(pt));
+    return true;
+  }catch(err){return false;}
+}
+function initGate(){
+  if(!window.crypto||!crypto.subtle){
+    document.body.innerHTML='<div style="max-width:520px;margin:90px auto;font-family:Segoe UI,system-ui,sans-serif;padding:24px;text-align:center;color:#1c2b33"><div style="font-size:2.4rem">🔒</div><h2>Bitte über den Link öffnen</h2><p style="color:#5b6b75">Diese Seite muss über ihre Internet-Adresse (https://…) geöffnet werden, nicht als heruntergeladene Datei.</p></div>';
+    return;
+  }
+  const ov=document.createElement('div');
+  ov.id='gate';
+  ov.style.cssText='position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#157089,#0e5266);display:flex;align-items:center;justify-content:center;font-family:Segoe UI,system-ui,sans-serif';
+  ov.innerHTML=`<div style="background:#fff;border-radius:18px;padding:34px 28px;max-width:390px;width:90%;box-shadow:0 14px 44px rgba(0,0,0,.32);text-align:center">
+    <div style="font-size:2.4rem">🔒</div>
+    <h2 style="margin:.25em 0;color:#0e5266">Gesprächsleitfaden</h2>
+    <p style="color:#5b6b75;margin:.2em 0 1.3em;font-size:.95rem">Interner Zugang – bitte Passwort eingeben.</p>
+    <input id="gpw" type="password" placeholder="Passwort" autocomplete="off"
+      style="width:100%;padding:14px 15px;font-size:1.08rem;border:2px solid #e2e8ee;border-radius:12px;margin-bottom:10px;box-sizing:border-box">
+    <div id="gerr" style="color:#e4572e;font-size:.9rem;min-height:18px;margin-bottom:8px"></div>
+    <button id="gbtn" style="width:100%;padding:15px;font-size:1.08rem;font-weight:700;background:#ff6a55;color:#fff;border:none;border-radius:12px;cursor:pointer">Öffnen</button>
+  </div>`;
+  document.body.appendChild(ov);
+  const go=async()=>{
+    const pw=document.getElementById('gpw').value;
+    const err=document.getElementById('gerr'); err.textContent='';
+    document.getElementById('gbtn').textContent='…';
+    const ok=await unlock(pw);
+    if(ok){ renderList(); renderB(); ov.remove(); }
+    else { err.textContent='Falsches Passwort.'; document.getElementById('gbtn').textContent='Öffnen'; }
+  };
+  document.getElementById('gbtn').onclick=go;
+  document.getElementById('gpw').addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+  setTimeout(()=>document.getElementById('gpw').focus(),100);
+}
+initGate();
+</script>
+</body>
+</html>
