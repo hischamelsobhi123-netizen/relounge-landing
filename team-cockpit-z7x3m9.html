@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team-Cockpit · Zentrum für Gesundheitsmedizin</title>
+<style>
+  :root{
+    --navy:#0d2032;--navy2:#15324c;--gold:#c4a35a;--gold-2:#d9bd82;
+    --cream:#f6f2ea;--paper:#fff;--ink:#22323f;--muted:#6a7884;--line:#ece4d6;--line-soft:#eef1f4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .serif{font-family:'Iowan Old Style','Apple Garamond',Georgia,'Times New Roman',serif}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px 60px}
+
+  header{position:relative;overflow:hidden;text-align:center;color:#fff;padding:46px 20px 40px;
+    background:linear-gradient(155deg,#1a3a57 0%,var(--navy) 55%,#081521 100%)}
+  header::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  header::after{content:"";position:absolute;width:300px;height:300px;right:-100px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(196,163,90,.18),transparent 70%);pointer-events:none}
+  .eyebrow{font-size:11.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-2);font-weight:600;position:relative;z-index:1}
+  header h1{font-size:32px;font-weight:600;margin:10px 0 8px;position:relative;z-index:1}
+  header p{color:rgba(255,255,255,.82);font-size:15px;max-width:520px;margin:0 auto;position:relative;z-index:1}
+
+  .sec{margin:36px 0 14px}
+  .sec .k{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .sec h2{font-size:22px;color:var(--navy);font-weight:600;margin-top:3px}
+  .sec .ln{height:1px;background:var(--line);margin-top:10px}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line-soft);border-radius:16px;
+    padding:18px;text-decoration:none;color:inherit;box-shadow:0 10px 30px -24px rgba(13,32,50,.4);
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;position:relative}
+  .card:hover{transform:translateY(-4px);box-shadow:0 20px 44px -26px rgba(13,32,50,.55);border-color:var(--gold)}
+  .card .top{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+  .card .ic{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:21px;
+    background:linear-gradient(135deg,#fff7e8,#f6ecd4);border:1px solid var(--line)}
+  .card h3{font-size:16px;color:var(--navy);font-weight:600}
+  .card p{font-size:13px;color:var(--muted);flex:1 1 auto}
+  .card .go{margin-top:12px;font-size:13px;color:var(--gold);font-weight:700;display:flex;align-items:center;gap:5px}
+  .card .go::after{content:"→";transition:transform .2s}
+  .card:hover .go::after{transform:translateX(4px)}
+  .tag{position:absolute;top:14px;right:14px;font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:20px}
+  .tag.kunde{color:#2a7d5f;background:#e8f4ee;border:1px solid #bfe3d0}
+  .tag.intern{color:var(--gold);background:#fbf4e6;border:1px solid #ecd9ad}
+  .tag.tool{color:var(--navy2);background:#eaf0f5;border:1px solid #d3e0ea}
+  .lock{font-size:11px;color:var(--muted);margin-top:6px}
+  .lock b{color:var(--navy2)}
+
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:40px;line-height:1.7}
+  footer .name{color:var(--navy);font-weight:600;font-family:'Iowan Old Style',Georgia,serif;font-size:15px}
+  .hint{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:14px 18px;margin-top:18px;font-size:13.5px;color:var(--muted)}
+  .hint b{color:var(--navy2)}
+
+  @media(max-width:760px){ .cards{grid-template-columns:1fr 1fr} }
+  @media(max-width:520px){ .cards{grid-template-columns:1fr} header h1{font-size:26px} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Zentrum für Gesundheitsmedizin · intern</div>
+  <h1 class="serif">Team-Cockpit</h1>
+  <p>Alle unsere Werkzeuge an einem Ort — Kundenseiten, Vertrieb und Steuerung. Einfach anklicken.</p>
+</header>
+
+<div class="wrap">
+
+  <!-- KUNDEN -->
+  <div class="sec">
+    <div class="k">Zum Zeigen &amp; Verschicken</div>
+    <h2 class="serif">Kunden-Seiten</h2>
+    <div class="ln"></div>
+  </div>
+  <div class="cards">
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/programm-uebersicht.html" target="_blank" rel="noopener">
+      <span class="tag kunde">Kunde</span>
+      <div class="top"><div class="ic">🩺</div><h3>Programm-Übersicht</h3></div>
+      <p>Was wir machen — edel &amp; ausführlich erklärt (Diagnostik, 28-Tage, App, Begleitung).</p>
+      <span class="go">Öffnen</span>
+    </a>
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/begleitung.html" target="_blank" rel="noopener">
+      <span class="tag kunde">Kunde</span>
+      <div class="top"><div class="ic">💶</div><h3>Pakete &amp; Begleitung</h3></div>
+      <p>Die 3 Pakete (6/9/12 Monate) im Vergleich, mit Leistungen &amp; Garantie.</p>
+      <span class="go">Öffnen</span>
+    </a>
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/workshop-juni-x7k2m9.html" target="_blank" rel="noopener">
+      <span class="tag kunde">Kunde</span>
+      <div class="top"><div class="ic">🎟️</div><h3>Workshop-Landingpage</h3></div>
+      <p>Anmelde-Seite zum kostenlosen Gesundheits-Workshop.</p>
+      <span class="go">Öffnen</span>
+    </a>
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/landingpage-relounge.html" target="_blank" rel="noopener">
+      <span class="tag kunde">Kunde</span>
+      <div class="top"><div class="ic">🛋️</div><h3>reLounge-Seite</h3></div>
+      <p>Landingpage für die reLounge-Liege (Rücken/Nacken).</p>
+      <span class="go">Öffnen</span>
+    </a>
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/landingpage-pelvi.html" target="_blank" rel="noopener">
+      <span class="tag kunde">Kunde</span>
+      <div class="top"><div class="ic">🪑</div><h3>BetterPelvi-Seite</h3></div>
+      <p>Landingpage für den Beckenboden-Stuhl.</p>
+      <span class="go">Öffnen</span>
+    </a>
+  </div>
+
+  <!-- VERTRIEB & CLOSING -->
+  <div class="sec">
+    <div class="k">Nur fürs Team</div>
+    <h2 class="serif">Vertrieb &amp; Closing</h2>
+    <div class="ln"></div>
+  </div>
+  <div class="cards">
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/closer-leitfaden-gespraech-k9m3x7.html" target="_blank" rel="noopener">
+      <span class="tag intern">Intern</span>
+      <div class="top"><div class="ic">🧭</div><h3>Gesprächs-Leitfaden</h3></div>
+      <p>Der bewährte Erstgespräch-Flow Schritt für Schritt (für Karim &amp; Team).</p>
+      <span class="go">Öffnen</span>
+    </a>
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/closing-schulung-c9k2m7.html" target="_blank" rel="noopener">
+      <span class="tag intern">Intern</span>
+      <div class="top"><div class="ic">🎓</div><h3>Closing-Schulung</h3></div>
+      <p>Die große Präsentation (durchklicken) — Methode, Psychologie, Bezahl-Teil.</p>
+      <span class="go">Öffnen</span>
+    </a>
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/closing-leitfaden-c9k2m7.html" target="_blank" rel="noopener">
+      <span class="tag intern">Intern</span>
+      <div class="top"><div class="ic">📋</div><h3>Closing-Handout</h3></div>
+      <p>Kompakter Spickzettel fürs Gespräch.</p>
+      <span class="go">Öffnen</span>
+    </a>
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/team-leitfaden-x9k2m7.html" target="_blank" rel="noopener">
+      <span class="tag intern">Intern</span>
+      <div class="top"><div class="ic">📞</div><h3>Termin-Leitfäden</h3></div>
+      <p>Personalisierte Gesprächsfäden aus den Fragebögen.</p>
+      <span class="lock">🔒 Passwort: <b>zentrum2026</b> · nur über den Link öffnen</span>
+      <span class="go">Öffnen</span>
+    </a>
+  </div>
+
+  <!-- STEUERUNG & TOOLS -->
+  <div class="sec">
+    <div class="k">Steuerung &amp; Tools</div>
+    <h2 class="serif">Übersicht &amp; Organisation</h2>
+    <div class="ln"></div>
+  </div>
+  <div class="cards">
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/command-center/" target="_blank" rel="noopener">
+      <span class="tag tool">Tool</span>
+      <div class="top"><div class="ic">✅</div><h3>Command Center</h3></div>
+      <p>Die Luxus-To-do-App. (Öffentliche Version mit neutralen Daten.)</p>
+      <span class="go">Öffnen</span>
+    </a>
+    <a class="card" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/cockpit-r4my9x2k7.html" target="_blank" rel="noopener">
+      <span class="tag tool">Tool</span>
+      <div class="top"><div class="ic">📊</div><h3>Firmen-Cockpit</h3></div>
+      <p>Übersichts-Dashboard über alle Bereiche beider Firmen.</p>
+      <span class="go">Öffnen</span>
+    </a>
+    <a class="card" href="https://liquefy-autograph-saucy.ngrok-free.dev/r4my9x2k7qf3w8tz" target="_blank" rel="noopener">
+      <span class="tag tool">Tool</span>
+      <div class="top"><div class="ic">🧠</div><h3>Mindmap</h3></div>
+      <p>Digitaler Firmen-Zwilling (3 Seiten + Feedback).</p>
+      <span class="lock">⚠️ läuft über <b>Ramys PC</b> (ngrok) — nur erreichbar, wenn der PC an ist</span>
+      <span class="go">Öffnen</span>
+    </a>
+  </div>
+
+  <div class="hint">
+    <b>Hinweis (intern):</b> Diese Seite bündelt auch interne Vertriebs-Inhalte. Den Link bitte nur im Team teilen — nicht an Kunden. Auf Wunsch kann die ganze Seite zusätzlich mit einem Passwort geschützt werden.
+  </div>
+
+  <footer>
+    <span class="name">Zentrum für Gesundheitsmedizin</span><br>
+    Team-Cockpit · interne Werkzeug-Übersicht<br>
+    <span style="opacity:.7">Stand 06/2026 · gepflegt von Ramy &amp; Claude</span>
+  </footer>
+
+</div>
+</body>
+</html>

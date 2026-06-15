@@ -349,6 +349,16 @@
   .wwm .w p{font-size:13.5px;color:var(--muted)}
   .wwm .plus{display:none}
 
+  /* ---------- STICKY SPRUNG-MENÜ ---------- */
+  .navbar{position:fixed;top:0;left:0;right:0;z-index:150;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
+    padding:10px 12px;background:rgba(13,32,50,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(196,163,90,.3);transform:translateY(-110%);transition:transform .35s ease}
+  .navbar.show{transform:none}
+  .navbar a{color:rgba(255,255,255,.82);text-decoration:none;font-size:12.5px;font-weight:600;letter-spacing:.3px;
+    padding:6px 12px;border-radius:30px;transition:background .2s,color .2s}
+  .navbar a:hover{background:rgba(196,163,90,.18);color:var(--gold-2)}
+  .sec{scroll-margin-top:64px}
+
   /* ---------- DIAGNOSTIK (visuell) ---------- */
   .diag-intro{text-align:center;max-width:560px;margin:0 auto 22px;color:var(--muted);font-size:16px}
   .diag-intro b{color:var(--navy2)}
@@ -440,6 +450,14 @@
 
 <div class="progress" id="prog"></div>
 
+<nav class="navbar" id="navbar">
+  <a href="#s-arzt">Arzt</a>
+  <a href="#s-saeulen">5 Säulen</a>
+  <a href="#s-diag">Diagnostik</a>
+  <a href="#s-app">App</a>
+  <a href="#s-begleitung">Begleitung</a>
+</nav>
+
 <header>
   <div class="heroglow"></div>
   <div class="herodots"></div>
@@ -467,7 +485,7 @@
     <p><strong>Ihr persönlicher Weg ist immer individuell</strong> — er entsteht erst aus Ihren Laborwerten und Ihrem Erstgespräch. Genau das ist der Unterschied zu jeder Diät: kein Standard-Plan „für alle", sondern ein Weg, der zu <em>Ihrem</em> Körper passt.</p>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s-arzt">
     <div class="k">Ihr Arzt</div>
     <h2 class="serif">Persönlich begleitet von Hischam El-Sobhi</h2>
     <div class="line"></div>
@@ -502,7 +520,7 @@
     <div class="cap"><b>Ein eingespieltes Team</b>Hischam El-Sobhi mit dem Team des Zentrums für Gesundheitsmedizin.</div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s-saeulen">
     <div class="k">Das Besondere an uns</div>
     <h2 class="serif">Wir sehen alles als <em style="font-style:italic;color:var(--gold)">ein</em> System</h2>
     <div class="line"></div>
@@ -588,7 +606,7 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s-diag">
     <div class="k">Das Fundament</div>
     <h2 class="serif">Diagnostik, die <em style="font-style:italic;color:var(--gold)">tief</em> blickt</h2>
     <div class="line"></div>
@@ -725,7 +743,7 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s-app">
     <div class="k">Alles an einem Ort</div>
     <h2 class="serif">Ihre eigene Gesundheits-App</h2>
     <div class="line"></div>
@@ -880,7 +898,7 @@
     <span><b>·</b>Auf jedem Handy</span>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s-begleitung">
     <div class="k">Sie sind nie allein</div>
     <h2 class="serif">Ihre persönliche Begleitung</h2>
     <div class="line"></div>
@@ -999,11 +1017,13 @@
 
   // Scroll-Fortschrittsbalken
   var prog = document.getElementById('prog');
+  var navbar = document.getElementById('navbar');
   function onScroll(){
     var h = document.documentElement;
     var sc = h.scrollTop || document.body.scrollTop;
     var max = h.scrollHeight - h.clientHeight;
     if(prog) prog.style.width = (max>0 ? (sc/max*100) : 0) + '%';
+    if(navbar) navbar.classList.toggle('show', sc > 520);
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
