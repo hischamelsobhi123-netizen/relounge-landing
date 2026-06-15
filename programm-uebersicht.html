@@ -432,6 +432,17 @@
   /* Energie-Pulse entlang der 5-Säulen-Speichen */
   .spark{fill:var(--gold-2)}
 
+  /* aktive Sektion im Sprungmenü (Scroll-Spy) */
+  .navbar a.active{background:rgba(196,163,90,.22);color:var(--gold-2)}
+
+  /* Ken-Burns: sanfter Dauer-Zoom (lebendig, auch mobil) */
+  .team-banner img{animation:kenburns 22s ease-in-out infinite alternate}
+  @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.08)}}
+
+  /* lebendige Aura auf dem App-Band (driftet, ohne Maus) */
+  .app-band::after{animation:aura 15s ease-in-out infinite alternate}
+  @keyframes aura{from{transform:translate(0,0) scale(1);opacity:.85}to{transform:translate(-26px,30px) scale(1.3);opacity:1}}
+
   /* Maus-Glow auf dunklen Bändern */
   .glowwrap{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .4s;
     background:radial-gradient(200px 200px at var(--mx,50%) var(--my,25%), rgba(196,163,90,.22), transparent 70%)}
@@ -440,7 +451,7 @@
   .app-band .k, .app-band h3, .app-band .lead, .app-band .modules{position:relative;z-index:1}
 
   @media (prefers-reduced-motion: reduce){
-    .heroglow,.orb,header h1 em,.spark,.pulse-core,.scanline,.status .dot{animation:none !important}
+    .heroglow,.orb,header h1 em,.spark,.pulse-core,.scanline,.status .dot,.team-banner img,.app-band::after{animation:none !important}
     header h1 em{-webkit-text-fill-color:var(--gold-2);color:var(--gold-2)}
     html.js .step, html.js .arzt-card, html.js .team-banner, html.js .stat, html.js .diag-card, html.js .flow,
     html.js .reset-card, html.js .wwm .w, html.js .em-row, html.js .em-gallery figure, html.js .care,
@@ -1044,7 +1055,7 @@
       [].slice.call(c.children).forEach(function(ch,idx){ ch.style.transitionDelay=(Math.min(idx,6)*80)+'ms'; });
     });
   });
-  function show(e){e.classList.add('in');}
+  function show(e){e.classList.add('in'); if(e.classList && e.classList.contains('holistic')) startCycle();}
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(en){ if(en.isIntersecting){ show(en.target); io.unobserve(en.target); } });
@@ -1060,13 +1071,20 @@
       el.classList.toggle('active', on);
     });
   }
+  // Auto-Cycle: Säulen leuchten von selbst nacheinander (lebendig, v.a. mobil) — stoppt bei Interaktion
+  var userTouched=false, cyc=0, cycTimer=null;
+  function clearActive(){ document.querySelectorAll('.pnode.active, .pcard.active').forEach(function(a){ a.classList.remove('active'); }); }
+  function startCycle(){ if(userTouched || cycTimer) return; cycTimer=setInterval(function(){ cyc=(cyc%5)+1; clearActive(); sync(cyc,true); }, 1500); }
+  function stopCycle(){ userTouched=true; if(cycTimer){ clearInterval(cycTimer); cycTimer=null; } clearActive(); }
+
   document.querySelectorAll('.pnode, .pcard').forEach(function(el){
     var i = el.getAttribute('data-i');
-    el.addEventListener('mouseenter', function(){ sync(i,true); });
-    el.addEventListener('mouseleave', function(){ sync(i,false); });
+    el.addEventListener('mouseenter', function(){ stopCycle(); sync(i,true); });
+    el.addEventListener('mouseleave', function(){ if(userTouched) sync(i,false); });
     el.addEventListener('click', function(){
+      stopCycle();
       var wasActive = el.classList.contains('active');
-      document.querySelectorAll('.pnode.active, .pcard.active').forEach(function(a){ a.classList.remove('active'); });
+      clearActive();
       if(!wasActive) sync(i,true);
     });
   });
@@ -1079,7 +1097,12 @@
     var sc = h.scrollTop || document.body.scrollTop;
     var max = h.scrollHeight - h.clientHeight;
     if(prog) prog.style.width = (max>0 ? (sc/max*100) : 0) + '%';
-    if(navbar) navbar.classList.toggle('show', sc > 520);
+    if(navbar){
+      navbar.classList.toggle('show', sc > 520);
+      var secs=['s-arzt','s-saeulen','s-diag','s-app','s-begleitung'], cur=secs[0];
+      secs.forEach(function(id){ var el=document.getElementById(id); if(el && el.getBoundingClientRect().top<=130) cur=id; });
+      navbar.querySelectorAll('a').forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+cur); });
+    }
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
