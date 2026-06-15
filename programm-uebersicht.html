@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ihre ärztlich begleitete Begleitung – Überblick</title>
+<style>
+  :root{
+    --navy:#0d2032;
+    --navy2:#15324c;
+    --gold:#c4a35a;
+    --gold-2:#d9bd82;
+    --cream:#f6f2ea;
+    --paper:#ffffff;
+    --ink:#22323f;
+    --muted:#6a7884;
+    --line:#ece4d6;
+    --line-soft:#eef1f4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--cream);color:var(--ink);line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Cormorant Garamond','Iowan Old Style','Apple Garamond',Georgia,'Times New Roman',serif}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+
+  /* ---------- HERO ---------- */
+  header{
+    position:relative;overflow:hidden;text-align:center;color:#fff;
+    background:radial-gradient(120% 140% at 50% -10%, #1c3d5a 0%, var(--navy) 55%, #091a29 100%);
+    padding:58px 22px 64px;
+  }
+  /* faint guilloché glow */
+  header::after{
+    content:"";position:absolute;inset:auto 0 -40% 0;height:80%;
+    background:radial-gradient(60% 100% at 50% 0%, rgba(196,163,90,.16), transparent 70%);
+    pointer-events:none;
+  }
+  .emblem{
+    width:54px;height:54px;margin:0 auto 20px;border-radius:50%;
+    border:1px solid rgba(196,163,90,.55);
+    display:flex;align-items:center;justify-content:center;position:relative;z-index:1;
+  }
+  .emblem svg{width:26px;height:26px;stroke:var(--gold-2)}
+  .eyebrow{
+    position:relative;z-index:1;
+    font-size:11.5px;letter-spacing:3.5px;text-transform:uppercase;
+    color:var(--gold-2);font-weight:600;margin-bottom:18px;
+  }
+  header h1{
+    position:relative;z-index:1;
+    font-size:38px;line-height:1.18;font-weight:600;letter-spacing:.2px;margin-bottom:16px;
+  }
+  header h1 em{font-style:italic;color:var(--gold-2)}
+  .lede{
+    position:relative;z-index:1;
+    font-size:16.5px;color:rgba(255,255,255,.82);max-width:500px;margin:0 auto 22px;font-weight:400;
+  }
+  .rule{
+    position:relative;z-index:1;width:60px;height:1px;margin:0 auto;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+  .rule.dark{background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.7}
+
+  /* authority strip */
+  .authority{
+    position:relative;z-index:1;margin-top:26px;display:flex;justify-content:center;
+    gap:0;flex-wrap:wrap;color:rgba(255,255,255,.9);
+  }
+  .authority .a{padding:0 20px;font-size:13px;position:relative}
+  .authority .a + .a::before{
+    content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+    width:1px;height:26px;background:rgba(196,163,90,.4);
+  }
+  .authority .a b{display:block;font-size:20px;color:var(--gold-2);font-weight:600;line-height:1.2}
+  .authority .a span{font-size:11px;letter-spacing:.5px;opacity:.8}
+
+  /* ---------- INTRO NOTE ---------- */
+  .note{
+    background:var(--paper);border-radius:16px;padding:28px 30px;
+    margin:-34px auto 8px;position:relative;z-index:2;max-width:680px;
+    box-shadow:0 24px 60px -28px rgba(13,32,50,.45);
+    border:1px solid var(--line);
+  }
+  .note .q{font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:46px;color:var(--gold);line-height:0;
+    position:absolute;top:30px;left:24px;opacity:.5}
+  .note p{font-size:16px;color:var(--ink);padding-left:30px}
+  .note strong{color:var(--navy2);font-weight:600}
+  .note em{font-style:italic}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .sec{text-align:center;margin:54px 0 26px}
+  .sec .k{font-size:11.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .sec h2{font-size:30px;font-weight:600;color:var(--navy);margin-top:6px}
+  .sec .line{width:46px;height:1px;background:var(--gold);margin:14px auto 0;opacity:.6}
+
+  /* ---------- STEPS (timeline) ---------- */
+  .steps{position:relative;padding-left:6px}
+  .step{
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:16px;
+    padding:24px 26px 24px 24px;margin-bottom:16px;display:flex;gap:20px;align-items:flex-start;
+    box-shadow:0 10px 30px -22px rgba(13,32,50,.4);transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .step:hover{transform:translateY(-2px);box-shadow:0 18px 40px -24px rgba(13,32,50,.5)}
+  .step .num{
+    flex:0 0 auto;width:46px;height:46px;border-radius:50%;
+    border:1px solid var(--gold);color:var(--gold);
+    font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:23px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;background:#fffdf8;
+  }
+  .step h3{font-size:19px;font-weight:600;color:var(--navy);margin-bottom:6px;letter-spacing:.2px}
+  .step p{color:var(--muted);font-size:15px}
+
+  /* ---------- CARE GRID ---------- */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .care{
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:16px;
+    padding:22px 22px;box-shadow:0 10px 30px -24px rgba(13,32,50,.4);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .care:hover{transform:translateY(-2px);border-color:var(--line);box-shadow:0 18px 40px -26px rgba(13,32,50,.5)}
+  .care .ic{
+    width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#fff7e8,#f6ecd4);
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  }
+  .care .ic svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.6}
+  .care h4{font-size:16px;color:var(--navy);margin-bottom:4px;font-weight:600}
+  .care p{font-size:13.5px;color:var(--muted)}
+
+  /* ---------- CALLS ---------- */
+  .calls{
+    background:radial-gradient(120% 130% at 0% 0%, #1c3d5a, var(--navy) 60%);
+    color:#fff;border-radius:20px;padding:34px 32px;position:relative;overflow:hidden;
+    box-shadow:0 30px 60px -30px rgba(13,32,50,.6);
+  }
+  .calls::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .calls .ck{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-2);font-weight:600}
+  .calls h3{font-size:25px;font-weight:600;margin:8px 0 22px;letter-spacing:.2px}
+  .call-row{display:flex;align-items:center;gap:18px;padding:16px 0;border-top:1px solid rgba(255,255,255,.12)}
+  .call-row:first-of-type{border-top:none}
+  .day{
+    flex:0 0 auto;min-width:118px;text-align:center;
+    border:1px solid rgba(196,163,90,.5);border-radius:12px;padding:10px 8px;
+    background:rgba(196,163,90,.08);
+  }
+  .day b{display:block;font-size:14.5px;color:#fff;font-weight:600}
+  .day span{font-size:18px;color:var(--gold-2);font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-weight:600}
+  .call-row .txt b{display:block;font-size:16.5px;margin-bottom:2px}
+  .call-row .txt span{font-size:14px;color:rgba(255,255,255,.78)}
+
+  /* ---------- CLOSING ---------- */
+  .closing{text-align:center;margin:54px 0 0;padding:0 6px}
+  .closing .big{font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:30px;font-weight:600;color:var(--navy);line-height:1.3}
+  .closing .big em{font-style:italic;color:var(--gold)}
+  .closing .sub{font-size:15.5px;color:var(--muted);max-width:520px;margin:14px auto 0}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    margin:36px auto 0;text-align:center;background:var(--paper);border:1px solid var(--line);
+    border-radius:16px;padding:26px;box-shadow:0 10px 30px -24px rgba(13,32,50,.4);
+  }
+  .cta p{font-size:15.5px;color:var(--ink);margin-bottom:4px}
+  .cta .small{font-size:13.5px;color:var(--muted)}
+
+  /* ---------- FOOTER ---------- */
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin:40px 0 10px;line-height:1.7}
+  footer .name{color:var(--navy);font-weight:600;font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:16px}
+
+  @media(max-width:560px){
+    header{padding:48px 20px 56px}
+    header h1{font-size:29px}
+    .sec h2{font-size:25px}
+    .grid{grid-template-columns:1fr}
+    .note{padding:24px 22px}
+    .note p{padding-left:24px}
+    .calls{padding:28px 22px}
+    .calls h3{font-size:21px}
+    .day{min-width:104px}
+    .closing .big{font-size:25px}
+    .authority .a{padding:0 14px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="emblem" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 3v6a4 4 0 0 0 8 0V3"/><path d="M9 17a4 4 0 0 0 8 0v-2"/>
+      <circle cx="18" cy="11" r="2.2"/>
+    </svg>
+  </div>
+  <div class="eyebrow">Zentrum für Gesundheitsmedizin</div>
+  <h1 class="serif">Ihre ärztlich begleitete<br>Begleitung — <em>auf einen Blick</em></h1>
+  <p class="lede">Keine Diät. Eine echte ärztliche Begleitung mit Diagnostik, persönlichem Plan und festen Ansprechpartnern.</p>
+  <div class="rule dark"></div>
+  <div class="authority">
+    <div class="a"><b>25+</b><span>Jahre Erfahrung</span></div>
+    <div class="a"><b>Facharzt</b><span>persönlich dabei</span></div>
+    <div class="a"><b>1:1</b><span>auf Sie zugeschnitten</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="note">
+    <span class="q serif">&#8220;</span>
+    <p><strong>Ihr persönlicher Weg ist immer individuell</strong> — er entsteht erst aus Ihren Laborwerten und Ihrem Erstgespräch. Genau das ist der Unterschied zu jeder Diät: kein Standard-Plan „für alle", sondern ein Weg, der zu <em>Ihrem</em> Körper passt.</p>
+  </div>
+
+  <div class="sec">
+    <div class="k">Der Ablauf</div>
+    <h2 class="serif">So gehen wir gemeinsam vor</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="num serif">I</div>
+      <div>
+        <h3>Ausführliche Untersuchung &amp; Labor</h3>
+        <p>Wir nehmen Ihre Krankengeschichte auf und führen eine umfangreiche Labordiagnostik durch (großes Blutbild), dazu einen Körper-Check (u. a. Stoffwechsel, Körperzusammensetzung, Umfänge). Optional und individuell sinnvoll: Unverträglichkeits-Test (IgG), Darm-/Mikrobiom-Analyse und Hormon-Test.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num serif">II</div>
+      <div>
+        <h3>Persönliches Erstgespräch mit dem Arzt</h3>
+        <p>Hischam El-Sobhi bespricht Ihre Werte mit Ihnen Punkt für Punkt und legt gemeinsam mit Ihnen Ihren individuellen Fahrplan fest. Erst nach diesem Gespräch starten Sie — aus Sicherheit, damit der Weg wirklich zu Ihnen passt.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num serif">III</div>
+      <div>
+        <h3>Ihr persönlicher Ernährungs- &amp; Gesundheitsplan</h3>
+        <p>Auf Ihre Werte zugeschnitten und in klaren Phasen aufgebaut — Schritt für Schritt, mit Empfehlungen, die zu Ihrer Ausgangslage passen.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num serif">IV</div>
+      <div>
+        <h3>Laufende Begleitung — Sie sind nie allein</h3>
+        <p>Über die gesamte Zeit begleiten Sie der Arzt und ein erfahrenes Team. Alle Bausteine dazu finden Sie unten.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="k">Inklusive</div>
+    <h2 class="serif">Das ist alles dabei</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="grid">
+    <div class="care">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 3v6a4 4 0 0 0 8 0V3"/><path d="M9 17a4 4 0 0 0 8 0v-2"/><circle cx="18" cy="11" r="2"/></svg></div>
+      <h4>Ärztliche Begleitung</h4><p>Persönlich begleitet während des gesamten Programms.</p>
+    </div>
+    <div class="care">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-11.7 7.7L3 21l1.8-6.3A8.4 8.4 0 1 1 21 11.5Z"/></svg></div>
+      <h4>WhatsApp-Begleitung</h4><p>Für Ihre Fragen im Alltag — schnelle Unterstützung.</p>
+    </div>
+    <div class="care">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="m8 12 2.5 2.5L16 9"/><circle cx="12" cy="12" r="9"/></svg></div>
+      <h4>Onboarding zum Start</h4><p>Damit Sie sich von Anfang an sicher zurechtfinden.</p>
+    </div>
+    <div class="care">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></div>
+      <h4>1:1-Termine bei Bedarf</h4><p>Vor allem zu Stress &amp; mentaler Gesundheit.</p>
+    </div>
+    <div class="care">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h4>Online-Portal</h4><p>Ihr Essensheft, Kurse und eine Community an einem Ort.</p>
+    </div>
+    <div class="care">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16l3.5-4 3 2.5L20 8"/></svg></div>
+      <h4>Begleitung über Monate</h4><p>Struktur &amp; Sicherheit — nicht nur ein kurzer Plan.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="k">Gemeinsam — live</div>
+    <h2 class="serif">Ihre festen Gruppen-Calls</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="calls">
+    <div class="ck">Zweimal pro Woche</div>
+    <h3 class="serif">Live mit dem Arzt &amp; dem Team</h3>
+    <div class="call-row">
+      <div class="day"><b>Dienstag</b><span>19:00 Uhr</span></div>
+      <div class="txt"><b>Ernährung &amp; Fragerunde</b><span>Ihre Fragen werden beantwortet — plus Ernährungs-Input.</span></div>
+    </div>
+    <div class="call-row">
+      <div class="day"><b>Donnerstag</b><span>18:00 Uhr</span></div>
+      <div class="txt"><b>Mentale Gesundheit</b><span>Vortrag und Austausch in kleinen Gruppen.</span></div>
+    </div>
+  </div>
+
+  <div class="closing">
+    <div class="big serif">Keine Diät — sondern eine <em>echte ärztliche Begleitung</em>.</div>
+    <p class="sub">Diagnostik &amp; persönlicher Plan, feste Ansprechpartner und ein Weg, der zu Ihnen passt — über die ganze Zeit.</p>
+    <div class="rule" style="margin-top:24px;background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+  </div>
+
+  <footer>
+    <span class="name">Zentrum für Gesundheitsmedizin</span><br>
+    Hischam El-Sobhi · Facharzt<br>
+    <span style="opacity:.75">Diese Übersicht ersetzt keine ärztliche Beratung. Ihr individueller Weg wird im persönlichen Gespräch festgelegt.</span>
+  </footer>
+
+</div>
+</body>
+</html>
