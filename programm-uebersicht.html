@@ -40,6 +40,7 @@
     pointer-events:none;
   }
   .emblem{
+    position:relative;z-index:1;
     width:54px;height:54px;margin:0 auto 20px;border-radius:50%;
     border:1px solid rgba(196,163,90,.55);
     display:flex;align-items:center;justify-content:center;position:relative;z-index:1;
@@ -233,6 +234,53 @@
     vertical-align:middle;animation:pulse 1.8s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 
+  /* ---------- SCROLL-PROGRESS BAR ---------- */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+    background:linear-gradient(90deg,var(--gold),var(--gold-2));box-shadow:0 0 10px rgba(196,163,90,.6)}
+
+  /* ---------- HERO animierter Hintergrund ---------- */
+  .heroglow{position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(40% 50% at 18% 12%, rgba(196,163,90,.18), transparent 70%),
+      radial-gradient(45% 55% at 85% 8%, rgba(120,180,210,.14), transparent 70%);
+    animation:hdrift 14s ease-in-out infinite alternate}
+  @keyframes hdrift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(0,14px,0) scale(1.08)}}
+  .herodots{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:radial-gradient(rgba(255,255,255,.10) 1px, transparent 1.4px);
+    background-size:26px 26px;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 78%);mask-image:linear-gradient(180deg,#000 0%,transparent 78%)}
+
+  /* ---------- IHR ARZT & TEAM ---------- */
+  .arzt-card{display:flex;gap:26px;align-items:center;background:var(--paper);border:1px solid var(--line);
+    border-radius:22px;padding:26px;box-shadow:0 22px 56px -34px rgba(13,32,50,.5);position:relative;overflow:hidden}
+  .arzt-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .arzt-photo{flex:0 0 40%;max-width:230px;position:relative}
+  .arzt-photo img{width:100%;display:block;border-radius:16px;box-shadow:0 16px 40px -22px rgba(13,32,50,.6)}
+  .arzt-photo .badge{position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);white-space:nowrap;
+    background:var(--navy);color:#fff;font-size:11px;letter-spacing:.5px;padding:6px 14px;border-radius:30px;
+    border:1px solid rgba(196,163,90,.5)}
+  .arzt-photo .badge b{color:var(--gold-2)}
+  .arzt-txt{flex:1 1 0;min-width:0}
+  .arzt-txt .k{font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .arzt-txt h3{font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:25px;color:var(--navy);font-weight:600;margin:5px 0 8px}
+  .arzt-txt p{font-size:14.5px;color:var(--muted)}
+  .arzt-txt ul{margin:10px 0 0;padding:0;list-style:none}
+  .arzt-txt li{font-size:13.5px;color:var(--ink);padding:4px 0 4px 22px;position:relative}
+  .arzt-txt li::before{content:"";position:absolute;left:0;top:10px;width:10px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .stat{background:var(--paper);border:1px solid var(--line-soft);border-radius:14px;padding:18px 10px;text-align:center;
+    box-shadow:0 8px 24px -22px rgba(13,32,50,.4)}
+  .stat .v{font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1}
+  .stat .v .suf{color:var(--gold)}
+  .stat .l{font-size:11.5px;color:var(--muted);margin-top:5px;letter-spacing:.3px}
+
+  .team-banner{margin-top:16px;border-radius:20px;overflow:hidden;position:relative;box-shadow:0 22px 56px -34px rgba(13,32,50,.5)}
+  .team-banner img{width:100%;display:block}
+  .team-banner .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 20px 16px;color:#fff;
+    background:linear-gradient(transparent, rgba(8,18,30,.82));font-size:14px}
+  .team-banner .cap b{font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:17px;display:block;margin-bottom:2px}
+
   /* ---------- SCROLL-REVEAL (fail-safe) ---------- */
   .reveal{opacity:1;transform:none}
   html.js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease}
@@ -325,13 +373,25 @@
     .reset-rows{grid-template-columns:1fr}
     .wwm{grid-template-columns:1fr}
     .holistic h3{font-size:23px}
+    .arzt-card{flex-direction:column;gap:18px;padding:22px 20px}
+    .arzt-photo{max-width:200px}
+    .arzt-txt{text-align:center}
+    .arzt-txt li{text-align:left}
+    .stats{grid-template-columns:1fr 1fr;gap:10px}
+    .stat .v{font-size:26px}
+    .holistic{padding:32px 18px 30px}
+    .app-band{padding:34px 18px 30px}
   }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
+<div class="progress" id="prog"></div>
+
 <header>
+  <div class="heroglow"></div>
+  <div class="herodots"></div>
   <div class="emblem" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <path d="M5 3v6a4 4 0 0 0 8 0V3"/><path d="M9 17a4 4 0 0 0 8 0v-2"/>
@@ -354,6 +414,41 @@
   <div class="note">
     <span class="q serif">&#8220;</span>
     <p><strong>Ihr persönlicher Weg ist immer individuell</strong> — er entsteht erst aus Ihren Laborwerten und Ihrem Erstgespräch. Genau das ist der Unterschied zu jeder Diät: kein Standard-Plan „für alle", sondern ein Weg, der zu <em>Ihrem</em> Körper passt.</p>
+  </div>
+
+  <div class="sec">
+    <div class="k">Ihr Arzt</div>
+    <h2 class="serif">Persönlich begleitet von Hischam El-Sobhi</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="arzt-card reveal">
+    <div class="arzt-photo">
+      <img src="assets-enm/arzt-hischam.webp" alt="Hischam El-Sobhi, Facharzt" loading="lazy">
+      <span class="badge"><b>Facharzt</b> · approbiert seit 1998</span>
+    </div>
+    <div class="arzt-txt">
+      <div class="k">Echter Arzt, echte Begleitung</div>
+      <h3>Kein Coach — ein erfahrener Mediziner an Ihrer Seite</h3>
+      <p>Hischam El-Sobhi begleitet Sie persönlich: ärztlich fundiert, ganzheitlich und mit über zwei Jahrzehnten Praxiserfahrung.</p>
+      <ul>
+        <li>Facharzt für Allgemeinmedizin, approbiert seit 1998</li>
+        <li>Schwerpunkte Ernährungsmedizin &amp; TCM/Akupunktur</li>
+        <li>Über 2.000 Patientinnen &amp; Patienten begleitet</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat reveal"><div class="v"><span data-count="25">0</span><span class="suf">+</span></div><div class="l">Jahre Erfahrung</div></div>
+    <div class="stat reveal"><div class="v"><span data-count="2000">0</span><span class="suf">+</span></div><div class="l">Begleitete Patient:innen</div></div>
+    <div class="stat reveal"><div class="v"><span data-count="5">0</span></div><div class="l">Säulen ganzheitlich</div></div>
+    <div class="stat reveal"><div class="v"><span data-count="100">0</span><span class="suf">%</span></div><div class="l">Auf Sie zugeschnitten</div></div>
+  </div>
+
+  <div class="team-banner reveal">
+    <img src="assets-enm/team.webp" alt="Das Team im Zentrum für Gesundheitsmedizin" loading="lazy">
+    <div class="cap"><b>Ein eingespieltes Team</b>Hischam El-Sobhi mit dem Team des Zentrums für Gesundheitsmedizin.</div>
   </div>
 
   <div class="sec">
@@ -740,6 +835,39 @@
       if(!wasActive) sync(i,true);
     });
   });
+
+  // Scroll-Fortschrittsbalken
+  var prog = document.getElementById('prog');
+  function onScroll(){
+    var h = document.documentElement;
+    var sc = h.scrollTop || document.body.scrollTop;
+    var max = h.scrollHeight - h.clientHeight;
+    if(prog) prog.style.width = (max>0 ? (sc/max*100) : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Zähl-Animation
+  function countUp(el){
+    var target = +el.getAttribute('data-count'), dur = 1200, t0 = null;
+    function step(ts){
+      if(t0===null) t0 = ts;
+      var p = Math.min((ts - t0)/dur, 1);
+      var val = Math.floor((1-Math.pow(1-p,3)) * target); // ease-out
+      el.textContent = val >= 1000 ? val.toLocaleString('de-DE') : val;
+      if(p < 1) requestAnimationFrame(step);
+      else el.textContent = target >= 1000 ? target.toLocaleString('de-DE') : target;
+    }
+    requestAnimationFrame(step);
+  }
+  var counts = [].slice.call(document.querySelectorAll('[data-count]'));
+  if('IntersectionObserver' in window){
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ countUp(en.target); cio.unobserve(en.target); } });
+    },{threshold:0.5});
+    counts.forEach(function(e){ cio.observe(e); });
+  } else { counts.forEach(countUp); }
+  setTimeout(function(){ counts.forEach(function(e){ if(e.textContent==='0') countUp(e); }); }, 1800); // fail-safe
 })();
 </script>
 </body>
