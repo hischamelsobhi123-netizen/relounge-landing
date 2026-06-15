@@ -202,6 +202,37 @@
     border-radius:30px;padding:7px 15px;font-weight:500;box-shadow:0 4px 14px -10px rgba(13,32,50,.4)}
   .em-chips span b{color:var(--gold);font-weight:700;margin-right:3px}
 
+  /* ---------- APP MODULES (Hightech-Band) ---------- */
+  .app-band{position:relative;overflow:hidden;border-radius:24px;margin-top:8px;color:#fff;
+    padding:40px 30px 34px;box-shadow:0 36px 70px -34px rgba(13,32,50,.7);
+    background:linear-gradient(155deg,#1a3a57 0%, var(--navy) 55%, #081521 100%)}
+  .app-band::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .app-band::after{content:"";position:absolute;width:340px;height:340px;right:-120px;top:-120px;border-radius:50%;
+    background:radial-gradient(circle, rgba(196,163,90,.18), transparent 70%);pointer-events:none}
+  .app-band .k{font-size:11.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-2);font-weight:600;text-align:center}
+  .app-band h3{font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:29px;font-weight:600;
+    text-align:center;margin:8px 0 8px}
+  .app-band .lead{text-align:center;color:rgba(255,255,255,.8);font-size:15px;max-width:520px;margin:0 auto 24px}
+  .modules{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .module{position:relative;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);
+    border-radius:16px;padding:22px 18px 20px;transition:transform .25s ease, background .25s ease, border-color .25s ease}
+  .module:hover{transform:translateY(-3px);background:rgba(255,255,255,.09);border-color:rgba(196,163,90,.4)}
+  .module .ic{width:42px;height:42px;border-radius:12px;background:rgba(196,163,90,.14);
+    border:1px solid rgba(196,163,90,.35);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .module .ic svg{width:22px;height:22px;stroke:var(--gold-2);fill:none;stroke-width:1.6}
+  .module h4{font-size:16px;font-weight:600;color:#fff;margin-bottom:4px;padding-right:60px}
+  .module p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.5}
+  .status{position:absolute;top:15px;right:15px;font-size:9.5px;letter-spacing:.6px;text-transform:uppercase;
+    font-weight:700;padding:4px 9px;border-radius:30px;white-space:nowrap}
+  .status.live{color:#bff0d4;background:rgba(42,157,143,.18);border:1px solid rgba(120,210,170,.45)}
+  .status.live::before{content:"✓ "}
+  .status.soon{color:var(--gold-2);background:rgba(196,163,90,.16);border:1px solid rgba(196,163,90,.5)}
+  .status.wip{color:#e8d3a0;background:rgba(196,163,90,.1);border:1px solid rgba(196,163,90,.32)}
+  .status .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;margin-right:4px;
+    vertical-align:middle;animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
   /* ---------- FOOTER ---------- */
   footer{text-align:center;color:var(--muted);font-size:12.5px;margin:40px 0 10px;line-height:1.7}
   footer .name{color:var(--navy);font-weight:600;font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:16px}
@@ -319,6 +350,63 @@
     <div class="care">
       <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16l3.5-4 3 2.5L20 8"/></svg></div>
       <h4>Begleitung über Monate</h4><p>Struktur &amp; Sicherheit — nicht nur ein kurzer Plan.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="k">Alles an einem Ort</div>
+    <h2 class="serif">Ihre eigene Gesundheits-App</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="app-band">
+    <div class="k">Ein Login — viele Bausteine</div>
+    <h3 class="serif">Begleitung, die in Ihre Hosentasche passt</h3>
+    <p class="lead">Ernährung, Training, Tracking und der direkte Draht zu uns — gebündelt in einer App, die ganz auf Sie eingestellt ist. Wir erweitern sie laufend.</p>
+    <div class="modules">
+
+      <div class="module">
+        <span class="status live">Verfügbar</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M6 3v8a3 3 0 0 0 6 0V3"/><path d="M9 11v10"/><path d="M17 3c-1.5 1-2 3-2 5s.5 3 2 3 2-1 2-3-.5-4-2-5Z"/><path d="M17 11v10"/></svg></div>
+        <h4>Ernährungsmanager</h4>
+        <p>Persönlicher Plan, hunderte Rezepte mit Foto und automatische Einkaufsliste.</p>
+      </div>
+
+      <div class="module">
+        <span class="status soon"><span class="dot"></span>Bald verfügbar</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M6.5 6.5 17.5 17.5"/><rect x="1.7" y="8.5" width="4" height="7" rx="1.3" transform="rotate(-45 3.7 12)"/><rect x="18.3" y="8.5" width="4" height="7" rx="1.3" transform="rotate(-45 20.3 12)"/></svg></div>
+        <h4>iGYM — Training &amp; Workouts</h4>
+        <p>Trainingspläne nach Muskelgruppe — von Warm-up bis Cool-down, ganz auf Sie zugeschnitten.</p>
+      </div>
+
+      <div class="module">
+        <span class="status soon"><span class="dot"></span>Bald verfügbar</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 9v6M10 9v6M13 9v6M17 9v6"/></svg></div>
+        <h4>Food-Tracking</h4>
+        <p>Mahlzeiten in Sekunden erfassen — per Foto oder Barcode-Scan.</p>
+      </div>
+
+      <div class="module">
+        <span class="status wip"><span class="dot"></span>In Bearbeitung</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="m8.5 12 2.2 2.2L16 9"/></svg></div>
+        <h4>Check-Ins &amp; Gewohnheiten</h4>
+        <p>Kleine tägliche Schritte — mit Feedback direkt an Ihr Team.</p>
+      </div>
+
+      <div class="module">
+        <span class="status soon"><span class="dot"></span>Bald verfügbar</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="M8 16l3.5-4 3 2.5L20 8"/></svg></div>
+        <h4>Fortschritts-Tracking</h4>
+        <p>Gewicht und Umfänge als klare Verlaufs-Grafik — Ihr Erfolg wird sichtbar.</p>
+      </div>
+
+      <div class="module">
+        <span class="status live">Verfügbar</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-11.7 7.7L3 21l1.8-6.3A8.4 8.4 0 1 1 21 11.5Z"/></svg></div>
+        <h4>Direkter Draht zum Team</h4>
+        <p>Ihre Fragen im Alltag — schnelle, persönliche Begleitung.</p>
+      </div>
+
     </div>
   </div>
 
