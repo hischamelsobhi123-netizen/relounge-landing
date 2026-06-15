@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gesprächs-Leitfaden – Closer-Team</title>
+<style>
+  :root{
+    --navy:#0d2032; --navy2:#15324c; --gold:#c4a35a; --gold-2:#d9bd82;
+    --cream:#f6f2ea; --paper:#ffffff; --ink:#22323f; --muted:#6a7884;
+    --line:#ece4d6; --line-soft:#eef1f4; --quote-bg:#fbf7ee;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .serif{font-family:'Iowan Old Style','Apple Garamond',Georgia,'Times New Roman',serif}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px 70px}
+
+  /* HERO */
+  header{position:relative;overflow:hidden;text-align:center;color:#fff;
+    background:radial-gradient(120% 140% at 50% -10%, #1c3d5a 0%, var(--navy) 55%, #091a29 100%);
+    padding:50px 22px 56px}
+  header::after{content:"";position:absolute;inset:auto 0 -40% 0;height:80%;
+    background:radial-gradient(60% 100% at 50% 0%, rgba(196,163,90,.16), transparent 70%);pointer-events:none}
+  .eyebrow{position:relative;z-index:1;font-size:11.5px;letter-spacing:3.5px;text-transform:uppercase;
+    color:var(--gold-2);font-weight:600;margin-bottom:16px}
+  header h1{position:relative;z-index:1;font-size:34px;line-height:1.18;font-weight:600;margin-bottom:14px}
+  header h1 em{font-style:italic;color:var(--gold-2)}
+  .lede{position:relative;z-index:1;font-size:15.5px;color:rgba(255,255,255,.82);max-width:520px;margin:0 auto 20px}
+  .rule{position:relative;z-index:1;width:60px;height:1px;margin:0 auto;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+  /* MINDSET BAR */
+  .mindset{background:var(--paper);border-radius:16px;padding:22px 26px;margin:-30px auto 8px;
+    position:relative;z-index:2;max-width:700px;box-shadow:0 24px 60px -28px rgba(13,32,50,.45);
+    border:1px solid var(--line);text-align:center}
+  .mindset b{color:var(--navy2)}
+  .mindset .tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+  .tag{font-size:12.5px;color:var(--gold);border:1px solid var(--gold);border-radius:30px;padding:4px 13px;
+    background:#fffdf8;font-weight:500}
+
+  /* PHASE CARDS */
+  .phase{background:var(--paper);border:1px solid var(--line-soft);border-radius:16px;
+    padding:24px 26px;margin-top:16px;box-shadow:0 10px 30px -22px rgba(13,32,50,.4)}
+  .phase .head{display:flex;gap:16px;align-items:flex-start}
+  .phase .num{flex:0 0 auto;width:42px;height:42px;border-radius:50%;border:1px solid var(--gold);
+    color:var(--gold);font-family:'Iowan Old Style',Georgia,serif;font-size:20px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;background:#fffdf8}
+  .phase h3{font-size:19px;font-weight:600;color:var(--navy);letter-spacing:.2px;margin-top:6px}
+  .phase .goal{font-size:13.5px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+  .phase .body{margin-top:14px;padding-left:58px}
+  .phase p{color:var(--muted);font-size:15px;margin-bottom:10px}
+  .phase ul{margin:6px 0 10px;padding-left:20px;color:var(--muted);font-size:15px}
+  .phase li{margin-bottom:5px}
+
+  /* QUOTE / SO SAGST DU'S */
+  .say{background:var(--quote-bg);border-left:3px solid var(--gold);border-radius:10px;
+    padding:14px 18px;margin:12px 0;position:relative}
+  .say .lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:5px}
+  .say p{color:var(--ink);font-size:15.5px;margin:0;font-style:italic}
+
+  /* HINTERGRUND NOTE */
+  .why{background:#f0f5f8;border-radius:10px;padding:13px 16px;margin:12px 0 0}
+  .why .lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy2);font-weight:700;margin-bottom:4px}
+  .why p{font-size:14px;color:var(--ink);margin:0}
+
+  /* SECTION DIVIDER */
+  .sec{text-align:center;margin:46px 0 8px}
+  .sec .k{font-size:11.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .sec h2{font-size:26px;font-weight:600;color:var(--navy);margin-top:6px}
+  .sec .line{width:46px;height:1px;background:var(--gold);margin:12px auto 0;opacity:.6}
+
+  /* PILLARS */
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+  .pill{background:var(--paper);border:1px solid var(--line-soft);border-radius:14px;padding:16px 18px;
+    box-shadow:0 8px 24px -22px rgba(13,32,50,.4)}
+  .pill b{display:block;color:var(--navy);font-size:15px;margin-bottom:2px}
+  .pill span{font-size:13.5px;color:var(--muted)}
+
+  /* CALLBOX small */
+  .calls{background:radial-gradient(120% 130% at 0% 0%, #1c3d5a, var(--navy) 60%);color:#fff;
+    border-radius:16px;padding:22px 24px;margin-top:14px}
+  .calls .row{display:flex;gap:14px;align-items:center;padding:8px 0}
+  .calls .d{flex:0 0 auto;min-width:108px;text-align:center;border:1px solid rgba(196,163,90,.5);
+    border-radius:10px;padding:8px;background:rgba(196,163,90,.08)}
+  .calls .d b{display:block;font-size:14px}.calls .d span{font-size:16px;color:var(--gold-2);font-family:'Iowan Old Style',Georgia,serif}
+  .calls .t b{font-size:15.5px}.calls .t span{font-size:13.5px;color:rgba(255,255,255,.78)}
+
+  /* RED FLAGS */
+  .flags{background:#fff;border:1px solid var(--line);border-left:4px solid #b5483b;border-radius:14px;
+    padding:20px 24px;margin-top:16px}
+  .flags h4{color:#b5483b;font-size:16px;margin-bottom:8px}
+  .flags p{font-size:14.5px;color:var(--muted)}
+  .flags b{color:var(--ink)}
+
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:40px;line-height:1.7}
+  footer .name{color:var(--navy);font-weight:600;font-family:'Iowan Old Style',Georgia,serif;font-size:15px}
+  .internal{display:inline-block;background:#b5483b;color:#fff;font-size:11px;letter-spacing:1px;
+    text-transform:uppercase;padding:4px 12px;border-radius:30px;font-weight:600;margin-bottom:14px;position:relative;z-index:1}
+
+  @media(max-width:560px){
+    header h1{font-size:27px}
+    .phase{padding:20px 18px}.phase .body{padding-left:0;margin-top:12px}
+    .sec h2{font-size:22px}
+    .pillars{grid-template-columns:1fr}
+    .calls .d{min-width:96px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="internal">Intern · Closer-Team</span>
+  <div class="eyebrow">Zentrum für Gesundheitsmedizin</div>
+  <h1 class="serif">Gesprächs-Leitfaden — <em>Schritt für Schritt</em></h1>
+  <p class="lede">Der bewährte Flow für das Erstgespräch: erst verstehen, dann das Programm im Gespräch entstehen lassen. Keine Verkaufs-Show — eine ärztliche Einordnung.</p>
+  <div class="rule"></div>
+</header>
+
+<div class="wrap">
+
+  <div class="mindset">
+    <p><b>Grundhaltung:</b> Du bist Berater, nicht Verkäufer. <b>30 % reden, 70 % zuhören.</b> Das Programm wird nicht „aufgesagt", sondern entsteht <em>im Flow</em> aus dem, was sie dir erzählt.</p>
+    <div class="tags">
+      <span class="tag">Zuhören</span>
+      <span class="tag">Ganzheitlich denken</span>
+      <span class="tag">Im Flow erklären</span>
+      <span class="tag">Nachhaltig statt „paar Kilo"</span>
+    </div>
+  </div>
+
+  <div class="sec"><div class="k">Teil 1</div><h2 class="serif">Das Gespräch eröffnen</h2><div class="line"></div></div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">1</div><div><div class="goal">Begrüßung &amp; Standort</div><h3>Ankommen &amp; klären, woher sie uns kennt</h3></div></div>
+    <div class="body">
+      <p>Warm starten und herausfinden, wo sie steht (Workshop gesehen? Kennt sie uns nur aus den E-Mails?).</p>
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Grüß dich, schön dass du da bist! Wir sprechen heute, weil du beim Workshop warst — kennst du uns denn schon?"</p></div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">2</div><div><div class="goal">Warum meldest du dich?</div><h3>Sie erzählen lassen — du hörst zu</h3></div></div>
+    <div class="body">
+      <p>Eine offene Frage stellen und Raum geben. In der Regel erzählt sie von selbst ihre ganze Situation:</p>
+      <ul>
+        <li>Diagnosen &amp; Beschwerden</li>
+        <li>Medikamente</li>
+        <li>Alter, Größe, aktuelles Gewicht, Wunschgewicht</li>
+        <li>Was sie bisher versucht hat</li>
+      </ul>
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Erzähl mir mal — warum meldest du dich denn? Was ist gerade los bei dir?"</p></div>
+      <div class="why"><div class="lbl">Hintergrund</div><p>Nicht unterbrechen. Je mehr sie erzählt, desto mehr Hebel hast du später. Wer sich öffnet, will etwas verändern.</p></div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">3</div><div><div class="goal">Die Weiche</div><h3>Ernährungsplan oder ärztliche Begleitung?</h3></div></div>
+    <div class="body">
+      <p>Den Rahmen klar setzen — und damit von Anfang an positionieren, was wir sind.</p>
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Wo hast du dich angemeldet — was möchtest du eigentlich? Geht es dir nur um einen Ernährungsplan, oder um eine echte ärztliche Begleitung? … Wichtig zu wissen: <b>Wir machen ausschließlich ärztliche Begleitung.</b>"</p></div>
+    </div>
+  </div>
+
+  <div class="sec"><div class="k">Teil 2</div><h2 class="serif">Das Programm im Flow erklären</h2><div class="line"></div></div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">4</div><div><div class="goal">Der Rahmen</div><h3>Ganzheitlich auf 5 Säulen</h3></div></div>
+    <div class="body">
+      <p>Statt einer Liste: in einem Satz den ganzheitlichen Blick aufmachen.</p>
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Wir schauen uns das Ganze ganzheitlich an — auf fünf Säulen. Wir gucken nicht nur auf ein, zwei Blutwerte, sondern auf das ganze System."</p></div>
+      <div class="pillars">
+        <div class="pill"><b>1 · Ernährungsmedizin</b><span>Versorgung statt Verzicht</span></div>
+        <div class="pill"><b>2 · Darm &amp; Vitalstoffe</b><span>Das Fundament</span></div>
+        <div class="pill"><b>3 · Hormone &amp; Nervensystem</b><span>Die Steuer-Ebene</span></div>
+        <div class="pill"><b>4 · Mentale Gesundheit</b><span>Der Ursprung</span></div>
+        <div class="pill"><b>5 · Bewegung</b><span>Zum richtigen Zeitpunkt</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">5</div><div><div class="goal">Das Fundament</div><h3>Zuerst die Diagnostik — ohne sie nichts</h3></div></div>
+    <div class="body">
+      <p>Erst die Fragen stellen, dann die Diagnostik erklären. Vorher fragen:</p>
+      <ul><li>„Wie ist es um deine Darmgesundheit bestellt?"</li><li>„Wie ist dein Schlaf?"</li></ul>
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Bei uns wird ohne Diagnostik <b>gar nichts</b> gemacht. Wir starten mit einem großen Blutbild, und je nach Fall kommt eine Mikrobiom-/Darmanalyse dazu. Erst wenn wir wissen, was wirklich los ist, geht es los."</p></div>
+      <div class="why"><div class="lbl">Darm → Serotonin → Schlaf (merken!)</div><p>Im Darm wird aus Vitamin D und Mineralien <b>Serotonin</b> gebildet (Glücks-Hormon), und daraus später <b>Melatonin</b> (Schlaf-Hormon). Darum testen wir Darmzell-Gesundheit, Parasiten und die <b>Aufnahmefähigkeit</b> für Vitamine.</p></div>
+      <div class="why"><div class="lbl">Der „Aufnahme-Hook"</div><p>„Zeigt ein Bluttest einen Vitaminmangel, ist die billige Antwort: ‚Nimm ein Nahrungsergänzungsmittel.' Wir fragen aber: <b>Warum nimmt dein Körper es nicht von allein auf? Wie aufnahmefähig ist dein Darm?</b>" — Genau das ist das Ganzheitliche.</p></div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">6</div><div><div class="goal">Der Ursprung</div><h3>Auch mental ganzheitlich</h3></div></div>
+    <div class="body">
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Wir schauen auch: Was ist der eigentliche Ursprung deines Problems? Gibt es Gründe, warum du z. B. stressbedingt isst? Unser Ziel ist nicht, dass du ein paar Kilo abnimmst — sondern dass du es <b>langfristig und nachhaltig</b> löst."</p></div>
+    </div>
+  </div>
+
+  <div class="sec"><div class="k">Teil 3</div><h2 class="serif">Der Weg & die Begleitung</h2><div class="line"></div></div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">7</div><div><div class="goal">Der Start</div><h3>28-Tage-Challenge (Entgiftung)</h3></div></div>
+    <div class="body">
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Wir starten — <b>erst nachdem die Diagnostik da ist</b> — mit der 28-Tage-Challenge, der Entgiftung. Da nehmen die meisten schon die ersten fünf bis sechs Kilo ab. Danach geht es in den Ernährungsplan."</p></div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">8</div><div><div class="goal">Alltag</div><h3>Der Ernährungsmanager (App)</h3></div></div>
+    <div class="body">
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Das ist kein Plan mit drei festen Gerichten. Du bekommst eine ganze <b>Datenbank</b> in einer <b>App</b> — mit Zubereitungszeit, ausdruckbarer Einkaufsliste, vielen gesunden Snacks. Alle Möglichkeiten an einem Ort."</p></div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">9</div><div><div class="goal">In die Tiefe</div><h3>Coaching &amp; Gruppen-Calls</h3></div></div>
+    <div class="body">
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Dazu kommt das <b>Coaching</b> — eine eigene Stunde mit Hischam, in der wir wirklich in die Tiefe gehen: Was ist der Ursprung der ganzen Geschichte? Und dazu die festen <b>Gruppen-Calls</b>."</p></div>
+      <div class="calls">
+        <div class="row"><div class="d"><b>Dienstag</b><span>19:00</span></div><div class="t"><b>Ernährung &amp; Fragerunde</b><br><span>Fragen werden beantwortet + Input</span></div></div>
+        <div class="row"><div class="d"><b>Donnerstag</b><span>18:00</span></div><div class="t"><b>Mentale Gesundheit</b><br><span>Vortrag + Austausch in kleinen Gruppen</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">10</div><div><div class="goal">Flexibel</div><h3>Online (DACH-weit) oder vor Ort</h3></div></div>
+    <div class="body">
+      <div class="say"><div class="lbl">So sagst du's</div><p>„Das alles kannst du vor Ort bei uns machen — oder komplett online. Wir haben es so aufgebaut, dass es in ganz Deutschland, Österreich und der Schweiz funktioniert."</p></div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="head"><div class="num serif">11</div><div><div class="goal">Im Flow</div><h3>Den Preis nennen</h3></div></div>
+    <div class="body">
+      <p>Den Preis ruhig im Gesprächsfluss nennen — nicht abrupt. Danach <b>Stille aushalten</b>, nicht sofort rechtfertigen.</p>
+      <div class="why"><div class="lbl">⚠️ Mit Ramy abgleichen</div><p>Genaue Paketstruktur &amp; Anker (z. B. 4.997 € → 2.997 €, Raten, 3-/6-Monats-Einstieg) siehe <b>karim-produktwissen.md</b>. Der im Gespräch genannte „3-Monats-Einstieg ~2.000 €" ist noch final zu bestätigen.</p></div>
+    </div>
+  </div>
+
+  <div class="flags">
+    <h4>Rote Flags — wann NICHT verkauft wird</h4>
+    <p>Kein Angebot bei: schwerer Depression · akuter Essstörung · Sucht · akuter Lebenskrise · „nur aus Höflichkeit da" · echter Zahlungs-Notlage.<br>
+    <b>Nie:</b> konkretes Gewicht oder Heilung versprechen · diagnostizieren · Plätze-Druck · unterbrechen, wenn sie weint · vom Schmerz direkt zum Preis springen.</p>
+  </div>
+
+  <footer>
+    <span class="name">Zentrum für Gesundheitsmedizin</span><br>
+    Interner Gesprächs-Leitfaden für das Closer-Team · Stand 06/2026<br>
+    <span style="opacity:.75">Vertraulich — nicht an Kunden weitergeben.</span>
+  </footer>
+
+</div>
+</body>
+</html>
