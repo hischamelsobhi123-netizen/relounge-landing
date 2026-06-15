@@ -349,6 +349,51 @@
   .wwm .w p{font-size:13.5px;color:var(--muted)}
   .wwm .plus{display:none}
 
+  /* ---------- DIAGNOSTIK (visuell) ---------- */
+  .diag-intro{text-align:center;max-width:560px;margin:0 auto 22px;color:var(--muted);font-size:16px}
+  .diag-intro b{color:var(--navy2)}
+  .diag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .diag-card{background:var(--paper);border:1px solid var(--line-soft);border-radius:18px;overflow:hidden;
+    box-shadow:0 14px 40px -28px rgba(13,32,50,.45);transition:transform .25s ease, box-shadow .25s ease}
+  .diag-card:hover{transform:translateY(-3px);box-shadow:0 22px 50px -28px rgba(13,32,50,.55)}
+  .diag-vis{position:relative;height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden;
+    background:linear-gradient(160deg,#1a3a57 0%, var(--navy) 70%, #081521 100%)}
+  .diag-vis::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;
+    background:radial-gradient(circle, rgba(196,163,90,.22), transparent 65%)}
+  .dsvg{position:relative;z-index:1;width:92px;height:92px;stroke:var(--gold-2);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .dsvg .soft{stroke:rgba(217,189,130,.4)}
+  .dsvg .fillg{fill:rgba(196,163,90,.16);stroke:var(--gold-2)}
+  .scanline{position:absolute;left:8%;right:8%;height:2px;top:0;z-index:2;
+    background:linear-gradient(90deg,transparent,var(--gold-2),transparent);opacity:.0}
+  html.js .in .scanline{animation:scan 2.8s ease-in-out infinite}
+  @keyframes scan{0%{top:14%;opacity:0}20%{opacity:.9}50%{top:84%;opacity:.9}70%{opacity:0}100%{top:14%;opacity:0}}
+  .diag-body{padding:18px 18px 20px}
+  .diag-body .sub{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .diag-body h4{font-size:17px;color:var(--navy);font-weight:600;margin:3px 0 4px}
+  .diag-body .desc{font-size:13px;color:var(--muted);margin-bottom:8px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chips span{font-size:11px;color:var(--navy2);background:#f5f1e9;border:1px solid var(--line);border-radius:30px;padding:4px 10px;font-weight:500}
+  .balance{height:9px;border-radius:6px;margin:4px 0 6px;
+    background:linear-gradient(90deg,#2a9d8f,#9bbf6a 45%,#d8bd84 70%,#cf8f6e)}
+  .balance-l{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted)}
+
+  /* Flow: alles fließt zum Arzt */
+  .flow{display:flex;align-items:stretch;gap:10px;margin-top:18px;flex-wrap:nowrap}
+  .flow .src{flex:1 1 0;display:flex;flex-direction:column;gap:8px}
+  .flow .chip3{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;
+    font-size:12.5px;color:var(--navy2);font-weight:600;box-shadow:0 6px 18px -16px rgba(13,32,50,.5)}
+  .flow .arrow{display:flex;align-items:center;color:var(--gold);font-size:22px;font-weight:700}
+  .flow .hub{flex:1.1 1 0;background:linear-gradient(160deg,#1a3a57,var(--navy));color:#fff;border-radius:16px;
+    padding:18px 16px;text-align:center;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  .flow .hub::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .flow .hub .ic{width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);margin:0 auto 8px;
+    display:flex;align-items:center;justify-content:center}
+  .flow .hub .ic svg{width:22px;height:22px;stroke:var(--gold-2);fill:none;stroke-width:1.7}
+  .flow .hub b{font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:17px;display:block}
+  .flow .hub span{font-size:12px;color:rgba(255,255,255,.8)}
+  .diag-note{text-align:center;font-size:14px;color:var(--muted);margin-top:16px;font-style:italic}
+  .diag-note b{color:var(--navy2);font-style:normal}
+
   /* ---------- FOOTER ---------- */
   footer{text-align:center;color:var(--muted);font-size:12.5px;margin:40px 0 10px;line-height:1.7}
   footer .name{color:var(--navy);font-weight:600;font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:16px}
@@ -381,6 +426,12 @@
     .stat .v{font-size:26px}
     .holistic{padding:32px 18px 30px}
     .app-band{padding:34px 18px 30px}
+    .modules{grid-template-columns:1fr}
+    .diag-grid{grid-template-columns:1fr}
+    .flow{flex-direction:column}
+    .flow .src{flex-direction:row;flex:none}
+    .flow .hub{flex:none}
+    .flow .arrow{justify-content:center;transform:rotate(90deg)}
   }
 </style>
 <script>document.documentElement.classList.add('js');</script>
@@ -536,6 +587,95 @@
       </div>
     </div>
   </div>
+
+  <div class="sec">
+    <div class="k">Das Fundament</div>
+    <h2 class="serif">Diagnostik, die <em style="font-style:italic;color:var(--gold)">tief</em> blickt</h2>
+    <div class="line"></div>
+  </div>
+
+  <p class="diag-intro">Bevor wir starten, <b>messen</b> wir — wir raten nicht. Und das Besondere: Alle Werte ergeben zusammen <b>ein</b> Bild, über das der Arzt persönlich schaut.</p>
+
+  <div class="diag-grid">
+
+    <div class="diag-card reveal">
+      <div class="diag-vis">
+        <div class="scanline"></div>
+        <svg class="dsvg" viewBox="0 0 92 92" aria-hidden="true">
+          <path class="fillg" d="M46 9 C 60 34 72 45 72 60 A26 26 0 1 1 20 60 C20 45 32 34 46 9 Z"/>
+          <path class="soft" d="M24 60 h9 l4 -12 6 24 5 -16 4 8 h11"/>
+        </svg>
+      </div>
+      <div class="diag-body">
+        <div class="sub">Großes Blutbild</div>
+        <h4>Über 25 Werte auf einen Blick</h4>
+        <div class="desc">Fünf Achsen, die zusammen zeigen, was in Ihrem Körper wirklich los ist.</div>
+        <div class="chips">
+          <span>Stresshormon · Cortisol</span><span>Schilddrüse · TSH/fT3/fT4</span>
+          <span>Blutzucker · HbA1c</span><span>Vitalstoffe · D, B12, Eisen…</span>
+          <span>Entzündung · CRP</span><span>Leberwerte</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-card reveal">
+      <div class="diag-vis">
+        <div class="scanline"></div>
+        <svg class="dsvg" viewBox="0 0 92 92" aria-hidden="true">
+          <path d="M26 16 h30 a11 11 0 0 1 0 22 H32 a11 11 0 0 0 0 22 h30 a11 11 0 0 1 0 16 H26"/>
+          <circle class="fillg" cx="40" cy="27" r="3.2"/><circle class="fillg" cx="50" cy="49" r="3.2"/><circle class="fillg" cx="44" cy="68" r="3.2"/>
+        </svg>
+      </div>
+      <div class="diag-body">
+        <div class="sub">Darm-Analyse</div>
+        <h4>Der Darm — Ihr Fundament</h4>
+        <div class="desc">Wir sehen, was im Verborgenen passiert — und wie gut Ihr Körper überhaupt aufnimmt.</div>
+        <div class="balance"></div>
+        <div class="balance-l"><span>Gesunde Flora</span><span>Dysbalance</span></div>
+        <div class="chips">
+          <span>Mikrobiom-Balance</span><span>Parasiten</span><span>Pilze</span>
+          <span>Leaky Gut</span><span>Calprotektin</span><span>Aufnahmefähigkeit</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-card reveal">
+      <div class="diag-vis">
+        <div class="scanline"></div>
+        <svg class="dsvg" viewBox="0 0 92 92" aria-hidden="true">
+          <circle class="soft" cx="22" cy="30" r="7"/>
+          <path class="soft" d="M70 22 a9 9 0 1 0 4 13"/>
+          <path d="M12 66 C 24 26 36 24 46 42 S 68 72 82 60"/>
+          <path class="soft" d="M12 74 h70"/>
+        </svg>
+      </div>
+      <div class="diag-body">
+        <div class="sub">Hormon-Speicheltest</div>
+        <h4>Ihr Hormon-Rhythmus</h4>
+        <div class="desc">Wie Ihre Hormone über den Tag schwingen — der Schlüssel zu Energie, Schlaf und Gewicht.</div>
+        <div class="chips">
+          <span>Cortisol-Tagesprofil</span><span>Stress-Achse</span>
+          <span>Geschlechtshormone</span><span>Schlaf-Rhythmus</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="flow reveal">
+    <div class="src">
+      <div class="chip3">🩸 Blutbild</div>
+      <div class="chip3">🌿 Darm-Analyse</div>
+      <div class="chip3">⚖️ Hormon-Test</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="hub">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 3v6a4 4 0 0 0 8 0V3"/><path d="M9 17a4 4 0 0 0 8 0v-2"/><circle cx="18" cy="11" r="2.2"/></svg></div>
+      <b>Der Arzt fügt alles zusammen</b>
+      <span>Aus dem Gesamtbild entsteht Ihr individueller Plan — kein Standard.</span>
+    </div>
+  </div>
+  <p class="diag-note">Genau das ist der Unterschied: Wir behandeln nicht einen Wert — wir verstehen das <b>ganze System</b>.</p>
 
   <div class="sec">
     <div class="k">Der Start ins Programm</div>
