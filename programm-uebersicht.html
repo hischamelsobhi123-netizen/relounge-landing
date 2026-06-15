@@ -405,15 +405,20 @@
   .diag-note b{color:var(--navy2);font-style:normal}
 
   /* ---------- MEHR HIGHTECH-EFFEKTE ---------- */
-  /* breites Scroll-Reveal (alles gleitet rein) */
+  /* breites Scroll-Reveal: Dinge schweben rein (Blur-to-Focus + Richtungen) */
   html.js .step, html.js .arzt-card, html.js .team-banner, html.js .stat,
   html.js .diag-card, html.js .flow, html.js .reset-card, html.js .wwm .w,
   html.js .em-row, html.js .em-gallery figure, html.js .care,
   html.js .calls, html.js .closing, html.js .holistic, html.js .app-band{
-    opacity:0; transform:translateY(26px);
-    transition:opacity .75s ease, transform .75s cubic-bezier(.22,.61,.36,1);
+    opacity:0; transform:translateY(48px); filter:blur(8px);
+    transition:opacity .9s ease, transform 1.05s cubic-bezier(.16,1,.3,1), filter .9s ease;
   }
-  html.js .in{opacity:1 !important; transform:none !important}
+  /* Richtungs-Varianten (nur solange versteckt) */
+  html.js .rv-l:not(.in){transform:translateX(-58px)}
+  html.js .rv-r:not(.in){transform:translateX(58px)}
+  html.js .rv-zoom:not(.in){transform:scale(.84)}
+  html.js .rv-rise:not(.in){transform:translateY(68px) scale(.97)}
+  html.js .in{opacity:1 !important; transform:none !important; filter:none !important}
 
   /* Hero: Gold-Schimmer auf den Kursiv-Wörtern */
   header h1 em{background:linear-gradient(100deg,var(--gold-2) 18%,#f6e8c2 50%,var(--gold-2) 82%);
@@ -455,7 +460,7 @@
     header h1 em{-webkit-text-fill-color:var(--gold-2);color:var(--gold-2)}
     html.js .step, html.js .arzt-card, html.js .team-banner, html.js .stat, html.js .diag-card, html.js .flow,
     html.js .reset-card, html.js .wwm .w, html.js .em-row, html.js .em-gallery figure, html.js .care,
-    html.js .calls, html.js .closing, html.js .holistic, html.js .app-band{opacity:1;transform:none;transition:none}
+    html.js .calls, html.js .closing, html.js .holistic, html.js .app-band{opacity:1;transform:none;filter:none;transition:none}
   }
 
   /* ---------- FOOTER ---------- */
@@ -1055,6 +1060,10 @@
       [].slice.call(c.children).forEach(function(ch,idx){ ch.style.transitionDelay=(Math.min(idx,6)*80)+'ms'; });
     });
   });
+  // Richtungs-Varianten fürs "Reinschweben"
+  document.querySelectorAll('.em-row').forEach(function(el){ el.classList.add(el.classList.contains('rev')?'rv-r':'rv-l'); });
+  document.querySelectorAll('.diag-card, .wwm .w, .stat, .care, .em-gallery figure').forEach(function(el){ el.classList.add('rv-zoom'); });
+  document.querySelectorAll('.holistic, .app-band, .calls, .arzt-card, .team-banner, .reset-card, .flow, .closing').forEach(function(el){ el.classList.add('rv-rise'); });
   function show(e){e.classList.add('in'); if(e.classList && e.classList.contains('holistic')) startCycle();}
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
