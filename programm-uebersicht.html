@@ -349,6 +349,32 @@
   .wwm .w p{font-size:13.5px;color:var(--muted)}
   .wwm .plus{display:none}
 
+  /* ---------- WAS ES IST / NICHT IST ---------- */
+  .vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+  .vs-col{border-radius:18px;padding:24px 22px}
+  .vs-no{background:#f7f1ef;border:1px solid #ecdcd6}
+  .vs-yes{background:#fff;border:1px solid var(--gold);box-shadow:0 18px 44px -26px rgba(196,163,90,.55)}
+  .vs-col .lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+  .vs-no .lbl{color:#b5736a}
+  .vs-yes .lbl{color:var(--gold)}
+  .vs-col h4{font-size:17px;color:var(--navy);font-weight:600;margin:4px 0 12px}
+  .vs-col ul{list-style:none;margin:0;padding:0}
+  .vs-col li{font-size:13.5px;color:var(--ink);padding:8px 0 8px 26px;position:relative;border-top:1px solid rgba(13,32,50,.06)}
+  .vs-col li:first-of-type{border-top:none}
+  .vs-no li{color:var(--muted)}
+  .vs-no li::before{content:"✕";position:absolute;left:2px;top:8px;color:#cf9089;font-weight:700}
+  .vs-yes li::before{content:"";position:absolute;left:3px;top:13px;width:11px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+
+  /* Alternative-Banner (WhatsApp / Essensprogramm) */
+  .alt-note{margin-top:18px;background:linear-gradient(160deg,#1a3a57,var(--navy));color:#fff;border-radius:16px;
+    padding:20px 24px;display:flex;gap:18px;align-items:center;position:relative;overflow:hidden}
+  .alt-note::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .alt-note .ic{flex:0 0 auto;width:46px;height:46px;border-radius:12px;border:1px solid rgba(196,163,90,.4);
+    background:rgba(196,163,90,.12);display:flex;align-items:center;justify-content:center}
+  .alt-note .ic svg{width:24px;height:24px;stroke:var(--gold-2);fill:none;stroke-width:1.7}
+  .alt-note b{display:block;font-size:15.5px;margin-bottom:2px}
+  .alt-note span{font-size:13.5px;color:rgba(255,255,255,.8)}
+
   /* ---------- STICKY SPRUNG-MENÜ ---------- */
   .navbar{position:fixed;top:0;left:0;right:0;z-index:150;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
     padding:10px 12px;background:rgba(13,32,50,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
@@ -497,6 +523,8 @@
     .app-band{padding:34px 18px 30px}
     .modules{grid-template-columns:1fr}
     .diag-grid{grid-template-columns:1fr}
+    .vs-grid{grid-template-columns:1fr}
+    .alt-note{flex-direction:column;text-align:center;gap:12px}
     .flow{flex-direction:column}
     .flow .src{flex-direction:row;flex:none}
     .flow .hub{flex:none}
@@ -874,6 +902,30 @@
 
   <p class="em-intro">Kein starrer Plan mit drei Gerichten. Sie bekommen eine eigene <b>App</b> mit einer ganzen Welt an Möglichkeiten — Ihr Plan, Ihre Rezepte, Ihre Einkaufsliste. Alles auf <b>Sie</b> eingestellt.</p>
 
+  <div class="vs-grid">
+    <div class="vs-col vs-no reveal rv-l">
+      <div class="lbl">Das ist es NICHT</div>
+      <h4>Kein 08/15-Diät-Tool</h4>
+      <ul>
+        <li>Kein starrer Plan mit immer denselben 3 Gerichten</li>
+        <li>Kein Kalorienzählen bis zur letzten Ziffer</li>
+        <li>Keine Verbotsliste, kein Hungern</li>
+        <li>Nicht „für alle gleich"</li>
+      </ul>
+    </div>
+    <div class="vs-col vs-yes reveal rv-r">
+      <div class="lbl">Das kann er WIRKLICH</div>
+      <h4>Ihr persönlicher Ernährungs-Assistent</h4>
+      <ul>
+        <li>Hunderte Rezepte mit Foto — riesige Auswahl</li>
+        <li>Berücksichtigt Ihre <b>Unverträglichkeiten</b> &amp; Vorlieben</li>
+        <li>Automatische <b>Einkaufsliste</b> zum Abhaken &amp; Download</li>
+        <li>Zubereitungszeit, Portionen &amp; gesunde Snacks</li>
+        <li>Ein Tagesplan, der zu <b>Ihnen</b> passt — auf jedem Handy</li>
+      </ul>
+    </div>
+  </div>
+
   <div class="em-row">
     <div class="device">
       <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
@@ -962,6 +1014,14 @@
     <span><b>·</b>Gesunde Snacks</span>
     <span><b>·</b>Unverträglichkeiten berücksichtigt</span>
     <span><b>·</b>Auf jedem Handy</span>
+  </div>
+
+  <div class="alt-note reveal rv-rise">
+    <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-11.7 7.7L3 21l1.8-6.3A8.4 8.4 0 1 1 21 11.5Z"/></svg></div>
+    <div>
+      <b>Lieber ohne App? Geht auch.</b>
+      <span>Sie können uns auch einfach Fotos Ihres Essens per WhatsApp schicken — oder unser persönlich begleitetes Essensprogramm nutzen. Sie entscheiden, was zu Ihnen passt.</span>
+    </div>
   </div>
 
   <div class="sec" id="s-begleitung">
