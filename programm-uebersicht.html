@@ -489,6 +489,9 @@
     html.js .calls, html.js .closing, html.js .holistic, html.js .app-band{opacity:1;transform:none;filter:none;transition:none}
   }
 
+  /* Bilder: feste Maße nur zur Platz-Reservierung (kein Springen), Anzeige skaliert */
+  .device img, .em-gallery img, .arzt-photo img, .team-banner img{height:auto}
+
   /* ---------- FOOTER ---------- */
   footer{text-align:center;color:var(--muted);font-size:12.5px;margin:40px 0 10px;line-height:1.7}
   footer .name{color:var(--navy);font-weight:600;font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:16px}
@@ -581,7 +584,7 @@
 
   <div class="arzt-card reveal">
     <div class="arzt-photo">
-      <img src="assets-enm/arzt-hischam.webp" alt="Hischam El-Sobhi, Facharzt" loading="lazy">
+      <img src="assets-enm/arzt-hischam.webp" width="640" height="800" decoding="async" alt="Hischam El-Sobhi, Facharzt" loading="lazy">
       <span class="badge"><b>Facharzt</b> · approbiert seit 1998</span>
     </div>
     <div class="arzt-txt">
@@ -604,7 +607,7 @@
   </div>
 
   <div class="team-banner reveal">
-    <img src="assets-enm/team.webp" alt="Das Team im Zentrum für Gesundheitsmedizin" loading="lazy">
+    <img src="assets-enm/team.webp" width="900" height="599" decoding="async" alt="Das Team im Zentrum für Gesundheitsmedizin" loading="lazy">
     <div class="cap"><b>Ein eingespieltes Team</b>Hischam El-Sobhi mit dem Team des Zentrums für Gesundheitsmedizin.</div>
   </div>
 
@@ -929,7 +932,7 @@
   <div class="em-row">
     <div class="device">
       <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
-        <img src="assets-enm/ernaehrungsmanager-rezeptuebersicht.webp" alt="Rezept-Datenbank im Ernährungsmanager" loading="lazy"></div>
+        <img src="assets-enm/ernaehrungsmanager-rezeptuebersicht.webp" width="1000" height="530" decoding="async" alt="Rezept-Datenbank im Ernährungsmanager" loading="lazy"></div>
       <div class="cap">Hunderte Rezepte — mit Foto &amp; Suche</div>
     </div>
     <div class="txt">
@@ -947,7 +950,7 @@
   <div class="em-row rev">
     <div class="device">
       <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
-        <img src="assets-enm/ernaehrungsmanager-deckblatt-2.webp" alt="Rezept Schritt für Schritt" loading="lazy"></div>
+        <img src="assets-enm/ernaehrungsmanager-deckblatt-2.webp" width="1000" height="619" decoding="async" alt="Rezept Schritt für Schritt" loading="lazy"></div>
       <div class="cap">Jedes Rezept Schritt für Schritt</div>
     </div>
     <div class="txt">
@@ -965,7 +968,7 @@
   <div class="em-row">
     <div class="device">
       <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
-        <img src="assets-enm/ernaehrungsmanager-einkaufliste-1.webp" alt="Automatische Einkaufsliste" loading="lazy"></div>
+        <img src="assets-enm/ernaehrungsmanager-einkaufliste-1.webp" width="1000" height="828" decoding="async" alt="Automatische Einkaufsliste" loading="lazy"></div>
       <div class="cap">Einkaufsliste — automatisch erstellt</div>
     </div>
     <div class="txt">
@@ -983,7 +986,7 @@
   <div class="em-row rev">
     <div class="device">
       <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
-        <img src="assets-enm/ernaehrungsmanager-profil-nm-ausschluss.webp" alt="Auf Unverträglichkeiten eingestellt" loading="lazy"></div>
+        <img src="assets-enm/ernaehrungsmanager-profil-nm-ausschluss.webp" width="1000" height="474" decoding="async" alt="Auf Unverträglichkeiten eingestellt" loading="lazy"></div>
       <div class="cap">Ganz auf Sie eingestellt</div>
     </div>
     <div class="txt">
@@ -999,9 +1002,9 @@
   </div>
 
   <div class="em-gallery">
-    <figure><img src="assets-enm/ernaehrungsmanager-deckblatt-1.webp" alt="Tagesplan" loading="lazy"><figcaption>Ihr Tagesplan</figcaption></figure>
-    <figure><img src="assets-enm/ernaehrungsmanager-nahrungsmittelauswahl.webp" alt="Gerichte-Auswahl" loading="lazy"><figcaption>Große Gerichte-Auswahl</figcaption></figure>
-    <figure><img src="assets-enm/ernaehrungsmanager-einkaufl-download.webp" alt="Einkaufsliste Download" loading="lazy"><figcaption>Einkaufsliste zum Download</figcaption></figure>
+    <figure><img src="assets-enm/ernaehrungsmanager-deckblatt-1.webp" width="1000" height="751" decoding="async" alt="Tagesplan" loading="lazy"><figcaption>Ihr Tagesplan</figcaption></figure>
+    <figure><img src="assets-enm/ernaehrungsmanager-nahrungsmittelauswahl.webp" width="1000" height="524" decoding="async" alt="Gerichte-Auswahl" loading="lazy"><figcaption>Große Gerichte-Auswahl</figcaption></figure>
+    <figure><img src="assets-enm/ernaehrungsmanager-einkaufl-download.webp" width="1000" height="795" decoding="async" alt="Einkaufsliste Download" loading="lazy"><figcaption>Einkaufsliste zum Download</figcaption></figure>
   </div>
 
   <div class="em-chips">
@@ -1035,7 +1038,7 @@
   <!-- 1:1 Coaching -->
   <div class="arzt-card reveal">
     <div class="arzt-photo">
-      <img src="assets-enm/hischam-portrait.webp" alt="1:1-Coaching mit Hischam El-Sobhi" loading="lazy">
+      <img src="assets-enm/hischam-portrait.webp" width="320" height="427" decoding="async" alt="1:1-Coaching mit Hischam El-Sobhi" loading="lazy">
       <span class="badge"><b>1:1</b> · online &amp; vor Ort</span>
     </div>
     <div class="arzt-txt">
