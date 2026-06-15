@@ -166,11 +166,51 @@
   .cta p{font-size:15.5px;color:var(--ink);margin-bottom:4px}
   .cta .small{font-size:13.5px;color:var(--muted)}
 
+  /* ---------- ERNÄHRUNGSMANAGER SHOWCASE ---------- */
+  .em-intro{text-align:center;max-width:600px;margin:0 auto 26px;color:var(--muted);font-size:16px}
+  .em-intro b{color:var(--navy2)}
+  .em-row{display:flex;gap:28px;align-items:center;margin:30px 0;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:20px;
+    padding:26px;box-shadow:0 14px 40px -28px rgba(13,32,50,.45)}
+  .em-row.rev{flex-direction:row-reverse}
+  .em-row .txt{flex:1 1 0;min-width:0}
+  .em-row .txt .tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .em-row .txt h3{font-size:21px;color:var(--navy);font-weight:600;margin:6px 0 8px;letter-spacing:.2px}
+  .em-row .txt p{font-size:14.5px;color:var(--muted)}
+  .em-row .txt ul{margin:10px 0 0;padding:0;list-style:none}
+  .em-row .txt li{font-size:14px;color:var(--ink);padding:4px 0 4px 24px;position:relative}
+  .em-row .txt li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:6px;
+    border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+  /* device frame */
+  .device{flex:0 0 46%;max-width:300px}
+  .device .frame{background:#0d2032;border-radius:22px;padding:9px;box-shadow:0 20px 50px -22px rgba(13,32,50,.55)}
+  .device .bar{height:16px;display:flex;align-items:center;justify-content:center;gap:5px;margin-bottom:6px}
+  .device .bar i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.35);display:block}
+  .device img{width:100%;display:block;border-radius:13px;background:#fff}
+  .device .cap{text-align:center;font-size:12.5px;color:var(--muted);margin-top:10px}
+
+  /* gallery strip */
+  .em-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+  .em-gallery figure{margin:0;background:var(--paper);border:1px solid var(--line-soft);border-radius:14px;
+    overflow:hidden;box-shadow:0 10px 30px -26px rgba(13,32,50,.4)}
+  .em-gallery img{width:100%;display:block;border-bottom:1px solid var(--line-soft)}
+  .em-gallery figcaption{font-size:12px;color:var(--muted);padding:8px 10px;text-align:center}
+
+  /* capability chips */
+  .em-chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:26px}
+  .em-chips span{font-size:13px;color:var(--navy2);background:var(--paper);border:1px solid var(--line);
+    border-radius:30px;padding:7px 15px;font-weight:500;box-shadow:0 4px 14px -10px rgba(13,32,50,.4)}
+  .em-chips span b{color:var(--gold);font-weight:700;margin-right:3px}
+
   /* ---------- FOOTER ---------- */
   footer{text-align:center;color:var(--muted);font-size:12.5px;margin:40px 0 10px;line-height:1.7}
   footer .name{color:var(--navy);font-weight:600;font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-size:16px}
 
   @media(max-width:560px){
+    .em-row{flex-direction:column;gap:18px;padding:20px}
+    .em-row.rev{flex-direction:column}
+    .device{flex-basis:auto;max-width:260px;width:100%;margin:0 auto}
+    .em-gallery{grid-template-columns:1fr 1fr;gap:10px}
     header{padding:48px 20px 56px}
     header h1{font-size:29px}
     .sec h2{font-size:25px}
@@ -280,6 +320,104 @@
       <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16l3.5-4 3 2.5L20 8"/></svg></div>
       <h4>Begleitung über Monate</h4><p>Struktur &amp; Sicherheit — nicht nur ein kurzer Plan.</p>
     </div>
+  </div>
+
+  <div class="sec">
+    <div class="k">Ihr Alltags-Begleiter</div>
+    <h2 class="serif">Der Ernährungsmanager</h2>
+    <div class="line"></div>
+  </div>
+
+  <p class="em-intro">Kein starrer Plan mit drei Gerichten. Sie bekommen eine eigene <b>App</b> mit einer ganzen Welt an Möglichkeiten — Ihr Plan, Ihre Rezepte, Ihre Einkaufsliste. Alles auf <b>Sie</b> eingestellt.</p>
+
+  <div class="em-row">
+    <div class="device">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
+        <img src="assets-enm/ernaehrungsmanager-rezeptuebersicht.webp" alt="Rezept-Datenbank im Ernährungsmanager" loading="lazy"></div>
+      <div class="cap">Hunderte Rezepte — mit Foto &amp; Suche</div>
+    </div>
+    <div class="txt">
+      <div class="tag">Vielfalt statt Verzicht</div>
+      <h3>Eine riesige Rezept-Datenbank</h3>
+      <p>Statt immer dasselbe: eine große Auswahl an Gerichten, die zu Ihrem Plan passen — jederzeit durchsuchbar.</p>
+      <ul>
+        <li>Rezepte, Zutaten &amp; Favoriten an einem Ort</li>
+        <li>Eigene „Coach-Rezepte" von uns</li>
+        <li>Filter nach Mahlzeit &amp; Zubereitungszeit</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="em-row rev">
+    <div class="device">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
+        <img src="assets-enm/ernaehrungsmanager-deckblatt-2.webp" alt="Rezept Schritt für Schritt" loading="lazy"></div>
+      <div class="cap">Jedes Rezept Schritt für Schritt</div>
+    </div>
+    <div class="txt">
+      <div class="tag">Einfach umsetzbar</div>
+      <h3>Klar erklärt — in Minuten gekocht</h3>
+      <p>Zu jedem Gericht alles, was Sie brauchen: Zutaten, Mengen, Zubereitung und die Zeit, die es dauert.</p>
+      <ul>
+        <li>Zubereitungszeit auf einen Blick</li>
+        <li>Portionsgröße anpassbar</li>
+        <li>Auch viele gesunde Snacks</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="em-row">
+    <div class="device">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
+        <img src="assets-enm/ernaehrungsmanager-einkaufliste-1.webp" alt="Automatische Einkaufsliste" loading="lazy"></div>
+      <div class="cap">Einkaufsliste — automatisch erstellt</div>
+    </div>
+    <div class="txt">
+      <div class="tag">Spart Zeit</div>
+      <h3>Ihre Einkaufsliste auf Knopfdruck</h3>
+      <p>Wählen Sie Ihre Mahlzeiten — die App erstellt daraus die fertige Einkaufsliste, sauber nach Kategorien sortiert.</p>
+      <ul>
+        <li>Einfach abhaken beim Einkaufen</li>
+        <li>Nach Fleisch, Obst &amp; Gemüse usw. sortiert</li>
+        <li>Als Liste zum Herunterladen &amp; Ausdrucken</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="em-row rev">
+    <div class="device">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
+        <img src="assets-enm/ernaehrungsmanager-profil-nm-ausschluss.webp" alt="Auf Unverträglichkeiten eingestellt" loading="lazy"></div>
+      <div class="cap">Ganz auf Sie eingestellt</div>
+    </div>
+    <div class="txt">
+      <div class="tag">Individuell</div>
+      <h3>Passt sich Ihnen an</h3>
+      <p>Der Plan berücksichtigt, was Sie nicht vertragen oder nicht mögen — und Ihre Lebenssituation.</p>
+      <ul>
+        <li>Unverträglichkeiten &amp; Lebensmittel-Ausschluss</li>
+        <li>Ziel, Kochzeit &amp; Budget</li>
+        <li>Fortschritt im Tracking sichtbar</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="em-gallery">
+    <figure><img src="assets-enm/ernaehrungsmanager-deckblatt-1.webp" alt="Tagesplan" loading="lazy"><figcaption>Ihr Tagesplan</figcaption></figure>
+    <figure><img src="assets-enm/ernaehrungsmanager-nahrungsmittelauswahl.webp" alt="Gerichte-Auswahl" loading="lazy"><figcaption>Große Gerichte-Auswahl</figcaption></figure>
+    <figure><img src="assets-enm/ernaehrungsmanager-einkaufl-download.webp" alt="Einkaufsliste Download" loading="lazy"><figcaption>Einkaufsliste zum Download</figcaption></figure>
+  </div>
+
+  <div class="em-chips">
+    <span><b>·</b>Persönlicher Tagesplan</span>
+    <span><b>·</b>Hunderte Rezepte</span>
+    <span><b>·</b>Automatische Einkaufsliste</span>
+    <span><b>·</b>Zubereitungszeit</span>
+    <span><b>·</b>Favoriten</span>
+    <span><b>·</b>Fortschritts-Tracking</span>
+    <span><b>·</b>Gesunde Snacks</span>
+    <span><b>·</b>Unverträglichkeiten berücksichtigt</span>
+    <span><b>·</b>Auf jedem Handy</span>
   </div>
 
   <div class="sec">
