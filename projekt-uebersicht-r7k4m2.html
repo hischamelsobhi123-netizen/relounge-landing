@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projekt-Übersicht — Ramy</title>
+<style>
+  :root{
+    --ink:#1b2330; --soft:#465160; --muted:#7b8694; --line:#e2e7ee;
+    --bg:#eef1f5; --paper:#fff; --head:#222834;
+    --gold:#c69a32; --gold-soft:#f5e9c8;
+    --karim:#2f7dd1; --hisham:#2e9e6b; --closer:#b8762a;
+    --st-vorber:#e6a019; --st-laeuft:#2e9e6b; --st-idee:#8a94a2; --st-blockiert:#e0564f; --st-paused:#64748b;
+    --shadow:0 8px 26px rgba(27,35,48,.09);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:900px;margin:0 auto;padding:26px 18px 80px}
+  header.top{text-align:center;margin-bottom:8px}
+  header.top h1{font-size:25px;margin:0 0 4px;font-weight:800;letter-spacing:.2px}
+  header.top p{color:var(--muted);margin:0;font-size:13.5px}
+  .legend{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0 22px}
+  .lg{font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;color:#fff}
+  .lg.v{background:var(--st-vorber)} .lg.l{background:var(--st-laeuft)} .lg.i{background:var(--st-idee)} .lg.b{background:var(--st-blockiert)} .lg.p{background:var(--st-paused)}
+
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:0;margin:0 0 22px;overflow:hidden}
+  .card-top{display:flex;align-items:flex-start;gap:12px;padding:18px 22px 14px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fafbfc,#fff)}
+  .nr{flex:none;width:40px;height:40px;border-radius:11px;background:var(--head);color:#fff;display:grid;place-items:center;font-weight:800;font-size:16px}
+  .card-top h2{font-size:18.5px;margin:0;font-weight:760;flex:1;line-height:1.3}
+  .badge{flex:none;font-size:11.5px;font-weight:800;padding:5px 12px;border-radius:999px;color:#fff;white-space:nowrap;margin-top:2px}
+  .badge.v{background:var(--st-vorber)} .badge.l{background:var(--st-laeuft)} .badge.i{background:var(--st-idee)} .badge.b{background:var(--st-blockiert)} .badge.p{background:var(--st-paused)}
+
+  .meta{display:flex;flex-wrap:wrap;gap:8px;padding:13px 22px;background:#f7f9fb;border-bottom:1px solid var(--line)}
+  .m{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:9px;padding:6px 13px;min-width:90px}
+  .m i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+  .m b{font-size:13.5px;font-weight:750;margin-top:1px}
+  .m.prio b{color:var(--gold)}
+  .body{padding:6px 22px 20px}
+  .sec{padding:14px 0;border-top:1px solid #eef1f5}
+  .sec:first-child{border-top:none}
+  .sec h3{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;display:flex;align-items:center;gap:7px}
+  .sec p{margin:0;color:var(--soft);font-size:14.5px}
+
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px}
+  .flow .step{background:#f1f4f8;border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:12.5px;font-weight:600;color:var(--soft)}
+  .flow .arr{color:var(--muted);font-weight:800}
+
+  .people{display:flex;flex-direction:column;gap:9px}
+  .person{display:flex;align-items:flex-start;gap:11px}
+  .ava{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px}
+  .person .pn{font-weight:750;font-size:14.5px}
+  .person .pr{color:var(--muted);font-size:13.5px}
+
+  .steps{list-style:none;margin:0;padding:0;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding:11px 12px 11px 46px;border:1px solid var(--line);border-radius:11px;margin-bottom:9px;background:#fafbfc;font-size:14px;color:var(--ink)}
+  .steps li:before{content:counter(s);position:absolute;left:11px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+  .steps li b{font-weight:750}
+  .steps li small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px;font-weight:500}
+  .closing-note{margin-top:12px;font-size:12.5px;color:var(--muted);font-style:italic}
+  .card.dim{opacity:.86}
+  .card.dim .nr{background:#9aa3af}
+  .sec.todo{color:var(--muted);font-size:13.5px;font-style:italic;padding:14px 0}
+  .blocker{background:#fdecea;border:1px solid #f3c4be;border-left:5px solid var(--st-blockiert);border-radius:10px;padding:12px 15px;font-size:14px;color:#8f352c;line-height:1.5}
+  .bl-lbl{display:block;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--st-blockiert);margin-bottom:4px}
+
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:14px}
+  @media(max-width:560px){.card-top{flex-wrap:wrap}.badge{order:3}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>📋 Projekt-Übersicht — Ramy</h1>
+    <p>Jedes Projekt: <b>Was · Wer · Stand · Nächste Schritte.</b> · Stand 18.06.2026 · Ziel: bis Workshop 4./5. Juli</p>
+  </header>
+  <div class="legend">
+    <span class="lg i">💡 Idee</span>
+    <span class="lg v">🛠️ In Vorbereitung</span>
+    <span class="lg l">✅ Läuft</span>
+    <span class="lg b">⛔ Blockiert</span>
+    <span class="lg p">⏸️ Stillgesetzt</span>
+  </div>
+
+  <div id="projects"></div>
+
+  <footer>Lebende Übersicht — wird mit jedem diktierten Projekt ergänzt.</footer>
+</div>
+
+<script>
+const STATUS={idee:['i','💡 Idee'],vorber:['v','🛠️ In Vorbereitung'],laeuft:['l','✅ Läuft'],blockiert:['b','⛔ Blockiert'],pausiert:['p','⏸️ Stillgesetzt']};
+const ROLECOLOR={Karim:'var(--karim)',Hisham:'var(--hisham)',Closing:'var(--closer)'};
+function initials(n){return n.split(/[\s\/]+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();}
+
+const PROJEKTE=[
+{
+  nr:12,
+  titel:'Vertriebs-System — Anruf → medizinisches Gespräch → Closing',
+  status:'vorber',
+  prioritaet:null,                 // 1–10 — wird am Ende vergeben
+  start:'Jetzt (Juni)',
+  fertig:'bis Workshop 4./5. Juli',
+  aufwand:null,                    // klein / mittel / groß — von Ramy bestätigen
+  was:'Workshop-Teilnehmer systematisch zu Kunden machen. Karim ruft die Angemeldeten an, macht sie warm, stellt das ganze Angebot + die Tiefe dar und qualifiziert vor (braucht die Person eine ärztliche Begleitung?). Danach führt Hisham das medizinische Gespräch, und Ramy/Emine/Patricia closen am Ende.',
+  flow:['Karim ruft an + qualifiziert','Hisham: medizinisches Gespräch','Ramy/Emine/Patricia: Closing'],
+  beteiligte:[
+    {name:'Karim',rolle:'Qualifikationsanrufe: ruft Workshop-Angemeldete an, setzt Termine, macht warm, stellt Angebot + Tiefe dar, qualifiziert vor.',color:'var(--karim)'},
+    {name:'Hisham',rolle:'Medizinisches Gespräch: erklärt anhand Krankheiten & Medikamenten, welches Programm + welche Begleitung sinnvoll ist.',color:'var(--hisham)'},
+    {name:'Ramy / Emine / Patricia',rolle:'Closing: machen am Ende den Abschluss.',color:'var(--closer)'}
+  ],
+  stand:'Das Closing über Ramy/Emine/Patricia läuft bereits gut, und Karim kann das Produkt schon ordentlich darstellen. Die Kette ist aber noch nicht als festes System eingebunden — es bleibt gerade an Karims Vorbereitung und der Zeit-Abstimmung mit Hisham hängen.',
+  blocker:'Karim ist noch nicht startklar — ihm fehlen das vertiefte Produktwissen und die Präsentation, und die Gesprächszeiten mit Hisham sind noch nicht abgestimmt.',
+  schritte:[
+    {t:'Karim verbessert sein Produktwissen',s:'Wir geben ihm eine allgemeine Erklärung von allem (Daten/Unterlagen) — er arbeitet sich ein.'},
+    {t:'Karim erstellt sich die Präsentation vom ganzen Ablauf selbst',s:'Wir liefern die Daten, er baut + nutzt die Präsentation selbst (Angebot, Ablauf, Vorqualifizierung).'},
+    {t:'Karim klärt mit Hisham die Zeiten ab',s:'Wann hat Hisham Zeit für die medizinischen Gespräche? → feste Slots.'}
+  ],
+  note:'Wenn diese 3 Schritte stehen, ist das System geschlossen und kann laufen.'
+},
+{
+  nr:'4+5',
+  titel:'reLounge + Pelvistuhl — Werbung online stellen (Ads)',
+  status:'vorber',
+  prioritaet:null,
+  start:'Jetzt (mit Maurice abklären)',
+  fertig:null,
+  aufwand:null,
+  was:'Die zwei Geräte in der Praxis (reLounge / Rücken-Liege + Pelvistuhl / Becken-Stuhl) online bewerben: Landingpages + Ads. Die Landingpages sind fertig — es fehlen die Ads. Die Idee steht; es müssen Video-Ads gedreht (Ramy + Hisham), von Maurice geschnitten und zusammen mit Bild-Ads in die Facebook-Kampagne gebracht werden. Parallel: ein To-do-Portal, damit neue Anfragen automatisch bei Manu zum Anrufen landen.',
+  flow:['Mit Maurice abklären','Drehen (Ramy + Hisham)','Maurice schneidet','Bild-Ads + gegentesten','Hisham: hochladen + Budget'],
+  beteiligte:[
+    {name:'Ramy',rolle:'Hat die Ads-Idee; klärt mit Maurice Design + Qualität ab; plant + dreht; erstellt Bild-Ads + testet sie.',color:'#c69a32'},
+    {name:'Hisham',rolle:'Dreht die Ads mit Ramy; lädt am Ende die fertigen Ads + Bilder hoch und bestimmt das Budget.',color:'#2e9e6b'},
+    {name:'Maurice',rolle:'Schneidet die Videos + macht Bild-Ads mit KI/Higgsfield auf hoher Qualitätsstufe. Gibt vorher Rückmeldung, wie er es umsetzen kann.',color:'#d1582f'},
+    {name:'Vincent',rolle:'Baut das To-do-Portal ins Patientenportal (Zugang mit Benutzername/Passwort) + verbindet die Excel-Tabelle (Landingpage-Formular) mit der To-do-Liste.',color:'#8a5cc7'},
+    {name:'Manu',rolle:'Bekommt die neuen Anfragen im To-do-Portal (Name, Telefonnummer, anrufen …).',color:'#5b6b7f'}
+  ],
+  stand:'Die Landingpages sind fertig, die Ads fehlen noch. Es hängt gerade daran, dass Ramy zuerst mit Maurice abklären muss, ob/wie gut er das Design auf der hohen Qualitätsstufe (mit KI/Higgsfield) umsetzen kann — erst danach will Ramy die Videos drehen.',
+  blocker:'Ramy muss zuerst mit Maurice klären, ob er das Design auf hoher Qualität (KI/Higgsfield) umsetzen kann — solange das nicht klar ist, will Ramy nicht drehen.',
+  schritte:[
+    {t:'Ramy klärt mit Maurice ab, was er kann',s:'Design + Qualität (Higgsfield/KI) für reLounge + Pelvistuhl — VOR dem Dreh. Das ist der Knackpunkt, warum es gerade nicht weitergeht.'},
+    {t:'Dreh planen + drehen (Ramy + Hisham)',s:'Vorbereitung, Zeitpunkt, Kameras/Mikrofon; ~3 Videos + 3 Bilder pro Produkt.'},
+    {t:'Maurice schneidet',s:'Bekommt die Drehs, schneidet, schickt zurück — muss vorab Rückmeldung geben, wie er es macht.'},
+    {t:'Bild-Ads erstellen + gegentesten',s:'~3 Bilder pro Produkt (Maurice kann das mit KI/Higgsfield übernehmen).'},
+    {t:'Hisham lädt hoch + bestimmt Budget',s:'Fertige Video- + Bild-Ads in die Facebook-Kampagne.'},
+    {t:'Vincent baut das To-do-Portal',s:'To-dos ins Patientenportal + Zugang (Benutzername/Passwort) + Excel-/Formular-Verbindung → neue Person (Name, Tel, anrufen) landet bei Manu. Muss erst mal nur stehen, nicht perfekt.'}
+  ],
+  note:'Wenn die Maurice-Abklärung + das To-do-Portal stehen, kann das Ganze starten (Leute werden angerufen).'
+},
+{
+  nr:1,
+  titel:'Social-Media-Content-System („1 Minute Medizin")',
+  status:'vorber',
+  prioritaet:null,
+  start:'Jetzt (Themen + Hishams Stellungnahme)',
+  fertig:null,
+  aufwand:null,
+  was:'Ein System, um auf allen Social-Media-Kanälen regelmäßig Content zu liefern. Ramy plant die Videos für 1–2 Wochen im Voraus und produziert sie auf einen Schlag. Ablauf: Ramy bringt Themen + Skript-Ideen → Hisham gibt seine fachliche Stellungnahme zu jedem Thema → Ramy baut daraus die Skripte → Hisham dreht die Videos im Studio (ohne Ramy, in Masse) → Maurice schneidet mit starken KI-Effekten/Motion-Design → ein KI-Tool postet automatisch auf allen Kanälen (Ramy gibt nur die Freigabe).',
+  flow:['Themen + Basisfragen','Hisham: Stellungnahme','Skripte bauen','Studio-Dreh (Hisham)','Maurice: Schnitt + Effekte','Auto-Posting (KI)'],
+  beteiligte:[
+    {name:'Ramy',rolle:'Bestimmt die Themen, formuliert die Basisfragen an Hisham, baut die Skripte, plant den Video-Vorrat (1–2 Wochen).',color:'#c69a32'},
+    {name:'Hisham',rolle:'Gibt seine fachliche Stellungnahme zu jedem Thema (Basisfragen beantworten); dreht die Videos im Studio — ohne Ramy.',color:'#2e9e6b'},
+    {name:'Maurice',rolle:'Schneidet die Videos mit starken Effekten (KI + krasse Programme), eingeblendete Bilder, Motion Design, Newsticker; lädt fertig in Google Drive. Wie genau = mit ihm besprechen.',color:'#d1582f'},
+    {name:'Auto-Posting (KI-Tool)',rolle:'Zieht die fertigen Videos aus Google Drive, postet automatisch auf allen Kanälen über API + erstellt die Beschreibungen. Ramy/Team gibt nur die Freigabe.',color:'#2f7dd1'}
+  ],
+  stand:'Das Konzept „1 Minute Medizin" + die Top-3-Skripte + ein Muster-Reel existieren schon. Die Basisfragen an Hisham sind bereits formuliert (warten auf seine Sprachnachrichten). Es hängt daran, dass (1) Hisham seine Stellungnahmen zu den Themen liefert und (2) der Effekt-/Schnitt-Weg mit Maurice und das Auto-Posting-Tool noch aufgesetzt werden.',
+  blocker:'Hishams fachliche Stellungnahmen zu den Themen fehlen noch (warten auf seine Sprachnachrichten) — ohne sie können die Skripte nicht gebaut werden.',
+  schritte:[
+    {t:'Ramy bringt Themen + Skript-Ideen rein',s:'Welche Themen (z.B. Ozempic-Spritze) — als Basis für alles Weitere.'},
+    {t:'Basisfragen an Hisham → Stellungnahme',s:'Hisham beantwortet pro Thema die Basisfragen (Sprachnachrichten). Knackpunkt: die Skripte werden erst DANACH gebaut.'},
+    {t:'Ramy baut die Skripte auf',s:'Auf Basis von Hishams Stellungnahme rund um jedes Thema.'},
+    {t:'Studio-Dreh (Hisham, ohne Ramy)',s:'Masse an Videos im Studio → in Google Drive hochladen.'},
+    {t:'Maurice: Schnitt + Effekte klären + umsetzen',s:'Starke KI-Effekte / Motion Design, damit die Videos sehenswert sind → fertig zurück in Google Drive.'},
+    {t:'Auto-Posting einrichten',s:'KI-Tool zieht aus Drive, postet überall über API + erstellt Beschreibungen; Ramy gibt die Freigabe.'}
+  ],
+  note:'Kern-Prinzip: Masse an Studio-Videos, die Hisham allein drehen kann — gut gemacht durch starke KI-Effekte.'
+},
+{nr:2, titel:'Social-Media-Funnel Gewichtsreduktion', status:'laeuft',
+  was:'Bezahlter Funnel: Werbung → Landingpage → Bewerbungsgespräch → Workshop, mit getrenntem Tracking pro Landingpage.',
+  stand:'Läuft im Kern: die Juli-Workshop-Ads + 2 Landingpages (emotional/wissenschaftlich) sind live, das Tracking läuft automatisch. Offen ist nur der saubere 2-Step-Funnel — Ramy baut noch die 2 GHL-Formularseiten, danach ist die Conversion pro Landingpage messbar.'},
+{nr:3, titel:'Workshop-Optimierung', status:'idee',
+  was:'Show-Rate, Beteiligung über Block 1→2→3→4 und Konversion zum Termin verbessern.',
+  stand:'Aktuell NICHT Ramys Bereich — macht er gerade nicht. Gehört eher zu Hischams Aufgaben. Priorität für Ramy gering.',
+  beteiligte:[{name:'Hisham',rolle:'Verantwortlich — Workshop-Inhalt/Ablauf liegt bei ihm.',color:'#2e9e6b'}],
+  note:'Liegt bei Hischam; für Ramy niedrige Priorität.'},
+{nr:6, titel:'Video-Schnitt-Programm (automatisiertes Schneiden)', status:'pausiert',
+  was:'Idee einer eigenen KI-Schnitt-Maschine, die Reels (fast) automatisch schneidet.',
+  stand:'Stillgesetzt. Statt der Eigenbau-Automatik setzen wir jetzt auf Maurice — er schneidet die Videos.',
+  beteiligte:[{name:'Maurice',rolle:'Übernimmt den Video-Schnitt (statt automatisiertem Eigenbau).',color:'#d1582f'}],
+  note:'Bewusst pausiert — Schnitt macht Maurice.'},
+{nr:7, titel:'Betreuung & Vertrieb', status:'pausiert',
+  was:'Patienten-Reise, WhatsApp, Reklamation, Kündigung, Team-Abläufe.',
+  stand:'Stillgesetzt — aktuell wird nichts grob geändert. Einziger laufender Punkt: die Sache mit Karim.',
+  note:'Bewusst pausiert; nur der Karim-Teil läuft weiter.'},
+{nr:8, titel:'Schriftliche Gesundheits-Analyse', status:'idee',
+  was:'Anamnese → Befund → Labor → metabolischer Check als schriftliche Analyse.',
+  stand:'Stand offen — Ramy kennt ihn selbst noch nicht. Muss es zuerst mit Hischam (Papa) absprechen, dann klären wir das Vorgehen.',
+  beteiligte:[{name:'Hisham',rolle:'Muss den fachlichen Stand/Input geben (Absprache nötig).',color:'#2e9e6b'}],
+  note:'Nächster Schritt: Abstimmung mit Hischam.'},
+{nr:9, titel:'Fragebogen-/System-Analyse', status:'laeuft',
+  was:'Systeme verbessern + absichern/automatisieren — auf Basis der Fragebögen/Analysen.',
+  stand:'Die Analysen stehen fertig — alle vorhanden und bereits an Claude übergeben.',
+  schritte:[{t:'Festlegen, was wir aus den Analysen machen',s:'Konkrete Verbesserungen ableiten — z.B. Kundenservice verbessern.'}],
+  note:'Material ist da; jetzt die Umsetzung definieren.'},
+{nr:10, titel:'Video-Schnitt Gruppen-Calls (Mental + Ernährung)', status:'laeuft',
+  was:'Aufzeichnungen der Gruppen-Calls (Mental + Ernährung) schneiden und hochladen.',
+  stand:'Wird aktuell gemacht — die Calls werden geschnitten und hochgeladen.'},
+{nr:11, titel:'GoHighLevel Kurs-Upload', status:'laeuft',
+  was:'Kurse/Module in GoHighLevel hochladen.',
+  stand:'Hängt eng mit dem Gruppen-Call-Schnitt (Nr. 10) zusammen. Wurde im letzten Meeting (Donnerstag) besprochen.',
+  note:'Im Donnerstag-Meeting besprochen; läuft zusammen mit Nr. 10.'}
+];
+
+const sorted=PROJEKTE.slice().sort((a,b)=>parseInt(a.nr)-parseInt(b.nr));
+document.getElementById('projects').innerHTML=sorted.map(p=>{
+  const st=STATUS[p.status]||STATUS.idee;
+  const flow=p.flow&&p.flow.length?`<div class="flow">${p.flow.map((f,i)=>`${i?'<span class="arr">→</span>':''}<span class="step">${f}</span>`).join('')}</div>`:'';
+  const beteiligte=p.beteiligte||[], schritte=p.schritte||[];
+  const people=beteiligte.map(b=>`<div class="person"><div class="ava" style="background:${b.color}">${initials(b.name)}</div><div><div class="pn">${b.name}</div><div class="pr">${b.rolle}</div></div></div>`).join('');
+  const steps=schritte.map(s=>`<li><b>${s.t}</b>${s.s?`<small>${s.s}</small>`:''}</li>`).join('');
+  const meta=`<div class="meta">
+    <span class="m prio"><i>Priorität</i><b>${p.prioritaet?(p.prioritaet+' / 10'):'⏳ am Ende'}</b></span>
+    <span class="m"><i>Start</i><b>${p.start||'—'}</b></span>
+    <span class="m"><i>Fertig bis</i><b>${p.fertig||'—'}</b></span>
+    <span class="m"><i>Aufwand</i><b>${p.aufwand||'—'}</b></span>
+  </div>`;
+  const secWas=p.was?`<div class="sec"><h3>🎯 Was ist das Projekt</h3><p>${p.was}</p>${flow}</div>`:'';
+  const secWer=people?`<div class="sec"><h3>👥 Wer ist beteiligt</h3><div class="people">${people}</div></div>`:'';
+  const secStand=p.stand?`<div class="sec"><h3>📍 Aktueller Stand</h3><p>${p.stand}</p></div>`:'';
+  const secBlocker=p.blocker?`<div class="sec"><div class="blocker"><span class="bl-lbl">⛔ Blockiert, weil</span>${p.blocker}</div></div>`:'';
+  const secSchritte=steps?`<div class="sec"><h3>⏭️ Nächste Schritte</h3><ul class="steps">${steps}</ul>${p.note?`<div class="closing-note">${p.note}</div>`:''}</div>`:'';
+  const offen=(!people&&!steps)?`<div class="sec todo">📝 Noch nicht im Detail besprochen — wird beim Diktat ergänzt.</div>`:'';
+  return `<div class="card${(st[0]==='i'||st[0]==='p')?' dim':''}">
+    <div class="card-top"><div class="nr">${p.nr}</div><h2>${p.titel}</h2><span class="badge ${st[0]}">${st[1]}</span></div>
+    ${meta}
+    <div class="body">${secWas}${secWer}${secStand}${secBlocker}${secSchritte}${offen}</div>
+  </div>`;
+}).join('');
+</script>
+</body>
+</html>
