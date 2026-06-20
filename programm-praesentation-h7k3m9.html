@@ -257,6 +257,55 @@
   .pk.feat{box-shadow:0 0 0 3px var(--gold)}
   .badge{display:inline-block;background:#fff;color:var(--gold-d);font-size:10.5px;font-weight:800;border-radius:999px;padding:3px 10px;margin-top:5px}
 
+  /* Patientenportal — Intro mit Browser-Mockup */
+  .portal{display:grid;grid-template-columns:1.02fr .98fr;gap:28px;align-items:center;margin:auto 0}
+  .pmock{border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 14px 34px rgba(10,14,22,.16);background:#fff}
+  .pmock .ptop{background:#1b2330;padding:8px 12px;display:flex;align-items:center;gap:6px}
+  .pmock .ptop i{width:9px;height:9px;border-radius:50%;background:#485060;display:inline-block}
+  .pmock .ptop .purl{margin-left:9px;font-size:11px;color:#aeb6c4;font-weight:600}
+  .pmock .pbody{padding:14px 16px}
+  .pmock .pprog{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.5px;display:flex;justify-content:space-between;margin-bottom:6px}
+  .pmock .ptrack{height:8px;background:var(--cream);border-radius:99px;overflow:hidden;margin-bottom:12px}
+  .pmock .ptrack i{display:block;height:100%;width:30%;background:linear-gradient(90deg,var(--gold),var(--gold-d))}
+  .pmock .pstep{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--line);font-size:12.3px}
+  .pmock .pstep:last-child{border-bottom:0}
+  .pmock .pstep .pc{width:18px;height:18px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:10px;color:#fff;font-weight:800}
+  .pmock .pstep.done .pc{background:var(--green)} .pmock .pstep.now .pc{background:var(--blue)} .pmock .pstep.lock .pc{background:#c9d0db}
+  .pmock .pstep.lock{color:var(--muted)}
+
+  /* Portal-Weg in 4 Phasen */
+  .pweg{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:8px 0}
+  .pwp{border:1px solid var(--line);border-radius:13px;overflow:hidden;display:flex;flex-direction:column}
+  .pwp .pwh{padding:9px 12px;color:#fff;font-weight:800;font-size:12.5px}
+  .pwp.f1 .pwh{background:var(--gold-d)} .pwp.f2 .pwh{background:var(--blue)} .pwp.f3 .pwh{background:var(--violet)} .pwp.f4 .pwh{background:var(--green)}
+  .pwp ol{list-style:none;margin:0;padding:9px 11px;display:flex;flex-direction:column;gap:6px;background:#fff;flex:1;counter-reset:s}
+  .pwp li{font-size:11.8px;line-height:1.3;color:var(--ink);padding-left:23px;position:relative;min-height:17px}
+  .pwp li:before{content:counter(s);counter-increment:s;position:absolute;left:0;top:0;width:16px;height:16px;border-radius:50%;background:var(--cream);border:1px solid var(--line);font-size:9px;font-weight:800;color:var(--soft);display:grid;place-items:center}
+  .pwegfoot{background:var(--ink);color:#fff;border-radius:12px;padding:11px 16px;font-size:13.7px;line-height:1.45;margin-top:4px}
+  .pwegfoot b{color:var(--gold)}
+
+  /* IgG-Kette */
+  .kette{display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr 20px 1fr 20px 1fr;gap:0;align-items:stretch;margin:9px 0}
+  .kn{border:1px solid var(--line);border-radius:12px;background:var(--cream);padding:11px 11px;display:flex;flex-direction:column;gap:5px;text-align:center}
+  .kn .kt{font-size:9.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold-d)}
+  .kn b{font-size:13px;font-weight:780;line-height:1.18}
+  .kn span{font-size:11px;color:var(--soft);line-height:1.3}
+  .kn.hi{background:var(--gold-soft);border-color:#e6d39a}
+  .kn.app{background:var(--ink);color:#fff} .kn.app .kt{color:var(--gold)} .kn.app span{color:#c5ccd6}
+  .karrow{display:grid;place-items:center;font-size:18px;color:var(--muted);font-weight:800}
+  .kettebox{margin-top:11px;background:var(--gold-soft);border:1px solid #e6d39a;border-radius:12px;padding:12px 16px;font-size:14px;color:#5e4912;line-height:1.5}
+  .kettebox b{color:var(--gold-d)}
+
+  /* Verlaufsdiagramm */
+  .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:8px 0}
+  .vc2{border:1px solid var(--line);border-radius:13px;background:#fff;padding:11px 13px;box-shadow:0 6px 16px rgba(10,14,22,.06)}
+  .vc2 .vt{font-size:11.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px}
+  .vc2 .vt .trend{float:right;font-size:11px;font-weight:800}
+  .vc2 svg{width:100%;height:118px;display:block}
+  .vfoot{background:var(--ink);color:#fff;border-radius:12px;padding:11px 16px;font-size:13.7px;line-height:1.45;margin-top:3px}
+  .vfoot b{color:var(--gold)}
+  .vnote{font-size:11px;color:var(--muted);font-style:italic;margin-top:6px}
+
   .bar{position:fixed;left:0;right:0;bottom:0;height:54px;display:flex;align-items:center;gap:12px;padding:0 22px;background:rgba(14,17,22,.86);backdrop-filter:blur(8px);color:#fff;z-index:40}
   .btn{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;border-radius:10px;width:40px;height:34px;font-size:17px;cursor:pointer;transition:.15s;display:grid;place-items:center}
   .btn:hover{background:var(--gold);border-color:var(--gold)}
@@ -265,7 +314,8 @@
   .count{margin-left:auto;font-size:13px;color:#c5ccd6;font-weight:600}
   .prog{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold-d));z-index:50;transition:width .3s}
   @media (max-width:880px){.slide{padding:22px 18px}.deck{height:92vh}
-    .vrow,.map,.modell,.pakete,.cards,.saeulen,.achsen,.d3,.foto,.foto.rev,.syswirk,.stufen,.ablauf,.onflow,.phasen,.istnicht,.appgal,.wgrid,.pgrid,.road,.calls,.claimstats{grid-template-columns:1fr}
+    .vrow,.map,.modell,.pakete,.cards,.saeulen,.achsen,.d3,.foto,.foto.rev,.syswirk,.stufen,.ablauf,.onflow,.phasen,.istnicht,.appgal,.wgrid,.pgrid,.road,.calls,.claimstats,.portal,.pweg,.vgrid{grid-template-columns:1fr}
+    .kette{grid-template-columns:1fr;gap:6px}.karrow{transform:rotate(90deg)}
     .foto.rev .fimg{order:0}h1{font-size:25px}.cover h1{font-size:27px}h2{font-size:21px}.stage{padding:6px}}
 </style>
 </head>
@@ -331,6 +381,19 @@ function sysSVG(){
  return `<svg viewBox="0 0 660 372" xmlns="http://www.w3.org/2000/svg">${ring}${lines}${center}${circ}</svg>`;
 }
 
+/* Mini-Liniendiagramm mit Ampel-Zonen für das Verlaufsdiagramm */
+function lineChart(o){
+ const w=320,h=150,pad={l:30,r:12,t:10,b:22},iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
+ const min=o.min,max=o.max,v=o.vals;
+ const X=i=>pad.l+(v.length>1?i*(iw/(v.length-1)):iw/2);
+ const Y=val=>pad.t+ih*(1-(val-min)/(max-min));
+ const zones=(o.zones||[]).map(z=>{const y1=Y(z.from),y2=Y(z.to);return `<rect x="${pad.l}" y="${Math.min(y1,y2).toFixed(1)}" width="${iw}" height="${Math.abs(y2-y1).toFixed(1)}" fill="${z.color}"/>`}).join('');
+ const d=v.map((val,i)=>`${i?'L':'M'}${X(i).toFixed(1)} ${Y(val).toFixed(1)}`).join(' ');
+ const pts=v.map((val,i)=>`<circle cx="${X(i).toFixed(1)}" cy="${Y(val).toFixed(1)}" r="10" fill="${o.color}"/><text x="${X(i).toFixed(1)}" y="${(Y(val)+3.2).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="800" fill="#fff">${val}</text>`).join('');
+ const xl=(o.labels||[]).map((l,i)=>`<text x="${X(i).toFixed(1)}" y="${h-6}" text-anchor="middle" font-size="8.5" fill="#9aa3b1">${l}</text>`).join('');
+ return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">${zones}<path d="${d}" fill="none" stroke="${o.color}" stroke-width="2.4"/>${pts}${xl}</svg>`;
+}
+
 const S=[
 /* ── EINSTIEG ── */
 {type:'cover', logo:'Z', kicker:'Zentrum für Gesundheitsmedizin', title:'Dein Weg — Schritt für Schritt erklärt', subtitle:'Alles, was du bei uns bekommst: von der ärztlichen Diagnostik über deine Ernährung bis zur laufenden Begleitung. Verständlich, der Reihe nach.'},
@@ -362,6 +425,41 @@ const S=[
   {ic:'phone', t:'App aufs Handy', s:'Dein Plan, deine Rezepte & Einkaufslisten — alles auf deinem Handy.'},
   {ic:'calls', t:'Live & WhatsApp', s:'Live-Calls Di & Do online, Fragen jederzeit per WhatsApp.'},
 ]},
+
+/* ── DEIN PATIENTENPORTAL (der rote Faden) ── */
+{type:'portal', kicker:'Dein Zuhause im Programm', title:'Dein persönliches Patientenportal',
+  intro:'Dein eigener, geschützter Bereich — er führt dich vom ersten Tag an Schritt für Schritt durch den ganzen Weg. Du siehst immer, wo du gerade stehst und was als Nächstes dran ist. Niemand verliert den Überblick.',
+  checks:['Ein klarer Weg statt loser Aufgaben','Jeder Schritt schaltet den nächsten frei','Diagnostik, Plan & Fortschritt — alles an einem Ort'],
+  nutzen:'<b>Du wirst an der Hand genommen</b> — vom Onboarding bis zum fertigen Plan.'},
+{type:'portalweg', kicker:'Patientenportal · der geführte Weg', title:'Dein Weg in 14 geführten Schritten',
+  intro:'Das Portal teilt deinen Start in klare Etappen. Jeder Schritt wird abgehakt — und schaltet den nächsten frei.',
+  phasen:[
+    {cls:'f1', h:'① Start & Ziele', li:['Onboarding-Video ansehen','Ziele festlegen + Vorher-Bild','Fragebogen ausfüllen']},
+    {cls:'f2', h:'② Diagnostik', li:['Box erhalten & bestätigen','Box- & Blutabnahme-Videos','Termin Blutabnahme','Blutabnahme losgeschickt','Laborergebnisse abwarten']},
+    {cls:'f3', h:'③ Plan', li:['Kennenlern-Gespräch mit dem Arzt','Persönlicher Plan wird erstellt','28-Tage-Programm starten']},
+    {cls:'f4', h:'④ Umsetzung', li:['1. Messung (nach 14 Tagen)','2. Messung (nach 28 Tagen)','Willkommen in der Essenzphase']},
+  ],
+  foot:'So weißt du an <b>jedem einzelnen Tag</b>, was zu tun ist — kein „und was jetzt?", kein Verzetteln.'},
+{type:'iggkette', kicker:'Patientenportal · der Knackpunkt', title:'Wie deine Werte in deinen Plan fließen',
+  intro:'Das ist das Herzstück: Deine Labor-Ergebnisse landen nicht in einer Schublade — sie steuern direkt deinen Ernährungsplan.',
+  nodes:[
+    {kt:'Schritt 1', b:'Tests', s:'Box & Blutabnahme zu Hause'},
+    {kt:'Schritt 2', b:'Labor', s:'Blutbild · IgG (89) · Darm · Hormone', hi:true},
+    {kt:'Schritt 3', b:'Arzt wertet aus', s:'jeder Wert wird eingeordnet'},
+    {kt:'Schritt 4', b:'Dein Plan', s:'auf deine Werte zugeschnitten'},
+    {kt:'in der App', b:'Passende Rezepte', s:'belastende Lebensmittel raus', app:true},
+  ],
+  box:'<b>Beispiel IgG:</b> Zeigt dein Test eine Unverträglichkeit z. B. auf Weizen oder Milch, stellt dein Profil im Ernährungsmanager diese Lebensmittel automatisch auf „Ausschluss" — und du bekommst nur noch Rezepte, die wirklich zu DIR passen. Schluss mit „ich esse gesund und fühle mich trotzdem schlecht".'},
+{type:'verlauf', kicker:'Patientenportal · dein Fortschritt', title:'Dein Fortschritt wird sichtbar',
+  intro:'Bei jeder Messung wandern deine Werte ins Verlaufsdiagramm — du siehst Veränderung schwarz auf weiß, nicht nur gefühlt. Grün ist der gesunde Bereich.',
+  charts:[
+    {t:'Gewicht (kg)', vals:[88,86,84,82,80], min:74, max:92, color:'#7a5cc7', labels:['Start','14 T.','28 T.','8 Wo.','12 Wo.'], trend:'↘ -8 kg'},
+    {t:'Body-Mass-Index', vals:[30.4,29.6,28.8,28.1,27.4], min:24, max:32, color:'#2f7dd1', zones:[{from:24,to:25,color:'#bfe6cf'},{from:25,to:30,color:'#fbe6b5'},{from:30,to:32,color:'#f6c9c6'}], labels:['Start','14 T.','28 T.','8 Wo.','12 Wo.'], trend:'↘ Richtung Normbereich'},
+    {t:'Körperfett (%)', vals:[38,36.5,35,33.5,32], min:26, max:42, color:'#e6a019', zones:[{from:26,to:30,color:'#bfe6cf'},{from:30,to:36,color:'#fbe6b5'},{from:36,to:42,color:'#f6c9c6'}], labels:['Start','14 T.','28 T.','8 Wo.','12 Wo.'], trend:'↘ -6 %'},
+    {t:'Taille-Größe (TGV)', vals:[0.58,0.56,0.55,0.53,0.51], min:0.46, max:0.62, color:'#2e9e6b', zones:[{from:0.46,to:0.50,color:'#bfe6cf'},{from:0.50,to:0.57,color:'#fbe6b5'},{from:0.57,to:0.62,color:'#f6c9c6'}], labels:['Start','14 T.','28 T.','8 Wo.','12 Wo.'], trend:'↘ Richtung gesund'},
+  ],
+  foot:'<b>Erfolg wird messbar</b> — der Arzt sieht deinen Verlauf und passt deinen Plan genau danach an.',
+  note:'Beispiel-Darstellung. Verläufe sind individuell und kein Versprechen eines bestimmten Ergebnisses.'},
 
 /* ── TEIL A · DIAGNOSTIK ── */
 {type:'section', num:'Teil A', title:'Die Diagnostik', subtitle:'Erst messen, dann handeln. Das Fundament für deinen ganz persönlichen Plan.', list:['Großes Blutbild — über 25 Werte','Metabolic / Körper-Check','Darm & Mikrobiom','Unverträglichkeiten (IgG)','Hormon-Speicheltest','Ärztliche Einordnung']},
@@ -583,6 +681,26 @@ function H(s){
      <p class="big" style="margin-top:11px">Erst beruhigen wir deinen Körper. Dann bekommst du ein System, das zu <b>dir</b> passt — die App zeigt das WIE, und das Box-Prinzip die richtige MENGE, ganz ohne Kalorienzählen.</p>`;
   if(s.type==='begleitcards')return `<div class="kicker">${s.kicker}</div><h2>${s.title}</h2><div class="cards">${s.items.map(c=>`<div class="lcard"><div class="ic">${ico(c.icon,'var(--gold-d)')}</div><div><b>${c.t}</b><span>${c.s}</span></div></div>`).join('')}</div>`;
   if(s.type==='pakete')return `<div class="kicker">${s.kicker}</div><h2>${s.title}</h2><div class="pakete">${s.items.map(p=>`<div class="pk ${p.cls}"><div class="pkh">${p.name}<small>${p.sub}</small>${p.badge?`<div class="badge">${p.badge}</div>`:''}</div><ul>${p.li.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div><p style="margin-top:11px;color:var(--muted);font-style:italic;font-size:13px">Welche Stufe zu dir passt, finden wir gemeinsam heraus.</p>`;
+  if(s.type==='portal')return `<div class="portal"><div><div class="kicker">${s.kicker}</div><h2>${s.title}</h2><div class="vintro">${s.intro}</div><ul class="checks">${s.checks.map(c=>`<li>${c}</li>`).join('')}</ul><div class="nutzen">→ ${s.nutzen}</div></div>
+     <div class="pmock"><div class="ptop"><i></i><i></i><i></i><span class="purl">patient.hischamelsobhi.de</span></div>
+       <div class="pbody"><div class="pprog"><span>ÜBERSICHT · DEIN PLAN</span><span>4 / 14</span></div><div class="ptrack"><i></i></div>
+         <div class="pstep done"><span class="pc">✓</span><span>Onboarding-Video angesehen</span></div>
+         <div class="pstep done"><span class="pc">✓</span><span>Ziele festgelegt + Vorher-Bild</span></div>
+         <div class="pstep done"><span class="pc">✓</span><span>Fragebogen ausgefüllt</span></div>
+         <div class="pstep done"><span class="pc">✓</span><span>Box erhalten</span></div>
+         <div class="pstep now"><span class="pc">▶</span><span><b>Schritt 4: Videos anschauen</b></span></div>
+         <div class="pstep lock"><span class="pc">🔒</span><span>Termin Blutabnahme</span></div>
+         <div class="pstep lock"><span class="pc">🔒</span><span>Kennenlern-Gespräch mit dem Arzt</span></div>
+       </div></div></div>`;
+  if(s.type==='portalweg')return `<div class="kicker">${s.kicker}</div><h2>${s.title}</h2><p class="lead" style="margin-bottom:4px">${s.intro}</p>
+     <div class="pweg">${s.phasen.map(p=>`<div class="pwp ${p.cls}"><div class="pwh">${p.h}</div><ol>${p.li.map(x=>`<li>${x}</li>`).join('')}</ol></div>`).join('')}</div>
+     <div class="pwegfoot">→ ${s.foot}</div>`;
+  if(s.type==='iggkette'){const arr=`<div class="karrow">→</div>`;const cells=s.nodes.map(n=>`<div class="kn${n.hi?' hi':''}${n.app?' app':''}"><div class="kt">${n.kt}</div><b>${n.b}</b><span>${n.s}</span></div>`).join(arr);
+     return `<div class="kicker">${s.kicker}</div><h2>${s.title}</h2><p class="lead" style="margin-bottom:4px">${s.intro}</p>
+       <div class="kette">${cells}</div><div class="kettebox">${s.box}</div>`;}
+  if(s.type==='verlauf')return `<div class="kicker">${s.kicker}</div><h2>${s.title}</h2><p class="lead" style="margin-bottom:4px">${s.intro}</p>
+     <div class="vgrid">${s.charts.map(c=>`<div class="vc2"><div class="vt">${c.t}<span class="trend" style="color:${c.color}">${c.trend||''}</span></div>${lineChart(c)}</div>`).join('')}</div>
+     <div class="vfoot">→ ${s.foot}</div><div class="vnote">${s.note}</div>`;
   return '';
 }
 render();
