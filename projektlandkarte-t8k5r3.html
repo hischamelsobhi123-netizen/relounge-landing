@@ -1,0 +1,649 @@
+<title>Projektlandkarte</title>
+<style>
+  :root {
+    --ground:    #F5F7F7;
+    --surface:   #FFFFFF;
+    --ink:       #0E1E1D;
+    --ink-soft:  #475957;
+    --ink-faint: #7D8E8C;
+    --line:      #DEE6E5;
+    --line-soft: #EBF0EF;
+    --primary:   #14555A;
+    --live:      #2F6B4F;
+    --waiting:   #A76F13;
+    --running:   #2C6480;
+    --resting:   #8A8F8E;
+    --shadow:    0 1px 2px rgba(14,30,29,.04), 0 6px 18px -10px rgba(14,30,29,.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:    #0B1514;
+      --surface:   #121F1E;
+      --ink:       #EAF1F0;
+      --ink-soft:  #A6B8B6;
+      --ink-faint: #738684;
+      --line:      #243634;
+      --line-soft: #1A2A28;
+      --primary:   #6FBEC0;
+      --live:      #6FBE90;
+      --waiting:   #D9A340;
+      --running:   #6FAAC8;
+      --resting:   #7C8785;
+      --shadow:    0 1px 2px rgba(0,0,0,.3), 0 6px 18px -10px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:    #0B1514;
+    --surface:   #121F1E;
+    --ink:       #EAF1F0;
+    --ink-soft:  #A6B8B6;
+    --ink-faint: #738684;
+    --line:      #243634;
+    --line-soft: #1A2A28;
+    --primary:   #6FBEC0;
+    --live:      #6FBE90;
+    --waiting:   #D9A340;
+    --running:   #6FAAC8;
+    --resting:   #7C8785;
+    --shadow:    0 1px 2px rgba(0,0,0,.3), 0 6px 18px -10px rgba(0,0,0,.5);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 66rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 3.5vw, 2.25rem) 5rem;
+  }
+
+  .eyebrow {
+    font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 0 0 1rem;
+  }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 2.9rem);
+    line-height: 1.14; letter-spacing: -.015em; text-wrap: balance;
+    margin: 0 0 1rem;
+  }
+  .lede { font-size: 1.03rem; color: var(--ink-soft); max-width: 43rem; margin: 0 0 1.6rem; }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: .5rem;
+    padding-bottom: 2.2rem; border-bottom: 1px solid var(--line);
+    margin-bottom: 2.4rem;
+  }
+  .pill {
+    font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    padding: .22rem .6rem; border-radius: 100px; white-space: nowrap;
+    border: 1px solid currentColor;
+  }
+  .pill.live   { color: var(--live); }
+  .pill.wartet { color: var(--waiting); }
+  .pill.arbeit { color: var(--running); }
+  .pill.ruht   { color: var(--resting); }
+  .legend .note { font-size: .82rem; color: var(--ink-faint); margin-left: .3rem; align-self: center; }
+
+  /* Größenstufen */
+  .stufe { margin-bottom: 3rem; }
+  .stufe-head {
+    display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap;
+    margin: 0 0 1.2rem; padding-bottom: .5rem;
+    border-bottom: 2px solid var(--primary);
+  }
+  .stufe-head h2 {
+    font-family: Georgia, serif; font-weight: 400;
+    font-size: clamp(1.2rem, 2.8vw, 1.5rem); margin: 0; letter-spacing: -.01em;
+  }
+  .stufe-head .hint { font-size: .82rem; color: var(--ink-faint); margin-left: auto; }
+
+  .cards { display: grid; gap: .85rem; grid-template-columns: 1fr; }
+  .stufe.mittel .cards, .stufe.klein .cards { }
+  @media (min-width: 54rem) {
+    .stufe.mittel .cards { grid-template-columns: 1fr 1fr; }
+    .stufe.klein  .cards { grid-template-columns: 1fr 1fr; }
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    padding: 1.05rem 1.2rem 1.15rem;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: .7rem;
+  }
+  .stufe.gross .card { padding: 1.3rem 1.45rem 1.4rem; }
+
+  .card-head { display: flex; align-items: flex-start; gap: .7rem; justify-content: space-between; }
+  .card h3 {
+    font-size: 1rem; font-weight: 600; margin: 0; letter-spacing: -.005em; text-wrap: balance;
+  }
+  .stufe.gross .card h3 {
+    font-family: Georgia, serif; font-weight: 400;
+    font-size: 1.28rem; letter-spacing: -.012em;
+  }
+  .was { color: var(--ink-soft); font-size: .92rem; margin: 0; }
+
+  .split { display: grid; gap: .9rem; grid-template-columns: 1fr; }
+  @media (min-width: 44rem) {
+    .stufe.gross .split { grid-template-columns: 1.15fr .85fr; gap: 1.6rem; }
+  }
+
+  .block { display: flex; flex-direction: column; gap: .3rem; }
+  .block-label {
+    font-size: .69rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 600;
+  }
+  ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .24rem; }
+  li { font-size: .885rem; color: var(--ink-soft); padding-left: 1.05rem; position: relative; }
+
+  .steht li::before {
+    content: ""; position: absolute; left: 0; top: .52em;
+    width: .42rem; height: .42rem; border-radius: 50%; background: var(--live);
+  }
+  .fehlt li::before {
+    content: "→"; position: absolute; left: 0; top: 0;
+    color: var(--waiting); font-weight: 700; font-size: .8rem;
+  }
+  .fehlt li { color: var(--ink); }
+  .wer { color: var(--ink-faint); font-size: .82rem; }
+  .card.ok .fehlt li::before { color: var(--live); }
+
+  .close {
+    margin-top: 3rem; padding: clamp(1.3rem, 3vw, 2rem);
+    background: var(--surface); border: 1px solid var(--line);
+    border-top: 3px solid var(--waiting); border-radius: 3px;
+  }
+  .close h2 { font-family: Georgia, serif; font-weight: 400; font-size: 1.35rem; margin: 0 0 .7rem; }
+  .close p { color: var(--ink-soft); margin: 0 0 .8rem; max-width: 46rem; }
+  .close p:last-child { margin: 0; }
+  .close strong { color: var(--ink); font-weight: 600; }
+
+  footer {
+    margin-top: 2.5rem; padding-top: 1.1rem;
+    border-top: 1px solid var(--line-soft);
+    font-size: .8rem; color: var(--ink-faint);
+  }
+</style>
+
+<div class="wrap">
+
+  <p class="eyebrow">Zentrum für Gesundheitsmedizin · Stand 16. August 2026</p>
+  <h1>Projektlandkarte</h1>
+  <p class="lede">
+    Alle Projekte, von den großen tragenden Systemen oben bis zu den kleineren Bausteinen unten.
+    Pro Projekt: was daraus geworden ist, und was noch fehlt.
+  </p>
+
+  <div class="legend">
+    <span class="pill live">Live</span>
+    <span class="pill wartet">Fertig · wartet</span>
+    <span class="pill arbeit">In Arbeit</span>
+    <span class="pill ruht">Ruht</span>
+    <span class="note">Punkte = erreicht · Pfeile = fehlt noch</span>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- GROSSE SYSTEME                                                -->
+  <!-- ============================================================ -->
+  <div class="stufe gross">
+    <div class="stufe-head">
+      <h2>Die tragenden Systeme</h2>
+      <span class="hint">monatelange Arbeit, wirken auf alles andere</span>
+    </div>
+    <div class="cards">
+
+      <!-- 1 -->
+      <div class="card">
+        <div class="card-head"><h3>Vertriebs- und Closing-System</h3><span class="pill live">Live</span></div>
+        <p class="was">Aus einem Bauchgefühl-Verkauf wurde ein beschriebenes Handwerk: 49 echte Verkaufsgespräche wurden abgehört und ausgewertet, jede Closerin einzeln.</p>
+        <div class="split">
+          <div class="block steht">
+            <span class="block-label">Erreicht</span>
+            <ul>
+              <li>Die Methodik ist verschriftlicht — Gesprächsaufbau, Reihenfolge der Fragen, Umgang mit dem Preis</li>
+              <li>Eine gemeinsame Schwachstelle des ganzen Teams gefunden: Alle geben nach, sobald jemand zögert. Niemand fragte je „Was müsste passieren, damit du heute entscheidest?"</li>
+              <li>Einzelanalyse für Ramy, Emine und Patricia — jede mit eigenem Muster statt pauschaler Kritik</li>
+              <li>Schulungspräsentation in zwei Teilen, Spickzettel fürs Gespräch, Einwand-Bausteine</li>
+              <li>Erkannt, warum Sonntagstermine besser abschließen als Mittwochstermine — und was daraus folgt</li>
+              <li>Ein ernstes Risiko aufgedeckt: Abschlüsse bei Menschen, deren Zahlungsfähigkeit erkennbar nicht reichte</li>
+            </ul>
+          </div>
+          <div class="block fehlt">
+            <span class="block-label">Fehlt</span>
+            <ul>
+              <li>Das Einwand-Skript im Team einführen und üben</li>
+              <li>Feste Freigaberegel vor jedem Abschluss</li>
+              <li>Beste Gespräche gezielt an den besten Closer geben</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="card">
+        <div class="card-head"><h3>Team-Wissen und Einarbeitung</h3><span class="pill arbeit">In Arbeit</span></div>
+        <p class="was">Das Wissen der Firma lag in Köpfen. Über zwei Fragebogen-Runden mit dem ganzen Team wurde es herausgeholt, geordnet und nachlesbar gemacht.</p>
+        <div class="split">
+          <div class="block steht">
+            <span class="block-label">Erreicht</span>
+            <ul>
+              <li>Zwei Fragerunden mit Hischam, Emine, Patricia, Alex und Vincent — Runde zwei als Sprachaufnahmen, komplett aufbereitet</li>
+              <li>Daraus 16 Themenbereiche ausführlich dokumentiert: Produkt, Betreuung, Abläufe, Systeme, Vertrieb, Recht</li>
+              <li>Alles zusätzlich in einer einzigen Datei zum Durchlesen</li>
+              <li>Ehrlich markiert, wo Wissen fehlt statt Lücken zu überspielen</li>
+              <li>Einarbeitungs-Material fürs Closing: Leitfäden, Produktwissen, Gesprächsaufbau</li>
+              <li>25 Fragebögen von Teilnehmern ausgewertet — daraus für jede Person ein eigener Gesprächseinstieg</li>
+            </ul>
+          </div>
+          <div class="block fehlt">
+            <span class="block-label">Fehlt</span>
+            <ul>
+              <li>Die 16 Fragen des Vaters darauf aufbauend beantworten</li>
+              <li>Kürzel aus dem To-do-Heft übersetzen <span class="wer">— Emine und Patricia</span></li>
+              <li>Aus dem Material eine feste Einarbeitung für neue Mitarbeiter machen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="card">
+        <div class="card-head"><h3>Video-Produktion im Eigenbau</h3><span class="pill live">Live</span></div>
+        <p class="was">Eine eigene Schnitt- und Effektmaschine, um unabhängig von externen Cuttern zu werden — mit einem Look, den fertige Tools nicht liefern.</p>
+        <div class="split">
+          <div class="block steht">
+            <span class="block-label">Erreicht</span>
+            <ul>
+              <li>Komplette Videos entstehen aus einer einzigen Steuerdatei — kein Programmieren mehr pro Video</li>
+              <li>20 wiederverwendbare Effekt-Bausteine, 66 kuratierte Geräusche</li>
+              <li>Personen freistellen gelöst: was vorher fünfeinhalb Stunden gedauert hätte, dauert jetzt Minuten</li>
+              <li>Hochkant-Einblendungen ohne bezahlte Videobibliothek gelöst</li>
+              <li>Mehrere fertige Reels, ein Betriebshandbuch für den Serienbetrieb</li>
+              <li>Ehrlich recherchiert, was 2026 überhaupt möglich ist — statt Versprechen, die nicht halten</li>
+            </ul>
+          </div>
+          <div class="block fehlt">
+            <span class="block-label">Fehlt</span>
+            <ul>
+              <li>Urteil zum Madeira-Reel <span class="wer">— Ramy</span></li>
+              <li>Regelmäßiger Drehtermin, sonst läuft die Maschine leer</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="card">
+        <div class="card-head"><h3>Workshop-Maschine</h3><span class="pill live">Live</span></div>
+        <p class="was">Der Weg von der Anzeige bis zum Verkaufsgespräch — Seiten, Mails, Messung. Dazu wurden beide Verkaufs-Workshops komplett zerlegt.</p>
+        <div class="split">
+          <div class="block steht">
+            <span class="block-label">Erreicht</span>
+            <ul>
+              <li>Landingpages für Juni, Juli, August und September gebaut — alle im Eigenbau, ohne Agentur</li>
+              <li>Rund 40 fertige Mails: Erinnerungen, Live-Nachrichten, Nachfass-Serie, Reaktivierung</li>
+              <li>Zwei Workshops Satz für Satz ausgewertet — das wiederholbare Erfolgsgerüst herausgezogen</li>
+              <li>Erkannt, was immer funktioniert und was Hischam nur ausprobiert hat</li>
+              <li>Bauanleitung geschrieben, damit jede neue Seite schneller entsteht</li>
+              <li>Anmeldequote erstmals messbar statt geschätzt</li>
+            </ul>
+          </div>
+          <div class="block fehlt">
+            <span class="block-label">Fehlt</span>
+            <ul>
+              <li>September-Seiten einbauen und veröffentlichen</li>
+              <li>Mails auf das neue Datum umstellen</li>
+              <li>Zoom-Raum für den Termin</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="card">
+        <div class="card-head"><h3>Produkt und Angebot geordnet</h3><span class="pill arbeit">In Arbeit</span></div>
+        <p class="was">Was genau verkauft wird, war an vielen Stellen widersprüchlich. Das wurde auseinandergenommen, verstanden und sauber aufgeschrieben.</p>
+        <div class="split">
+          <div class="block steht">
+            <span class="block-label">Erreicht</span>
+            <ul>
+              <li>Das Programm vollständig verstanden und aufgeschrieben — was Reset, EssSense, App und Box jeweils sind und wie sie zusammenhängen</li>
+              <li>Widersprüche in Laufzeiten, Coachings und Diagnostik aufgedeckt und benannt</li>
+              <li>Die Diagnostik-Leiter je Paket sauber festgelegt, mit echten Laborwerten</li>
+              <li>Der Check als zweiter Einstieg neben dem Workshop entworfen — mit Anrechnung, Gesprächsgerüst und Nachfass-Kette</li>
+              <li>Aufteilung gefunden, damit ein Befundgespräch den Arzt 7 statt 30 Minuten kostet</li>
+            </ul>
+          </div>
+          <div class="block fehlt">
+            <span class="block-label">Fehlt</span>
+            <ul>
+              <li>Wer führt die Befundgespräche <span class="wer">— Ramy</span></li>
+              <li>Anrechnung buchhalterisch klären <span class="wer">— Vincent</span></li>
+              <li>Offene Produktfragen final entscheiden</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- EIGENSTÄNDIGE PROJEKTE                                        -->
+  <!-- ============================================================ -->
+  <div class="stufe mittel">
+    <div class="stufe-head">
+      <h2>Eigenständige Projekte</h2>
+      <span class="hint">jeweils klar abgegrenzt, mit eigenem Ergebnis</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head"><h3>Rechtssichere Verträge</h3><span class="pill arbeit">In Arbeit</span></div>
+        <p class="was">Eine Patientin fragte vor dem Kauf nach Rückerstattung — und es gab keine Antwort. Daraus wurde eine gründliche Aufarbeitung.</p>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Das größte Risiko erkannt, bevor ein Kunde es gefunden hat: Verträge könnten nach dem Fernunterrichtsgesetz unwirksam sein</li>
+            <li>Kompletter Vertragsentwurf mit eingebauten Schutzklauseln</li>
+            <li>Widerspruch aufgedeckt: Der Verkauf verspricht mehr, als der Arzt leisten will</li>
+            <li>Fertiges Briefing für den Anwalt</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul>
+            <li>Grundsatzentscheidung zur Begleitungsdauer <span class="wer">— Ramy</span></li>
+            <li>Anwaltstermin</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Ratenzahler zurückholen</h3><span class="pill wartet">Fertig · wartet</span></div>
+        <p class="was">104.396 € standen offen, ohne dass jemand den Überblick hatte. Jetzt liegt jeder Fall einzeln durchgerechnet vor.</p>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Alle 48 Fälle gerechnet, Ablösesumme pro Person und Laufzeit</li>
+            <li>Rabattlogik festgelegt, Ansprache-Vorlagen geschrieben</li>
+            <li>Ein eskalierender Fall vollständig gelöst — Kundin verlangte schriftlich Aufklärung über Zinsen</li>
+            <li>Die Linie für alle Ratenzahler festgelegt, damit kein Präzedenzfall entsteht</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul>
+            <li>Durchtelefonieren <span class="wer">— Vertrieb</span></li>
+            <li>Anwaltsfrage zu eigenen verzinsten Raten</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Kundenseiten zum Zeigen</h3><span class="pill live">Live</span></div>
+        <p class="was">Unterlagen, die im Gespräch und danach überzeugen — vom ersten Eindruck bis zur Paketentscheidung.</p>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Programm-Übersicht live: zeigt die Tiefe, ohne die Formel zu verraten</li>
+            <li>Setting-Präsentation mit 39 Folien, weiterleitbar</li>
+            <li>Paketeseite mit Ratenrechner, alles auf einer Seite</li>
+            <li>Gesprächsleitfaden für die Closer als eigene Seite</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul>
+            <li>Paketeseite einbauen, Startbutton verknüpfen</li>
+            <li>Preise aktuell halten</li>
+            <li>Echte Bilder statt Nachbauten</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Geräte: reLounge und Pelvi</h3><span class="pill wartet">Fertig · wartet</span></div>
+        <p class="was">Zwei Geräte in der Praxis, die online beworben werden sollen. Alles steht bis auf den letzten Schritt.</p>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Beide Landingpages gebaut und erreichbar</li>
+            <li>Einbaucodes und Übergabe-Anleitung fertig</li>
+            <li>Studienlage für Pelvi recherchiert und aufbereitet</li>
+            <li>Auswahl-Seite fürs Cross-Selling</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul>
+            <li>Die Anzeigen <span class="wer">— Abklärung Maurice, dann Dreh</span></li>
+            <li>To-do-Portal für Manu <span class="wer">— Vincent</span></li>
+            <li>Werberechtliche Prüfung</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Content-Radar</h3><span class="pill live">Live</span></div>
+        <p class="was">Ein System, das jeden Morgen von selbst drei drehfertige Skripte liefert — mit vorher geprüften Zahlen.</p>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Läuft täglich automatisch aufs Handy</li>
+            <li>Misst eigene Zahlen und beobachtet die Nische</li>
+            <li>Wissensbasis mit Positionierung, Formaten und rechtlichen Grenzen</li>
+            <li>Eigenes Format entwickelt: Der Arzt prüft Produktversprechen nach</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul><li>Drehtermin, damit die Skripte nicht liegenbleiben</li></ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Verpasste Gespräche zurückholen</h3><span class="pill wartet">Fertig · wartet</span></div>
+        <p class="was">62 vereinbarte Gespräche haben nie stattgefunden. Alle waren warm und hatten einen Termin.</p>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Die Lücke überhaupt sichtbar gemacht und beziffert</li>
+            <li>Vier fertige Nachrichten — darunter die bisher völlig fehlende nach dem Nichterscheinen</li>
+            <li>Rund 120 weitere liegengebliebene Kontakte gefunden</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul><li>In GHL einrichten und einschalten <span class="wer">— rechnerisch rund 67.000 €</span></li></ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Social-Media-Auftritt</h3><span class="pill wartet">Fertig · wartet</span></div>
+        <p class="was">Über 12.000 Follower sind vorhanden — sie werden nur gerade nicht erreicht.</p>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Format-Konzepte entwickelt und Skripte geschrieben</li>
+            <li>Automatisches Veröffentlichen auf drei Kanälen eingerichtet</li>
+            <li>Bestandsaufnahme aller Profile — drei Kanäle erzählten drei verschiedene Geschichten</li>
+            <li>Falscher Doktortitel auf einem Arztportal entdeckt</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul>
+            <li>Vier Videos aus dem TikTok-Postfach freigeben</li>
+            <li>Falsches Workshop-Datum aus der Bio</li>
+            <li>Profile vereinheitlichen</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Messen und Automatisieren</h3><span class="pill live">Live</span></div>
+        <p class="was">Zahlen, die vorher von Hand zusammengesucht wurden, laufen jetzt von selbst.</p>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Werbezahlen laufen selbstständig in die zentrale Tabelle, getrennt nach Seite</li>
+            <li>Anmeldungen wandern automatisch aus GHL ins Tabellenblatt</li>
+            <li>Ein hartnäckiges Problem gelöst: Die Herkunft der Anmeldung kam immer leer an</li>
+            <li>Umbau auf getrennte Anmeldeseiten, damit sauber messbar wird</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul><li>Anmeldungen je Seite endgültig trennen</li></ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- KLEINERE BAUSTEINE                                            -->
+  <!-- ============================================================ -->
+  <div class="stufe klein">
+    <div class="stufe-head">
+      <h2>Kleinere Bausteine</h2>
+      <span class="hint">schnell gebaut, im Alltag nützlich</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head"><h3>Übersicht und Steuerung</h3><span class="pill live">Live</span></div>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Firmen-Landkarte als Einstieg über alle Bereiche</li>
+            <li>Ideen-Speicher, in dem nichts verloren geht</li>
+            <li>Cockpit, Team-Hub und Aufgaben-App erreichbar</li>
+            <li>Notiz-Bot auf dem Handy</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul><li>Zahlen im Cockpit aktuell halten</li></ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Reaktivierung alter Kontakte</h3><span class="pill live">Live</span></div>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Mehrere Mail-Varianten gebaut und versendet</li>
+            <li>Sauberes Segment gebaut — Käufer und Abgemeldete ausgeschlossen</li>
+            <li>Echte Testimonial-Zitate aus Videos gezogen statt erfundener</li>
+          </ul>
+        </div>
+        <div class="block fehlt ok">
+          <span class="block-label">Offen</span>
+          <ul><li>nichts</li></ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Praxis-Außenauftritt</h3><span class="pill ruht">Ruht</span></div>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Zwei Entwürfe für eine neue Praxis-Startseite</li>
+            <li>Rechtliche Trennung von Praxis und Programm geklärt</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul>
+            <li>Professionelle Fotos <span class="wer">— größter Hebel</span></li>
+            <li>Entscheidung über den Weg <span class="wer">— zurückgestellt</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Einzelstücke auf Zuruf</h3><span class="pill live">Live</span></div>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Angebots-Bilder für WhatsApp, Preiserklärungen für einzelne Kundinnen</li>
+            <li>Antworttexte für schwierige Kundennachrichten</li>
+            <li>Anzeige für einen Betreuungsplatz, Lebenslauf, Quiz-Seiten</li>
+            <li>Übersicht der Projekte für den Vater, weiterleitbar</li>
+          </ul>
+        </div>
+        <div class="block fehlt ok">
+          <span class="block-label">Offen</span>
+          <ul><li>nichts — entsteht bei Bedarf</li></ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Arzt per Zoom im Verkaufsgespräch</h3><span class="pill arbeit">In Arbeit</span></div>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Konzept für ortsunabhängige Gespräche mit dem Arzt auf Abruf</li>
+            <li>Ursache des Raumchaos gefunden: eine geteilte Lizenz kann nur ein Meeting gleichzeitig</li>
+          </ul>
+        </div>
+        <div class="block fehlt">
+          <span class="block-label">Fehlt</span>
+          <ul><li>Anzahl der Lizenzen klären <span class="wer">— Ramy im Meeting</span></li></ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Wettbewerb im Blick</h3><span class="pill live">Live</span></div>
+        <div class="block steht">
+          <span class="block-label">Erreicht</span>
+          <ul>
+            <li>Die aktiven Werber der Nische identifiziert und ihre Muster benannt</li>
+            <li>Die Lücke gefunden: Fast niemand ist ein echter Arzt</li>
+            <li>Format-Vorbilder außerhalb der Nische analysiert</li>
+          </ul>
+        </div>
+        <div class="block fehlt ok">
+          <span class="block-label">Offen</span>
+          <ul><li>läuft automatisch mit</li></ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="close">
+    <h2>Das Muster, das sich durchzieht</h2>
+    <p>
+      Bei fast jedem Projekt steht die Arbeit. Was fehlt, ist meist <strong>ein einzelner letzter
+      Schritt</strong> — ein Link, ein Einbau, ein Fingertipp, eine Freigabe, ein Drehtermin.
+    </p>
+    <p>
+      Die Geräte-Seiten sind fertig, sogar die Anweisungen ans Team — es fehlen nur die Anzeigen.
+      Die Video-Seite ist fertig — es fehlt ein Buchungslink. Vier Videos sind produziert — es fehlt
+      ein Tipp. Die Workshop-Seiten sind fertig — es fehlt der Einbau.
+    </p>
+    <p>
+      <strong>Nichts davon braucht neue Arbeit. Alles davon braucht einen Abschluss.</strong>
+    </p>
+  </div>
+
+  <footer>
+    Diese Übersicht zeigt gemeinsam gebaute Projekte und was daraus geworden ist.
+    Abläufe, die im Unternehmen vorher schon liefen, sind nicht enthalten.
+  </footer>
+
+</div>
