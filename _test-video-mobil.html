@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ärztlich begleitet abnehmen — Facharzt Hischam El-Sobhi</title>
+<meta name="description" content="Kein Coach, kein Diät-Trend. Ein echter Facharzt findet den messbaren Grund, warum dein Körper festhält — mit Diagnostik, persönlichem Plan und fester Begleitung. Video ansehen + kostenloses Gespräch sichern.">
+<script>document.documentElement.className+=' js';</script>
+<style>
+  :root{
+    --bg:#ffffff; --soft:#f4f8f6; --soft2:#eaf3ee; --ink:#132019; --ink2:#22332c; --muted:#63736c;
+    --line:#e5ece8; --card:#ffffff;
+    --green:#22a35f; --green-d:#178048; --green-l:#2fb46b; --green-bg:#e7f5ec;
+    --dark:#0d2a1e; --dark2:#123c2a;
+    --gold:#e0ad3c;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  img{max-width:100%;display:block;height:auto;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px;}
+  .narrow{max-width:840px;}
+  .kick{color:var(--green);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;}
+  h2.h{font-weight:800;font-size:clamp(1.6rem,5.4vw,2.5rem);line-height:1.1;letter-spacing:-.01em;text-transform:uppercase;}
+  h2.h em{font-style:normal;color:var(--green);}
+  .sub{color:var(--muted);font-size:1.03rem;}
+  .sec{padding:clamp(48px,8vw,74px) 0;}
+  .sec.soft{background:var(--soft);}
+  .center{text-align:center;}
+  .center .sub{max-width:600px;margin:12px auto 0;}
+  .mt{margin-top:26px;}
+
+  /* Reveal (fail-safe) */
+  html.js .reveal{opacity:0;transform:translateY(22px);}
+  html.js .reveal.in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1);}
+  @media(prefers-reduced-motion:reduce){html.js .reveal{opacity:1!important;transform:none!important;}}
+
+  /* Scroll progress */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,var(--green-l),var(--gold));transition:width .1s linear;}
+
+  /* CTA */
+  .cta{display:inline-flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;
+    background:linear-gradient(150deg,#2fb46b,#178048);color:#fff;font-family:inherit;font-weight:800;
+    font-size:1.05rem;padding:16px 34px;border-radius:44px;border:none;cursor:pointer;
+    box-shadow:0 12px 26px rgba(23,128,72,.34);transition:transform .14s,box-shadow .14s,filter .14s;}
+  .cta small{font-weight:600;font-size:.76rem;opacity:.92;letter-spacing:.01em;}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(23,128,72,.44);filter:brightness(1.04);}
+  .cta:active{transform:translateY(0);}
+  .cta.big{font-size:1.16rem;padding:19px 46px;}
+  .cta.pulse{animation:pulse 2.6s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 12px 26px rgba(23,128,72,.34);}50%{box-shadow:0 12px 40px rgba(23,128,72,.55);}}
+  @media(prefers-reduced-motion:reduce){.cta.pulse{animation:none;}}
+
+  /* Topbar */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .topbar .in{max-width:1120px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .topbar .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:.86rem;color:var(--ink);}
+  .topbar .brand img{height:28px;width:auto;border-radius:5px;}
+  .topbar .brand span{white-space:nowrap;}
+  .topbar .cta{padding:9px 20px;font-size:.84rem;box-shadow:none;border-radius:30px;flex-direction:row;}
+  @media(max-width:520px){ .topbar .brand span{display:none;} .topbar .cta{padding:9px 18px;} }
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;padding:20px 0 26px;background:var(--bg);}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(620px 360px at 88% -6%,#e2f2e8,transparent 70%),radial-gradient(520px 300px at 6% 108%,#eaf5ee,transparent 70%);}
+  .hero .wrap{position:relative;z-index:1;}
+  .hgrid{display:grid;gap:14px;grid-template-columns:1fr;grid-template-areas:"text" "video" "cta";}
+  .htext{grid-area:text;}
+  .hvideo{grid-area:video;align-self:center;}
+  .hcta{grid-area:cta;}
+  .hero h1{text-transform:uppercase;font-weight:800;font-size:clamp(1.6rem,6.1vw,3.15rem);line-height:1.05;letter-spacing:-.015em;margin:.24em 0 .22em;}
+  .hero h1 span{color:var(--green);}
+  .hero .subh{font-weight:700;font-size:clamp(1rem,4vw,1.24rem);color:var(--ink2);line-height:1.35;}
+  .hproof{display:flex;align-items:center;gap:11px;margin-top:12px;}
+  .avs{display:flex;}
+  .avs img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid #fff;margin-left:-11px;box-shadow:0 2px 6px rgba(0,0,0,.14);}
+  .avs img:first-child{margin-left:0;}
+  .hproof .pt{font-size:.86rem;color:var(--muted);line-height:1.25;}
+  .hproof .pt b{color:var(--ink);display:block;}
+  .hproof .stars{color:var(--gold);letter-spacing:1px;font-size:.86rem;}
+  .hcta .cta{width:100%;max-width:420px;}
+  .hcta .rr{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-align:center;max-width:420px;}
+  .hcta .rr b{color:var(--green-d);}
+
+  /* Video facade */
+  .vwrap{position:relative;border-radius:18px;overflow:hidden;background:#0c1c16;box-shadow:0 26px 60px rgba(15,45,32,.32);border:1px solid rgba(255,255,255,.5);}
+  .vwrap .ar{position:relative;padding-top:56.25%;}
+  .vwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .vwrap .vload{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;font-size:.88rem;font-weight:700;background:#0c1c16;}
+  .vwrap .vload .sp{width:30px;height:30px;border:3px solid rgba(255,255,255,.28);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .vfacade{position:absolute;inset:0;cursor:pointer;background-size:cover;background-position:center 22%;}
+  .vfacade::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,20,.15),rgba(10,26,20,.55));}
+  .vfacade .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:74px;height:74px;border-radius:50%;
+    background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(0,0,0,.4);
+    animation:ring 2.4s ease-out infinite;}
+  .vfacade .play::before{content:"";border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent var(--green-d);margin-left:4px;}
+  @keyframes ring{0%{box-shadow:0 8px 26px rgba(0,0,0,.4),0 0 0 0 rgba(255,255,255,.5);}70%{box-shadow:0 8px 26px rgba(0,0,0,.4),0 0 0 20px rgba(255,255,255,0);}100%{box-shadow:0 8px 26px rgba(0,0,0,.4),0 0 0 0 rgba(255,255,255,0);}}
+  @media(prefers-reduced-motion:reduce){.vfacade .play{animation:none;}}
+  .vfacade .vlabel{position:absolute;left:14px;top:14px;z-index:2;background:rgba(12,28,22,.82);color:#fff;font-size:.76rem;font-weight:700;padding:7px 13px;border-radius:30px;backdrop-filter:blur(4px);}
+  .vfacade .vlen{position:absolute;right:14px;bottom:14px;z-index:2;background:rgba(12,28,22,.72);color:#fff;font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:20px;}
+
+  @media(min-width:821px){
+    .hgrid{grid-template-columns:1.04fr .96fr;grid-template-areas:"text video" "cta video";gap:20px 44px;align-items:start;}
+    .hvideo{align-self:center;}
+    .hcta{align-self:start;}
+    .hcta .cta,.hcta .rr{margin-left:0;}
+    .hero{padding:52px 0 54px;}
+  }
+
+  /* Trust strip */
+  .tstrip{background:var(--dark);color:rgba(255,255,255,.9);}
+  .tstrip .in{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 30px;padding:16px 20px;text-align:center;}
+  .tstrip .it{display:flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;}
+  .tstrip .it svg{width:18px;height:18px;color:#7fe0a5;flex-shrink:0;}
+
+  /* Marquee band */
+  .band{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden;}
+  .band .lbl{text-align:center;color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;}
+  .marquee{display:flex;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+  .track{display:flex;gap:11px;padding-right:11px;animation:scroll 46s linear infinite;}
+  .band:hover .track{animation-play-state:paused;}
+  .track img{width:108px;height:144px;object-fit:cover;border-radius:12px;flex-shrink:0;box-shadow:0 6px 16px rgba(15,45,32,.13);}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media(prefers-reduced-motion:reduce){.track{animation:none;}}
+
+  /* Pain */
+  .pain-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:24px;}
+  .pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 6px 16px rgba(15,45,32,.04);}
+  .pain .x{color:#d05a3d;font-size:1.05rem;font-weight:900;flex-shrink:0;line-height:1.4;}
+  .pain p{font-size:.98rem;}
+  @media(min-width:700px){ .pain-grid{grid-template-columns:1fr 1fr;} }
+
+  /* Reframe / dark blocks */
+  .reframe{background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;border-radius:24px;padding:clamp(34px,6vw,52px) clamp(24px,5vw,42px);text-align:center;box-shadow:0 22px 54px rgba(13,42,30,.26);}
+  .reframe h2{font-weight:800;font-size:clamp(1.5rem,5vw,2.2rem);line-height:1.18;max-width:720px;margin:0 auto;text-transform:uppercase;letter-spacing:-.01em;}
+  .reframe h2 em{font-style:normal;color:#7fe0a5;}
+  .reframe p{color:rgba(255,255,255,.86);max-width:600px;margin:16px auto 0;font-size:1.04rem;}
+
+  /* Arzt */
+  .arzt{display:grid;grid-template-columns:1fr;gap:26px;align-items:center;}
+  .arzt-photo{border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(15,45,32,.2);position:relative;max-width:420px;margin:0 auto;}
+  .arzt-photo .b{position:absolute;left:14px;bottom:14px;background:rgba(12,28,22,.85);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:8px 14px;font-size:.78rem;font-weight:700;backdrop-filter:blur(4px);}
+  .arzt-photo .b b{color:#7fe0a5;}
+  .arzt h3{font-size:clamp(1.4rem,4.6vw,1.8rem);line-height:1.16;margin:.1em 0 .3em;text-transform:uppercase;letter-spacing:-.01em;font-weight:800;}
+  .arzt ul{list-style:none;display:grid;gap:10px;margin-top:14px;}
+  .arzt li{padding-left:30px;position:relative;font-size:1rem;}
+  .arzt li::before{content:"✓";position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:50%;background:var(--green-bg);color:var(--green-d);font-weight:900;font-size:.7rem;display:flex;align-items:center;justify-content:center;}
+  @media(min-width:761px){ .arzt{grid-template-columns:.82fr 1.18fr;gap:36px;} .arzt-photo{margin:0;} }
+
+  /* Stats count-up */
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 16px;text-align:center;box-shadow:0 8px 22px rgba(15,45,32,.05);}
+  .stat .num{font-weight:800;font-size:clamp(1.8rem,6vw,2.4rem);color:var(--green-d);line-height:1;letter-spacing:-.01em;}
+  .stat .lab{color:var(--muted);font-size:.84rem;margin-top:7px;font-weight:600;}
+  @media(min-width:640px){ .stats{grid-template-columns:repeat(4,1fr);} }
+
+  /* 5 Säulen */
+  .pillars{display:grid;grid-template-columns:1fr;gap:12px;margin-top:30px;}
+  .pil{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 20px;box-shadow:0 8px 22px rgba(15,45,32,.05);transition:transform .16s,box-shadow .16s;display:flex;gap:16px;align-items:flex-start;}
+  .pil:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(15,45,32,.12);}
+  .pil .no{font-family:var(--serif);font-size:1.9rem;color:var(--green);opacity:.4;line-height:1;font-weight:700;flex-shrink:0;width:44px;}
+  .pil b{display:block;font-size:1.02rem;margin-bottom:4px;}
+  .pil p{color:var(--muted);font-size:.9rem;line-height:1.45;}
+  @media(min-width:560px){ .pillars{grid-template-columns:1fr 1fr;} }
+  @media(min-width:900px){ .pillars{grid-template-columns:1fr 1fr 1fr;} }
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:1fr;gap:12px;margin-top:28px;}
+  .stp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px;box-shadow:0 8px 22px rgba(15,45,32,.05);position:relative;}
+  .stp .n{width:34px;height:34px;border-radius:10px;background:var(--green-bg);color:var(--green-d);font-weight:800;display:flex;align-items:center;justify-content:center;}
+  .stp b{display:block;font-size:1.02rem;margin:12px 0 4px;}
+  .stp p{color:var(--muted);font-size:.9rem;}
+  @media(min-width:560px){ .steps{grid-template-columns:1fr 1fr;} }
+  @media(min-width:960px){ .steps{grid-template-columns:repeat(4,1fr);} }
+
+  /* Testimonials */
+  .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
+  .tvid{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:9/16;cursor:pointer;box-shadow:0 12px 30px rgba(15,45,32,.16);}
+  .tvid video{width:100%;height:100%;object-fit:cover;display:block;}
+  .tvid .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.14);transition:.15s;}
+  .tvid .play span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--green-d);display:flex;align-items:center;justify-content:center;font-size:1.2rem;padding-left:4px;box-shadow:0 6px 18px rgba(0,0,0,.3);}
+  .tvid.playing .play{opacity:0;pointer-events:none;}
+  @media(min-width:761px){ .tgrid{grid-template-columns:repeat(4,1fr);} }
+
+  /* YouTube testimonial wall */
+  .wall-head{margin-top:36px;margin-bottom:2px;}
+  .ytwall{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:16px;}
+  .yt{position:relative;display:block;border-radius:14px;overflow:hidden;background:#000;text-decoration:none;box-shadow:0 10px 24px rgba(15,45,32,.14);transition:transform .16s,box-shadow .16s;}
+  .yt:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(15,45,32,.22);}
+  .yt img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .3s;}
+  .yt:hover img{transform:scale(1.05);}
+  .yt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(8,20,14,.78));}
+  .yt .pl{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:2;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--green-d);display:flex;align-items:center;justify-content:center;font-size:1rem;padding-left:3px;box-shadow:0 4px 14px rgba(0,0,0,.34);}
+  .yt .nm{position:absolute;left:12px;bottom:10px;z-index:2;color:#fff;font-weight:700;font-size:.86rem;text-shadow:0 1px 4px rgba(0,0,0,.5);}
+  @media(min-width:640px){ .ytwall{grid-template-columns:repeat(3,1fr);} }
+  @media(min-width:900px){ .ytwall{grid-template-columns:repeat(4,1fr);} }
+
+  /* Für wen */
+  .fw-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:24px;}
+  .fw{border-radius:18px;padding:24px;}
+  .fw.ja{background:var(--green-bg);border:1px solid #c9e9d5;}
+  .fw.nein{background:#f6efec;border:1px solid #ecdcd4;}
+  .fw h4{font-size:1.06rem;margin-bottom:12px;text-transform:uppercase;letter-spacing:.03em;}
+  .fw.ja h4{color:var(--green-d);} .fw.nein h4{color:#b0553a;}
+  .fw ul{list-style:none;display:grid;gap:9px;}
+  .fw li{padding-left:26px;position:relative;font-size:.96rem;}
+  .fw.ja li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:900;}
+  .fw.nein li::before{content:"✕";position:absolute;left:0;color:#c65540;font-weight:900;}
+  @media(min-width:700px){ .fw-grid{grid-template-columns:1fr 1fr;} }
+
+  /* FAQ */
+  .faq{max-width:760px;margin:24px auto 0;}
+  .qa{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:11px;overflow:hidden;}
+  .qa summary{list-style:none;cursor:pointer;padding:17px 20px;font-size:1.02rem;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:14px;}
+  .qa summary::-webkit-details-marker{display:none;}
+  .qa summary::after{content:"+";color:var(--green);font-size:1.4rem;font-weight:700;flex-shrink:0;transition:transform .2s;}
+  .qa[open] summary::after{transform:rotate(45deg);}
+  .qa .a{padding:0 20px 18px;color:var(--muted);font-size:.96rem;}
+
+  /* Final */
+  .final{background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;text-align:center;padding:clamp(56px,10vw,84px) 0;}
+  .final h2{font-weight:800;font-size:clamp(1.7rem,5.6vw,2.6rem);line-height:1.14;max-width:740px;margin:0 auto .5em;text-transform:uppercase;letter-spacing:-.01em;}
+  .final h2 em{font-style:normal;color:#7fe0a5;}
+  .final p{color:rgba(255,255,255,.86);max-width:540px;margin:0 auto 26px;font-size:1.06rem;}
+  .final .calbox{background:#fff;border-radius:20px;padding:10px;max-width:840px;margin:26px auto 0;box-shadow:0 24px 60px rgba(0,0,0,.3);}
+  .final .calbox iframe{border-radius:14px;display:block;width:100%;}
+
+  /* Footer */
+  .foot{background:#0a1c14;color:rgba(255,255,255,.7);font-size:.84rem;padding:32px 20px;text-align:center;}
+  .foot a{color:rgba(255,255,255,.85);text-decoration:none;margin:0 7px;white-space:nowrap;}
+  .foot a:hover{text-decoration:underline;}
+  .foot .hint{margin-top:14px;font-size:.74rem;opacity:.6;max-width:720px;margin-left:auto;margin-right:auto;}
+
+  /* Sticky + Exit */
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:55;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:9px 14px;display:none;box-shadow:0 -6px 22px rgba(15,45,32,.12);}
+  .sticky .cta{width:100%;box-shadow:none;flex-direction:row;gap:8px;font-size:1rem;padding:14px;}
+  @media(max-width:760px){ .sticky{display:block;} body{padding-bottom:72px;} }
+  .exit{position:fixed;inset:0;z-index:70;background:rgba(8,22,16,.68);display:none;align-items:center;justify-content:center;padding:20px;}
+  .exit.open{display:flex;}
+  .exit .box{background:#fff;border-radius:20px;max-width:430px;padding:34px 28px;text-align:center;position:relative;box-shadow:0 30px 70px rgba(0,0,0,.4);}
+  .exit .box h3{font-size:1.4rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:-.01em;}
+  .exit .box p{color:var(--muted);margin-bottom:20px;}
+  .exit .close{position:absolute;right:14px;top:10px;border:none;background:none;font-size:1.5rem;color:var(--muted);cursor:pointer;}
+
+  /* ===== GHL-Rahmen neutralisieren (CSS-Backup zum Skript unten) =====
+     GHL rendert Custom-Code in Section > Row > Column mit eigenem Padding,
+     max-width und weissem Hintergrund -> heller Streifen oben + Raender seitlich.
+     Diese Regeln setzen das zurueck. Ohne GHL greifen sie ins Leere. */
+  html,body{margin:0 !important;padding:0 !important;background:var(--bg) !important}
+  .c-section,.c-row,.c-column,.c-wrapper,
+  .hl_page-creator--content,.hl_page-creator--row,.hl_page-creator--col,
+  .section-wrap,.row-wrap,.col-wrap,.fullSection,.fullRow,.fullColumn{
+    padding:0 !important;margin:0 !important;max-width:100% !important;width:100% !important;
+    background:transparent !important;border:0 !important}
+  .hero{width:100%;max-width:none}
+
+  /* ===== Video: eigenes <video> statt Drive-iframe =====
+     Das iframe-Styling gilt genauso fuers video-Element. */
+  .vwrap video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;object-fit:contain;}
+
+  /* Auf dem Handy holt das Video die volle Bildschirmbreite.
+     Vorher: 315 px breit / 178 px hoch, davon ~145 px echtes Bild (Rest war
+     Drive-Steuerleiste). Jetzt: volle Breite, volles Bild. */
+  @media(max-width:760px){
+    .hvideo{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);width:100vw;}
+    .vwrap{border-radius:0;border-left:0;border-right:0;}
+    .vfacade .play{width:64px;height:64px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+
+<div class="topbar">
+  <div class="in">
+    <div class="brand"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="Zentrum für Gesundheitsmedizin"> <span>Zentrum für Gesundheitsmedizin</span></div>
+    <a class="cta" href="#termin-buchen">Termin sichern</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hgrid">
+      <div class="htext reveal">
+        <div class="kick">Facharzt Hischam El-Sobhi · 25+ Jahre Erfahrung</div>
+        <h1>Abnehmen — <span>ärztlich begleitet,</span> nicht geraten.</h1>
+        <div class="subh">Es liegt nicht an deiner Disziplin — sondern an etwas, das noch keiner untersucht hat.</div>
+        <div class="hproof">
+          <div class="avs">
+            <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t01.jpg" alt="">
+            <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t02.jpg" alt="">
+            <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t03.jpg" alt="">
+            <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t05.jpg" alt="">
+          </div>
+          <div class="pt"><span class="stars">★★★★★</span><b>2.000+ begleitete Patient:innen</b></div>
+        </div>
+      </div>
+
+      <div class="hvideo reveal">
+        <div class="vwrap">
+          <div class="ar">
+            <div class="vfacade" id="vfacade" style="background-image:url('https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/arzt-hischam.webp')" data-src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/vsl-arzt.mp4">
+              <div class="vlabel">▶ Video mit dem Arzt</div>
+              <div class="play" aria-label="Video abspielen"></div>
+              <div class="vlen">2 Min ansehen</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hcta reveal">
+        <a class="cta big pulse" href="#termin-buchen">Kostenloses Gespräch sichern<small>kostenlos &amp; unverbindlich</small></a>
+        <span class="rr">🟢 <b>Aktuell freie Plätze</b> · online · in wenigen Minuten gebucht</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="tstrip">
+  <div class="in">
+    <div class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Echter Facharzt, kein Coach</div>
+    <div class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Echte Diagnostik statt Raten</div>
+    <div class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Feste 1:1-Begleitung</div>
+  </div>
+</div>
+
+<!-- PROOF BAND -->
+<div class="band">
+  <div class="lbl">Echte Menschen, die den Schritt gegangen sind</div>
+  <div class="marquee">
+    <div class="track">
+      <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t01.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t02.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t03.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t04.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t05.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t06.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t07.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t08.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t09.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t10.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t11.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t12.jpg" alt="">
+      <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t01.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t02.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t03.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t04.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t05.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t06.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t07.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t08.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t09.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t10.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t11.jpg" alt=""><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t12.jpg" alt="">
+    </div>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section class="sec">
+  <div class="wrap narrow center reveal">
+    <div class="kick">Kennst du das?</div>
+    <h2 class="h">Du hast so vieles versucht — und trotzdem <em>passiert nichts</em></h2>
+  </div>
+  <div class="wrap narrow">
+    <div class="pain-grid">
+      <div class="pain reveal"><span class="x">✕</span><p>Du isst weniger, bewegst dich mehr — die Waage steht trotzdem still.</p></div>
+      <div class="pain reveal"><span class="x">✕</span><p>Diäten wirken kurz, danach ist alles wieder da — plus mehr.</p></div>
+      <div class="pain reveal"><span class="x">✕</span><p>Ständig müde, kraftlos, unzufrieden mit dem eigenen Körper.</p></div>
+      <div class="pain reveal"><span class="x">✕</span><p>Niemand hat je richtig hingeschaut — nur „iss halt weniger".</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REFRAME -->
+<section class="sec soft" style="padding-top:0;background:none;">
+  <div class="wrap narrow">
+    <div class="reframe reveal">
+      <h2>Du bist nicht schuld. Und nicht <em>„zu schwach".</em></h2>
+      <p>Dein Körper hält aus einem Grund fest — und dieser Grund ist <b>messbar</b>. Genau da setzen wir an: ärztlich, ganzheitlich, mit einem Plan, der zu dir passt. Kein Raten mehr.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARZT -->
+<section class="sec soft" id="arzt">
+  <div class="wrap">
+    <div class="arzt">
+      <div class="arzt-photo reveal">
+        <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/arzt-hischam.webp" width="640" height="800" alt="Hischam El-Sobhi, Facharzt" loading="lazy">
+        <div class="b"><b>Facharzt</b> · approbiert seit 1998</div>
+      </div>
+      <div class="reveal">
+        <div class="kick">Wer dich begleitet</div>
+        <h3>Ein echter Arzt — kein Coach</h3>
+        <p class="sub">Hischam El-Sobhi begleitet dich persönlich: ärztlich fundiert, ganzheitlich und mit über zwei Jahrzehnten Erfahrung. Er sieht, was andere übersehen — und weiß, in welcher Reihenfolge dein Körper wirklich reagiert.</p>
+        <ul>
+          <li>Facharzt für Allgemeinmedizin, approbiert seit 1998</li>
+          <li>Schwerpunkte Ernährungsmedizin &amp; TCM/Akupunktur</li>
+          <li>Über 2.000 Patientinnen &amp; Patienten begleitet</li>
+        </ul>
+        <div class="stats" id="stats">
+          <div class="stat"><div class="num" data-count="2000" data-suffix="+">0</div><div class="lab">Patient:innen</div></div>
+          <div class="stat"><div class="num" data-count="25" data-suffix="+">0</div><div class="lab">Jahre Erfahrung</div></div>
+          <div class="stat"><div class="num" data-count="5" data-suffix="">0</div><div class="lab">Säulen-System</div></div>
+          <div class="stat"><div class="num" data-count="2" data-suffix="×/Wo">0</div><div class="lab">Live mit dem Arzt</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 SÄULEN -->
+<section class="sec" id="saeulen">
+  <div class="wrap narrow center reveal">
+    <div class="kick">Das Besondere an uns</div>
+    <h2 class="h">Wir sehen alles als <em>ein System</em></h2>
+    <p class="sub">Die meisten schauen nur auf eine Sache — das Essen. Wir betrachten fünf Bereiche und wie sie zusammenspielen. Deshalb hält das Ergebnis.</p>
+  </div>
+  <div class="wrap">
+    <div class="pillars">
+      <div class="pil reveal"><div class="no">01</div><div><b>Ernährung</b><p>Versorgung statt Verzicht — essen, ohne zu hungern.</p></div></div>
+      <div class="pil reveal"><div class="no">02</div><div><b>Darm &amp; Vitalstoffe</b><p>Das Fundament: gesunder Darm, gefüllte Speicher.</p></div></div>
+      <div class="pil reveal"><div class="no">03</div><div><b>Hormone &amp; Nerven</b><p>Die Steuer-Ebene: Cortisol, Insulin, Schilddrüse.</p></div></div>
+      <div class="pil reveal"><div class="no">04</div><div><b>Mentale Gesundheit</b><p>Der Ursprung: Stress &amp; Gewohnheiten.</p></div></div>
+      <div class="pil reveal"><div class="no">05</div><div><b>Bewegung</b><p>Zur richtigen Zeit — nicht zu früh, nicht zu viel.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section class="sec soft">
+  <div class="wrap narrow center reveal">
+    <div class="kick">So sieht der Weg aus</div>
+    <h2 class="h">Ein Weg, der zu <em>deinem</em> Körper passt</h2>
+  </div>
+  <div class="wrap">
+    <div class="steps">
+      <div class="stp reveal"><div class="n">1</div><b>Diagnostik zuerst</b><p>Blutbild, Darm, Hormone. Der Arzt fügt alles zu einem Bild zusammen.</p></div>
+      <div class="stp reveal"><div class="n">2</div><b>Dein persönlicher Plan</b><p>Auf deine Werte zugeschnitten, in klaren Phasen — kein Hungern.</p></div>
+      <div class="stp reveal"><div class="n">3</div><b>Ernährung, die satt macht</b><p>Eigene App mit Plan, hunderten Rezepten &amp; Einkaufsliste.</p></div>
+      <div class="stp reveal"><div class="n">4</div><b>Du bist nie allein</b><p>2×/Woche live mit dem Arzt, WhatsApp im Alltag, feste 1:1-Termine.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec" id="stimmen">
+  <div class="wrap narrow center reveal">
+    <div class="kick">Echte Stimmen</div>
+    <h2 class="h">Das sagen Menschen, die es <em>gegangen sind</em></h2>
+    <p class="sub">Tippe an, um zu hören, wie es ihnen ergangen ist.</p>
+  </div>
+  <div class="wrap">
+    <div class="tgrid">
+      <div class="tvid reveal"><video src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t01.mp4" poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t01.jpg" preload="none" playsinline></video><div class="play"><span>▶</span></div></div>
+      <div class="tvid reveal"><video src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t05.mp4" poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t05.jpg" preload="none" playsinline></video><div class="play"><span>▶</span></div></div>
+      <div class="tvid reveal"><video src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t07.mp4" poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t07.jpg" preload="none" playsinline></video><div class="play"><span>▶</span></div></div>
+      <div class="tvid reveal"><video src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t10.mp4" poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t10.jpg" preload="none" playsinline></video><div class="play"><span>▶</span></div></div>
+    </div>
+    <!-- ECHTE VIDEO-TESTIMONIAL-WAND (YouTube) -->
+    <div class="wall-head reveal center"><span class="kick">Noch mehr echte Erfahrungen</span></div>
+    <div class="ytwall reveal">
+      <a class="yt" href="https://www.youtube.com/watch?v=d8trc9rUKdE" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/d8trc9rUKdE/hqdefault.jpg" alt="Erfahrung Sandra Rost" loading="lazy"><span class="pl">▶</span><span class="nm">Sandra Rost</span></a>
+      <a class="yt" href="https://www.youtube.com/watch?v=0YajHUjMWPc" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/0YajHUjMWPc/hqdefault.jpg" alt="Transformation Christoph Wagemann" loading="lazy"><span class="pl">▶</span><span class="nm">Christoph Wagemann</span></a>
+      <a class="yt" href="https://www.youtube.com/watch?v=YH-O2233u7A" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/YH-O2233u7A/hqdefault.jpg" alt="Erfahrung Marion Kindermann" loading="lazy"><span class="pl">▶</span><span class="nm">Marion Kindermann</span></a>
+      <a class="yt" href="https://www.youtube.com/watch?v=chGW-HVOoWI" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/chGW-HVOoWI/hqdefault.jpg" alt="Erfahrung Tobias Heil" loading="lazy"><span class="pl">▶</span><span class="nm">Tobias Heil</span></a>
+      <a class="yt" href="https://www.youtube.com/watch?v=5m2b-oBW4hY" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/5m2b-oBW4hY/hqdefault.jpg" alt="Erfahrung Sarah Muschkau" loading="lazy"><span class="pl">▶</span><span class="nm">Sarah Muschkau</span></a>
+      <a class="yt" href="https://www.youtube.com/watch?v=ZHKYXlLomo8" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/ZHKYXlLomo8/hqdefault.jpg" alt="Erfahrung Timo Ramsberg" loading="lazy"><span class="pl">▶</span><span class="nm">Timo Ramsberg</span></a>
+      <a class="yt" href="https://www.youtube.com/watch?v=87iT1VajX38" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/87iT1VajX38/hqdefault.jpg" alt="Erfahrung Svetlana Weitzel" loading="lazy"><span class="pl">▶</span><span class="nm">Svetlana Weitzel</span></a>
+      <a class="yt" href="https://www.youtube.com/watch?v=REdE8Lzt8iY" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/REdE8Lzt8iY/hqdefault.jpg" alt="Erfahrung Sina Bittner" loading="lazy"><span class="pl">▶</span><span class="nm">Sina Bittner</span></a>
+    </div>
+    <div class="center" style="margin-top:20px"><a class="cta" href="https://www.youtube.com/@HischamEl-Sobhi" target="_blank" rel="noopener" style="flex-direction:row;background:linear-gradient(150deg,#2b2b2b,#111);box-shadow:none">▶ Alle Erfahrungen auf YouTube ansehen</a></div>
+  </div>
+</section>
+
+<!-- FÜR WEN -->
+<section class="sec soft">
+  <div class="wrap narrow center reveal">
+    <div class="kick">Ehrlich gesagt</div>
+    <h2 class="h">Für wen dieser Weg ist — und für wen nicht</h2>
+  </div>
+  <div class="wrap narrow">
+    <div class="fw-grid">
+      <div class="fw ja reveal">
+        <h4>✓ Der Weg passt zu dir, wenn …</h4>
+        <ul>
+          <li>du schon vieles probiert hast und endlich den echten Grund verstehen willst</li>
+          <li>du dir ärztliche, ganzheitliche Begleitung wünschst statt der nächsten Diät</li>
+          <li>du bereit bist, einen Weg über mehrere Monate zu gehen — mit Unterstützung</li>
+          <li>du ein dauerhaftes Ergebnis willst, kein kurzes Strohfeuer</li>
+        </ul>
+      </div>
+      <div class="fw nein reveal">
+        <h4>✕ Eher nicht, wenn …</h4>
+        <ul>
+          <li>du eine schnelle „Wunderpille" für nächste Woche suchst</li>
+          <li>du nichts an deinem Alltag verändern möchtest</li>
+          <li>du keine ehrliche, ärztliche Einschätzung willst</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap narrow center reveal">
+    <div class="kick">Häufige Fragen</div>
+    <h2 class="h">Was du vielleicht noch wissen willst</h2>
+  </div>
+  <div class="faq">
+    <details class="qa reveal"><summary>Was passiert im kostenlosen Gespräch?</summary><div class="a">Wir lernen dich kennen, schauen uns deine Situation an und finden gemeinsam heraus, ob und wie wir dir wirklich helfen können. In Ruhe, ohne Druck — kostenlos und unverbindlich.</div></details>
+    <details class="qa reveal"><summary>Warum ein Auswahl-Gespräch?</summary><div class="a">Weil wir nicht mit jedem arbeiten — sondern nur, wenn wir wirklich helfen können. Im Gespräch schauen wir gemeinsam, ob es für beide Seiten passt.</div></details>
+    <details class="qa reveal"><summary>Ist das wieder eine Diät?</summary><div class="a">Nein. Es ist eine ärztlich begleitete Betreuung mit echter Diagnostik, persönlichem Plan und fester Begleitung — genau das, was Diäten nie leisten.</div></details>
+    <details class="qa reveal"><summary>Muss ich mich sofort entscheiden?</summary><div class="a">Nein. Sieh dir in Ruhe das Video an und vereinbare dann ein unverbindliches Gespräch. Alles Weitere besprechen wir persönlich.</div></details>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final" id="termin-buchen">
+  <div class="wrap">
+    <h2>Du hast dieses Video nicht zufällig gesehen. <em>Mach den ersten Schritt.</em></h2>
+    <p>Wähle unten einfach deinen Wunschtermin — kostenlos, unverbindlich, online.</p>
+    <div class="calbox">
+      <iframe src="https://api.leadconnectorhq.com/widget/booking/iYNd7tM7k0TCP3uZi69R" style="width:100%;border:none;overflow:hidden;min-height:660px" scrolling="no" id="cal_iYNd7tM7k0TCP3uZi69R" title="Termin buchen"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="foot">
+  <div>
+    <a href="https://hischamelsobhi.de/impressum" target="_blank" rel="noopener">Impressum</a> ·
+    <a href="https://hischamelsobhi.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a> ·
+    <a href="https://hischamelsobhi.de/agb" target="_blank" rel="noopener">AGB</a> ·
+    <a href="https://hischamelsobhi.de/widerrufsbelehrung" target="_blank" rel="noopener">Widerruf</a>
+  </div>
+  <div style="margin-top:12px"><b style="color:#fff">Zentrum für Gesundheitsmedizin</b> · Hischam El-Sobhi · Facharzt</div>
+  <div class="hint">Ärztlich begleitetes Gesundheitsprogramm. Diese Seite ersetzt keine ärztliche Beratung; ein individueller Weg wird im persönlichen Gespräch festgelegt. Keine Heilversprechen.</div>
+</div>
+
+<div class="sticky"><a class="cta" href="#termin-buchen">Kostenloses Gespräch sichern →</a></div>
+
+<div class="exit" id="exitPop">
+  <div class="box">
+    <button class="close" id="exitClose" aria-label="Schließen">×</button>
+    <h3>Warte kurz …</h3>
+    <p>Du musst dich heute zu nichts entscheiden. Ein kostenloses Gespräch kostet dich nur ein paar Minuten — und kann alles verändern.</p>
+    <a class="cta" href="#termin-buchen" id="exitCta">Kostenloses Gespräch sichern →</a>
+  </div>
+</div>
+
+<script>
+  // Video facade -> load iframe on click
+  (function(){
+    var f=document.getElementById('vfacade');
+    if(!f)return;
+    f.addEventListener('click',function(){
+      var src=f.getAttribute('data-src');
+      var wrap=f.parentNode;
+      var load=document.createElement('div');
+      load.className='vload';
+      load.innerHTML='<span class="sp"></span><span>Video wird geladen …</span>';
+      wrap.appendChild(load);
+      /* Echtes <video> statt Drive-iframe: kein fremder Player, kein
+         Steuerleisten-Ballast, und das Bild fuellt die ganze Flaeche. */
+      var ifr=document.createElement('video');
+      ifr.src=src;
+      ifr.controls=true;
+      ifr.autoplay=true;
+      ifr.playsInline=true;          /* iPhone: im Rahmen abspielen, nicht Vollbild erzwingen */
+      ifr.setAttribute('playsinline','');
+      ifr.setAttribute('preload','auto');
+      ifr.title='Video mit Hischam El-Sobhi';
+      ifr.oncanplay=function(){ setTimeout(function(){ load.remove(); }, 200); };
+      ifr.onerror=function(){ load.innerHTML='<span>Video konnte nicht geladen werden</span>'; };
+      wrap.appendChild(ifr);
+      var los=ifr.play(); if(los&&los.catch){los.catch(function(){});}
+      f.remove();
+    });
+  })();
+
+  // Testimonial videos click-to-play
+  var tv=document.querySelectorAll('.tvid');
+  tv.forEach(function(box){
+    var v=box.querySelector('video');
+    box.addEventListener('click',function(){
+      if(v.paused){ tv.forEach(function(o){var ov=o.querySelector('video');ov.pause();o.classList.remove('playing');}); v.play(); box.classList.add('playing'); }
+      else { v.pause(); box.classList.remove('playing'); }
+    });
+    v.addEventListener('ended',function(){box.classList.remove('playing');});
+  });
+
+  // Reveal on scroll (fail-safe)
+  var revs=[].slice.call(document.querySelectorAll('.reveal'));
+  function checkReveal(){var h=window.innerHeight;revs.forEach(function(el){if(el.classList.contains('in'))return;var r=el.getBoundingClientRect();if(r.top<h-50){el.classList.add('in');}});}
+  window.addEventListener('scroll',checkReveal,{passive:true});
+  window.addEventListener('resize',checkReveal);
+  checkReveal();
+  setTimeout(function(){revs.forEach(function(el){el.classList.add('in');});},4000);
+
+  // Count-up stats
+  var counted=false;
+  function runCount(){
+    if(counted)return;
+    var s=document.getElementById('stats');
+    if(!s)return;
+    var r=s.getBoundingClientRect();
+    if(r.top>window.innerHeight-40)return;
+    counted=true;
+    s.querySelectorAll('.num').forEach(function(el){
+      var target=parseInt(el.getAttribute('data-count'),10),suf=el.getAttribute('data-suffix')||'',cur=0,step=Math.max(1,Math.ceil(target/45));
+      var iv=setInterval(function(){cur+=step;if(cur>=target){cur=target;clearInterval(iv);}el.textContent=(cur>=1000?cur.toLocaleString('de-DE'):cur)+suf;},26);
+    });
+  }
+  window.addEventListener('scroll',runCount,{passive:true});
+  runCount();
+
+  // Scroll progress bar
+  var prog=document.getElementById('prog');
+  function upProg(){var h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(h>0?(window.scrollY/h*100):0)+'%';}
+  window.addEventListener('scroll',upProg,{passive:true});upProg();
+
+  // Smooth anchor + hash (GHL-safe)
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=this.getAttribute('href');
+      if(id.length>1){var t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});window.location.hash=id;}}
+    });
+  });
+
+  // Exit intent (desktop only, off once goal reached)
+  var exitPop=document.getElementById('exitPop'), exitShown=false, reachedGoal=false;
+  var goal=document.getElementById('termin-buchen');
+  window.addEventListener('scroll',function(){var r=goal.getBoundingClientRect();if(r.top<window.innerHeight){reachedGoal=true;}},{passive:true});
+  document.addEventListener('mouseout',function(e){
+    if(exitShown||reachedGoal)return;
+    if(e.clientY<=0 && window.innerWidth>760){exitPop.classList.add('open');exitShown=true;}
+  });
+  document.getElementById('exitClose').addEventListener('click',function(){exitPop.classList.remove('open');});
+  document.getElementById('exitCta').addEventListener('click',function(){exitPop.classList.remove('open');});
+  exitPop.addEventListener('click',function(e){if(e.target===exitPop)exitPop.classList.remove('open');});
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+
+<script>
+/* ============================================================
+   GHL-RAHMEN AUFBRECHEN  (Fix fuer "weisse Flaeche oben + Raender")
+   GHL legt den Custom-Code in Section > Row > Column. Diese Container
+   haben eigenes Padding, max-width und weissen Hintergrund -> heller
+   Streifen ueber dem Hero und Raender seitlich.
+   Loesung: vom Hero aus alle Eltern-Container hochlaufen und
+   Abstand/Breite/Hintergrund neutralisieren. Klassen-unabhaengig.
+   Ausserhalb von GHL (lokal) passiert schlicht nichts.
+   ============================================================ */
+(function(){
+  function aufbrechen(){
+    var n = document.getElementById('top') || document.querySelector('.hero');
+    if(!n) return;
+    var tiefe = 0;
+    while (n && n.parentElement && tiefe < 12) {
+      n = n.parentElement;
+      if (n === document.body || n === document.documentElement) {
+        n.style.setProperty('margin','0','important');
+        n.style.setProperty('padding','0','important');
+        n.style.setProperty('background','var(--bg)','important');
+        break;
+      }
+      n.style.setProperty('padding','0','important');
+      n.style.setProperty('margin','0','important');
+      n.style.setProperty('max-width','100%','important');
+      n.style.setProperty('width','100%','important');
+      n.style.setProperty('background','transparent','important');
+      n.style.setProperty('border','0','important');
+      tiefe++;
+    }
+  }
+  aufbrechen();
+  document.addEventListener('DOMContentLoaded', aufbrechen);
+  window.addEventListener('load', aufbrechen);
+  setTimeout(aufbrechen, 400);   /* GHL baut Teile nach */
+  setTimeout(aufbrechen, 1500);
+})();
+</script>
+</body>
+</html>
