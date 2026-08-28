@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<script>document.documentElement.className+=' js';</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ärztlicher Stoffwechsel-Workshop für Frauen ab 35 — 29.+30. August mit Hischam El-Sobhi</title>
+<meta name="description" content="Die medizinischen Ursachen hinter Gewicht & Erschöpfung ab 35: Insulin, Cortisol, Schilddrüse. Kostenloses Online-Event, Sa. 29. + So. 30. August 2026, 10–13:30 Uhr. Ärztlich geführt von Hischam El-Sobhi.">
+<!-- Social-Sharing (Open Graph) -->
+<meta property="og:title" content="Ärztlicher Stoffwechsel-Workshop für Frauen ab 35">
+<meta property="og:description" content="Insulin, Cortisol, Schilddrüse: Was deinen Stoffwechsel wirklich steuert. Kostenloses, ärztlich geführtes Online-Event am 29. + 30. August.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/hischam.webp">
+<link rel="icon" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/logo-zfg.webp">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '687643727168587');
+fbq('consent', 'grant');
+fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=687643727168587&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- Zusatz: Zeit- und Scroll-Tracking -->
+<script>
+// ------- Zeit auf der Seite (einmalig pro Schwelle) -------
+(function() {
+  var timeEvents = [
+    {ms: 5000,  name: 'TimeOnPage_5s'},
+    {ms: 10000, name: 'TimeOnPage_10s'},
+    {ms: 20000, name: 'TimeOnPage_20s'},
+    {ms: 45000, name: 'TimeOnPage_45s'}
+  ];
+  var firedTimes = {};
+
+  timeEvents.forEach(function(te) {
+    setTimeout(function() {
+      if (!firedTimes[te.name]) {
+        fbq('trackCustom', te.name);
+        firedTimes[te.name] = true;
+      }
+    }, te.ms);
+  });
+})();
+
+// ------- Scrolltiefe (einmalig pro Schwelle) -------
+(function() {
+  var thresholds = [10, 30, 50, 75]; // in Prozent
+  var firedScroll = {};
+  var ticking = false;
+
+  function getScrollPercent() {
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop || 0;
+    var viewport = window.innerHeight || doc.clientHeight || 0;
+    var full = doc.scrollHeight || 0;
+    if (full <= 0) return 0;
+    return ((scrollTop + viewport) / full) * 100;
+  }
+
+  function checkAndFire() {
+    var p = getScrollPercent();
+    thresholds.forEach(function(th) {
+      var key = 'Scroll_' + th + '_percent';
+      if (p >= th && !firedScroll[key]) {
+        fbq('trackCustom', key);
+        firedScroll[key] = true;
+      }
+    });
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(checkAndFire);
+    }
+  }
+
+  // initial prüfen (falls Seite sehr kurz ist)
+  checkAndFire();
+  window.addEventListener('scroll', onScroll, {passive: true});
+  window.addEventListener('resize', onScroll, {passive: true});
+  window.addEventListener('orientationchange', onScroll);
+})();
+</script>
+<!-- Ende Zusatz -->
+
+<!-- ⚠ Hinweis (kein doppeltes Pixel!): Wenn diese LP später in GHL gehostet wird und GHL das Pixel
+     selbst einträgt, DIESEN Block entfernen, sonst feuert PageView doppelt.
+     Lead-Conversion: beim echten GHL-Formular-Submit zusätzlich fbq('track','Lead') feuern. -->
+<style>
+  :root{
+    /* Wissenschaftlich-klinische Palette: kühles Med-Blau/Teal + viel Weiß */
+    --navy:#0b2336; --navy2:#13405e; --teal:#0e8ba8; --teal-d:#0a6c84;
+    --ink:#16242f; --muted:#5a6b78; --line:#dde7ef; --bg:#eaf1f6; --card:#f5f9fc;
+    --gold:#c8a45c; --green:#138a6e; --soft:#e6f1f6; --red:#e8362a;
+    --cta:#1f7ae0; --cta-d:#1763bd;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 18px}
+  h2{font-size:24px;color:var(--navy);font-weight:800;line-height:1.25;margin-bottom:14px}
+  h3{font-size:18px;color:var(--navy);font-weight:800}
+  p{font-size:15.5px;color:#33485c}
+  .btn{display:block;width:100%;max-width:480px;margin:20px auto 0;background:var(--cta);color:#fff;
+    text-align:center;text-decoration:none;font-size:17.5px;font-weight:800;padding:18px 22px;border-radius:14px;
+    box-shadow:0 8px 22px rgba(31,122,224,.36);transition:transform .1s}
+  .btn:active{transform:scale(.99)}
+  .btn.alt{background:#fff;color:var(--teal-d);border:2px solid var(--teal)}
+  @keyframes pulseCta{0%{box-shadow:0 0 0 0 rgba(31,122,224,.55);transform:scale(1)}
+    50%{transform:scale(1.025)}70%{box-shadow:0 0 0 18px rgba(31,122,224,0)}
+    100%{box-shadow:0 0 0 0 rgba(31,122,224,0);transform:scale(1)}}
+  .pulse{animation:pulseCta 1.2s ease-out 3}
+  /* Topbar */
+  .topbar{background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08);padding:10px 0}
+  .topbar .lim{color:#cfe0ec !important}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .topbar img{height:38px}
+  .topbar .lim{font-size:12.5px;color:var(--muted);font-weight:600;text-align:right}
+  /* Hero */
+  .hero{position:relative;overflow:hidden;color:#fff;padding:14px 0 20px;
+    background:
+      linear-gradient(180deg, rgba(11,26,44,.82) 0%, rgba(12,30,50,.86) 50%, var(--navy) 88%),
+      url('https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/hero-bg-hischam-blur.webp') center 16%/cover no-repeat,
+      var(--navy)}
+  .hero .kicker,.hero h1,.hero .sub{text-shadow:0 2px 12px rgba(8,18,30,.5)}
+  /* Team-Banner (scharf, zeigt das ganze Team) */
+  .heroteam{display:block;width:100%;max-width:440px;margin:14px auto 8px;border-radius:16px;
+    border:3px solid rgba(255,255,255,.28);box-shadow:0 14px 38px rgba(0,0,0,.42)}
+  /* Arzt-Hero-Foto (Kittel, Autorität) – Gesicht prominent aufs Handy */
+  .herodoc{display:block;width:148px;height:180px;object-fit:cover;object-position:center 18%;margin:12px auto 4px;
+    border-radius:16px;border:3px solid rgba(255,255,255,.3);box-shadow:0 14px 34px rgba(0,0,0,.5)}
+  @media(max-width:600px){.herodoc{width:126px;height:152px}}
+  .doccred{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 15px;font-size:13px;color:#dbe9f3;font-weight:700}
+  .doccred b{color:#fff}
+  /* sekundärer Hero-Button "Mehr erfahren" */
+  .heromore{display:block;width:fit-content;margin:10px auto 0;color:#eaf2f8;text-decoration:none;font-size:14.5px;
+    font-weight:700;border:1.5px solid rgba(255,255,255,.4);border-radius:11px;padding:11px 22px;
+    background:rgba(255,255,255,.08);transition:background .15s}
+  .heromore:active{background:rgba(255,255,255,.16)}
+  /* Hero-CTA (above the fold) */
+  .herocta{display:block;max-width:440px;margin:16px auto 6px;background:var(--cta);color:#fff;text-align:center;
+    text-decoration:none;font-size:17.5px;font-weight:800;padding:17px 22px;border-radius:14px;
+    box-shadow:0 10px 26px rgba(31,122,224,.5);transition:transform .1s}
+  .herocta:active{transform:scale(.99)}
+  .herolim{text-align:center;font-size:12.5px;color:#cfe0ec;margin-bottom:6px}
+  .hero .wrap{position:relative;z-index:1}
+  .hero .kicker{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:#9fc2d8;font-weight:700;text-align:center}
+  .hero h1{font-size:30px;line-height:1.18;font-weight:800;text-align:center;margin:10px 0 8px}
+  .hero h1 .hl{color:#5cd0e6}
+  .hero .sub{font-size:16px;color:#d8e6f1;text-align:center;max-width:62ch;margin:0 auto;line-height:1.45}
+  .stars{text-align:center;color:#f0c14b;font-size:17px;margin:18px 0 6px;letter-spacing:2px}
+  .trust{text-align:center;color:#bcd3e3;font-size:13.5px}
+  .heroimg{display:block;width:190px;height:190px;object-fit:cover;border-radius:50%;
+    border:4px solid rgba(255,255,255,.25);margin:22px auto 0;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .heroname{text-align:center;color:#eaf2f8;font-size:13.5px;margin-top:5px;line-height:1.4}
+  .heroname b{color:#fff}
+  .meta{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;
+    max-width:480px;margin:11px auto 0;padding:8px 18px}
+  .meta div{display:flex;align-items:center;gap:10px;font-size:14.5px;color:#eaf2f8;padding:3px 0}
+  .meta div b{color:#fff}
+  /* kompakte Vertrauenszeile */
+  .herotrust{display:flex;align-items:center;gap:12px;justify-content:center;max-width:480px;margin:16px auto 0}
+  .herotrust img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.3);flex-shrink:0}
+  .herotrust div{font-size:13px;color:#cfe0ec;text-align:left;line-height:1.4}
+  .herotrust b{color:#fff}
+  .herotrust .st{color:#f0c14b;letter-spacing:1px}
+  /* Hero-Formular (above the fold) */
+  .heroform{background:#fff;border-radius:18px;max-width:480px;margin:22px auto 0;padding:20px 18px 18px;
+    box-shadow:0 14px 40px rgba(0,0,0,.28);position:relative}
+  /* Lade-Anzeige fürs GHL-Formular (verhindert leere Lücke beim Nachladen) */
+  .formloading{position:absolute;left:18px;right:18px;top:20px;bottom:18px;background:#fff;border-radius:12px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:1;
+    color:var(--muted);font-size:14px;font-weight:600;transition:opacity .35s}
+  .formloading.hide{opacity:0;pointer-events:none}
+  .formspin{width:34px;height:34px;border:3px solid #dde7ef;border-top-color:var(--cta);border-radius:50%;animation:fspin .8s linear infinite}
+  @keyframes fspin{to{transform:rotate(360deg)}}
+  .heroform h3{text-align:center;color:var(--navy);font-size:17px;margin-bottom:4px}
+  .heroform .hint{text-align:center;color:var(--muted);font-size:13px;margin-bottom:14px}
+  .heroform label{display:block;text-align:left;font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:5px}
+  .heroform .field{position:relative;margin-bottom:12px}
+  .heroform .field .ic{position:absolute;left:13px;top:38px;font-size:16px;opacity:.55;pointer-events:none}
+  .heroform input{width:100%;border:1.5px solid #cdd6e0;border-radius:10px;padding:15px 14px 15px 40px;
+    font-size:16px;color:var(--ink);font-family:inherit;background:#fbfcfe}
+  .heroform input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,158,143,.15);background:#fff}
+  .heroform button{width:100%;background:var(--cta);color:#fff;border:none;border-radius:12px;
+    padding:16px;font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(31,122,224,.36)}
+  .heroform button:active{transform:scale(.99)}
+  .formbadges{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;margin-top:12px;font-size:12px;color:var(--muted);font-weight:600}
+  .heroform .safe{text-align:center;font-size:12px;color:var(--muted);margin-top:10px;display:flex;
+    align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
+  /* Section */
+  section{padding:32px 0;border-bottom:1px solid var(--line);background:var(--card)}
+  section.alt{background:var(--bg)}
+  .me{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  .me img{width:150px;height:150px;object-fit:cover;border-radius:16px;flex-shrink:0}
+  .me .txt{flex:1;min-width:240px}
+  .quote{font-size:20px;font-weight:800;color:var(--navy);font-style:italic;margin-top:14px;
+    border-left:4px solid var(--teal);padding-left:14px}
+  .trustbar{text-align:center}
+  .trustbar img{max-width:100%;height:auto;opacity:.9}
+  .trustbar .lbl{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:14px}
+  /* Check list */
+  .check{list-style:none;margin-top:8px}
+  .check li{position:relative;padding:10px 0 10px 34px;font-size:15.5px;color:#33485c;border-bottom:1px dashed var(--line)}
+  .check li:last-child{border-bottom:none}
+  .check li::before{content:"✓";position:absolute;left:4px;top:10px;width:22px;height:22px;background:var(--soft);
+    color:var(--teal-d);border-radius:50%;text-align:center;line-height:22px;font-weight:800;font-size:13px}
+  .callout{background:var(--soft);border:1px solid #d6e8e4;border-radius:12px;padding:14px 16px;margin-top:16px;
+    font-weight:700;color:var(--teal-d);font-size:15.5px;text-align:center}
+  /* ===== Mini-Quiz (Stoffwechsel-Typ) ===== */
+  .quiz{background:linear-gradient(160deg,#0e2c44,#15466a);border-radius:20px;padding:26px 22px;color:#fff;
+    box-shadow:0 16px 40px rgba(12,40,64,.28)}
+  .quiz .qlbl{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:#7fd3e6;font-weight:800;text-align:center}
+  .quiz h2{color:#fff;text-align:center;margin-top:8px}
+  .quiz .qsub{color:#cfe3f0;text-align:center;font-size:14.5px;margin-bottom:18px}
+  .quiz .qprog{height:6px;background:rgba(255,255,255,.14);border-radius:99px;margin:0 auto 18px;max-width:420px;overflow:hidden}
+  .quiz .qprog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#37b6d6,#5cd0e6);transition:width .4s ease}
+  .quiz .qstep{max-width:480px;margin:0 auto}
+  .quiz .qq{font-size:18px;font-weight:800;text-align:center;margin-bottom:14px;color:#fff}
+  .quiz .qopts{display:grid;gap:10px}
+  .quiz .qopt{display:block;width:100%;text-align:left;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);
+    color:#eaf4fa;font-size:15px;font-weight:600;padding:15px 16px;border-radius:13px;cursor:pointer;font-family:inherit;
+    transition:background .15s,border-color .15s,transform .1s}
+  .quiz .qopt:hover{background:rgba(92,208,230,.16);border-color:rgba(92,208,230,.5)}
+  .quiz .qopt:active{transform:scale(.99)}
+  .quiz .qresult{max-width:480px;margin:0 auto;text-align:center;display:none}
+  .quiz .qresult.show{display:block}
+  .quiz .qrtype{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#7fd3e6;font-weight:800}
+  .quiz .qrname{font-size:27px;font-weight:800;margin:6px 0 4px;color:#fff}
+  .quiz .qrdesc{color:#d6e8f2;font-size:15px;margin-bottom:8px}
+  .quiz .qricon{font-size:46px;line-height:1}
+  .quiz .qbtn{display:block;max-width:420px;margin:18px auto 0;background:var(--cta);color:#fff;text-align:center;
+    text-decoration:none;font-size:16.5px;font-weight:800;padding:16px 20px;border-radius:13px;box-shadow:0 10px 26px rgba(31,122,224,.45)}
+  .quiz .qdisc{font-size:11.5px;color:#9fc0d4;margin-top:12px;max-width:440px;margin-left:auto;margin-right:auto}
+  .quiz .qrestart{background:none;border:none;color:#9fc0d4;font-size:12.5px;text-decoration:underline;cursor:pointer;margin-top:6px;font-family:inherit}
+  /* Schmerzpunkte (Identifikation) */
+  .pain{list-style:none;margin-top:8px}
+  .pain li{position:relative;padding:11px 0 11px 36px;font-size:15.5px;color:#33485c;border-bottom:1px dashed var(--line)}
+  .pain li:last-child{border-bottom:none}
+  .pain li::before{content:"😣";position:absolute;left:2px;top:10px;font-size:18px}
+  /* 3 Typen */
+  .types{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}
+  .type{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 14px;text-align:center;box-shadow:0 4px 14px rgba(20,40,70,.05)}
+  .type .ic{font-size:30px}
+  .type h3{margin:8px 0 4px;font-size:16px}
+  .type p{font-size:13.5px;color:var(--muted)}
+  /* Säulen */
+  .pillars{display:grid;grid-template-columns:1fr;gap:14px;margin-top:8px}
+  .pillar{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 4px 14px rgba(20,40,70,.05)}
+  .pillar h3{margin-bottom:6px}
+  /* Curiosity */
+  .curio{background:linear-gradient(135deg,#102a44,#1d4a6e);color:#fff;border-radius:18px;padding:24px 22px}
+  .curio h2{color:#fff}.curio p{color:#d7e6f0;margin-top:8px}
+  .curio .big{font-size:21px;font-weight:800;color:#7ad9c9}
+  /* Problem/Lösung */
+  .pl{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+  .pl .col{border-radius:14px;padding:18px}
+  .pl .neg{background:#fff5f4;border:1px solid #f6d4d0}
+  .pl .pos{background:var(--soft);border:1px solid #d6e8e4}
+  .pl ul{list-style:none}.pl li{padding:7px 0;font-size:15px}
+  .pl .neg li::before{content:"✕ ";color:var(--red);font-weight:800}
+  .pl .pos li::before{content:"✨ ";}
+  .pl h3{margin-bottom:8px}
+  /* Preis-Anker */
+  .price{background:linear-gradient(135deg,var(--teal-d),var(--teal));color:#fff;border-radius:18px;padding:26px 22px;text-align:center}
+  .price .plabel{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#d7f3ec;font-weight:700}
+  .price .new{font-size:36px;font-weight:800;display:block;margin-top:6px;letter-spacing:-.5px}
+  .price p{color:#eafff9;margin-top:6px}
+  /* Testimonials */
+  .tcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 4px 14px rgba(20,40,70,.05);margin-top:12px}
+  .tcard .s{color:#f0c14b;letter-spacing:1px;font-size:14px}
+  .tcard p{font-style:italic;color:#3c4f60;margin:6px 0}
+  .tcard .who{font-weight:700;color:var(--navy);font-size:14px}
+  .ph{font-size:10.5px;color:#a06;background:#fdeef4;border:1px dashed #e6a;border-radius:5px;padding:1px 6px;font-weight:600}
+  /* Hero-VSL Sektion */
+  .vsl{text-align:center}
+  .vsl video{width:100%;max-width:300px;border-radius:18px;box-shadow:0 12px 34px rgba(20,40,70,.18);background:#000}
+  .vsl h2{margin-bottom:6px}.vsl .sub{color:var(--muted);font-size:14.5px;margin-bottom:16px}
+  /* Agenda */
+  .day{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:14px;box-shadow:0 4px 14px rgba(20,40,70,.05)}
+  .day .dh{display:inline-block;background:var(--navy);color:#fff;font-weight:800;font-size:13.5px;padding:6px 14px;border-radius:999px;margin-bottom:12px}
+  .agenda{list-style:none}
+  .agenda li{padding:10px 0;border-bottom:1px dashed var(--line)}
+  .agenda li:last-child{border-bottom:none}
+  .agenda b{color:var(--navy);display:block;font-size:15.5px}
+  .agenda span{font-size:14px;color:var(--muted)}
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .stat{background:var(--soft);border:1px solid #d6e8e4;border-radius:14px;padding:16px 8px;text-align:center}
+  .stat b{display:block;font-size:26px;color:var(--teal-d);font-weight:800}
+  .stat span{font-size:12.5px;color:var(--muted)}
+  /* FAQ */
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:10px}
+  details summary{font-weight:700;color:var(--navy);cursor:pointer;font-size:15.5px;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸ ";color:var(--teal)}
+  details[open] summary::before{content:"▾ "}
+  details p{margin-top:9px}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+  .badge{background:var(--soft);color:var(--teal-d);border:1px solid #d6e8e4;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700}
+  .formbox{background:#fff;border:2px dashed var(--teal);border-radius:14px;padding:26px 18px;text-align:center;margin-top:18px;color:var(--teal-d);font-weight:700}
+  .foot{background:var(--navy);color:#9fb8cc;text-align:center;font-size:12.5px;padding:24px 18px}
+  .foot a{color:#bcd3e3}
+  .disc{font-size:12px;color:#8a97a4;max-width:64ch;margin:10px auto 0}
+  /* Countdown */
+  .countdown{max-width:480px;margin:12px auto 0;background:rgba(31,122,224,.14);border:1px solid rgba(31,122,224,.4);
+    border-radius:14px;padding:12px;text-align:center}
+  .countdown .cl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#ffd9cb;font-weight:700;margin-bottom:6px}
+  .countdown .cgrid{display:flex;justify-content:center;gap:10px}
+  .countdown .cb{background:rgba(255,255,255,.1);border-radius:10px;padding:6px 12px;min-width:56px}
+  .countdown .cb b{display:block;font-size:24px;font-weight:800;color:#fff;line-height:1.1}
+  .countdown .cb span{font-size:11px;color:#cfe0ec}
+  .countdown.dark{background:#fff5f1;border-color:rgba(31,122,224,.35)}
+  .countdown.dark .cl{color:var(--cta-d)}
+  .countdown.dark .cb{background:#fde7df}
+  .countdown.dark .cb b{color:var(--cta-d)}
+  .countdown.dark .cb span{color:var(--muted)}
+  /* Sticky-CTA (mobil) */
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(15,39,64,.97);
+    box-shadow:0 -4px 20px rgba(0,0,0,.25);padding:10px 14px;transform:translateY(110%);transition:transform .3s}
+  .sticky.show{transform:translateY(0)}
+  .sticky a{display:block;max-width:480px;margin:0 auto;background:var(--cta);color:#fff;text-align:center;
+    text-decoration:none;font-weight:800;font-size:16.5px;padding:15px;border-radius:12px}
+  .sticky .sn{display:block;text-align:center;color:#cfe0ec;font-size:11.5px;margin-bottom:6px}
+  /* Popup */
+  .pop{position:fixed;inset:0;z-index:100;background:rgba(8,18,30,.72);display:none;align-items:center;justify-content:center;padding:20px}
+  .pop.show{display:flex}
+  .pop .box{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:48px 22px 24px;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .pop .x{position:absolute;top:12px;right:12px;width:36px;height:36px;font-size:22px;color:#6b7886;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;border:none;background:#eef1f5;border-radius:50%;line-height:1;z-index:2;padding:0}
+  .pop .x:hover{background:#e2e7ee;color:var(--navy)}
+  .pop h3{color:var(--navy);font-size:20px;margin-bottom:8px;padding:0 8px}
+  .pop p{font-size:14.5px;margin-bottom:14px}
+  .pop input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:15px 14px;font-size:16px;margin-bottom:10px;font-family:inherit}
+  .pop button{width:100%;background:var(--cta);color:#fff;border:none;border-radius:12px;padding:16px;font-size:17px;font-weight:800;cursor:pointer}
+  .pop .sm{font-size:11.5px;color:var(--muted);margin-top:10px}
+  /* ===== Scroll-Reveal (sanftes Einfaden beim Scrollen) =====
+     Fail-safe: nur bei aktivem JS (html.js) wird versteckt. Ohne JS bleibt alles sichtbar. */
+  html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+  html.js .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+  @media(prefers-reduced-motion:reduce){html.js .reveal{opacity:1;transform:none;transition:none}}
+  /* Hover-Politur */
+  .type,.pillar,.tcard,.stat,.day,.bonus,.wn-col{transition:transform .18s ease,box-shadow .18s ease}
+  .type:hover,.pillar:hover,.tcard:hover,.bonus:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(20,40,70,.12)}
+  .stat:hover{transform:translateY(-2px)}
+  /* ===== Für-wen / Für-wen-nicht ===== */
+  .wn{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+  .wn-col{border-radius:16px;padding:20px 18px}
+  .wn-col.yes{background:var(--soft);border:1px solid #cfe6e0}
+  .wn-col.no{background:#fbfafa;border:1px solid #e9e2e2}
+  .wn-col h3{margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .wn-col.yes h3{color:var(--teal-d)}.wn-col.no h3{color:#9a6b6b}
+  .wn-col ul{list-style:none}
+  .wn-col li{padding:8px 0 8px 28px;position:relative;font-size:15px;color:#3c4f60;border-bottom:1px dashed var(--line)}
+  .wn-col li:last-child{border-bottom:none}
+  .wn-col.yes li::before{content:"✓";position:absolute;left:0;top:8px;color:var(--teal-d);font-weight:800}
+  .wn-col.no li::before{content:"✕";position:absolute;left:0;top:8px;color:#c08a8a;font-weight:800}
+  /* ===== Vergleich Diät vs. Workshop ===== */
+  .vs{margin-top:8px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 4px 14px rgba(20,40,70,.05)}
+  .vs .row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+  .vs .row:last-child{border-bottom:none}
+  .vs .row.head .c{font-weight:800;font-size:14.5px}
+  .vs .c{padding:13px 16px;font-size:14.5px;line-height:1.45}
+  .vs .c.old{background:#fff6f5;color:#8c5b56;border-right:1px solid var(--line)}
+  .vs .c.new{background:var(--soft);color:#27514a}
+  .vs .row.head .c.old{color:#b06a62;background:#fdeeec}
+  .vs .row.head .c.new{color:var(--teal-d);background:#e3f1ee}
+  .vs .c.old::before{content:"✕ ";color:#d08a82;font-weight:800}
+  .vs .c.new::before{content:"✓ ";color:var(--teal-d);font-weight:800}
+  .vs .row.head .c::before{content:""}
+  /* ===== Bonus-Geschenke ===== */
+  .bonuses{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+  .bonus{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 4px 14px rgba(20,40,70,.05);position:relative}
+  .bonus .bic{font-size:26px}
+  .bonus h3{margin:8px 0 5px;font-size:16px}
+  .bonus p{font-size:13.5px;color:var(--muted)}
+  .bonus .val{position:absolute;top:14px;right:14px;background:var(--soft);color:var(--teal-d);border:1px solid #d6e8e4;border-radius:999px;font-size:11.5px;font-weight:800;padding:3px 9px}
+  .bonusnote{text-align:center;margin-top:16px;font-weight:800;color:var(--navy);font-size:15.5px}
+  .bonusnote .strike{color:var(--muted);text-decoration:line-through;font-weight:700}
+  /* ===== Garantie / Risiko-Umkehr ===== */
+  .guarantee{display:flex;gap:18px;align-items:center;background:linear-gradient(135deg,#fff,var(--soft));
+    border:1px solid #d6e8e4;border-radius:18px;padding:22px;box-shadow:0 6px 20px rgba(20,40,70,.06)}
+  .guarantee .seal{flex-shrink:0;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--teal),var(--teal-d));
+    color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;line-height:1.05;
+    box-shadow:0 8px 22px rgba(31,158,143,.4);text-align:center}
+  .guarantee .seal .b{font-size:13px}.guarantee .seal .s{font-size:9.5px;font-weight:700;opacity:.9;margin-top:2px}
+  .guarantee h3{color:var(--navy);margin-bottom:4px}
+  .guarantee p{font-size:14.5px}
+  /* ===== Live-Anmelde-Ticker ===== */
+  .ticker{position:fixed;left:14px;bottom:14px;z-index:45;max-width:300px;background:#fff;border:1px solid var(--line);
+    border-radius:14px;box-shadow:0 10px 30px rgba(15,39,64,.22);padding:11px 13px 11px 12px;display:flex;gap:10px;align-items:center;
+    transform:translateY(140%);opacity:0;transition:transform .5s cubic-bezier(.2,.8,.3,1),opacity .5s}
+  .ticker.show{transform:translateY(0);opacity:1}
+  .ticker .tav{width:38px;height:38px;border-radius:50%;background:var(--soft);color:var(--teal-d);font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+  .ticker .tt{font-size:12.5px;color:#33485c;line-height:1.35}
+  .ticker .tt b{color:var(--navy)}
+  .ticker .tt .ago{color:var(--muted);font-size:11px}
+  .ticker .tx{position:absolute;top:5px;right:8px;border:none;background:none;color:#b9c4cf;font-size:16px;cursor:pointer;line-height:1}
+  @media(max-width:600px){.ticker{left:10px;right:auto;max-width:255px;bottom:86px;padding:9px 11px 9px 10px}
+    .ticker .tav{width:32px;height:32px;font-size:13px}.ticker .tt{font-size:11.5px}}
+  /* ===== Video-Testimonial-Galerie ===== */
+  .vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
+  .vcard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:0 4px 14px rgba(20,40,70,.06);display:flex;flex-direction:column}
+  .vcard video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;display:block}
+  .vcard .vt{padding:11px 13px 13px;font-size:13.5px;font-weight:800;color:var(--navy);line-height:1.3}
+  .vcard .vt .vstar{display:block;color:#f0c14b;letter-spacing:1px;font-size:12px;font-weight:700;margin-bottom:4px}
+  .vcard.vhidden{display:none}
+  .vmore{display:block;margin:18px auto 0;max-width:340px;background:#fff;color:var(--teal-d);
+    border:2px solid var(--teal);border-radius:12px;padding:13px 20px;font-size:15px;font-weight:800;
+    cursor:pointer;text-align:center;transition:background .15s}
+  .vmore:hover{background:var(--soft)}
+  .vnote{text-align:center;color:var(--muted);font-size:13px;margin-top:12px}
+  @media(max-width:900px){.vgrid{grid-template-columns:repeat(3,1fr)}}
+  /* ===== GHL-Rahmen neutralisieren (CSS-Backup zum Skript unten) =====
+     GHL rendert Custom-Code in Section > Row > Column mit eigenem Padding,
+     max-width und weißem Hintergrund -> heller Streifen oben + Ränder seitlich.
+     Diese Regeln setzen das zurück. Ohne GHL greifen sie ins Leere. */
+  html,body{margin:0 !important;padding:0 !important;background:var(--navy) !important}
+  .c-section,.c-row,.c-column,.c-wrapper,
+  .hl_page-creator--content,.hl_page-creator--row,.hl_page-creator--col,
+  .section-wrap,.row-wrap,.col-wrap,.fullSection,.fullRow,.fullColumn{
+    padding:0 !important;margin:0 !important;max-width:100% !important;width:100% !important;
+    background:transparent !important;border:0 !important}
+  /* unsere Seite immer randlos über die volle Breite */
+  .hero{width:100%;max-width:none}
+
+  /* ===== Handy: Hero straffen, damit der CTA über der Falz liegt
+     und darunter keine große leere Fläche entsteht ===== */
+  @media(max-width:600px){
+    .hero{padding:10px 0 14px}
+    .hero .kicker{font-size:11.5px;letter-spacing:.05em;line-height:1.35}
+    .hero h1{margin:8px 0 6px}
+    .hero .sub{font-size:14.5px;line-height:1.4}
+    .herodoc{width:104px;height:126px;margin:9px auto 3px}
+    .heroname{font-size:12.5px}
+    .heroname .doccred{padding:5px 12px;font-size:12px}
+    .hero .btn{margin-top:14px;padding:16px 20px;font-size:16.5px}
+    .countdown{margin-top:10px;padding:9px}
+    .countdown .cb{padding:5px 10px;min-width:50px}
+    .countdown .cb b{font-size:20px}
+    .meta{margin-top:9px;padding:7px 14px}
+    .meta div{font-size:13.5px;padding:2px 0}
+    .heromore{margin-top:9px;padding:9px 18px;font-size:13.5px}
+    /* erste Sektion direkt anschließen statt großem Weißraum */
+    #formular{padding-top:20px !important;padding-bottom:24px}
+    #formular h2{font-size:21px}
+  }
+  @media(max-width:600px){
+    .hero h1{font-size:25px}.types{grid-template-columns:1fr}.pl{grid-template-columns:1fr}
+    .me img{width:120px;height:120px}.stats{grid-template-columns:1fr 1fr}
+    .wn{grid-template-columns:1fr}.bonuses{grid-template-columns:1fr}
+    .guarantee{flex-direction:column;text-align:center}
+    .vgrid{grid-template-columns:repeat(2,1fr);gap:10px}
+    .vcard .vt{font-size:12px;padding:9px 10px 11px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="wrap">
+    <div class="kicker">Ärztlicher Online-Workshop für Frauen ab 35 · Sa. 29. + So. 30. August</div>
+    <h1>Nicht zu wenig Disziplin.<br><span class="hl">Dein Stoffwechsel ist medizinisch ausgebremst.</span></h1>
+    <p class="sub">Insulin, Cortisol, Schilddrüse: Im ärztlich geführten Workshop erfährst du, welche Stellschrauben deinen Stoffwechsel ab 35 wirklich steuern – und was die Wissenschaft dazu sagt.</p>
+    <img class="herodoc" src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/hischam-kittel-frei.webp" alt="Hischam El-Sobhi, Facharzt für Allgemein- und Ernährungsmedizin">
+    <div class="heroname"><span class="doccred">🩺 <b>Hischam El-Sobhi</b> · Facharzt</span><br><span style="display:inline-block;margin-top:9px;font-size:13.5px;color:#cfe0ec">Allgemein- &amp; Ernährungsmedizin · 25+ Jahre · 2.300+ Patientinnen begleitet</span></div>
+    <a href="https://hischamelsobhi.de/opt-in-337679?utm_source=email&utm_medium=lp&utm_campaign=workshop-august" class="btn">Jetzt kostenlos meinen Platz sichern →</a>
+    <div style="text-align:center;font-size:12.5px;color:#cfe0ec;margin-top:8px">🔒 Begrenzt auf 500 Teilnehmerinnen · 100 % kostenlos</div>
+    <div class="countdown" id="cd-hero">
+      <div class="cl">Der Workshop startet in</div>
+      <div class="cgrid">
+        <div class="cb"><b data-cd="d">–</b><span>Tage</span></div>
+        <div class="cb"><b data-cd="h">–</b><span>Std</span></div>
+        <div class="cb"><b data-cd="m">–</b><span>Min</span></div>
+        <div class="cb"><b data-cd="s">–</b><span>Sek</span></div>
+      </div>
+    </div>
+    <div class="meta">
+      <div>📅 <span><b>Sa. 29. + So. 30. August 2026</b> · jeweils 10–13:30 Uhr</span></div>
+      <div>💻 <span>Online &amp; live · 💰 100 % kostenlos</span></div>
+    </div>
+    <a href="#mehr-erfahren" class="heromore">↓ Die Medizin dahinter verstehen</a>
+  </div>
+</div>
+
+
+<!-- ══ VIDEO: Hischams persönliche Nachricht + Anmeldung direkt darunter ══ -->
+<section id="video" style="padding-top:30px;padding-bottom:6px">
+  <div class="wrap" style="text-align:center">
+    <div style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--cta);font-weight:800;margin-bottom:8px">Persönliche Nachricht</div>
+    <h2 style="margin-bottom:8px">Warum du dieses Wochenende dabei sein solltest</h2>
+    <p style="color:var(--muted);max-width:560px;margin:0 auto 20px">2 Minuten von Hischam El-Sobhi – worum es Samstag und Sonntag geht.</p>
+
+    <div style="max-width:760px;margin:0 auto 22px;border-radius:16px;overflow:hidden;
+                box-shadow:0 18px 48px rgba(10,25,45,.22);background:#0d1520">
+      <video controls playsinline preload="metadata"
+             poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-aug29/einladung-poster.jpg"
+             style="display:block;width:100%;height:auto;background:#0d1520">
+        <source src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-aug29/einladung.mp4" type="video/mp4">
+        Dein Browser kann das Video nicht abspielen.
+      </video>
+    </div>
+
+    <a href="https://hischamelsobhi.de/opt-in-337679?utm_source=email&utm_medium=lp&utm_campaign=workshop-august" class="btn"
+       style="font-size:1.12rem;padding:18px 34px">Ja, ich bin am Samstag dabei →</a>
+    <div class="safe" style="margin-top:14px">🔒 Kostenlos · Sa. 29. + So. 30. August · jeweils 10–13:30 Uhr</div>
+  </div>
+</section>
+
+<!-- ══ FRAGE AN HISCHAM ══ -->
+<section id="frage" style="padding-top:26px;padding-bottom:10px">
+  <div class="wrap">
+    <div style="max-width:680px;margin:0 auto;background:#f6f9fc;border:1px solid #dbe7f0;
+                border-left:4px solid var(--cta);border-radius:14px;padding:22px 24px">
+      <h3 style="margin:0 0 8px;font-size:1.18rem">Welches Thema beschäftigt dich am meisten?</h3>
+      <p style="color:var(--muted);margin:0 0 16px;font-size:15.5px;line-height:1.5">
+        Hischam nimmt so viele Fragen wie möglich mit in den Workshop. Schreib ihm einfach,
+        was dich umtreibt – ein Satz genügt.
+      </p>
+      <a href="mailto:hischamelsobhi123@gmail.com?subject=Meine%20Frage%20zum%20Workshop%2029.%2F30.%20August"
+         class="btn" style="display:inline-block;background:#0d3b52">✉️ Meine Frage an Hischam schicken</a>
+      <div style="font-size:13px;color:var(--muted);margin-top:12px">
+        Öffnet dein E-Mail-Programm · keine Anmeldung nötig
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ANMELDE-CTA (führt zur GHL-Formular-Seite — sauberes Tracking pro LP) -->
+<section id="formular" style="padding-top:26px">
+  <div class="wrap" style="text-align:center">
+    <h2>Sichere dir deinen kostenlosen Platz</h2>
+    <p style="color:var(--muted);margin-bottom:22px;max-width:560px;margin-left:auto;margin-right:auto">In 30 Sekunden angemeldet – dein Ticket kommt sofort per Mail. Begrenzt auf 500 Teilnehmerinnen.</p>
+    <a href="https://hischamelsobhi.de/opt-in-337679?utm_source=email&utm_medium=lp&utm_campaign=workshop-august" class="btn" style="font-size:1.12rem;padding:18px 34px">Ja, ich sichere mir meinen kostenlosen Platz →</a>
+    <div class="safe" style="margin-top:16px">🔒 Kein Spam · 👨‍⚕️ Ärztlich geführt · ✓ 100 % kostenlos · jederzeit abmeldbar</div>
+  </div>
+</section>
+
+<!-- TRUST-LEISTE (echte Partner — bestätigt von Ramy 2026-06-04) -->
+<section>
+  <div class="wrap trustbar">
+    <div class="lbl">Partner &amp; Systeme</div>
+    <div class="badges" style="justify-content:center">
+      <span class="badge">TeleClinic</span>
+      <span class="badge">healthy balance</span>
+      <span class="badge">mse</span>
+      <span class="badge">Praxissystem Medistar</span>
+      <span class="badge">Premium-Nutrition ESN</span>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTIFIKATION (Schmerzpunkte) -->
+<section class="alt">
+  <div class="wrap">
+    <h2 style="text-align:center">Erkennst du diese Muster?</h2>
+    <ul class="pain">
+      <li>Trotz Kaloriendefizit bewegt sich die Waage kaum – ein Zeichen für einen heruntergeregelten Grundumsatz.</li>
+      <li>Heißhunger und Energie-Tiefs am Nachmittag – typisch bei schwankendem Blutzucker und Insulin.</li>
+      <li>Gewichtszunahme vor allem am Bauch – häufig mit dauerhaft erhöhtem Cortisol (Stresshormon) verbunden.</li>
+      <li>Müdigkeit, Frieren, dünner werdendes Haar – mögliche Hinweise auf die Schilddrüse (z. B. Hashimoto).</li>
+      <li>Deine Blutwerte gelten als „normal" – obwohl die Spannweiten oft zu weit gefasst sind, um Frühzeichen zu erkennen.</li>
+    </ul>
+    <div class="callout">Hinter diesen Mustern stecken messbare, medizinische Ursachen – keine fehlende Willenskraft.</div>
+  </div>
+</section>
+
+<!-- HERO-VSL (Hochformat, leicht, click-to-play) -->
+<section>
+  <div class="wrap vsl">
+    <h2>In 60 Sekunden: Die medizinische Erklärung</h2>
+    <div class="sub">Facharzt Hischam El-Sobhi erklärt, welche Hormon- und Stoffwechsel-Mechanismen das Abnehmen ab 35 erschweren.</div>
+    <video controls playsinline preload="none" poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/hero-vsl-poster.webp?v=2">
+      <source src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/hero-vsl-hochformat.mp4?v=2" type="video/mp4">
+    </video>
+    <a href="https://hischamelsobhi.de/opt-in-337679?utm_source=email&utm_medium=lp&utm_campaign=workshop-august" class="btn">Jetzt kostenlos anmelden →</a>
+  </div>
+</section>
+
+<!-- ÜBER HISCHAM -->
+<section class="alt">
+  <div class="wrap">
+    <div class="me">
+      <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/hischam.webp" loading="lazy" alt="Hischam El-Sobhi">
+      <div class="txt">
+        <h2>Hischam El-Sobhi, Facharzt</h2>
+        <p>Facharzt für Allgemein- und Ernährungsmedizin, zusätzlich ausgebildet in Akupunktur. In über 25 Jahren Praxis und mit über 2.300 begleiteten Patientinnen sehe ich täglich dasselbe Muster: Nicht die Disziplin fehlt, sondern die richtige Diagnostik. Im Workshop zeige ich dir, welche Laborwerte und Hormonachsen wirklich zählen – und was die Forschung über den Stoffwechsel ab 35 weiß.</p>
+        <div class="quote">„Ich behandle keine Symptome auf Verdacht. Ich schaue auf die Ursache."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAS DU ERFÄHRST -->
+<section>
+  <div class="wrap">
+    <h2>Das erklärt dir der Facharzt im Workshop</h2>
+    <ul class="check">
+      <li>Wie <b>Insulinresistenz</b> entsteht und warum sie das Abnehmen blockiert – verständlich erklärt.</li>
+      <li>Welche Rolle <b>Cortisol</b> (Stresshormon) bei der Fett­einlagerung am Bauch spielt.</li>
+      <li>Wie <b>Schilddrüse und Hashimoto</b> den Grundumsatz drosseln – und welche Werte du kennen solltest.</li>
+      <li>Welche <b>Laborwerte</b> wirklich aussagekräftig sind – und warum „normal" nicht immer „optimal" heißt.</li>
+      <li>Welcher der drei Stoffwechsel-Muster zu dir passt – und welche Stellschrauben dein Körper braucht.</li>
+    </ul>
+    <div class="callout">Kostenlos. Online. Ärztlich geführt. Begrenzt auf 500 Frauen, damit Zeit für deine Fragen bleibt.</div>
+  </div>
+</section>
+
+<!-- 3 TYPEN -->
+<section class="alt">
+  <div class="wrap">
+    <h2 style="text-align:center">Drei Stoffwechsel-Muster – und ihre medizinische Ursache</h2>
+    <div class="types">
+      <div class="type"><div class="ic">🛡️</div><h3>Schutz-Muster</h3><p>Insulin hält den Fettstoffwechsel im Speichermodus – der Körper gibt Reserven kaum frei.</p></div>
+      <div class="type"><div class="ic">🪫</div><h3>Spar-Muster</h3><p>Eine gedrosselte Schilddrüse senkt den Grundumsatz – der Körper läuft auf Sparflamme.</p></div>
+      <div class="type"><div class="ic">🔋</div><h3>Erschöpfungs-Muster</h3><p>Dauerhaft erhöhtes Cortisol blockiert Regeneration und fördert Bauchfett.</p></div>
+    </div>
+    <p style="text-align:center;margin-top:14px;color:var(--muted)">Im Workshop ordnet der Facharzt dein Muster ein – und zeigt die passenden medizinischen Stellschrauben.</p>
+  </div>
+</section>
+
+<!-- DIE MEDIZIN DAHINTER (Hormonachsen) -->
+<section>
+  <div class="wrap">
+    <h2 style="text-align:center" class="reveal">Die vier Stellschrauben deines Stoffwechsels</h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:8px" class="reveal d1">Dein Gewicht ist kein Willens-Thema, sondern ein Zusammenspiel aus vier Hormon- und Stoffwechsel-Systemen.</p>
+    <div class="pillars">
+      <div class="pillar reveal d1"><h3>🩸 Insulin &amp; Blutzucker</h3><p>Steuert, ob dein Körper Fett verbrennt oder einlagert. Bei Insulinresistenz bleibt die „Fettverbrennung" praktisch ausgeschaltet.</p></div>
+      <div class="pillar reveal d2"><h3>⚡ Cortisol (Stress)</h3><p>Chronischer Stress hält Cortisol hoch – das fördert Bauchfett und blockiert nächtliche Regeneration.</p></div>
+      <div class="pillar reveal d1"><h3>🦋 Schilddrüse</h3><p>Reguliert deinen Grundumsatz. Eine Unterfunktion oder Hashimoto drosselt, wie viel Energie du in Ruhe verbrauchst.</p></div>
+      <div class="pillar reveal d2"><h3>🔬 Labor &amp; Diagnostik</h3><p>Die richtigen Werte zur richtigen Zeit gemessen – damit Ursachen sichtbar werden, statt im „Normalbereich" unterzugehen.</p></div>
+    </div>
+    <div class="callout">Im Workshop bekommst du für jede dieser vier Achsen eine klare, alltagstaugliche Erklärung.</div>
+  </div>
+</section>
+
+<!-- MINI-QUIZ: Stoffwechsel-Typ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="quiz" id="quiz">
+      <div class="qlbl">🔬 Kostenlose Mini-Selbsteinschätzung</div>
+      <h2>Welcher Stoffwechsel-Typ bist du?</h2>
+      <div class="qsub">3 kurze Fragen – und du bekommst eine erste Einordnung, welche Achse bei dir am ehesten bremst.</div>
+      <div class="qprog"><i id="qbar"></i></div>
+
+      <div class="qstep" id="qstep">
+        <div class="qq" id="qq">Frage lädt …</div>
+        <div class="qopts" id="qopts"></div>
+      </div>
+
+      <div class="qresult" id="qresult">
+        <div class="qricon" id="qricon">🛡️</div>
+        <div class="qrtype">Deine Tendenz</div>
+        <div class="qrname" id="qrname">–</div>
+        <div class="qrdesc" id="qrdesc">–</div>
+        <a href="https://hischamelsobhi.de/opt-in-337679?utm_source=email&utm_medium=lp&utm_campaign=workshop-august" class="qbtn">Im Workshop genau auswerten lassen →</a>
+        <button class="qrestart" id="qrestart" type="button">↺ Quiz neu starten</button>
+        <div class="qdisc">Diese Selbsteinschätzung dient nur der groben Orientierung und ersetzt keine ärztliche Diagnose. Deinen tatsächlichen Typ ordnet der Facharzt im Workshop anhand deiner Werte ein.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FÜR WEN / FÜR WEN NICHT -->
+<section id="mehr-erfahren">
+  <div class="wrap">
+    <h2 style="text-align:center" class="reveal">Ist dieser Workshop das Richtige für dich?</h2>
+    <div class="wn">
+      <div class="wn-col yes reveal d1">
+        <h3>✅ Ja, wenn du …</h3>
+        <ul>
+          <li>die <b>medizinischen Ursachen</b> verstehen willst, statt nur Symptome zu bekämpfen</li>
+          <li>wissen willst, welche <b>Laborwerte und Hormone</b> bei dir eine Rolle spielen</li>
+          <li>fundierte, ärztliche Erklärungen schätzt – statt Diät-Trends aus dem Internet</li>
+          <li>bereit bist, deinem Körper 2 Tage echte Aufmerksamkeit zu schenken</li>
+        </ul>
+      </div>
+      <div class="wn-col no reveal d2">
+        <h3>🚫 Eher nicht, wenn du …</h3>
+        <ul>
+          <li>eine Wunderpille suchst, die über Nacht alles löst</li>
+          <li>nichts an deinen Gewohnheiten ändern möchtest</li>
+          <li>glaubst, dein Körper sei „eben so" und nicht veränderbar</li>
+          <li>nur kurz reinschauen, aber nichts mitnehmen willst</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEUGIER -->
+<section>
+  <div class="wrap">
+    <div class="curio">
+      <h2>Warum ein Kaloriendefizit allein oft nicht ausreicht</h2>
+      <p>In meiner Praxis sehe ich es jeden Tag: Frauen, die alles richtig machen. Sie essen gesund, bewegen sich, nehmen sogar Vitamine. Und trotzdem nehmen sie zu, sind müde, fühlen sich erschöpft.</p>
+      <p>Der Grund ist messbar: <span class="big">Hormone steuern, ob dein Körper Fett verbrennt oder speichert.</span> Solange Insulin, Cortisol oder die Schilddrüse aus dem Gleichgewicht sind, arbeitet dein Stoffwechsel gegen dich – egal wie diszipliniert du bist.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM / LÖSUNG -->
+<section>
+  <div class="wrap">
+    <h2>Wie genau hilft dir die Gesundheitsrevolution?</h2>
+    <p><b>Das Problem:</b> Fühlst du dich unwohl in deinem Körper, kämpfst mit Übergewicht und suchst eine nachhaltige Lösung? Diäten bringen oft nur kurzfristigen Erfolg, Stress erschwert das Abnehmen und widersprüchliche Ratschläge führen zu Frust.</p>
+    <p style="margin-top:10px"><b>Was es ist:</b> Ein praxisnaher Workshop, der dir zeigt, wie du nachhaltig Gewicht verlierst – ohne auf Genuss zu verzichten. Das bewährte <b>5-Säulen-Modell</b> hilft dir, dein Gewicht in den Griff zu bekommen und dein Wohlbefinden zu steigern.</p>
+    <div class="pl">
+      <div class="col neg">
+        <h3>Schluss mit:</h3>
+        <ul>
+          <li>frustrierenden Diäten mit Jojo-Effekt</li>
+          <li>endlosem Verzicht auf Lieblingsspeisen</li>
+          <li>widersprüchlichen Abnehm-Tipps</li>
+          <li>Standardlösungen, die nicht zu dir passen</li>
+        </ul>
+      </div>
+      <div class="col pos">
+        <h3>Stattdessen:</h3>
+        <ul>
+          <li>gesunder &amp; nachhaltiger Gewichtsverlust</li>
+          <li>mehr Energie &amp; Wohlbefinden im Alltag</li>
+          <li>bewusste Ernährung, die schmeckt</li>
+          <li>ein Konzept, das langfristig wirkt</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERGLEICH: Diät vs. Workshop-Ansatz -->
+<section class="alt">
+  <div class="wrap">
+    <h2 style="text-align:center" class="reveal">Diät-Ratschlag vs. ärztliche Diagnostik</h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:8px" class="reveal d1">Der Unterschied zwischen Raten und Messen.</p>
+    <div class="vs reveal d1">
+      <div class="row head">
+        <div class="c old">Üblicher Diät-Ratschlag</div>
+        <div class="c new">Der medizinische Ansatz</div>
+      </div>
+      <div class="row">
+        <div class="c old">„Iss weniger, beweg dich mehr"</div>
+        <div class="c new">Ursachen an Insulin, Cortisol &amp; Schilddrüse</div>
+      </div>
+      <div class="row">
+        <div class="c old">Eine Regel für alle</div>
+        <div class="c new">Abgestimmt auf deine Werte &amp; dein Muster</div>
+      </div>
+      <div class="row">
+        <div class="c old">Symptome bekämpfen</div>
+        <div class="c new">Die messbare Ursache verstehen</div>
+      </div>
+      <div class="row">
+        <div class="c old">Kurzer Erfolg, dann Jojo</div>
+        <div class="c new">Veränderung mit medizinischer Grundlage</div>
+      </div>
+      <div class="row">
+        <div class="c old">Tipps aus dem Internet</div>
+        <div class="c new">25+ Jahre fachärztliche Erfahrung</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WERT + CTA -->
+<section class="alt">
+  <div class="wrap">
+    <div class="price">
+      <div class="plabel">Dein Platz beim Live-Workshop</div>
+      <span class="new">100 % kostenlos</span>
+      <p>Das Wissen aus über 25 Jahren ärztlicher Praxis – am 29. + 30. August gibt Hischam El-Sobhi es dir kostenlos weiter. Ohne Verpflichtung, ohne versteckte Kosten.</p>
+    </div>
+    <a href="https://hischamelsobhi.de/opt-in-337679?utm_source=email&utm_medium=lp&utm_campaign=workshop-august" class="btn">Kostenlosen Platz sichern →</a>
+  </div>
+</section>
+
+<!-- VIDEO-TESTIMONIALS (echte Patienten) -->
+<section>
+  <div class="wrap">
+    <h2 style="text-align:center">Was Patientinnen nach der Diagnostik berichten</h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:6px">Echte Stimmen aus der Praxis – nachdem die Ursachen einmal sichtbar wurden.</p>
+    <div class="vgrid" id="vgrid">
+      <div class="vcard"><video preload="none" playsinline controls poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t02.jpg"><source src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t02.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>19 Kilo weniger – Beschwerden messbar zurück</div></div>
+      <div class="vcard"><video preload="none" playsinline controls poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t10.jpg"><source src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t10.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Untersuchung mit spürbarem Effekt</div></div>
+      <div class="vcard"><video preload="none" playsinline controls poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t08.jpg"><source src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t08.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>Ernährung als echter Energie-Booster</div></div>
+      <div class="vcard"><video preload="none" playsinline controls poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t01.jpg"><source src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t01.mp4" type="video/mp4"></video><div class="vt"><span class="vstar">★★★★★</span>38 Kilo weniger – und mental stärker</div></div>
+    </div>
+    <div class="vnote">Echte Patientenstimmen aus der Praxis von Hischam El-Sobhi.</div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="alt">
+  <div class="wrap">
+    <h2>Dein geballtes Gesundheits-Wissen im Workshop</h2>
+    <p>Dieses Online-Event verbindet das zielstrebige Erreichen deiner Ziele mit nachhaltigem Erfolg.</p>
+    <div class="day">
+      <span class="dh">TAG 1 · Samstag, 29. August · 10–13:30 Uhr</span>
+      <ul class="agenda">
+        <li><b>Dein Energie-Booster</b><span>Epigenetische Ernährung für nachhaltige Gewichtsabnahme – wie Ernährung &amp; Darmgesundheit dein Energielevel steuern.</span></li>
+        <li><b>Stressfrei im Alltag</b><span>5 alltagstaugliche Strategien zur Stressreduktion für mehr Ruhe und Fokus.</span></li>
+        <li><b>Klarer Kopf trotz Stress</b><span>Mentale Stärke aufbauen und Stresssituationen gelassener meistern.</span></li>
+      </ul>
+    </div>
+    <div class="day">
+      <span class="dh">TAG 2 · Sonntag, 30. August · 10–13:30 Uhr</span>
+      <ul class="agenda">
+        <li><b>Mehr Power in weniger Zeit</b><span>Bewegung und Epigenetik neu gedacht – leicht umsetzbare Übungen, die Stress abbauen.</span></li>
+        <li><b>Dein versteckter Helfer</b><span>Vitamine, Mineralstoffe &amp; Spurenelemente: kleine Stoffe, große Wirkung.</span></li>
+        <li><b>Geheimes Bonus-Thema</b><span>Eine bewährte Strategie, mit der du dauerhaft motiviert bleibst – bleib bis zum Schluss dabei.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS-GESCHENKE -->
+<section>
+  <div class="wrap">
+    <h2 style="text-align:center" class="reveal">Deine Geschenke zum Workshop 🎁</h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:8px" class="reveal d1">Zusätzlich zum Live-Wissen bekommst du diese Materialien – kostenlos zum Mitnehmen.</p>
+    <div class="bonuses">
+      <div class="bonus reveal d1"><div class="bic">📋</div><h3>Stoffwechsel-Typ-Test</h3><p>Finde schon vor dem Workshop heraus, in welche Richtung dein Typ geht.</p></div>
+      <div class="bonus reveal d2"><div class="bic">🥗</div><h3>Genuss-Rezept-Guide</h3><p>Alltagstaugliche Rezepte, die schmecken und zu deinem Stoffwechsel passen.</p></div>
+      <div class="bonus reveal d1"><div class="bic">✅</div><h3>Werte-Checkliste</h3><p>Welche Blutwerte wirklich zählen – die Liste für dein nächstes Arztgespräch.</p></div>
+      <div class="bonus reveal d2"><div class="bic">📵</div><h3>7-Tage-Energieplan</h3><p>Dein einfacher Fahrplan für die erste Woche nach dem Workshop.</p></div>
+    </div>
+    <div class="bonusnote reveal">Alles zusammen mit dem Workshop: <span class="strike">echter Gegenwert mehrerer hundert Euro</span> → <b style="color:var(--teal-d)">für dich 100 % kostenlos.</b></div>
+  </div>
+</section>
+
+<!-- ÜBER HISCHAM AUSFÜHRLICH -->
+<section>
+  <div class="wrap">
+    <h2>Warum du ihm vertrauen kannst</h2>
+    <p>Schulmedizin trifft Erfahrung: Facharzt für Allgemein- und Ernährungsmedizin, ausgebildet in Akupunktur, eigene Praxis seit Jahren – mit klarem Fokus auf nachhaltige Lösungen für Übergewicht und stressbedingte Beschwerden. Keine Pauschal-Tipps, sondern Medizin, die deinen Körper versteht.</p>
+    <div class="stats">
+      <div class="stat"><b>25+</b><span>Jahre Facharzt-Erfahrung</span></div>
+      <div class="stat"><b>2.300+</b><span>begleitete Patientinnen</span></div>
+      <div class="stat"><b>1.500+</b><span>Ernährungsumstellungen</span></div>
+      <div class="stat"><b>1.000+</b><span>Workshop-Teilnehmerinnen</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIE / RISIKO-UMKEHR -->
+<section>
+  <div class="wrap">
+    <div class="guarantee reveal">
+      <div class="seal"><span class="b">100 %</span><span class="s">RISIKOFREI</span></div>
+      <div>
+        <h3>Du gehst kein Risiko ein</h3>
+        <p>Der Workshop ist <b>kostenlos und unverbindlich</b>. Kein Kaufzwang, keine versteckten Kosten, jederzeit abmeldbar. Das Schlimmste, was passieren kann: Du investierst ein bisschen Zeit – und nimmst trotzdem wertvolles Wissen für deine Gesundheit mit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANMELDEN -->
+<section class="alt" id="anmelden">
+  <div class="wrap">
+    <h2 style="text-align:center">Sichere dir jetzt deinen kostenlosen Platz</h2>
+    <div class="badges">
+      <span class="badge">🎯 Begrenzt auf 500 Frauen</span>
+      <span class="badge">💰 Kostenlos</span>
+      <span class="badge">💻 Online via Zoom</span>
+      <span class="badge">📅 Sa. 29. + So. 30. August · 10–13:30 Uhr</span>
+    </div>
+    <div class="tcard" style="max-width:480px;margin:14px auto 0;text-align:center">
+      <div class="s">★★★★★</div>
+      <p style="font-style:normal">Über <b>1.000 Teilnehmerinnen</b> waren schon dabei – sieh dir oben die echten Erfahrungsberichte an.</p>
+    </div>
+    <a href="https://hischamelsobhi.de/opt-in-337679?utm_source=email&utm_medium=lp&utm_campaign=workshop-august" class="btn">Jetzt kostenlos anmelden →</a>
+    <div class="safe" style="text-align:center;margin-top:10px;color:var(--muted);font-size:13px">🔒 Kein Spam · 👨‍⚕️ Ärztlich geführt · ✓ 100 % kostenlos</div>
+    <div class="countdown dark" style="margin-top:18px">
+      <div class="cl">Der Workshop startet in</div>
+      <div class="cgrid">
+        <div class="cb"><b data-cd="d">–</b><span>Tage</span></div>
+        <div class="cb"><b data-cd="h">–</b><span>Std</span></div>
+        <div class="cb"><b data-cd="m">–</b><span>Min</span></div>
+        <div class="cb"><b data-cd="s">–</b><span>Sek</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="alt">
+  <div class="wrap">
+    <h2>Häufig gestellte Fragen</h2>
+    <details><summary>Wie erhalte ich mein kostenloses Ticket?</summary><p>Nachdem du dich über das Formular angemeldet hast, erhältst du dein kostenloses Ticket direkt per E-Mail – mit allen Infos und dem Zugangslink zum Live-Workshop.</p></details>
+    <details><summary>Wie nehme ich teil?</summary><p>Der Workshop findet über Zoom statt. Nach der Anmeldung bekommst du per E-Mail einen Link. Du brauchst nur ein Smartphone, Tablet oder einen Computer mit Internet.</p></details>
+    <details><summary>Warum ist der Workshop kostenlos?</summary><p>Hischam möchte so viele Menschen wie möglich erreichen und zeigen, dass es Wege gibt, die eigene Gesundheit selbst in die Hand zu nehmen – ganz ohne Verpflichtungen.</p></details>
+    <details><summary>Gibt es eine Aufzeichnung?</summary><p>Der Workshop ist ein einmaliges Live-Event. Sei an beiden Tagen pünktlich im Zoom dabei, um keine wertvollen Tipps zu verpassen.</p></details>
+    <details><summary>Muss ich Vorerfahrung haben?</summary><p>Nein. Der Workshop ist für jede Frau, die das Gefühl hat, mit ihrem Körper nicht weiterzukommen.</p></details>
+    <details><summary>Muss ich die ganze Zeit dabei sein?</summary><p>Du holst am meisten heraus, wenn du live dabei bist. Du musst aber nicht jede Minute am Bildschirm kleben – steig ein, wann du kannst. Die wichtigsten Inhalte kommen kompakt und sofort umsetzbar.</p></details>
+    <details><summary>Werde ich zu etwas gedrängt oder muss ich danach etwas kaufen?</summary><p>Nein. Der Workshop ist kostenlos und unverbindlich. Du bekommst echtes, sofort anwendbares Wissen. Wenn du danach tiefer mit Hischam El-Sobhi arbeiten möchtest, zeigt er dir seine Möglichkeiten – ganz ohne Druck.</p></details>
+    <details><summary>Lohnt sich das auch für mich – mit Hashimoto oder über 50?</summary><p>Gerade dann. Schilddrüse, Hormone und Stoffwechsel ab der Lebensmitte sind ein Kern-Thema des Workshops. Es ist nie zu spät, deinen Körper zu verstehen.</p></details>
+  </div>
+</section>
+
+<div class="foot">
+  <div class="wrap">
+    Zentrum für Gesundheit · Hischam El-Sobhi · Facharzt für Allgemein- und Ernährungsmedizin · Uchte
+    <p class="disc">Dieser Workshop dient der gesundheitlichen Aufklärung und ersetzt keine individuelle ärztliche Beratung oder Behandlung. Es werden keine Heilversprechen gegeben; Ergebnisse sind individuell verschieden.</p>
+    <p class="disc">This site is not a part of the Facebook website or Facebook Inc. This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
+    <p style="margin-top:8px"><a href="https://hischamelsobhi.de/impressum" target="_blank" rel="noopener">Impressum</a> · <a href="https://hischamelsobhi.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a> · <a href="https://hischamelsobhi.de/agb" target="_blank" rel="noopener">AGB</a> · <a href="https://hischamelsobhi.de/widerrufsbelehrung" target="_blank" rel="noopener">Widerruf</a></p>
+    <p style="margin-top:6px">© 2026 Zentrum für Gesundheit</p>
+  </div>
+</div>
+
+<!-- LIVE-ANMELDE-TICKER (sozialer Beweis) -->
+<div class="ticker" id="ticker">
+  <button class="tx" id="tickerX" aria-label="Schließen">&times;</button>
+  <div class="tav" id="tAv">M</div>
+  <div class="tt" id="tTxt"><b>Maria</b> hat sich gerade angemeldet<br><span class="ago">vor wenigen Sekunden</span></div>
+</div>
+
+<!-- STICKY-CTA (erscheint beim Scrollen) -->
+<div class="sticky" id="sticky">
+  <span class="sn">Kostenlos · Sa. 29. + So. 30. August · nur 500 Plätze</span>
+  <a href="https://hischamelsobhi.de/opt-in-337679?utm_source=email&utm_medium=lp&utm_campaign=workshop-august">Jetzt kostenlos anmelden →</a>
+</div>
+
+<!-- EXIT-POPUP -->
+<div class="pop" id="pop">
+  <div class="box">
+    <button class="x" id="popX" aria-label="Schließen">&times;</button>
+    <h3>Warte – dein Platz ist noch frei 🎟️</h3>
+    <p>Sichere dir jetzt deinen kostenlosen Platz, bevor der Workshop startet. Es dauert nur 30 Sekunden.</p>
+    <button type="button" id="popSubmit">Ja, ich sichere meinen Platz →</button>
+    <div class="sm">🔒 Kostenlos &amp; unverbindlich · jederzeit abmeldbar</div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   GHL-RAHMEN AUFBRECHEN  (Fix für "weiße Fläche oben + Ränder")
+   Problem: GHL legt den Custom-Code in Section > Row > Column.
+   Diese Container haben eigenes Padding, max-width und weißen
+   Hintergrund -> heller Streifen über dem Hero und Ränder seitlich.
+   Lösung: vom Hero aus alle Eltern-Container hochlaufen und
+   Abstand/Breite/Hintergrund neutralisieren. Klassen-unabhängig,
+   funktioniert also auch wenn GHL seine CSS-Namen ändert.
+   Ausserhalb von GHL (lokal) passiert schlicht nichts.
+   ============================================================ */
+(function(){
+  function aufbrechen(){
+    var n = document.getElementById('top');
+    if(!n) return;
+    var tiefe = 0;
+    while (n && n.parentElement && tiefe < 12) {
+      n = n.parentElement;
+      if (n === document.body || n === document.documentElement) {
+        n.style.setProperty('margin','0','important');
+        n.style.setProperty('padding','0','important');
+        n.style.setProperty('background','var(--navy)','important');
+        break;
+      }
+      n.style.setProperty('padding','0','important');
+      n.style.setProperty('margin','0','important');
+      n.style.setProperty('max-width','100%','important');
+      n.style.setProperty('width','100%','important');
+      n.style.setProperty('background','transparent','important');
+      n.style.setProperty('border','0','important');
+      tiefe++;
+    }
+  }
+  aufbrechen();
+  document.addEventListener('DOMContentLoaded', aufbrechen);
+  window.addEventListener('load', aufbrechen);
+  setTimeout(aufbrechen, 400);   // GHL baut Teile nach
+  setTimeout(aufbrechen, 1500);
+})();
+</script>
+<script>
+(function(){
+  // --- Countdown bis Workshop-Start: 29. August 2026, 10:00 ---
+  var ziel = new Date(2026,7,29,10,0,0).getTime();
+  function pad(n){return n<10?'0'+n:''+n;}
+  function tick(){
+    var diff = Math.max(0, ziel - Date.now());
+    var s=Math.floor(diff/1000), d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), se=s%60;
+    document.querySelectorAll('[data-cd]').forEach(function(el){
+      var k=el.getAttribute('data-cd');
+      el.textContent = k==='d'?d : k==='h'?pad(h) : k==='m'?pad(m) : pad(se);
+    });
+  }
+  tick(); setInterval(tick,1000);
+
+  // --- Sticky-CTA ab Scroll über den Hero hinaus ---
+  var st=document.getElementById('sticky');
+  var anmelden=document.getElementById('anmelden');
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY||document.documentElement.scrollTop;
+    var nahAnmelden = anmelden && (anmelden.getBoundingClientRect().top < window.innerHeight && anmelden.getBoundingClientRect().bottom > 0);
+    if(y>620 && !nahAnmelden){ st.classList.add('show'); } else { st.classList.remove('show'); }
+  });
+
+  // --- Popup: Exit-Intent (Desktop) ODER 55% Scroll / 30s (Mobil), einmal pro Session ---
+  var pop=document.getElementById('pop'), gezeigt=false, formularErreicht=false;
+  function zeige(){ if(gezeigt||formularErreicht||sessionStorage.getItem('pop_seen'))return; gezeigt=true; sessionStorage.setItem('pop_seen','1'); pop.classList.add('show'); }
+  function schliesse(){ pop.classList.remove('show'); }
+  document.getElementById('popX').addEventListener('click',schliesse);
+  pop.addEventListener('click',function(e){ if(e.target===pop) schliesse(); });
+  // Popup NUR bei echtem Exit-Intent (Desktop: Maus verlässt oben) — kein nerviger 30s-/Scroll-Trigger mehr
+  document.addEventListener('mouseout',function(e){ if(e.clientY<=0) zeige(); });
+  // Sobald der Nutzer das Formular erreicht (will sich anmelden) → Popup dauerhaft AUS
+  var formEl=document.getElementById('formular');
+  window.addEventListener('scroll',function(){
+    if(formEl && !formularErreicht){
+      if(formEl.getBoundingClientRect().top < window.innerHeight*0.75){ formularErreicht=true; }
+    }
+  },{passive:true});
+  // Popup-Submit scrollt zum echten Formular (bis GHL-Form eingebunden ist)
+  document.getElementById('popSubmit').addEventListener('click',function(){
+    schliesse();
+    var t=document.getElementById('formular');
+    if(t){ try{ t.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){} }
+    // GHL-Fallback: native Anker-Navigation (scrollt auch dort zuverlässig, smooth via CSS)
+    setTimeout(function(){ window.location.hash='formular'; },40);
+  });
+
+  // --- Aufmerksamkeits-Puls auf dem sichtbaren Anmelde-Button (periodisch) ---
+  function imBlick(el){ if(!el)return false; var r=el.getBoundingClientRect(); return r.top<window.innerHeight-40 && r.bottom>60; }
+  var heroBtn=document.querySelector('.heroform button');
+  var stickyLink=document.querySelector('.sticky a');
+  function puls(){
+    var ziel = imBlick(heroBtn) ? heroBtn : (st.classList.contains('show') ? stickyLink : null);
+    if(!ziel) return;
+    ziel.classList.remove('pulse'); void ziel.offsetWidth; ziel.classList.add('pulse');
+  }
+  setTimeout(puls,12000);
+  setInterval(puls,15000);
+
+  // --- Scroll-Reveal (robust, ohne IntersectionObserver) ---
+  // ⚠️ Die ERSTEN Sektionen NIE automatisch ausblenden: sie stehen direkt unter dem Hero.
+  // Sonst sieht man auf dem Handy (Hero füllt fast den ganzen Schirm) darunter eine große,
+  // leere helle Fläche, bis die Animation nachzieht. Genau das wirkte wie "weiße Fläche oben".
+  document.querySelectorAll('section').forEach(function(s,i){
+    if(i>1) { if(!s.querySelector('.reveal')) s.classList.add('reveal'); }
+  });
+  var revEls=Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var statsDone=false;
+  function checkReveal(){
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    revEls=revEls.filter(function(el){
+      var r=el.getBoundingClientRect();
+      // großzügig: schon einblenden, BEVOR das Element ganz im Bild ist —
+      // sonst entsteht beim schnellen Scrollen kurz eine leere Fläche
+      if(r.top < vh+120 && r.bottom > -60){ el.classList.add('in'); return false; }
+      return true;
+    });
+    if(!statsDone){
+      var sw=document.querySelector('.stats');
+      if(sw){ var sr=sw.getBoundingClientRect(); if(sr.top < vh-30 && sr.bottom>0){ statsDone=true; countUp(); } }
+    }
+  }
+  // --- Hochzählende Zahlen bei den Stats ---
+  function countUp(){
+    document.querySelectorAll('.stat b').forEach(function(el){
+      var raw=el.textContent.trim(), m=raw.match(/([\d.]+)/); if(!m) return;
+      var target=parseInt(m[1].replace(/\./g,''),10), suffix=raw.replace(m[1],''), start=null, dur=1300;
+      function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1);
+        el.textContent=Math.floor(p*target).toLocaleString('de-DE')+suffix;
+        if(p<1) requestAnimationFrame(step); else el.textContent=target.toLocaleString('de-DE')+suffix; }
+      requestAnimationFrame(step);
+    });
+  }
+  checkReveal();
+  window.addEventListener('scroll',checkReveal,{passive:true});
+  window.addEventListener('resize',checkReveal);
+  // Sicherheits-Fallback: was nach 4s noch versteckt ist, sichtbar machen (nie dauerhaft unsichtbar)
+  setTimeout(function(){ document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ el.classList.add('in'); }); },4000);
+
+  // --- Live-Anmelde-Ticker (sozialer Beweis) ---
+  var tk=document.getElementById('ticker'), tAv=document.getElementById('tAv'), tTxt=document.getElementById('tTxt'), tkClosed=false;
+  if(tk){
+    document.getElementById('tickerX').addEventListener('click',function(){ tkClosed=true; tk.classList.remove('show'); });
+    var namen=[['Maria','vor 2 Minuten'],['Sandra','vor 4 Minuten'],['Petra','vor 1 Minute'],['Claudia','vor 6 Minuten'],
+      ['Andrea','gerade eben'],['Birgit','vor 3 Minuten'],['Manuela','vor 5 Minuten'],['Kerstin','vor 8 Minuten'],
+      ['Nicole','vor 2 Minuten'],['Sabine','vor 7 Minuten'],['Heike','gerade eben'],['Gabi','vor 4 Minuten']];
+    var ti=Math.floor(Math.random()*namen.length);  // zufälliger Start -> nicht immer derselbe Name
+    function zeigeTicker(){
+      if(tkClosed) return;
+      var n=namen[ti%namen.length]; ti++;
+      tAv.textContent=n[0].charAt(0);
+      tTxt.innerHTML='<b>'+n[0]+'</b> hat sich gerade angemeldet<br><span class="ago">'+n[1]+'</span>';
+      tk.classList.add('show');
+      setTimeout(function(){ tk.classList.remove('show'); },4500);
+    }
+    setTimeout(function(){ zeigeTicker(); setInterval(zeigeTicker,22000); },14000);
+  }
+
+  // --- Video-Testimonials: "Mehr zeigen" ---
+  var vmore=document.getElementById('vmore');
+  if(vmore){
+    vmore.addEventListener('click',function(){
+      var hidden=document.querySelectorAll('.vcard.vhidden');
+      if(hidden.length){
+        hidden.forEach(function(c){ c.classList.remove('vhidden'); });
+        vmore.textContent='Weniger anzeigen ▴';
+      } else {
+        // wieder einklappen: ab dem 5. Video verstecken
+        var cards=document.querySelectorAll('#vgrid .vcard');
+        cards.forEach(function(c,i){ if(i>=4) c.classList.add('vhidden'); });
+        vmore.textContent='Mehr Erfolgsgeschichten zeigen ▾';
+        document.getElementById('vgrid').scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  }
+
+  // --- Lead-Event: feuert, wenn das GHL-Formular abgeschickt wurde (Conversion fürs Pixel) ---
+  var leadGefeuert=false;
+  window.addEventListener('message',function(ev){
+    try{
+      var o=(ev.origin||'')+'';
+      if(o.indexOf('leadconnectorhq')===-1 && o.indexOf('msgsndr')===-1) return;
+      var d=ev.data;
+      var s=(typeof d==='string')?d:JSON.stringify(d||'');
+      if(/submit|submission|form-?submitted|onFormSubmit|thank/i.test(s) && !/height|resize|scroll/i.test(s)){
+        if(!leadGefeuert && window.fbq){ fbq('track','Lead'); leadGefeuert=true; }
+      }
+    }catch(e){}
+  });
+
+  // --- Mini-Quiz: Stoffwechsel-Typ (Selbsteinschätzung) ---
+  (function(){
+    var quiz=document.getElementById('quiz'); if(!quiz) return;
+    var FRAGEN=[
+      { q:'Wann ist dein Energie-Tief am stärksten?',
+        opts:[
+          {t:'schutz',  txt:'Kurz nach dem Essen werde ich müde und bekomme schnell wieder Hunger.'},
+          {t:'spar',    txt:'Den ganzen Tag – ich friere leicht und komme schwer in Schwung.'},
+          {t:'erschoepfung', txt:'Abends bin ich wie leergebrannt, schlafe aber trotzdem schlecht.'}
+        ]},
+      { q:'Wo lagert sich bei dir am ehesten Gewicht an?',
+        opts:[
+          {t:'schutz',  txt:'Eher rundum – obwohl ich kaum mehr esse als früher.'},
+          {t:'spar',    txt:'Überall etwas, und es geht extrem langsam wieder runter.'},
+          {t:'erschoepfung', txt:'Vor allem am Bauch – seit ich viel Stress habe.'}
+        ]},
+      { q:'Welche Aussage trifft am ehesten auf dich zu?',
+        opts:[
+          {t:'schutz',  txt:'Heißhunger und Süß-Gelüste bestimmen oft meinen Tag.'},
+          {t:'spar',    txt:'Müdigkeit, Frieren, trockene Haut – „die Werte sind aber normal".'},
+          {t:'erschoepfung', txt:'Innere Unruhe, schlechter Schlaf, ich komme nicht zur Ruhe.'}
+        ]}
+    ];
+    var ERGEBNIS={
+      schutz:{icon:'🛡️',name:'Schutz-Muster',desc:'Deine Antworten deuten auf eine Insulin-getriebene Speicher-Tendenz – der Körper hält Reserven fest. Im Workshop erfährst du, wie du den Blutzucker stabilisierst.'},
+      spar:{icon:'🪫',name:'Spar-Muster',desc:'Deine Antworten passen zu einem gedrosselten Grundumsatz – oft rund um die Schilddrüse. Im Workshop zeigt der Arzt, welche Werte du prüfen lassen solltest.'},
+      erschoepfung:{icon:'🔋',name:'Erschöpfungs-Muster',desc:'Deine Antworten deuten auf dauerhaft erhöhtes Cortisol durch Stress. Im Workshop erfährst du, wie du diese Achse beruhigst – und so wieder abnimmst.'}
+    };
+    var qq=document.getElementById('qq'), qopts=document.getElementById('qopts'),
+        qbar=document.getElementById('qbar'), qstep=document.getElementById('qstep'),
+        qresult=document.getElementById('qresult'), qrname=document.getElementById('qrname'),
+        qrdesc=document.getElementById('qrdesc'), qricon=document.getElementById('qricon');
+    var idx=0, score={schutz:0,spar:0,erschoepfung:0};
+    function render(){
+      var f=FRAGEN[idx];
+      qq.textContent=(idx+1)+'. '+f.q;
+      qbar.style.width=((idx)/FRAGEN.length*100)+'%';
+      qopts.innerHTML='';
+      f.opts.forEach(function(o){
+        var b=document.createElement('button');
+        b.type='button'; b.className='qopt'; b.textContent=o.txt;
+        b.addEventListener('click',function(){ score[o.t]++; idx++; if(idx<FRAGEN.length){ render(); } else { zeigeErgebnis(); } });
+        qopts.appendChild(b);
+      });
+    }
+    function zeigeErgebnis(){
+      qbar.style.width='100%';
+      var best='schutz';
+      for(var k in score){ if(score[k]>score[best]) best=k; }
+      var e=ERGEBNIS[best];
+      qricon.textContent=e.icon; qrname.textContent=e.name; qrdesc.textContent=e.desc;
+      qstep.style.display='none'; qresult.classList.add('show');
+      if(window.fbq){ try{ fbq('trackCustom','QuizDone',{typ:best}); }catch(_){} }
+    }
+    document.getElementById('qrestart').addEventListener('click',function(){
+      idx=0; score={schutz:0,spar:0,erschoepfung:0};
+      qresult.classList.remove('show'); qstep.style.display='block'; render();
+    });
+    render();
+  })();
+})();
+</script>
+
+<!-- GHL-Formular-Loader (Höhen-Anpassung der eingebetteten Formulare) -->
+<!-- form_embed.js entfernt: Formular läuft jetzt als eigene GHL-Seite (2-Step), kein iframe mehr nötig -->
+
+</body>
+</html>
+
