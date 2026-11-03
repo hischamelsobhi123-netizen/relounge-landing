@@ -113,7 +113,7 @@
     <a href="https://hischamelsobhi.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
   </div>
   <div style="margin-top:12px"><b style="color:#fff">Zentrum für Gesundheitsmedizin</b> · Hischam El-Sobhi · Facharzt</div>
-  <div class="hint">Der Kurztest ist eine erste Orientierung und keine Diagnose. Er ersetzt keine ärztliche Untersuchung. Keine Heilversprechen.</div>
+  <div class="hint">Die Typ-Analyse ist eine erste Orientierung und keine Diagnose. Er ersetzt keine ärztliche Untersuchung. Keine Heilversprechen.</div>
 </div>
 
 <script>
@@ -124,19 +124,27 @@
   var DANKE_VIDEO = '';
   var POSTER = 'https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/arzt-hischam.webp';
 
-  /* Ergebnis: von der Test-Seite (gleiche Domain) oder aus ?m=B */
+  /* Ergebnis: von der Test-Seite (gleiche Domain) oder aus ?m=A+B
+     Muster wie im Workshop: A Alarm · B Bunker · C Crash + Mischtypen */
   var TEXTE = {
-    A:'Du gibst dir Mühe, aber dein Körper bleibt stur. Er hat gelernt, mit wenig auszukommen — und hält deshalb fest.',
-    B:'Unruhe, Heißhunger, ein Kopf, der abends nicht abschaltet. Dein Körper steht unter Spannung und schützt sich, statt loszulassen.',
-    C:'Dir fehlt die Kraft — morgens, abends, für die nächste Diät. Ohne Energie lässt dein Körper nichts los.'
+    'A':     ['A · Alarm', 'Dein System steht unter Daueralarm. Der Kopf kommt nicht zur Ruhe, nachts wird es unruhig – und bei Stress hält dein Körper fest, egal wie diszipliniert du bist.'],
+    'B':     ['B · Bunker', 'Dein Körper hat gelernt zu sparen. Du isst wenig, aber er gibt nichts her – und nach jeder Diät hortet er noch mehr. Das ist kein Willensproblem, sondern ein Schutzprogramm.'],
+    'C':     ['C · Crash', 'Deine Reserven sind leer. Du wachst müde auf, die Kraft fehlt – und ein leerer Körper lässt nichts los.'],
+    'A+B':   ['A+B · Alarm im Bunker', 'Zwei Muster gleichzeitig: Der Kopf kommt nicht zur Ruhe – und der Körper spart. Hellwach in der Nacht und trotz wenig Essen bewegt sich nichts.'],
+    'A+C':   ['A+C · Alarm im Crash', 'Innerlich aufgedreht, außen längst leer. Du kannst schlecht abschalten – und hast trotzdem keine Kraft mehr.'],
+    'B+C':   ['B+C · Bunker im Crash', 'Dein Körper spart und die Reserven sind leer. „Ich nehme zu, obwohl ich kaum noch etwas habe“ – das ist kein Widerspruch.'],
+    'A+B+C': ['Alle drei Muster', 'Bei dir zeigen sich alle drei Muster gleichzeitig: Alarm, Bunker und Crash. Hier ist die richtige Reihenfolge besonders wichtig.'],
+    'OFFEN': ['Noch offen', 'Deine Antworten zeigen kein eindeutiges Muster. Das ist nicht ungewöhnlich – manchmal liegt der Grund dort, wo man von außen nicht hinschaut. Genau das klären wir im Gespräch.']
   };
   var m = null;
   try{ m = new URLSearchParams(location.search).get('m') || localStorage.getItem('typ_muster'); }catch(e){}
-  if(m){ m = String(m).toUpperCase(); }
+  if(m){ m = String(m).toUpperCase().replace(/ /g,'+'); }
   if(TEXTE[m]){
-    document.getElementById('resBu').textContent = m;
-    document.getElementById('resT').textContent = 'Bei dir liegt Muster '+m+' vorne';
-    document.getElementById('resS').textContent = TEXTE[m];
+    var bu = document.getElementById('resBu');
+    bu.textContent = m==='OFFEN' ? '?' : (m==='A+B+C' ? 'ABC' : m);
+    if(bu.textContent.length>1) bu.style.fontSize = bu.textContent.length>2 ? '1.5rem' : '1.9rem';
+    document.getElementById('resT').textContent = 'Dein Muster: '+TEXTE[m][0];
+    document.getElementById('resS').textContent = TEXTE[m][1];
   } else {
     document.getElementById('resBu').textContent = '✓';
   }
