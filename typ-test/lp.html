@@ -774,12 +774,33 @@
     ifr.src = 'https://api.leadconnectorhq.com/widget/form/'+FORM_ID+'?'+p.toString();
     ifr.id = 'inline-'+FORM_ID;
     ifr.title = 'Typ-Test Ergebnis anfordern';
-    ifr.setAttribute('data-layout','{"id":"INLINE"}');
+    /* Attribute wie im offiziellen GHL-Einbettungscode – sonst behandelt
+       form_embed.js das Formular wie ein Popup und versteckt es. */
+    ifr.setAttribute('style','width:100%;border:none;border-radius:3px;min-height:520px');
+    ifr.setAttribute('data-layout',"{'id':'INLINE'}");
+    ifr.setAttribute('data-trigger-type','alwaysShow');
+    ifr.setAttribute('data-trigger-value','');
+    ifr.setAttribute('data-activation-type','alwaysActivated');
+    ifr.setAttribute('data-activation-value','');
+    ifr.setAttribute('data-deactivation-type','neverDeactivate');
+    ifr.setAttribute('data-deactivation-value','');
+    ifr.setAttribute('data-form-name','Typ-Test Website');
+    ifr.setAttribute('data-layout-iframe-id','inline-'+FORM_ID);
     ifr.setAttribute('data-form-id', FORM_ID);
     box.appendChild(ifr);
-    var s = document.createElement('script');
-    s.src = 'https://link.msgsndr.com/js/form_embed.js';
-    document.body.appendChild(s);
+    if(!document.querySelector('script[src*="form_embed.js"]')){
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    }
+    /* Sicherheitsnetz: falls das Formular trotzdem versteckt wird, sichtbar machen */
+    function zeigen(){
+      if(ifr.style.visibility==='hidden' || ifr.style.opacity==='0' || ifr.style.left==='-9999px'){
+        ifr.style.visibility='visible'; ifr.style.opacity='1'; ifr.style.left='0';
+        ifr.style.position='relative'; ifr.style.pointerEvents='auto';
+      }
+    }
+    [600,1500,3000,6000].forEach(function(t){ setTimeout(zeigen,t); });
   }
 
   var gestartet = false;
