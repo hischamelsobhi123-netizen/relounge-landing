@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danke — dein Ergebnis | Facharzt Hischam El-Sobhi</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --bg:#ffffff; --soft:#f4f8f6; --soft2:#eaf3ee; --ink:#132019; --ink2:#22332c; --muted:#63736c;
+    --line:#e5ece8; --green:#22a35f; --green-d:#178048; --green-l:#2fb46b; --green-bg:#e7f5ec;
+    --dark:#0d2a1e; --dark2:#123c2a; --gold:#e0ad3c;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  img{max-width:100%;display:block;height:auto;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+  .kick{color:var(--green);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;}
+
+  .topbar{background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);}
+  .topbar .in{max-width:1120px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:9px;font-weight:800;font-size:.86rem;}
+  .topbar img{height:28px;width:auto;border-radius:5px;}
+
+  .hero{padding:clamp(30px,6vw,52px) 0 10px;text-align:center;background:radial-gradient(620px 360px at 50% -10%,#e2f2e8,transparent 70%);}
+  .check{width:62px;height:62px;border-radius:50%;background:var(--green-bg);color:var(--green-d);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.8rem;font-weight:900;animation:pop .5s cubic-bezier(.2,.9,.3,1.4);}
+  @keyframes pop{from{transform:scale(.4);opacity:0;}to{transform:none;opacity:1;}}
+  .hero h1{text-transform:uppercase;font-weight:800;font-size:clamp(1.6rem,6vw,2.5rem);line-height:1.08;letter-spacing:-.015em;}
+  .hero h1 span{color:var(--green);}
+  .hero p{color:var(--muted);font-size:1.05rem;max-width:560px;margin:12px auto 0;}
+
+  .res{margin:26px auto 0;background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;border-radius:22px;padding:26px 24px;display:flex;gap:20px;align-items:center;box-shadow:0 22px 54px rgba(13,42,30,.24);text-align:left;}
+  .res .bu{flex-shrink:0;width:78px;height:78px;border-radius:18px;background:#fff;color:var(--green-d);font-family:Georgia,serif;font-weight:700;font-size:2.8rem;display:flex;align-items:center;justify-content:center;}
+  .res .t{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7fe0a5;}
+  .res .s{font-size:1.06rem;margin-top:4px;color:rgba(255,255,255,.92);}
+  .res .n{font-size:.92rem;margin-top:8px;color:rgba(255,255,255,.7);}
+
+  .vsec{padding:34px 0 10px;}
+  .vsec h2{font-weight:800;font-size:clamp(1.2rem,4.4vw,1.5rem);text-align:center;margin-bottom:14px;text-transform:uppercase;}
+  .vwrap{position:relative;border-radius:18px;overflow:hidden;background:#0c1c16;box-shadow:0 26px 60px rgba(15,45,32,.28);}
+  .vwrap .ar{position:relative;padding-top:56.25%;}
+  .vwrap video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;object-fit:contain;}
+  .vfacade{position:absolute;inset:0;cursor:pointer;background-size:cover;background-position:center 22%;}
+  .vfacade::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,20,.15),rgba(10,26,20,.55));}
+  .vfacade .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(0,0,0,.4);}
+  .vfacade .play::before{content:"";border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent var(--green-d);margin-left:4px;}
+  .vload{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.9rem;background:#0c1c16;}
+  .vleer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.75);font-weight:700;text-align:center;padding:20px;}
+  @media(max-width:760px){ .vwrap{border-radius:0;margin-left:-20px;margin-right:-20px;} }
+
+  .steps{padding:30px 0 50px;}
+  .steps h2{font-weight:800;font-size:clamp(1.2rem,4.4vw,1.5rem);text-align:center;margin-bottom:16px;text-transform:uppercase;}
+  .st{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:10px;box-shadow:0 8px 22px rgba(15,45,32,.05);}
+  .st .n{flex-shrink:0;width:34px;height:34px;border-radius:10px;background:var(--green-bg);color:var(--green-d);font-weight:800;display:flex;align-items:center;justify-content:center;}
+  .st b{display:block;}
+  .st p{color:var(--muted);font-size:.94rem;}
+  .tip{margin-top:16px;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:.92rem;color:var(--ink2);}
+
+  .foot{background:#0a1c14;color:rgba(255,255,255,.7);font-size:.84rem;padding:28px 20px;text-align:center;}
+  .foot a{color:rgba(255,255,255,.85);text-decoration:none;margin:0 7px;white-space:nowrap;}
+  .foot .hint{margin-top:12px;font-size:.74rem;opacity:.6;max-width:720px;margin-left:auto;margin-right:auto;}
+
+  /* GHL-Rahmen neutralisieren (wie auf der Test-Seite) */
+  html,body{margin:0 !important;padding:0 !important;background:var(--bg) !important}
+  .c-section,.c-row,.c-column,.c-wrapper,
+  .hl_page-creator--content,.hl_page-creator--row,.hl_page-creator--col,
+  .section-wrap,.row-wrap,.col-wrap,.fullSection,.fullRow,.fullColumn{
+    padding:0 !important;margin:0 !important;max-width:100% !important;width:100% !important;
+    background:transparent !important;border:0 !important}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="in"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="Zentrum für Gesundheitsmedizin"> Zentrum für Gesundheitsmedizin</div></div>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="check">✓</div>
+    <h1>Geschafft — <span>danke dir!</span></h1>
+    <p>Deine Antworten sind bei uns angekommen. Hier ist dein Ergebnis.</p>
+
+    <div class="res" id="res">
+      <div class="bu" id="resBu">?</div>
+      <div>
+        <div class="t" id="resT">Dein Muster</div>
+        <div class="s" id="resS">Dein Ergebnis ist gespeichert. Wir besprechen es mit dir am Telefon.</div>
+        <div class="n">Was das für dich heißt und was dein Körper zuerst braucht, besprechen wir persönlich mit dir.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vsec">
+  <div class="wrap">
+    <h2>Schau dir das kurz an, bevor wir anrufen</h2>
+    <div class="vwrap"><div class="ar" id="vbox"></div></div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <h2>So geht es weiter</h2>
+    <div class="st"><div class="n">1</div><div><b>Wir rufen dich an</b><p>Unser Team meldet sich in der Regel innerhalb von 24 Stunden bei dir — per Telefon oder WhatsApp.</p></div></div>
+    <div class="st"><div class="n">2</div><div><b>Wir besprechen dein Ergebnis</b><p>Was dein Muster bedeutet und warum bisherige Versuche nicht gehalten haben. In Ruhe, ohne Druck.</p></div></div>
+    <div class="st"><div class="n">3</div><div><b>Du entscheidest</b><p>Wenn es passt, vereinbaren wir ein ausführliches Gespräch. Wenn nicht, ist das auch völlig in Ordnung.</p></div></div>
+    <div class="tip">📱 <b>Kleiner Tipp:</b> Geh in den nächsten Stunden ran, wenn eine unbekannte Nummer anruft — das sind wahrscheinlich wir.</div>
+  </div>
+</section>
+
+<div class="foot">
+  <div>
+    <a href="https://hischamelsobhi.de/impressum" target="_blank" rel="noopener">Impressum</a> ·
+    <a href="https://hischamelsobhi.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+  </div>
+  <div style="margin-top:12px"><b style="color:#fff">Zentrum für Gesundheitsmedizin</b> · Hischam El-Sobhi · Facharzt</div>
+  <div class="hint">Der Kurztest ist eine erste Orientierung und keine Diagnose. Er ersetzt keine ärztliche Untersuchung. Keine Heilversprechen.</div>
+</div>
+
+<script>
+(function(){
+  /* --- EINSTELLUNGEN ---
+     DANKE_VIDEO = MP4-Adresse des Danke-Videos (leer = Platzhalter).
+     POSTER      = Vorschaubild für das Video. */
+  var DANKE_VIDEO = '';
+  var POSTER = 'https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/arzt-hischam.webp';
+
+  /* Ergebnis: von der Test-Seite (gleiche Domain) oder aus ?m=B */
+  var TEXTE = {
+    A:'Du gibst dir Mühe, aber dein Körper bleibt stur. Er hat gelernt, mit wenig auszukommen — und hält deshalb fest.',
+    B:'Unruhe, Heißhunger, ein Kopf, der abends nicht abschaltet. Dein Körper steht unter Spannung und schützt sich, statt loszulassen.',
+    C:'Dir fehlt die Kraft — morgens, abends, für die nächste Diät. Ohne Energie lässt dein Körper nichts los.'
+  };
+  var m = null;
+  try{ m = new URLSearchParams(location.search).get('m') || localStorage.getItem('typ_muster'); }catch(e){}
+  if(m){ m = String(m).toUpperCase(); }
+  if(TEXTE[m]){
+    document.getElementById('resBu').textContent = m;
+    document.getElementById('resT').textContent = 'Bei dir liegt Muster '+m+' vorne';
+    document.getElementById('resS').textContent = TEXTE[m];
+  } else {
+    document.getElementById('resBu').textContent = '✓';
+  }
+
+  /* Video: erst auf Klick laden (wie auf der Test-Seite) */
+  var box = document.getElementById('vbox');
+  if(!DANKE_VIDEO){
+    box.innerHTML = '<div class="vleer">Hier kommt das Danke-Video hin</div>';
+    return;
+  }
+  var f = document.createElement('div');
+  f.className = 'vfacade';
+  f.style.backgroundImage = 'url('+POSTER+')';
+  f.innerHTML = '<div class="play" aria-label="Video abspielen"></div>';
+  box.appendChild(f);
+  f.addEventListener('click', function(){
+    var load = document.createElement('div'); load.className='vload'; load.textContent='Video wird geladen …';
+    box.appendChild(load);
+    var v = document.createElement('video');
+    v.src = DANKE_VIDEO; v.controls = true; v.autoplay = true; v.playsInline = true;
+    v.setAttribute('playsinline',''); v.setAttribute('preload','auto');
+    v.oncanplay = function(){ setTimeout(function(){ load.remove(); },200); };
+    v.onerror = function(){ load.textContent='Video konnte nicht geladen werden'; };
+    box.appendChild(v);
+    var p = v.play(); if(p&&p.catch){p.catch(function(){});}
+    f.remove();
+  });
+})();
+</script>
+
+<script>
+/* GHL-Rahmen aufbrechen (gleicher Fix wie auf der Test-Seite) */
+(function(){
+  function aufbrechen(){
+    var n = document.getElementById('top'); if(!n) return;
+    var tiefe = 0;
+    while (n && n.parentElement && tiefe < 12) {
+      n = n.parentElement;
+      if (n === document.body || n === document.documentElement) {
+        n.style.setProperty('margin','0','important'); n.style.setProperty('padding','0','important');
+        n.style.setProperty('background','var(--bg)','important'); break;
+      }
+      n.style.setProperty('padding','0','important'); n.style.setProperty('margin','0','important');
+      n.style.setProperty('max-width','100%','important'); n.style.setProperty('width','100%','important');
+      n.style.setProperty('background','transparent','important'); n.style.setProperty('border','0','important');
+      tiefe++;
+    }
+  }
+  aufbrechen();
+  document.addEventListener('DOMContentLoaded', aufbrechen);
+  window.addEventListener('load', aufbrechen);
+  setTimeout(aufbrechen, 400); setTimeout(aufbrechen, 1500);
+})();
+</script>
+</body>
+</html>
