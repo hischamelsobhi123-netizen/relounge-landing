@@ -97,6 +97,10 @@
   .pt span{color:rgba(255,255,255,.72);font-size:.92rem;}
   @media(max-width:760px){ .vwrap{border-radius:0;margin-left:-20px;margin-right:-20px;} .pts{grid-template-columns:1fr;} }
 
+  /* HISCHAM-VIDEO (direkt unter dem Hero) */
+  .vid{padding-top:0;}
+  .vid .vwrap{margin-top:20px;}
+
   /* STIMMEN */
   .tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px;}
   .tvid{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:9/16;cursor:pointer;box-shadow:0 12px 30px rgba(15,45,32,.16);}
@@ -162,8 +166,19 @@
     <p>Du hast schon viel versucht. Hier siehst du, warum wir anders vorgehen, wie der Weg aussieht und wer dich dabei begleitet.</p>
     <div class="chip" id="chip" hidden><b id="chipBu">B</b> <span id="chipT">Dein Muster</span></div>
     <div class="jump">
-      <a href="#arzt">Der Arzt</a><a href="#warum">Warum anders</a><a href="#weg">Der Weg</a><a href="#portal">Begleitung</a><a href="#stimmen">Stimmen</a><a href="#fragen">Fragen</a>
+      <a href="#video">▶ Video</a><a href="#arzt">Der Arzt</a><a href="#warum">Warum anders</a><a href="#weg">Der Weg</a><a href="#portal">Begleitung</a><a href="#stimmen">Stimmen</a><a href="#fragen">Fragen</a>
     </div>
+  </div>
+</section>
+
+<section class="vid" id="video">
+  <div class="wrap narrow">
+    <div class="center rv">
+      <div class="kick">Lerne Hischam kennen</div>
+      <h2 class="h2">Warum es bisher <span>nicht gehalten hat</span></h2>
+      <p class="sub">In gut 5 Minuten erklärt dir Hischam selbst, was hinter deinem Muster steckt – und wie der Weg aussieht.</p>
+    </div>
+    <div class="vwrap rv"><div class="ar" id="hbox"></div></div>
   </div>
 </section>
 
@@ -310,25 +325,30 @@
     }
   }
 
-  /* Portal-Video: erst auf Klick laden */
-  var box = document.getElementById('pbox');
-  var f = document.createElement('div');
-  f.className = 'vfacade';
-  f.style.backgroundImage = 'url('+M+'typ-test/media/portal.jpg)';
-  f.innerHTML = '<div class="play" aria-label="Video abspielen"></div><div class="vlen">1:15 Min</div>';
-  box.appendChild(f);
-  f.addEventListener('click', function(){
-    var load = document.createElement('div'); load.className='vload'; load.textContent='Video wird geladen …';
-    box.appendChild(load);
-    var v = document.createElement('video');
-    v.src = M+'typ-test/media/portal.mp4'; v.controls = true; v.autoplay = true; v.playsInline = true;
-    v.setAttribute('playsinline',''); v.setAttribute('preload','auto');
-    v.oncanplay = function(){ setTimeout(function(){ load.remove(); },200); };
-    v.onerror = function(){ load.textContent='Video konnte nicht geladen werden'; };
-    box.appendChild(v);
-    var p = v.play(); if(p&&p.catch){p.catch(function(){});}
-    f.remove();
-  });
+  /* Videos: erst auf Klick laden (Vorschaubild + Play-Knopf) */
+  function video(boxId, name, laenge){
+    var box = document.getElementById(boxId);
+    var f = document.createElement('div');
+    f.className = 'vfacade';
+    f.style.backgroundImage = 'url('+M+'typ-test/media/'+name+'.jpg)';
+    f.innerHTML = '<div class="play" aria-label="Video abspielen"></div><div class="vlen">'+laenge+'</div>';
+    box.appendChild(f);
+    f.addEventListener('click', function(){
+      document.querySelectorAll('video').forEach(function(o){ o.pause(); });
+      var load = document.createElement('div'); load.className='vload'; load.textContent='Video wird geladen …';
+      box.appendChild(load);
+      var v = document.createElement('video');
+      v.src = M+'typ-test/media/'+name+'.mp4'; v.controls = true; v.autoplay = true; v.playsInline = true;
+      v.setAttribute('playsinline',''); v.setAttribute('preload','auto');
+      v.oncanplay = function(){ setTimeout(function(){ load.remove(); },200); };
+      v.onerror = function(){ load.textContent='Video konnte nicht geladen werden'; };
+      box.appendChild(v);
+      var p = v.play(); if(p&&p.catch){p.catch(function(){});}
+      f.remove();
+    });
+  }
+  video('hbox', 'video-hischam', '5:24 Min');
+  video('pbox', 'portal', '1:15 Min');
 
   /* Video-Stimmen (dieselben wie auf der Erstgespräch-Seite) */
   var grid = document.getElementById('tgrid');
