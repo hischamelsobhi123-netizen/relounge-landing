@@ -879,6 +879,18 @@
     return r[0];
   }
 
+  /* Ergebnis-Satz für Mail 1 (Feld typ_ergebnis) – gleiche Texte wie auf der Danke-Seite */
+  var ERGEBNIS = {
+    'A':     'A · Alarm – Dein System steht unter Daueralarm. Der Kopf kommt nicht zur Ruhe, nachts wird es unruhig – und bei Stress hält dein Körper fest, egal wie diszipliniert du bist.',
+    'B':     'B · Bunker – Dein Körper hat gelernt zu sparen. Du isst wenig, aber er gibt nichts her – und nach jeder Diät hortet er noch mehr. Das ist kein Willensproblem, sondern ein Schutzprogramm.',
+    'C':     'C · Crash – Deine Reserven sind leer. Du wachst müde auf, die Kraft fehlt – und ein leerer Körper lässt nichts los.',
+    'A+B':   'A und B · Alarm im Bunker – Zwei Muster gleichzeitig: Der Kopf kommt nicht zur Ruhe – und der Körper spart. Hellwach in der Nacht und trotz wenig Essen bewegt sich nichts.',
+    'A+C':   'A und C · Alarm im Crash – Innerlich aufgedreht, außen längst leer. Du kannst schlecht abschalten – und hast trotzdem keine Kraft mehr.',
+    'B+C':   'B und C · Bunker im Crash – Dein Körper spart und die Reserven sind leer. „Ich nehme zu, obwohl ich kaum noch etwas habe“ – das ist kein Widerspruch.',
+    'A+B+C': 'Alle drei Muster – Bei dir zeigen sich Alarm, Bunker und Crash gleichzeitig. Hier ist die richtige Reihenfolge besonders wichtig.',
+    'offen': 'Noch offen – Deine Antworten zeigen kein eindeutiges Muster. Das ist nicht ungewöhnlich – manchmal liegt der Grund dort, wo man von außen nicht hinschaut. Genau das klären wir im Gespräch.'
+  };
+
   /* Lesbare Zusammenfassung für Ramy (landet im Kontakt) */
   function zusammenfassung(){
     var p = punkte();
@@ -922,6 +934,7 @@
     /* GHL macht aus "+" in der Adresse ein Leerzeichen → Mischtypen als "B-C" senden */
     p.set('typ_muster', m.replace(/\+/g,'-'));
     p.set('typ_antworten', text);
+    p.set('typ_ergebnis', ERGEBNIS[m] || '');
     p.set('typ_quelle', quelle());
     p.set('typ_video', VIDEO);
     var ifr = document.createElement('iframe');
