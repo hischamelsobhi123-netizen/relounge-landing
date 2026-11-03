@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Welches Muster ist deins? — Facharzt Hischam El-Sobhi</title>
-<meta name="description" content="Gleicher Plan, drei Ergebnisse. Finde in 3 Minuten heraus, nach welchem Muster dein Körper reagiert — kostenlose Typ-Analyse von Facharzt Hischam El-Sobhi.">
+<meta name="description" content="Gleicher Plan, drei Ergebnisse. Finde in wenigen Minuten heraus, nach welchem Muster dein Körper reagiert — kostenlose Typ-Analyse von Facharzt Hischam El-Sobhi.">
 <script>document.documentElement.className+=' js';</script>
 <style>
   :root{
@@ -337,7 +337,7 @@
       <div class="htext reveal">
         <div class="kick">Facharzt Hischam El-Sobhi · 25+ Jahre Erfahrung</div>
         <h1>Gleicher Plan. <span>Drei Ergebnisse.</span> Welches Muster ist deins?</h1>
-        <div class="subh">Es liegt nicht an deiner Disziplin. Dein Körper reagiert nach einem Muster — finde in 3 Minuten heraus, nach welchem.</div>
+        <div class="subh">Es liegt nicht an deiner Disziplin. Dein Körper reagiert nach einem Muster — finde in wenigen Minuten heraus, nach welchem.</div>
         <div class="hproof">
           <div class="avs">
             <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/testimonials/t01.jpg" alt="">
@@ -352,22 +352,43 @@
       <div class="hvideo reveal">
         <div class="vwrap">
           <div class="ar">
-            <div class="vfacade" id="vfacade" style="background-image:url('https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/arzt-hischam.webp')" data-src="https://hischamelsobhi123-netizen.github.io/relounge-landing/lp-juni-assets/vsl-arzt.mp4">
+            <div class="vfacade" id="vfacade" style="background-image:url('https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/media/video-a.jpg');background-position:center" data-src="https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/media/video-a.mp4">
               <div class="vlabel">▶ Video mit dem Arzt</div>
               <div class="play" aria-label="Video abspielen"></div>
-              <div class="vlen">2 Min ansehen</div>
+              <div class="vlen">1:18 Min</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="hcta reveal">
-        <a class="cta big pulse" href="#test">Typ-Analyse starten<small>3 kurze Kapitel · ca. 3 Minuten · kostenlos</small></a>
+        <a class="cta big pulse" href="#test">Auswertung starten<small>3 kurze Kapitel · ca. 2–3 Minuten · kostenlos</small></a>
         <span class="rr">🟢 <b>Danach ruft dich unser Team an</b> und erklärt dir dein Ergebnis</span>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+/* Website-Video je nach Herkunft (Plan „Kaltakquise-Videos“, 03.11.):
+   A = Startseite für Neue („Mein Name ist …“)
+   B = nach einem Reel/einer Anzeige („Du hast gerade ein Video von mir gesehen“)
+   Wer mit utm_source kommt (Anzeige, Reel-DM, Bio-Link …), bekommt B, sonst A.
+   Zum Testen erzwingen: ?v=A oder ?v=B */
+(function(){
+  var p = new URLSearchParams(location.search);
+  var v = (p.get('v')||'').toUpperCase();
+  if(v!=='A' && v!=='B'){ v = p.get('utm_source') ? 'B' : 'A'; }
+  window.TYP_VIDEO = v;
+  var base = 'https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/media/video-'+v.toLowerCase();
+  var f = document.getElementById('vfacade');
+  if(f){
+    f.setAttribute('data-src', base+'.mp4');
+    f.style.backgroundImage = "url('"+base+".jpg')";
+    var l = f.querySelector('.vlen'); if(l) l.textContent = v==='A' ? '1:18 Min' : '1:28 Min';
+  }
+})();
+</script>
 
 <!-- TYP-TEST -->
 <section class="tsec" id="test">
@@ -382,8 +403,8 @@
           <div style="font-weight:700;margin-top:6px">② Deine Geschichte</div>
           <div style="font-weight:700;margin-top:6px">③ Dein Ziel</div>
         </div>
-        <button class="cta big" type="button" id="tStart">Analyse starten →</button>
-        <div class="tmeta"><span>⏱ ca. 3 Minuten</span><span>🔒 Vertraulich</span><span>✓ Kostenlos</span></div>
+        <button class="cta big" type="button" id="tStart">Auswertung starten →</button>
+        <div class="tmeta"><span>⏱ ca. 2–3 Minuten</span><span>🔒 Vertraulich</span><span>✓ Kostenlos</span></div>
       </div>
     </div>
   </div>
@@ -574,8 +595,8 @@
 <section class="final" id="schluss">
   <div class="wrap">
     <h2>Du hast dieses Video nicht zufällig gesehen. <em>Finde dein Muster heraus.</em></h2>
-    <p>3 kurze Kapitel, ca. 3 Minuten — danach weißt du, wo du stehst.</p>
-    <a class="cta big" href="#test">Typ-Analyse starten →<small>kostenlos &amp; unverbindlich</small></a>
+    <p>3 kurze Kapitel, ca. 2–3 Minuten — danach weißt du, wo du stehst.</p>
+    <a class="cta big" href="#test">Auswertung starten →<small>kostenlos &amp; unverbindlich</small></a>
   </div>
 </section>
 
@@ -591,14 +612,14 @@
   <div class="hint">Ärztlich begleitetes Gesundheitsprogramm. Diese Seite ersetzt keine ärztliche Beratung; ein individueller Weg wird im persönlichen Gespräch festgelegt. Keine Heilversprechen.</div>
 </div>
 
-<div class="sticky" id="sticky"><a class="cta" href="#test">Typ-Analyse starten →</a></div>
+<div class="sticky" id="sticky"><a class="cta" href="#test">Auswertung starten →</a></div>
 
 <div class="exit" id="exitPop">
   <div class="box">
     <button class="close" id="exitClose" aria-label="Schließen">×</button>
     <h3>Warte kurz …</h3>
-    <p>3 Minuten — und du weißt, nach welchem Muster dein Körper reagiert.</p>
-    <a class="cta" href="#test" id="exitCta">Typ-Analyse starten →</a>
+    <p>Wenige Minuten — und du weißt, nach welchem Muster dein Körper reagiert.</p>
+    <a class="cta" href="#test" id="exitCta">Auswertung starten →</a>
   </div>
 </div>
 
@@ -708,7 +729,7 @@
      VIDEO     = welches Website-Video auf dieser Seite läuft (A/B-Test).
      DANKE_URL = nur für den Vorschau-Modus; live leitet GHL selbst weiter. */
   var FORM_ID   = 'AB8OPE1yRMt2Sz3kKyWQ';   /* GHL-Formular "Typ-Test Website" */
-  var VIDEO     = 'A';
+  var VIDEO     = window.TYP_VIDEO || 'A';
   var DANKE_URL = 'lp-typ-test-danke-GHL.html';
 
   var NAMEN = {A:'Alarm', B:'Bunker', C:'Crash'};

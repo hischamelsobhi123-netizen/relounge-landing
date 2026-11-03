@@ -40,7 +40,8 @@
   .vwrap{position:relative;border-radius:18px;overflow:hidden;background:#0c1c16;box-shadow:0 26px 60px rgba(15,45,32,.28);}
   .vwrap .ar{position:relative;padding-top:56.25%;}
   .vwrap video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;object-fit:contain;}
-  .vfacade{position:absolute;inset:0;cursor:pointer;background-size:cover;background-position:center 22%;}
+  .vfacade{position:absolute;inset:0;cursor:pointer;background-size:cover;background-position:center;}
+  .vfacade .vlen{position:absolute;right:12px;bottom:12px;z-index:2;background:rgba(12,28,22,.72);color:#fff;font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:20px;}
   .vfacade::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,20,.15),rgba(10,26,20,.55));}
   .vfacade .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(0,0,0,.4);}
   .vfacade .play::before{content:"";border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent var(--green-d);margin-left:4px;}
@@ -92,7 +93,7 @@
 
 <section class="vsec">
   <div class="wrap">
-    <h2>Schau dir das kurz an, bevor wir anrufen</h2>
+    <h2>Hischam erklärt dir dein Ergebnis</h2>
     <div class="vwrap"><div class="ar" id="vbox"></div></div>
   </div>
 </section>
@@ -121,8 +122,9 @@
   /* --- EINSTELLUNGEN ---
      DANKE_VIDEO = MP4-Adresse des Danke-Videos (leer = Platzhalter).
      POSTER      = Vorschaubild für das Video. */
-  var DANKE_VIDEO = '';
-  var POSTER = 'https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/arzt-hischam.webp';
+  /* Video C „Typen-Erklärung + Anruf“: erklärt A/B/C und kündigt den Rückruf an */
+  var DANKE_VIDEO = 'https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/media/video-c.mp4';
+  var POSTER = 'https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/media/video-c.jpg';
 
   /* Ergebnis: von der Test-Seite (gleiche Domain) oder aus ?m=A+B
      Muster wie im Workshop: A Alarm · B Bunker · C Crash + Mischtypen */
@@ -158,7 +160,7 @@
   var f = document.createElement('div');
   f.className = 'vfacade';
   f.style.backgroundImage = 'url('+POSTER+')';
-  f.innerHTML = '<div class="play" aria-label="Video abspielen"></div>';
+  f.innerHTML = '<div class="play" aria-label="Video abspielen"></div><div class="vlen">1:28 Min</div>';
   box.appendChild(f);
   f.addEventListener('click', function(){
     var load = document.createElement('div'); load.className='vload'; load.textContent='Video wird geladen …';
