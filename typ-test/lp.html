@@ -919,7 +919,8 @@
     }
     /* Ausgeblendete Felder im GHL-Formular über die Adresse vorbefüllen */
     var p = new URLSearchParams(location.search);
-    p.set('typ_muster', m);
+    /* GHL macht aus "+" in der Adresse ein Leerzeichen → Mischtypen als "B-C" senden */
+    p.set('typ_muster', m.replace(/\+/g,'-'));
     p.set('typ_antworten', text);
     p.set('typ_quelle', quelle());
     p.set('typ_video', VIDEO);
