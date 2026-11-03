@@ -140,7 +140,8 @@
   };
   var m = null;
   try{ m = new URLSearchParams(location.search).get('m') || localStorage.getItem('typ_muster'); }catch(e){}
-  if(m){ m = String(m).toUpperCase().replace(/ /g,'+'); }
+  /* Mischtypen kommen als "B+C", "B C" oder (aus Mails) "B-C" */
+  if(m){ m = String(m).toUpperCase().replace(/[ -]/g,'+'); }
   if(TEXTE[m]){
     var bu = document.getElementById('resBu');
     bu.textContent = m==='OFFEN' ? '?' : (m==='A+B+C' ? 'ABC' : m);
