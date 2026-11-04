@@ -66,6 +66,16 @@
   .mehrbox:hover .mbtn{transform:translateY(-2px);background:var(--green-l);}
   @media(max-width:520px){ .mehrbox .mbtn{display:block;font-size:1rem;padding:16px 14px;white-space:nowrap;} }
 
+  .selbst{margin-top:14px;text-align:center;font-size:.94rem;color:var(--muted);}
+  .selbst a{color:var(--green-d);font-weight:800;}
+  .teilen{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 18px;text-align:center;}
+  .teilen b{font-size:1.05rem;}
+  .teilen p{color:var(--muted);font-size:.94rem;margin-top:4px;}
+  .tknopf{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px;}
+  .twa,.tkopie{font:inherit;font-weight:800;font-size:.95rem;border-radius:40px;padding:12px 20px;cursor:pointer;text-decoration:none;}
+  .twa{background:#25d366;color:#fff;border:0;}
+  .tkopie{background:var(--soft);color:var(--ink);border:1px solid var(--line);}
+
   .foot{background:#0a1c14;color:rgba(255,255,255,.7);font-size:.84rem;padding:28px 20px;text-align:center;}
   .foot a{color:rgba(255,255,255,.85);text-decoration:none;margin:0 7px;white-space:nowrap;}
   .foot .hint{margin-top:12px;font-size:.74rem;opacity:.6;max-width:720px;margin-left:auto;margin-right:auto;}
@@ -114,6 +124,7 @@
     <div class="st"><div class="n">2</div><div><b>Wir besprechen dein Ergebnis</b><p>Was dein Muster bedeutet und warum bisherige Versuche nicht gehalten haben. In Ruhe, ohne Druck.</p></div></div>
     <div class="st"><div class="n">3</div><div><b>Du entscheidest</b><p>Wenn es passt, vereinbaren wir ein ausführliches Gespräch. Wenn nicht, ist das auch völlig in Ordnung.</p></div></div>
     <div class="tip">📱 <b>Kleiner Tipp:</b> Geh in den nächsten Stunden ran, wenn eine unbekannte Nummer anruft — das sind wahrscheinlich wir.</div>
+    <p class="selbst">Du telefonierst nicht so gern? <a id="selbstLink" href="https://hischamelsobhi.de/typ-test-termin">Such dir dein Ergebnis-Gespräch direkt selbst aus →</a></p>
   </div>
 </section>
 
@@ -125,6 +136,15 @@
       <span class="ms">Hischam erklärt dir im Video, warum es bisher nicht gehalten hat. Dazu der Weg in 4 Schritten und echte Stimmen.</span>
       <span class="mbtn">Ich möchte mehr erfahren&nbsp;→</span>
     </a>
+
+    <div class="teilen">
+      <b>Kennst du jemanden, dem es genauso geht?</b>
+      <p>Schick ihr oder ihm die Typ-Analyse. 3 Minuten, kostenlos, mit sofortigem Ergebnis.</p>
+      <div class="tknopf">
+        <a id="teilenWa" class="twa" href="https://wa.me/?text=Hab%20gerade%20diese%20Typ-Analyse%20gemacht%20%E2%80%93%20sehr%20spannend%2C%20mach%20sie%20auch%20mal%3A%20https%3A%2F%2Fhischamelsobhi.de%2Ftyp-test%3Futm_source%3Dteilen" target="_blank" rel="noopener">Per WhatsApp teilen</a>
+        <button type="button" id="teilenKopie" class="tkopie">Link kopieren</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -166,6 +186,8 @@
     /* Muster an den Knopf "Ich möchte mehr erfahren" weitergeben */
     var mb = document.querySelector('.mehrbox');
     if(mb){ mb.href = mb.href.split('?')[0] + '?m=' + encodeURIComponent(m.replace(/\+/g,'-')); }
+    var sl = document.getElementById('selbstLink');
+    if(sl){ sl.href = sl.href.split('?')[0] + '?m=' + encodeURIComponent(m.replace(/\+/g,'-')); }
     var bu = document.getElementById('resBu');
     bu.textContent = m==='OFFEN' ? '?' : (m==='A+B+C' ? 'ABC' : m);
     if(bu.textContent.length>1) bu.style.fontSize = bu.textContent.length>2 ? '1.5rem' : '1.9rem';
@@ -174,6 +196,15 @@
   } else {
     document.getElementById('resBu').textContent = '✓';
   }
+
+  /* Teilen: Link kopieren (Fallback: Text markieren) */
+  var tk = document.getElementById('teilenKopie');
+  if(tk){ tk.addEventListener('click', function(){
+    var url = 'https://hischamelsobhi.de/typ-test?utm_source=teilen';
+    var ok = function(){ tk.textContent = 'Kopiert ✓'; };
+    if(navigator.clipboard){ navigator.clipboard.writeText(url).then(ok, function(){ prompt('Link kopieren:', url); }); }
+    else { prompt('Link kopieren:', url); }
+  }); }
 
   /* Video: erst auf Klick laden (wie auf der Test-Seite) */
   var box = document.getElementById('vbox');
