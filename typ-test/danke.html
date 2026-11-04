@@ -66,8 +66,10 @@
   .mehrbox:hover .mbtn{transform:translateY(-2px);background:var(--green-l);}
   @media(max-width:520px){ .mehrbox .mbtn{display:block;font-size:1rem;padding:16px 14px;white-space:nowrap;} }
 
-  .selbst{margin-top:14px;text-align:center;font-size:.94rem;color:var(--muted);}
-  .selbst a{color:var(--green-d);font-weight:800;}
+  .selbst{display:block;margin-top:18px;text-decoration:none;color:var(--text,#132019);background:#f3f8f5;border:1px solid var(--line);border-radius:16px;padding:16px 18px;text-align:left;}
+  .selbst .sk{display:block;font-weight:800;color:var(--dark,#0d2a1e);font-size:1rem;}
+  .selbst .ss{display:block;color:var(--muted);font-size:.92rem;margin-top:4px;}
+  .selbst .sa{display:inline-block;margin-top:8px;color:var(--green-d);font-weight:800;font-size:.96rem;}
   .bericht{display:block;margin-top:14px;text-align:center;color:var(--green-d);font-weight:700;font-size:.98rem;text-decoration:underline;text-underline-offset:3px;}
   .teilen{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 18px;text-align:center;}
   .teilen b{font-size:1.05rem;}
@@ -126,7 +128,7 @@
     <div class="st"><div class="n">2</div><div><b>Wir besprechen dein Ergebnis</b><p>Was dein Muster bedeutet und warum bisherige Versuche nicht gehalten haben. In Ruhe, ohne Druck.</p></div></div>
     <div class="st"><div class="n">3</div><div><b>Du entscheidest</b><p>Wenn es passt, vereinbaren wir ein ausführliches Gespräch. Wenn nicht, ist das auch völlig in Ordnung.</p></div></div>
     <div class="tip">📱 <b>Kleiner Tipp:</b> Geh in den nächsten Stunden ran, wenn eine unbekannte Nummer anruft — das sind wahrscheinlich wir.</div>
-    <p class="selbst">Du telefonierst nicht so gern? <a id="selbstLink" href="https://hischamelsobhi.de/typ-test-termin">Such dir dein Ergebnis-Gespräch direkt selbst aus →</a></p>
+    <a class="selbst" id="selbstLink" href="https://hischamelsobhi.de/typ-test-termin"><span class="sk">Du weißt schon, dass du Begleitung möchtest?</span><span class="ss">Dann musst du nicht auf unseren Anruf warten. Buch dir direkt dein ausführliches Gespräch – per Video, ca. 45 Minuten, kostenlos.</span><span class="sa">Ausführliches Gespräch wählen →</span></a>
   </div>
 </section>
 
