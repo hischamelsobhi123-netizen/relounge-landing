@@ -807,7 +807,9 @@
     return ['Gut, dass du dir zuerst ein Bild machst.','Statt die nächste Diät zu starten, schaust du erst, was dein Körper eigentlich braucht. Genau so.'];
   }
 
+  var sperre = false;   /* verhindert Doppel-Tipp: sonst springt der Test eine Aussage weiter */
   function zeigeSchritt(){
+    sperre = false;
     var s = SCHRITTE[pos], h = '<div class="tstep">'+kopf();
     if(s.art==='kapitel'){
       h += '<div class="tkap">Kapitel '+s.nr+'</div><div class="tq">'+esc(s.titel)+'</div>'
@@ -840,11 +842,13 @@
     setTimeout(function(){var b=card.querySelector('.tbar i'); if(b) b.style.width=((pos+1)/SCHRITTE.length*100)+'%';},30);
 
     var go = document.getElementById('tGo');
-    if(go) go.addEventListener('click', weiter);
+    if(go) go.addEventListener('click', function(){ if(sperre) return; sperre = true; weiter(); });
 
     /* Einzelauswahl: antippen = weiter */
     card.querySelectorAll('.topt').forEach(function(b){
       b.addEventListener('click',function(){
+        if(sperre) return;
+        sperre = true;
         card.querySelectorAll('.topt').forEach(function(x){x.classList.remove('sel');});
         b.classList.add('sel');
         var v = b.getAttribute('data-v');
