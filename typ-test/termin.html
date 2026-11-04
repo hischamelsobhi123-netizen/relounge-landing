@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dein Ergebnis-Gespräch | Facharzt Hischam El-Sobhi</title>
+<meta name="robots" content="noindex">
+<!-- Termin-Seite für Typ-Test-Leads: hischamelsobhi.de/typ-test-termin
+     Läuft über loader.js (data-page="termin.html"), Kopie liegt in relounge-landing/typ-test/termin.html.
+     Alle Mails und WhatsApps („Neuen Termin wählen“, „Termin selbst wählen“) zeigen hierher.
+     Kalender: „Ergebnis-Gespräch · Typ-Test“ (ID XyzjEW3pZmSzdG4QoDH6). Wechselt der Kalender,
+     nur KAL unten ändern – alle verschickten Links bleiben gültig. -->
+<style>
+  :root{
+    --ink:#132019; --ink2:#22332c; --muted:#63736c; --line:#e5ece8; --soft:#f4f8f6;
+    --green:#22a35f; --green-d:#178048; --green-bg:#e7f5ec; --dark:#0d2a1e; --gold:#d6ac18;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--sans);color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  img{max-width:100%;display:block;height:auto;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px;}
+  .kick{color:var(--green);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;}
+
+  .topbar{background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);}
+  .topbar .in{max-width:1120px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:9px;font-weight:800;font-size:.86rem;}
+  .topbar .l{display:flex;align-items:center;gap:9px;}
+  .topbar img{height:28px;width:auto;border-radius:5px;}
+  .topbar a{color:var(--green-d);text-decoration:none;font-size:.82rem;font-weight:700;white-space:nowrap;}
+
+  .hero{padding:clamp(30px,6vw,56px) 0 clamp(18px,4vw,30px);background:radial-gradient(700px 400px at 50% -10%,#e2f2e8,transparent 70%);text-align:center;}
+  .hero h1{text-transform:uppercase;font-weight:800;font-size:clamp(1.6rem,6.2vw,2.7rem);line-height:1.08;letter-spacing:-.02em;max-width:780px;margin:10px auto 0;}
+  .hero h1 span{color:var(--green);}
+  .hero p{color:var(--muted);font-size:1.05rem;max-width:580px;margin:12px auto 0;}
+  .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px;}
+  .chips span{background:var(--green-bg);color:var(--green-d);font-weight:700;font-size:.88rem;border-radius:30px;padding:6px 13px;}
+  .muster{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--dark);color:#fff;border-radius:40px;padding:7px 14px 7px 7px;font-size:.88rem;font-weight:700;}
+  .muster b{background:#fff;color:var(--green-d);font-family:Georgia,serif;border-radius:30px;padding:2px 10px;font-size:.95rem;}
+  .muster[hidden]{display:none;}
+
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:clamp(18px,3.5vw,36px);align-items:start;padding:clamp(18px,4vw,34px) 0 10px;}
+  @media(max-width:820px){ .grid{grid-template-columns:1fr;} .seite{order:2;} }
+  .seite h2{font-size:1.15rem;font-weight:800;margin-bottom:12px;}
+  .punkt{display:flex;gap:12px;margin-bottom:14px;}
+  .punkt .n{flex:0 0 34px;height:34px;border-radius:50%;background:var(--dark);color:#7fe0a5;font-weight:800;display:flex;align-items:center;justify-content:center;}
+  .punkt b{display:block;font-size:.98rem;}
+  .punkt span{color:var(--muted);font-size:.92rem;}
+  .person{display:flex;gap:14px;align-items:center;background:var(--soft);border-radius:18px;padding:14px;margin-top:18px;}
+  .person img{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:0 0 64px;}
+  .person p{font-size:.9rem;color:var(--ink2);line-height:1.5;}
+  .hinweis{margin-top:16px;border-left:4px solid var(--gold);background:#fff8e1;border-radius:0 14px 14px 0;padding:12px 14px;font-size:.9rem;color:#3d3720;}
+
+  .kal{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 44px rgba(15,45,32,.10);padding:8px;min-height:560px;position:relative;}
+  .kal iframe{width:100%;border:0;min-height:640px;display:block;}
+  .laden{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);font-size:.92rem;background:#fff;border-radius:22px;}
+  .laden i{width:34px;height:34px;border-radius:50%;border:3px solid var(--green-bg);border-top-color:var(--green);animation:dreh .9s linear infinite;}
+  @keyframes dreh{to{transform:rotate(360deg);}}
+  .alt{text-align:center;color:var(--muted);font-size:.9rem;margin-top:12px;}
+  .alt a{color:var(--green-d);font-weight:700;}
+
+  .foot{background:#0a1c14;color:rgba(255,255,255,.7);font-size:.84rem;padding:28px 20px;text-align:center;margin-top:clamp(36px,7vw,60px);}
+  .foot a{color:rgba(255,255,255,.85);text-decoration:none;margin:0 7px;white-space:nowrap;}
+  .foot .hint{margin-top:12px;font-size:.74rem;opacity:.6;max-width:720px;margin-left:auto;margin-right:auto;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="in">
+  <div class="l"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="Zentrum für Gesundheitsmedizin"> Zentrum für Gesundheitsmedizin</div>
+  <a href="https://hischamelsobhi.de/typ-test-mehr">So arbeitet Hischam →</a>
+</div></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kick">Deine Typ-Analyse</div>
+    <h1>Wähle dein <span>Ergebnis-Gespräch</span></h1>
+    <p>Ein Berater aus Hischams Team geht dein Muster und deine Geschichte in Ruhe mit dir durch.</p>
+    <div class="chips"><span>📹 Per Video</span><span>⏱ ca. 45 Minuten</span><span>✓ kostenlos</span></div>
+    <div class="muster" id="muster" hidden><b id="mb">B</b> Dein Muster</div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="grid">
+    <div class="seite">
+      <h2>So läuft das Gespräch</h2>
+      <div class="punkt"><div class="n">1</div><div><b>Deine Geschichte</b><span>Was hast du schon versucht, was belastet dich gerade am meisten?</span></div></div>
+      <div class="punkt"><div class="n">2</div><div><b>Dein Muster</b><span>Was bei dir wahrscheinlich dahintersteckt – mit deinen Antworten aus der Typ-Analyse.</span></div></div>
+      <div class="punkt"><div class="n">3</div><div><b>Ein sinnvoller erster Schritt</b><span>Und wenn es passt: wie wir dich begleiten können. Du entscheidest in Ruhe.</span></div></div>
+      <div class="person">
+        <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/media/mail/hischam-rund.png" width="64" height="64" alt="Hischam El-Sobhi">
+        <p><b>Nach Hischams Methode.</b> Hischam El-Sobhi ist Facharzt für Allgemeinmedizin und Ernährungsmedizin. Das Gespräch führt ein Berater aus seinem Team.</p>
+      </div>
+      <div class="hinweis"><b>Den Link zum Video-Raum</b> bekommst du direkt nach der Buchung per E-Mail und WhatsApp. Verschieben geht jederzeit.</div>
+    </div>
+
+    <div>
+      <div class="kal">
+        <div class="laden" id="laden"><i></i>Freie Zeiten werden geladen …</div>
+        <iframe id="kal" title="Ergebnis-Gespräch buchen" scrolling="no"></iframe>
+      </div>
+      <p class="alt">Keine passende Zeit dabei? Antworte einfach auf unsere Mail oder WhatsApp – wir finden eine Lösung.</p>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <div>
+    <a href="https://hischamelsobhi.de/impressum" target="_blank" rel="noopener">Impressum</a> ·
+    <a href="https://hischamelsobhi.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+  </div>
+  <div style="margin-top:12px"><b style="color:#fff">Zentrum für Gesundheitsmedizin</b> · Hischam El-Sobhi · Facharzt</div>
+  <div class="hint">Das Ergebnis-Gespräch dient der Orientierung und ersetzt keine ärztliche Untersuchung. Keine Heilversprechen. Ergebnisse sind individuell verschieden.</div>
+</div>
+
+<script>
+(function(){
+  var KAL = 'XyzjEW3pZmSzdG4QoDH6';   /* Kalender „Ergebnis-Gespräch · Typ-Test“ */
+  var q = new URLSearchParams(location.search);
+  var m = (q.get('m') || '').replace(/[^ABCabc+\- offen]/g, '').toUpperCase();
+  if (!m) { try { m = (localStorage.getItem('typ_muster') || '').toUpperCase(); } catch(e) {} }
+  if (/^[ABC]([+\-][ABC]){0,2}$/.test(m)) {
+    document.getElementById('mb').textContent = m.replace(/\+/g, '-');
+    document.getElementById('muster').hidden = false;
+  }
+  /* Name/Mail/Telefon aus dem Link an den Kalender weiterreichen (GHL füllt das Formular dann vor) */
+  var weiter = new URLSearchParams();
+  ['first_name','last_name','email','phone'].forEach(function(k){ if (q.get(k)) weiter.set(k, q.get(k)); });
+  var f = document.getElementById('kal');
+  f.id = KAL + '_' + Date.now();
+  f.src = 'https://api.leadconnectorhq.com/widget/booking/' + KAL + (weiter.toString() ? '?' + weiter : '');
+  var weg = function(){ var l = document.getElementById('laden'); if (l) l.remove(); };
+  f.addEventListener('load', function(){ setTimeout(weg, 400); });
+  setTimeout(weg, 9000);
+  var s = document.createElement('script');
+  s.src = 'https://link.msgsndr.com/js/form_embed.js';
+  document.body.appendChild(s);
+})();
+</script>
+</body>
+</html>
