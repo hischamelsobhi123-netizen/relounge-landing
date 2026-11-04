@@ -68,6 +68,7 @@
 
   .selbst{margin-top:14px;text-align:center;font-size:.94rem;color:var(--muted);}
   .selbst a{color:var(--green-d);font-weight:800;}
+  .bericht{display:block;margin-top:14px;text-align:center;color:var(--green-d);font-weight:700;font-size:.98rem;text-decoration:underline;text-underline-offset:3px;}
   .teilen{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 18px;text-align:center;}
   .teilen b{font-size:1.05rem;}
   .teilen p{color:var(--muted);font-size:.94rem;margin-top:4px;}
@@ -107,6 +108,7 @@
         <div class="n">Was das für dich heißt und was dein Körper zuerst braucht, besprechen wir persönlich mit dir.</div>
       </div>
     </div>
+    <a class="bericht" id="berichtLink" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/bericht.html" target="_blank" rel="noopener">📄 Deinen ausführlichen Typ-Bericht öffnen (zum Speichern &amp; Weiterleiten) →</a>
   </div>
 </section>
 
@@ -186,6 +188,8 @@
     /* Muster an den Knopf "Ich möchte mehr erfahren" weitergeben */
     var mb = document.querySelector('.mehrbox');
     if(mb){ mb.href = mb.href.split('?')[0] + '?m=' + encodeURIComponent(m.replace(/\+/g,'-')); }
+    var bl = document.getElementById('berichtLink');
+    if(bl){ bl.href = bl.href.split('?')[0] + '?m=' + encodeURIComponent(m.replace(/\+/g,'-')); }
     var sl = document.getElementById('selbstLink');
     if(sl){ sl.href = sl.href.split('?')[0] + '?m=' + encodeURIComponent(m.replace(/\+/g,'-')); }
     var bu = document.getElementById('resBu');

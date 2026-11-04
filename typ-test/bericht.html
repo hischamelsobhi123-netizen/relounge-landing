@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dein Typ-Bericht · Zentrum für Gesundheit</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --ink:#132019; --ink2:#22332c; --muted:#63736c; --line:#e5ece8; --soft:#f4f8f6;
+    --green:#22a35f; --green-d:#178048; --green-bg:#e7f5ec; --dark:#0d2a1e; --dark2:#123c2a; --gold:#e0ad3c;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:#eaf2ed;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .bar{max-width:760px;margin:0 auto;padding:16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+  .bar a,.bar button{font:inherit;font-weight:700;font-size:.92rem;border:0;cursor:pointer;text-decoration:none;border-radius:50px;padding:11px 18px}
+  .b-pdf{background:var(--dark);color:#fff}
+  .b-wa{background:#25d366;color:#fff}
+  .page{max-width:760px;margin:0 auto 40px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(13,42,30,.12)}
+  .head{background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;padding:30px 32px 34px}
+  .brand{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7fe0a5}
+  .head h1{font-size:clamp(1.6rem,5vw,2.2rem);line-height:1.15;margin-top:10px}
+  .head .sub{color:#c9e3d5;margin-top:8px;font-size:1rem}
+  .badge{display:flex;align-items:center;gap:16px;margin-top:22px;background:#fff;color:var(--ink);border-radius:18px;padding:18px 20px;border-top:5px solid var(--gold)}
+  .badge .bu{flex:0 0 auto;width:68px;height:68px;border-radius:18px;background:var(--green);color:#fff;font-family:Georgia,serif;font-weight:700;font-size:1.9rem;display:flex;align-items:center;justify-content:center}
+  .badge .t{font-weight:800;font-size:1.15rem}
+  .badge .s{color:var(--muted);font-size:.95rem;margin-top:2px}
+  .body{padding:28px 32px 10px}
+  .sec{margin-bottom:26px}
+  .k{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+  .sec h2{font-size:1.25rem;line-height:1.3;margin:4px 0 10px;color:var(--dark)}
+  .sec p{color:var(--ink2);margin-bottom:10px}
+  .sec ul{padding-left:20px;color:var(--ink2)}
+  .sec li{margin-bottom:6px}
+  .muster{border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:12px;background:var(--soft)}
+  .muster b{color:var(--dark)}
+  .mythos{background:#fff8e6;border-left:4px solid var(--gold);border-radius:10px;padding:12px 16px;font-family:Georgia,serif;font-style:italic;color:var(--dark);margin:6px 0 10px}
+  .partner{background:var(--green-bg);border-radius:18px;padding:20px 22px}
+  .weg{counter-reset:s;list-style:none;padding:0}
+  .weg li{counter-increment:s;position:relative;padding-left:44px;margin-bottom:12px}
+  .weg li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--dark);color:#7fe0a5;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+  .cta{text-align:center;padding:6px 32px 30px}
+  .cta a{display:inline-block;background:var(--green);color:#fff;font-weight:800;text-decoration:none;padding:15px 30px;border-radius:50px}
+  .foot{border-top:1px solid var(--line);padding:18px 32px 24px;font-size:.8rem;color:var(--muted)}
+  .foot a{color:var(--muted)}
+  @media(max-width:560px){.head,.body,.cta,.foot{padding-left:18px;padding-right:18px}.badge{flex-direction:column;align-items:flex-start}}
+  @media print{
+    body{background:#fff}
+    .bar,.cta{display:none}
+    .page{box-shadow:none;border-radius:0;margin:0;max-width:none}
+    .head{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .badge .bu,.partner,.muster,.mythos,.weg li::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .sec{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <button type="button" class="b-pdf" onclick="window.print()">Als PDF speichern / drucken</button>
+  <a class="b-wa" id="waLink" href="#" target="_blank" rel="noopener">Per WhatsApp weiterleiten</a>
+</div>
+
+<main class="page">
+  <header class="head">
+    <div class="brand">Zentrum für Gesundheit · Hischam El-Sobhi, Facharzt</div>
+    <h1 id="h1">Dein persönlicher Typ-Bericht</h1>
+    <p class="sub">Zum Nachlesen – und zum Zeigen, wenn du mit jemandem darüber sprechen möchtest.</p>
+    <div class="badge">
+      <div class="bu" id="bu">?</div>
+      <div><div class="t" id="bt">Dein Muster</div><div class="s" id="bs"></div></div>
+    </div>
+  </header>
+
+  <div class="body">
+    <section class="sec">
+      <div class="k">Was dein Ergebnis bedeutet</div>
+      <h2 id="h2bed">Dein Muster im Überblick</h2>
+      <div id="musterBox"></div>
+    </section>
+
+    <section class="sec">
+      <div class="k">Warum Diäten oft nicht halten</div>
+      <h2>Der häufigste Rat – und warum er bei dir oft nicht passt</h2>
+      <div id="mythBox"></div>
+    </section>
+
+    <section class="sec">
+      <div class="k">Was jetzt sinnvoll ist</div>
+      <h2>Erst verstehen, dann handeln – in der richtigen Reihenfolge</h2>
+      <ol class="weg">
+        <li><b>Ergebnis-Gespräch</b> – kostenlos, per Video, ca. 45 Minuten. Dein Muster und deine Geschichte stehen im Mittelpunkt.</li>
+        <li><b>Untersuchung &amp; Labor</b> – Blutwerte statt Raten. Die Blutabnahme geht auch bei deinem Arzt vor Ort.</li>
+        <li><b>Dein Plan</b> – passend zu deinem Muster, nicht eine Diät von der Stange.</li>
+        <li><b>Begleitung</b> – ein Team, das dich im Alltag begleitet.</li>
+      </ol>
+      <p>Du entscheidest bei jedem Schritt selbst, ob du weitergehst.</p>
+    </section>
+
+    <section class="sec partner">
+      <div class="k">Für deine Partnerin / deinen Partner</div>
+      <h2>Warum „einfach weniger essen“ oft nicht reicht</h2>
+      <p>Gewicht hängt an mehr als an Willenskraft: Stress, Schlaf, Hormone, frühere Diäten und Erschöpfung greifen oft ineinander. Die Typ-Analyse zeigt, welches Muster gerade im Vordergrund steht. Was das konkret bedeutet, klärt das Ergebnis-Gespräch – gern auch gemeinsam.</p>
+    </section>
+  </div>
+
+  <div class="cta"><a id="ctaLink" href="https://hischamelsobhi.de/typ-test-termin">Mein Ergebnis-Gespräch wählen →</a></div>
+
+  <footer class="foot">
+    Die Typ-Analyse ist eine erste Orientierung, keine Diagnose, und ersetzt keine ärztliche Untersuchung. Bestimmte Ergebnisse können nicht versprochen werden.<br>
+    Zentrum für Gesundheit · Hischam El-Sobhi · Mindener Straße 12, 31600 Uchte ·
+    <a href="https://hischamelsobhi.de/impressum">Impressum</a> · <a href="https://hischamelsobhi.de/datenschutz">Datenschutz</a>
+  </footer>
+</main>
+
+<script>
+(function(){
+  /* Bausteine je Muster (Texte wie auf Danke-Seite und in den Mythos-Mails N3) */
+  var M = {
+    A:{name:'A · Alarm', kurz:'Dein System steht unter Daueralarm.',
+       lang:'Der Kopf kommt schwer zur Ruhe, der Schlaf ist oft unruhig. Stress kann über Hormone wie Cortisol dazu beitragen, dass der Körper Energie festhält und der Heißhunger steigt – egal wie diszipliniert du bist.',
+       zeichen:['Gedankenkarussell, schwer abschalten','Unruhiger Schlaf, nachts wach','Heißhunger bei Stress'],
+       mythos:'Mehr Sport, strengere Regeln, mehr Disziplin.',
+       warum:'Bei Muster A ist das für den Körper oft einfach: noch mehr Stress. Nicht noch mehr Druck hilft, sondern die richtige Reihenfolge.'},
+    B:{name:'B · Bunker', kurz:'Dein Körper hat gelernt zu sparen.',
+       lang:'Bekommt der Körper über längere Zeit zu wenig, kann er auf Sparen umschalten: Er braucht weniger Energie und hält an seinen Reserven fest. Mit jeder Diät wird dieses Programm geübter. Das ist kein Willensproblem, sondern ein Schutzprogramm.',
+       zeichen:['Wenig essen – und trotzdem tut sich nichts','Nach jeder Diät schneller wieder zugenommen','Oft kalt, wenig Antrieb'],
+       mythos:'Iss halt weniger.',
+       warum:'Die meisten mit Muster B haben genau das längst getan – oft jahrelang. Noch weniger macht das Sparprogramm oft nur stärker.'},
+    C:{name:'C · Crash', kurz:'Deine Reserven sind leer.',
+       lang:'Du wachst müde auf, die Kraft fehlt, die Erholung reicht nicht. Wer in diesem Zustand noch eine Diät oder ein Sportprogramm draufsetzt, verbraucht, was ohnehin fehlt. Ein leerer Körper reagiert eher mit Schutz als mit Loslassen.',
+       zeichen:['Morgens schon erschöpft','Kraft und Motivation fehlen','Erholung reicht nicht mehr'],
+       mythos:'Augen zu und durch – Hauptsache, du bleibst dran.',
+       warum:'Erst die Kraft, dann die Veränderung. Welche Werte dabei eine Rolle spielen, zeigt oft erst ein genauer Blick, zum Beispiel ins Labor.'}
+  };
+  var MIX = {
+    'A+B':['A+B · Alarm im Bunker','Der Kopf kommt nicht zur Ruhe – und der Körper spart.'],
+    'A+C':['A+C · Alarm im Crash','Innerlich aufgedreht, außen längst leer.'],
+    'B+C':['B+C · Bunker im Crash','Dein Körper spart und die Reserven sind leer.'],
+    'A+B+C':['Alle drei Muster','Alarm, Bunker und Crash zeigen sich gleichzeitig – hier ist die richtige Reihenfolge besonders wichtig.']
+  };
+
+  var m = null;
+  try{ m = new URLSearchParams(location.search).get('m') || localStorage.getItem('typ_muster'); }catch(e){}
+  m = m ? String(m).toUpperCase().replace(/[ -]/g,'+') : 'OFFEN';
+  var teile = m.split('+').filter(function(x){ return M[x]; });
+  var vorn = function(s){ return document.getElementById(s); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); };
+
+  if(!teile.length){
+    vorn('bu').textContent = '?';
+    vorn('bt').textContent = 'Dein Muster: noch offen';
+    vorn('bs').textContent = 'Deine Antworten zeigen kein eindeutiges Muster. Das ist nicht ungewöhnlich.';
+    vorn('musterBox').innerHTML = '<div class="muster"><p>Manchmal liegt der Grund dort, wo man von außen nicht hinschaut. Gewicht hängt an viel mehr als an Willenskraft: Stress, Schlaf, Hormone, frühere Diäten, Erschöpfung. Genau das klären wir im Gespräch.</p></div>';
+    vorn('mythBox').innerHTML = '<div class="mythos">„Wer es wirklich will, schafft es auch.“</div><p>Dass deine Antworten kein klares Muster zeigen, heißt nur eines: Man muss genauer hinschauen – nicht noch ein Versuch auf gut Glück.</p>';
+  } else {
+    var key = teile.join('+');
+    var titel = teile.length>1 ? MIX[key] : [M[key].name, M[key].kurz];
+    vorn('bu').textContent = teile.length===3 ? 'ABC' : teile.join('+');
+    if(teile.length>1) vorn('bu').style.fontSize = teile.length===3 ? '1.3rem' : '1.5rem';
+    vorn('bt').textContent = 'Dein Muster: ' + titel[0];
+    vorn('bs').textContent = titel[1];
+    if(teile.length>1) vorn('h2bed').textContent = 'Bei dir zeigen sich ' + (teile.length===3 ? 'drei' : 'zwei') + ' Muster';
+    vorn('musterBox').innerHTML = teile.map(function(x){
+      var d = M[x];
+      return '<div class="muster"><b>'+esc(d.name)+'</b> – '+esc(d.kurz)+'<p style="margin-top:6px">'+esc(d.lang)+'</p><ul>'+d.zeichen.map(function(z){return '<li>'+esc(z)+'</li>';}).join('')+'</ul></div>';
+    }).join('');
+    vorn('mythBox').innerHTML = teile.map(function(x){
+      return '<div class="mythos">„'+esc(M[x].mythos)+'“</div><p>'+esc(M[x].warum)+'</p>';
+    }).join('');
+  }
+
+  var mParam = m.replace(/\+/g,'-');
+  vorn('ctaLink').href = 'https://hischamelsobhi.de/typ-test-termin?m=' + encodeURIComponent(mParam);
+  var url = location.origin + location.pathname + '?m=' + encodeURIComponent(mParam);
+  vorn('waLink').href = 'https://wa.me/?text=' + encodeURIComponent('Das ist mein Ergebnis aus der Typ-Analyse – schau mal: ' + url);
+})();
+</script>
+</body>
+</html>
