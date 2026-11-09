@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Zwei Fragen, die dir noch kein Arzt gestellt hat · Hischam El-Sobhi</title>
+<meta property="og:title" content="Zwei Fragen, die dir noch kein Arzt gestellt hat">
+<meta property="og:image" content="https://hischamelsobhi123-netizen.github.io/relounge-landing/workshop-nov/media/video-m2.jpg">
+<link rel="preload" as="image" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/workshop-nov/media/video-m2.jpg">
+<style>
+:root{--g:#22a35f;--d:#0d2a1e;--t:#2b3a33;--m:#5b6b64;--bg:#eaf2ed}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--t);font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Arial,sans-serif;-webkit-text-size-adjust:100%}
+.w{max-width:760px;margin:0 auto;padding:16px 16px 28px}
+.kopf{display:flex;align-items:center;gap:10px;margin:2px 2px 14px}
+.kopf img{height:34px;width:auto}
+.kopf b{display:block;font-size:15px;color:var(--d)}
+.kopf span{display:block;font-size:12px;color:var(--m);letter-spacing:.04em;text-transform:uppercase}
+.karte{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 2px 14px rgba(13,42,30,.10)}
+.vid{position:relative;background:#000;aspect-ratio:16/9}
+.vid video{display:block;width:100%;height:100%;background:#000}
+.play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border:0;padding:0;margin:0;background:transparent;cursor:pointer;width:100%;height:100%}
+.play span{width:84px;height:84px;border-radius:50%;background:rgba(34,163,95,.95);box-shadow:0 6px 24px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
+.play span:after{content:"";display:block;margin-left:7px;border-style:solid;border-width:17px 0 17px 28px;border-color:transparent transparent transparent #fff}
+.play[hidden]{display:none}
+.txt{padding:18px 20px 22px}
+.ober{font-size:12.5px;font-weight:700;color:var(--g);letter-spacing:.06em;text-transform:uppercase}
+h1{font-size:24px;line-height:1.25;color:var(--d);margin:6px 0 12px}
+.termin{background:var(--d);color:#fff;border-radius:14px;padding:14px 16px;margin:4px 0 18px;font-size:15px;line-height:1.5}
+.termin b{color:#9fe0bb}
+.knopf{display:block;text-align:center;background:var(--g);color:#fff;text-decoration:none;font-weight:800;font-size:17px;padding:16px 18px;border-radius:999px}
+.unter{text-align:center;font-size:13.5px;color:var(--m);margin-top:9px}
+.dabei{display:none;background:#e3f4ea;border-radius:14px;padding:14px 16px;font-size:15.5px;line-height:1.5;color:var(--d)}
+.angemeldet .dabei{display:block}
+.angemeldet .nur-neu{display:none}
+.fuss{text-align:center;font-size:12.5px;color:var(--m);margin-top:18px}
+.fuss a{color:var(--m)}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="kopf"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/media/mail/hischam-rund.png" alt="" width="34" height="34"><div><b>Hischam El-Sobhi</b><span>Facharzt · Zentrum für Gesundheit</span></div></div>
+  <div class="karte">
+    <div class="vid">
+      <video id="v" controls playsinline webkit-playsinline preload="metadata" poster="https://hischamelsobhi123-netizen.github.io/relounge-landing/workshop-nov/media/video-m2.jpg">
+        <source src="m2.mp4" type="video/mp4">
+        Dein Browser kann das Video nicht abspielen. <a href="m2.mp4">Video direkt öffnen</a>
+      </video>
+      <button class="play" id="p" type="button" aria-label="Video abspielen"><span></span></button>
+    </div>
+    <div class="txt">
+      <div class="ober">Eine Minute vorab</div>
+      <h1>Zwei Fragen, die dir noch kein Arzt gestellt hat</h1>
+      <div class="termin"><b>Kostenloser ärztlicher Online-Workshop</b><br>Samstag 14. + Sonntag 15. November · jeweils 10:00–13:30 Uhr · live über Zoom</div>
+      <div class="nur-neu"><a class="knopf" href="https://hischamelsobhi.de/workshop">Kostenlos zum Workshop anmelden&nbsp; →</a><div class="unter">Kostenlos · online · ohne Kamera möglich</div></div>
+      <div class="dabei"><b>Du bist schon angemeldet.</b> Wir sehen uns am Samstag um 10 Uhr. Deinen Zugang findest du in unseren Mails.</div>
+    </div>
+  </div>
+  <div class="fuss"><a href="https://hischamelsobhi.de/impressum">Impressum</a> · <a href="https://hischamelsobhi.de/datenschutz">Datenschutz</a></div>
+</div>
+<script>
+(function(){
+  try { if (/(^|[?&])a=1(&|$)/.test(location.search)) document.body.className += " angemeldet"; } catch (e) {}
+  var v = document.getElementById("v"), p = document.getElementById("p");
+  if (!v || !p) return;
+  function weg() { p.hidden = true; }
+  p.addEventListener("click", function () {
+    weg();
+    try { var r = v.play(); if (r && r.catch) r.catch(function () {}); } catch (e) {}
+  });
+  v.addEventListener("play", weg);
+  v.addEventListener("playing", weg);
+})();
+</script>
+</body>
+</html>
