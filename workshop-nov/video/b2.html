@@ -29,8 +29,14 @@ html,body{margin:0;background:var(--bg);color:var(--t);font-family:"Segoe UI",-a
 h1{font-size:24px;line-height:1.25;color:var(--d);margin:6px 0 12px}
 .termin{background:var(--d);color:#fff;border-radius:14px;padding:14px 16px;margin:4px 0 18px;font-size:15px;line-height:1.5}
 .termin b{color:#9fe0bb}
-.knopf{display:block;text-align:center;background:var(--g);color:#fff;text-decoration:none;font-weight:800;font-size:17px;padding:16px 18px;border-radius:999px}
-.unter{text-align:center;font-size:13.5px;color:var(--m);margin-top:9px}
+.cta{padding:16px 16px 4px}
+.knopf{display:flex;align-items:center;justify-content:center;gap:12px;text-align:center;background:#f26622;color:#fff;text-decoration:none;font-weight:900;font-size:19px;line-height:1.2;padding:18px 20px;border-radius:999px;box-shadow:0 6px 0 #c4480e,0 10px 22px rgba(242,102,34,.35);animation:wackel 2.8s ease-in-out infinite;transform-origin:50% 50%}
+.knopf:active{transform:translateY(3px);box-shadow:0 3px 0 #c4480e}
+.pfeil{display:inline-block;font-size:24px;animation:stups 1.4s ease-in-out infinite}
+@keyframes wackel{0%,58%,100%{transform:rotate(0)}61%{transform:rotate(-3deg) scale(1.03)}65%{transform:rotate(3deg) scale(1.03)}69%{transform:rotate(-2deg)}73%{transform:rotate(1.5deg)}77%{transform:rotate(0)}}
+@keyframes stups{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+@media (prefers-reduced-motion:reduce){.knopf,.pfeil{animation:none}}
+.unter{text-align:center;font-size:13.5px;color:var(--m);margin-top:12px}
 .dabei{display:none;background:#e3f4ea;border-radius:14px;padding:14px 16px;font-size:15.5px;line-height:1.5;color:var(--d)}
 .angemeldet .dabei{display:block}
 .angemeldet .nur-neu{display:none}
@@ -49,11 +55,13 @@ h1{font-size:24px;line-height:1.25;color:var(--d);margin:6px 0 12px}
       </video>
       <button class="play" id="p" type="button" aria-label="Video abspielen"><span></span></button>
     </div>
+    <div class="cta">
+      <a class="knopf" href="https://us06web.zoom.us/j/82218850328">Morgen um 10: zum Zoom-Raum <span class="pfeil">&#10148;</span></a><div class="unter">Gleicher Link wie heute. Geht auch im Browser, ohne App.</div>
+    </div>
     <div class="txt">
       <div class="ober">Nach Teil 1</div>
       <h1>Morgen um 10: Teil 2</h1>
-      <div class="termin"><b>Kostenloser ärztlicher Online-Workshop</b><br>Samstag 14. + Sonntag 15. November · jeweils 10:00–13:30 Uhr · live über Zoom</div>
-      <a class="knopf" href="https://us06web.zoom.us/j/82218850328">Morgen um 10: zum Zoom-Raum&nbsp; →</a><div class="unter">Gleicher Link wie heute. Geht auch im Browser, ohne App.</div>
+      <div class="termin" style="margin-bottom:0"><b>Kostenloser ärztlicher Online-Workshop</b><br>Samstag 14. + Sonntag 15. November · jeweils 10:00–13:30 Uhr · live über Zoom</div>
     </div>
   </div>
   <div class="fuss"><a href="https://hischamelsobhi.de/impressum">Impressum</a> · <a href="https://hischamelsobhi.de/datenschutz">Datenschutz</a></div>
