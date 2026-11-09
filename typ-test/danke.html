@@ -134,10 +134,10 @@
 
 <section class="mehr">
   <div class="wrap">
-    <a class="mehrbox" href="https://hischamelsobhi.de/typ-test-mehr">
+    <a class="mehrbox" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0">
       <span class="mk">Bis wir anrufen</span>
       <span class="mt">Wie arbeitet Hischam eigentlich?</span>
-      <span class="ms">Hischam erklärt dir im Video, warum es bisher nicht gehalten hat. Dazu der Weg in 4 Schritten und echte Stimmen.</span>
+      <span class="ms">In seinem Kompaktkurs erklärt Hischam dir in 10 kurzen Videos, warum dein Körper festhält und was er wirklich braucht. Mit deinem Muster und echten Geschichten.</span>
       <span class="mbtn">Ich möchte mehr erfahren&nbsp;→</span>
     </a>
 
@@ -189,7 +189,7 @@
   if(TEXTE[m]){
     /* Muster an den Knopf "Ich möchte mehr erfahren" weitergeben */
     var mb = document.querySelector('.mehrbox');
-    if(mb){ mb.href = mb.href.split('?')[0] + '?m=' + encodeURIComponent(m.replace(/\+/g,'-')); }
+    if(mb){ mb.href = mb.href.split('?')[0] + '?p=0&m=' + encodeURIComponent(m.replace(/\+/g,'-')); }
     var bl = document.getElementById('berichtLink');
     if(bl){ bl.href = bl.href.split('?')[0] + '?m=' + encodeURIComponent(m.replace(/\+/g,'-')); }
     var sl = document.getElementById('selbstLink');

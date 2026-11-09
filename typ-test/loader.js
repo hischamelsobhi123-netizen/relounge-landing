@@ -7,6 +7,19 @@
   var me = document.currentScript;
   var base = me.src.replace(/[^\/]*$/, '');
   var url = base + (me.getAttribute('data-page') || 'lp.html');
+
+  /* Ramy 09.11.2026: „Mehr erfahren“ / „So arbeitet Hischam“ führt jetzt in den Kompaktkurs.
+     Gilt für den Danke-Knopf, die Lead-WhatsApp und alle Links ohne Sprungmarke.
+     Mails springen mit #video (Hischams 5:24-Video) oder #stimmen gezielt auf die alte Seite –
+     die bleiben dort. Alte Seite ansehen: /typ-test-mehr?alt=1
+     p=0: im Kurs ohne 590-€-Zahl, weil der Lead noch vor dem ersten Anruf steht. */
+  if ((me.getAttribute('data-page') || '') === 'mehr.html' && !location.hash && !/[?&]alt=1/.test(location.search)) {
+    var mq = (location.search.match(/[?&]m=([^&#]*)/) || [])[1] || '';
+    if (!mq) { try { mq = encodeURIComponent((localStorage.getItem('typ_muster') || '').replace(/\+/g, '-')); } catch (e) {} }
+    location.replace('https://hischamelsobhi.de/kompaktkurs-v7k3?p=0' + (mq ? '&m=' + mq : ''));
+    return;
+  }
+
   var box = document.createElement('div');
   me.parentNode.insertBefore(box, me);
   document.documentElement.classList.add('js');
