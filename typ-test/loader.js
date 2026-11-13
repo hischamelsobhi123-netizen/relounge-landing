@@ -16,7 +16,14 @@
   if ((me.getAttribute('data-page') || '') === 'mehr.html' && !location.hash && !/[?&]alt=1/.test(location.search)) {
     var mq = (location.search.match(/[?&]m=([^&#]*)/) || [])[1] || '';
     if (!mq) { try { mq = encodeURIComponent((localStorage.getItem('typ_muster') || '').replace(/\+/g, '-')); } catch (e) {} }
-    location.replace('https://hischamelsobhi.de/kompaktkurs-v7k3?p=0' + (mq ? '&m=' + mq : ''));
+    /* 13.11. (Ramy: Typ-Test-Leute duerfen im Kurs nicht noch einmal nach Daten gefragt werden):
+       Kontakt-Kennung und Vorname aus dem Link mitnehmen, dann erkennt der Kurs die Person auch in einem anderen Browser. */
+    var kq = '';
+    [['c','c'],['contact_id','c'],['n','n'],['first_name','n']].forEach(function(p){
+      var v = (location.search.match(new RegExp('[?&]' + p[0] + '=([^&#]*)')) || [])[1];
+      if (v && !/%7B%7B|\{\{/.test(v) && kq.indexOf('&' + p[1] + '=') < 0) kq += '&' + p[1] + '=' + v;
+    });
+    location.replace('https://hischamelsobhi.de/kompaktkurs-v7k3?p=0&q=typtest' + (mq ? '&m=' + mq : '') + kq);
     return;
   }
 
