@@ -6,7 +6,13 @@
 (function(){
   var me = document.currentScript;
   var base = me.src.replace(/[^\/]*$/, '');
-  var url = base + (me.getAttribute('data-page') || 'lp.html');
+  /* Kurs v6 (Ramy 17.11. „schalte den neuen kurs on“): Test, Danke und Kurs-Eingang kommen aus v6/.
+     Zurück auf die alten Seiten: V6 = false. Eingang Kurs-Anzeigen: data-page="kurs-start.html" oder /typ-test?start=kurs */
+  var V6 = true;
+  var V6_SEITEN = {'lp.html': 'v6/typ-test.html', 'danke.html': 'v6/danke.html', 'kurs-start.html': 'v6/kurs-start.html'};
+  var seiteRoh = me.getAttribute('data-page') || 'lp.html';
+  if (V6 && seiteRoh === 'lp.html' && /[?&]start=kurs(&|$)/.test(location.search)) seiteRoh = 'kurs-start.html';
+  var url = base + (V6 && V6_SEITEN[seiteRoh] ? V6_SEITEN[seiteRoh] : seiteRoh);
 
   /* Ramy 09.11.2026: „Mehr erfahren“ / „So arbeitet Hischam“ führt jetzt in den Kompaktkurs.
      Gilt für den Danke-Knopf, die Lead-WhatsApp und alle Links ohne Sprungmarke.
@@ -35,7 +41,7 @@
      Ereignisse: PageView überall · ViewContent auf Test-, Mehr- und Termin-Seite ·
      Lead auf der Danke-Seite (= Test abgeschickt) · TypTestStart beim Klick auf „Auswertung starten“.
      So lässt sich „Test angefangen, aber nicht abgeschickt“ als Zielgruppe bauen. */
-  var seite = me.getAttribute('data-page') || 'lp.html';
+  var seite = seiteRoh;
   try {
     if (!window.fbq) {
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -46,6 +52,7 @@
     }
     if (!window._typPixel) { fbq('init', '687643727168587'); fbq('track', 'PageView'); window._typPixel = 1; }
     if (seite === 'lp.html') fbq('track', 'ViewContent', {content_name: 'Typ-Test'});
+    if (seite === 'kurs-start.html') fbq('track', 'ViewContent', {content_name: 'Kurs-Start'});
     if (seite === 'termin.html') fbq('track', 'ViewContent', {content_name: 'Typ-Test Termin'});
     if (seite === 'mehr.html') fbq('track', 'ViewContent', {content_name: 'Typ-Test Mehr'});
     if (seite === 'danke.html') fbq('track', 'Lead', {content_name: 'Typ-Test'});
