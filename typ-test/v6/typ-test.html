@@ -322,6 +322,39 @@
   .tinsight .tidot{font-size:1.6rem;display:block;margin-bottom:6px;}
   .tinsight .tsub{margin:6px 0 0;}
   .tdemo{border:2px dashed #e0ad3c;border-radius:14px;padding:16px;color:#7a5a12;background:#fff8e6;font-size:.9rem;}
+
+  /* ===== FOKUS-MODUS (Ramy 21.11.: „beim Durchklicken immer direkt auf den ersten Blick sehen, was wir wollen“) =====
+     Sobald der Fragebogen läuft, liegt er als eigene Vollbild-Ebene über der Seite: nichts lenkt ab,
+     jede Frage samt Antworten steht ohne Scrollen oben im Bild. Schrift ab 18 px (Zielgruppe 35–60). */
+  .tfkopf{display:none;}
+  body.tfokus{overflow:hidden;}
+  body.tfokus .sticky,body.tfokus .exit{display:none !important;}
+  .tsec.fokus{position:fixed;inset:0;z-index:2147483000;margin:0;padding:0 0 30px;border:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:var(--soft);}
+  .tsec.fokus .tfkopf{display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:640px;margin:0 auto;padding:10px 16px;font-size:.84rem;font-weight:800;color:var(--ink2);}
+  .tsec.fokus .tfkopf img{height:24px;width:auto;border-radius:4px;}
+  .tsec.fokus .tfkopf span{display:flex;align-items:center;gap:8px;}
+  .tsec.fokus .tfzu{border:0;background:#fff;color:var(--muted);font:inherit;font-weight:700;font-size:1rem;border-radius:50%;width:38px;height:38px;padding:0;cursor:pointer;box-shadow:0 2px 8px rgba(15,45,32,.08);}
+  .tsec.fokus .wrap{padding:0 10px;}
+  .tsec.fokus .tcard{box-shadow:0 14px 40px rgba(15,45,32,.12);padding:20px 18px 24px;}
+  .tsec.fokus .tq{font-size:clamp(1.3rem,5vw,1.6rem);margin-bottom:16px;}
+  .tsec.fokus .topt{font-size:1.125rem;padding:17px 18px;min-height:58px;}
+  .tsec.fokus .tchip{font-size:1.06rem;padding:12px 16px;}
+  .tsec.fokus .tsub,.tsec.fokus .tform-p{font-size:1.06rem;}
+  .tsec.fokus .tgo{min-height:60px;font-size:1.15rem;justify-content:center;}
+  @media(min-width:700px){ .tsec.fokus{padding-top:14px;} }
+
+  /* Letzter Schritt: Formular (Ramy 21.11.: „richtig einfach, ganz easy und klar als nächster Schritt“) */
+  .tfertig{display:flex;align-items:center;gap:14px;background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;border-radius:18px;padding:16px 16px;margin-bottom:16px;}
+  .tfertig .tlock{flex-shrink:0;width:62px;height:62px;border-radius:14px;background:#fff;color:var(--green-d);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;font-size:2rem;position:relative;overflow:hidden;}
+  .tfertig .tlock b{filter:blur(7px);}
+  .tfertig .tlock i{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:1.5rem;}
+  .tfertig .tft{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7fe0a5;}
+  .tfertig .tfs{font-weight:800;font-size:1.12rem;line-height:1.3;margin-top:2px;}
+  .tschritte{display:flex;gap:6px;margin:0 0 14px;padding:0;list-style:none;}
+  .tschritte li{flex:1;text-align:center;font-size:.8rem;font-weight:800;color:var(--muted);border-top:4px solid var(--line);padding-top:6px;line-height:1.2;}
+  .tschritte li.ok{color:var(--green-d);border-color:var(--green);}
+  .tschritte li.jetzt{color:var(--ink);border-color:var(--gold);}
+  .tsicher{text-align:center;color:var(--muted);font-size:.9rem;margin-top:10px;}
 </style>
 </head>
 <body>
@@ -331,7 +364,7 @@
 <div class="topbar">
   <div class="in">
     <div class="brand"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="Zentrum für Gesundheitsmedizin"> <span>Zentrum für Gesundheitsmedizin</span></div>
-    <a class="cta" href="#test">Test starten</a>
+    <a class="cta" href="#test">Fragebogen starten</a>
   </div>
 </div>
 
@@ -359,7 +392,7 @@
       </div>
 
       <div class="hcta reveal">
-        <a class="cta big pulse" href="#test">Auswertung starten<small>3 kurze Kapitel · ca. 2–3 Minuten · kostenlos</small></a>
+        <a class="cta big pulse" href="#test">Fragebogen starten →<small>3 kurze Kapitel · ca. 2–3 Minuten · kostenlos</small></a>
         <span class="rr">🟢 <b>Dein Ergebnis siehst du sofort,</b> danach erklärt dir Hischam, was es bedeutet</span>
       </div>
     </div>
@@ -389,6 +422,7 @@
 
 <!-- TYP-TEST -->
 <section class="tsec" id="test">
+  <div class="tfkopf"><span><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="">Typ-Analyse</span><button type="button" class="tfzu" id="tZu" aria-label="Fragebogen schließen">✕</button></div>
   <div class="wrap">
     <div class="tcard" id="tcard">
       <div class="tstep tintro" id="tIntro">
@@ -400,7 +434,7 @@
           <div style="font-weight:700;margin-top:6px">② Deine Geschichte</div>
           <div style="font-weight:700;margin-top:6px">③ Dein Ziel</div>
         </div>
-        <button class="cta big" type="button" id="tStart">Auswertung starten →</button>
+        <button class="cta big" type="button" id="tStart">Fragebogen starten →</button>
         <div class="tmeta"><span>⏱ ca. 2–3 Minuten</span><span>🔒 Vertraulich</span><span>✓ Kostenlos</span></div>
       </div>
     </div>
@@ -534,7 +568,7 @@
     <h2 class="h">Was du vielleicht noch wissen willst</h2>
   </div>
   <div class="faq">
-    <details class="qa reveal"><summary>Was passiert nach dem Test?</summary><div class="a">Du siehst sofort, welches Muster bei dir vorne liegt, und Hischam erklärt dir in einem kurzen Video, was es bedeutet. Danach kannst du dir direkt einen Termin für ein kostenloses Gespräch wählen oder erst in Hischams Kompaktkurs weiterschauen. Kostenlos und unverbindlich.</div></details>
+    <details class="qa reveal"><summary>Was passiert nach dem Test?</summary><div class="a">Du siehst sofort, welches Muster bei dir vorne liegt, und Hischam erklärt dir in einem kurzen Video, was es bedeutet. Danach wählst du dir direkt einen Termin für ein kurzes, kostenloses Gespräch. Als Dankeschön für deine Buchung bekommst du Hischams Kompaktkurs geschenkt. Kostenlos und unverbindlich.</div></details>
     <details class="qa reveal"><summary>Warum braucht ihr meine Kontaktdaten?</summary><div class="a">Damit wir dir dein Ergebnis und deinen persönlichen Kurs-Link schicken können. So kannst du jederzeit an deiner Stelle weiterschauen. Unser Team meldet sich außerdem gern, um dein Ergebnis mit dir zu besprechen.</div></details>
     <details class="qa reveal"><summary>Ist das wieder eine Diät?</summary><div class="a">Nein. Es ist eine ärztlich begleitete Betreuung mit echter Diagnostik, persönlichem Plan und fester Begleitung — genau das, was Diäten nie leisten.</div></details>
     <details class="qa reveal"><summary>Muss ich mich zu etwas verpflichten?</summary><div class="a">Nein. Der Test und das Gespräch sind kostenlos. Alles Weitere entscheidest du in Ruhe.</div></details>
@@ -546,7 +580,7 @@
   <div class="wrap">
     <h2>Du hast dieses Video nicht zufällig gesehen. <em>Finde dein Muster heraus.</em></h2>
     <p>3 kurze Kapitel, ca. 2–3 Minuten — danach weißt du, wo du stehst.</p>
-    <a class="cta big" href="#test">Auswertung starten →<small>kostenlos &amp; unverbindlich</small></a>
+    <a class="cta big" href="#test">Fragebogen starten →<small>kostenlos &amp; unverbindlich</small></a>
   </div>
 </section>
 
@@ -562,14 +596,14 @@
   <div class="hint">Ärztlich begleitetes Gesundheitsprogramm. Diese Seite ersetzt keine ärztliche Beratung; ein individueller Weg wird im persönlichen Gespräch festgelegt. Keine Heilversprechen.</div>
 </div>
 
-<div class="sticky" id="sticky"><a class="cta" href="#test">Auswertung starten →</a></div>
+<div class="sticky" id="sticky"><a class="cta" href="#test">Fragebogen starten →</a></div>
 
 <div class="exit" id="exitPop">
   <div class="box">
     <button class="close" id="exitClose" aria-label="Schließen">×</button>
     <h3>Warte kurz …</h3>
     <p>Wenige Minuten — und du weißt, nach welchem Muster dein Körper reagiert.</p>
-    <a class="cta" href="#test" id="exitCta">Auswertung starten →</a>
+    <a class="cta" href="#test" id="exitCta">Fragebogen starten →</a>
   </div>
 </div>
 
@@ -784,6 +818,7 @@
       h += '</div><div class="tzahl-l"><span>'+esc(s.links)+'</span><span>'+esc(s.rechts)+'</span></div>';
     }
     card.innerHTML = h + '</div>';
+    nachOben();
     setTimeout(function(){var b=card.querySelector('.tbar i'); if(b) b.style.width=((pos+1)/SCHRITTE.length*100)+'%';},30);
 
     var go = document.getElementById('tGo');
@@ -891,13 +926,18 @@
     var m = auswerten();
     try{ localStorage.setItem('typ_muster', m); localStorage.setItem('typ_eingang', 'test'); }catch(e){}
     var text = zusammenfassung();
+    /* Ramy 21.11.: Das Formular muss sofort als klarer, einfacher nächster Schritt erkennbar sein.
+       Darum: Ergebnis „verschlossen“ zeigen (Neugier), Schritt-Leiste (fast fertig), nur ein Satz, dann direkt das Formular. */
     var h = '<div class="tstep">'
-      + '<div class="thead"><button type="button" class="tback on" id="tBack">← zurück</button><span>Fast geschafft</span></div>'
-      + '<div class="tbar"><i style="width:100%"></i></div>'
-      + '<div class="tform-h">Dein Ergebnis ist fertig. 🎉</div>'
-      + '<p class="tform-p">Wohin dürfen wir dir dein Ergebnis schicken? Gleich danach siehst du dein Muster und Hischam erklärt dir, was es bedeutet.</p>'
-      + '<div class="tformbox" id="tForm"></div></div>';
+      + '<div class="thead"><button type="button" class="tback on" id="tBack">← zurück</button><span>Letzter Schritt</span></div>'
+      + '<ol class="tschritte"><li class="ok">✓ Fragen</li><li class="jetzt">② Wohin schicken?</li><li>③ Dein Ergebnis</li></ol>'
+      + '<div class="tfertig"><div class="tlock"><b>'+(m==='offen'?'?':m.replace(/\+/g,''))+'</b><i>🔒</i></div>'
+      + '<div><div class="tft">Dein Ergebnis ist fertig</div><div class="tfs">Trag kurz ein, wohin wir es schicken dürfen – dann siehst du es sofort.</div></div></div>'
+      + '<p class="tform-p" style="margin-top:0">Nur <b>Vorname, Handy und E-Mail</b>. Danach erklärt dir Hischam im Video, was dein Muster bedeutet.</p>'
+      + '<div class="tformbox" id="tForm"></div>'
+      + '<p class="tsicher">🔒 Vertraulich · kostenlos · kein Spam</p></div>';
     card.innerHTML = h;
+    nachOben();
     document.getElementById('tBack').addEventListener('click',function(){ pos=SCHRITTE.length-1; zeigeSchritt(); });
 
     var box = document.getElementById('tForm');
@@ -961,11 +1001,43 @@
     [600,1500,3000,6000].forEach(function(t){ setTimeout(zeigen,t); });
   }
 
+  /* Fokus-Modus: Der Fragebogen wandert als Vollbild-Ebene direkt unter <body>
+     (dort gilt position:fixed sicher, auch wenn GHL-Container ein transform tragen).
+     „✕ schließen“ oder die Zurück-Taste am Handy legt ihn zurück an seinen Platz, der Stand bleibt. */
+  var sec = document.getElementById('test'), platz = null, fokus = false;
+  function nachOben(){
+    if(fokus){ sec.scrollTop = 0; }
+    else { card.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+  function fokusAn(){
+    if(fokus) return;
+    fokus = true;
+    platz = document.createComment('typ-test');
+    sec.parentNode.insertBefore(platz, sec);
+    document.body.appendChild(sec);
+    sec.classList.add('fokus');
+    document.body.classList.add('tfokus');
+    sec.scrollTop = 0;
+    try{ history.pushState({typFokus:1}, ''); }catch(e){}
+  }
+  function fokusAus(ausVerlauf){
+    if(!fokus) return;
+    fokus = false;
+    sec.classList.remove('fokus');
+    document.body.classList.remove('tfokus');
+    if(platz && platz.parentNode){ platz.parentNode.insertBefore(sec, platz); platz.parentNode.removeChild(platz); }
+    if(!ausVerlauf){ try{ if(history.state && history.state.typFokus) history.back(); }catch(e){} }
+    sec.scrollIntoView({block:'start'});
+  }
+  window.addEventListener('popstate', function(){ if(fokus) fokusAus(true); });
+  document.getElementById('tZu').addEventListener('click', function(){ fokusAus(false); });
+
   var gestartet = false;
   function starte(){
     if(sticky) sticky.style.display='none';
+    fokusAn();
     if(!gestartet){ gestartet = true; zeigeSchritt(); setTimeout(vorwaermen, 400); }
-    document.getElementById('test').scrollIntoView({behavior:'smooth'});
+    document.querySelectorAll('.hvideo video').forEach(function(x){ try{ x.pause(); }catch(e){} });
   }
   document.getElementById('tStart').addEventListener('click', starte);
   /* Jeder "Test starten"-Knopf auf der Seite öffnet direkt Frage 1 */
