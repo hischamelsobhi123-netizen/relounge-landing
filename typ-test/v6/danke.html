@@ -318,6 +318,7 @@
   } else {
     /* Kein Muster auf diesem Gerät (anderes Gerät/Browser, Seite später geöffnet): nie „gespeichert“ ohne Ergebnis zeigen (Ramy 24.11.) */
     $('resBu').textContent = '✉';
+    var h1 = document.querySelector('h1 span'); if(h1) h1.textContent = 'dein Ergebnis kommt per Mail';
     $('resT').textContent = 'Dein Ergebnis ist unterwegs';
     $('resS').textContent = 'Wir haben es dir gerade per E-Mail und WhatsApp geschickt. Nichts in der Mail? Schau bitte auch im Ordner „Werbung“ oder „Spam“ – oder sichere dir direkt dein Gespräch, dort gehen wir es gemeinsam durch.';
   }
