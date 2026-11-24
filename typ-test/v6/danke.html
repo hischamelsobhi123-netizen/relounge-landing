@@ -316,7 +316,10 @@
     $('resT').textContent = 'Dein Muster: '+TEXTE[m][0];
     $('resS').textContent = TEXTE[m][1];
   } else {
-    $('resBu').textContent = '✓';
+    /* Kein Muster auf diesem Gerät (anderes Gerät/Browser, Seite später geöffnet): nie „gespeichert“ ohne Ergebnis zeigen (Ramy 24.11.) */
+    $('resBu').textContent = '✉';
+    $('resT').textContent = 'Dein Ergebnis ist unterwegs';
+    $('resS').textContent = 'Wir haben es dir gerade per E-Mail und WhatsApp geschickt. Nichts in der Mail? Schau bitte auch im Ordner „Werbung“ oder „Spam“ – oder sichere dir direkt dein Gespräch, dort gehen wir es gemeinsam durch.';
   }
 
   /* Kurs ohne Termin: kleiner Link ganz unten. Wer über eine Kurs-Anzeige kam, erwartet den Kurs: dann deutlicher. */
