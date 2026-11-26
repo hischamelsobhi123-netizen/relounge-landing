@@ -97,6 +97,14 @@
   .anruf.gross{max-width:620px;padding:18px;}
   .anruf.gross img{width:96px;height:96px;}
   .anruf.gross b{font-size:1.25rem;}
+  .speichern{display:flex;align-items:center;gap:14px;max-width:560px;margin:18px auto 0;padding:18px 20px;border-radius:20px;background:linear-gradient(150deg,#f0c45a,#d79a1f);color:#1d1a0c;text-decoration:none;text-align:left;box-shadow:0 16px 36px rgba(215,154,31,.42);animation:atmenGold 2.8s ease-in-out infinite;}
+  .speichern:hover{transform:translateY(-2px);}
+  .speichern .sp-i{flex-shrink:0;width:54px;height:54px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.8rem;}
+  .speichern b{display:block;font-size:clamp(1.12rem,4.6vw,1.35rem);line-height:1.2;font-weight:800;}
+  .speichern small{display:block;font-size:.92rem;margin-top:4px;opacity:.95;}
+  .speichern .sp-nr{font-weight:800;white-space:nowrap;}
+  .speichern .sp-ok{display:block;font-style:normal;font-weight:700;font-size:.9rem;margin-top:6px;}
+  @media(prefers-reduced-motion:reduce){.speichern{animation:none;}}
   .gnoch{text-align:center;color:var(--muted);font-size:.94rem;margin:14px auto 0;max-width:560px;}
 
   /* Kurs-Karte (26.11., Ramy: nur 4–6 Leute aus dem Typ-Test im Kurs, der Kurs war nur ein kleiner Link ganz unten
@@ -179,6 +187,7 @@
       </div>
     </div>
     <p class="bkurz" id="bKurz">📞 <b>Unser Team ruft dich innerhalb von 24 Stunden an.</b> Lieber eine feste Zeit? Wähl sie direkt hier unten.</p>
+    <a class="speichern" id="nrSpeichern" href="https://coaching.hischamelsobhi.de/praxis-el-sobhi.vcf"><span class="sp-i" aria-hidden="true">📲</span><span class="sp-t"><b>Jetzt unsere Nummer einspeichern</b><small>Damit du uns erkennst, wenn wir anrufen: <span class="sp-nr">05763 5350124</span></small><em class="sp-ok" id="nrOk" hidden>✓ Danke! Dann weißt du gleich, dass wir es sind.</em></span></a>
     <a class="gcta" id="ctaOben" href="#gespraech" data-gespraech hidden><span>Termin wählen</span></a>
     <div id="obenGebucht" hidden></div>
   </div>
@@ -212,7 +221,7 @@
         </ul>
       </div>
       <div class="kal" id="kal">
-        <div class="kal-kopf" id="kalKopf">👇 Wähle hier deinen Termin<span>Was wir schon wissen, ist vorausgefüllt.</span></div>
+        <div class="kal-kopf" id="kalKopf">👇 Wähle hier deinen Termin<span>Was wir schon wissen, ist vorausgefüllt. Weitere Tage: oben im Kalender mit dem Pfeil › zum nächsten Monat blättern.</span></div>
         <div class="kal-box"><div class="kal-laden" id="kalLaden"><i></i>Freie Zeiten werden geladen …</div><iframe id="kalFrame" title="Termin wählen" scrolling="no"></iframe></div>
         <p class="kal-alt" id="kalAlt">Keine passende Zeit dabei? Antworte einfach auf unsere Mail oder WhatsApp, wir finden eine Lösung.</p>
       </div>
@@ -349,6 +358,16 @@
   /* A/B-Test 26.11.: welche Fassung der Ergebnisseite (a = diese, b = danke-b.html) */
   var DANKE_FASSUNG = 'b';
   melde('danke_variante_' + DANKE_FASSUNG);
+  /* Großer Knopf „Nummer einspeichern“ (Ramy 26.11.: das Allerwichtigste) – Klick wird an GHL gemeldet */
+  (function(){
+    var k = $('nrSpeichern'); if(!k) return;
+    k.addEventListener('click', function(){
+      melde('danke_nummer_speichern');
+      try{ localStorage.setItem('nummer_gespeichert', new Date().toISOString()); }catch(e){}
+      try{ if(window.fbq) fbq('trackCustom', 'TypNummerSpeichern'); }catch(e){}
+      var ok = $('nrOk'); if(ok) ok.hidden = false;
+    });
+  })();
 
   /* Anruf-Hinweis: gewünschte Zeit aus dem Test (typ_erreichbar) einbauen */
   (function(){
