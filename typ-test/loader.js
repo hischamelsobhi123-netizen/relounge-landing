@@ -14,6 +14,22 @@
   if (V6 && seiteRoh === 'lp.html' && /[?&]start=kurs(&|$)/.test(location.search)) seiteRoh = 'kurs-start.html';
   var url = base + (V6 && V6_SEITEN[seiteRoh] ? V6_SEITEN[seiteRoh] : seiteRoh);
 
+  /* A/B-Test Ergebnisseite (Ramy 26.11.): 50/50, pro Gerät fest (localStorage „danke_fassung“).
+     Fassung a = v6/danke.html, Fassung b = v6/danke-b.html (Kalender direkt unter dem Ergebnis).
+     Eigene Adresse zum Ansehen: /typ-test-danke?dv=b (bzw. ?dv=a). Die Seite meldet danke_variante_a/_b an GHL.
+     Test beenden: DANKE_B = 0 (alle sehen a) oder 1 (alle sehen b). */
+  var DANKE_B = 0.5;
+  if (V6 && seiteRoh === 'danke.html') {
+    var dv = (location.search.match(/[?&]dv=([ab])(&|$)/) || [])[1] || '';
+    if (!dv) { try { dv = localStorage.getItem('danke_fassung') || ''; } catch (e) {} }
+    if (DANKE_B === 0) dv = (/[?&]dv=b/.test(location.search) ? 'b' : 'a');
+    if (DANKE_B === 1) dv = (/[?&]dv=a/.test(location.search) ? 'a' : 'b');
+    if (dv !== 'a' && dv !== 'b') dv = Math.random() < DANKE_B ? 'b' : 'a';
+    try { localStorage.setItem('danke_fassung', dv); } catch (e) {}
+    if (dv === 'b') url = base + 'v6/danke-b.html';
+    window.DANKE_FASSUNG = dv;
+  }
+
   /* Ramy 09.11.2026: „Mehr erfahren“ / „So arbeitet Hischam“ führt jetzt in den Kompaktkurs.
      Gilt für den Danke-Knopf, die Lead-WhatsApp und alle Links ohne Sprungmarke.
      Mails springen mit #video (Hischams 5:24-Video) oder #stimmen gezielt auf die alte Seite –

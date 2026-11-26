@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dein Ergebnis | Facharzt Hischam El-Sobhi</title>
+<!-- SEITE 2 (A/B-Test ab 26.11., Ramy): Kalender direkt unter dem Ergebnis, Video darunter, „Unser Team ruft dich an“ mit Foto.
+     Keine Minuten-/Uhrzeit-Zusage. Selbst buchen und Kurs bleiben. Fassung a = danke.html. -->
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --bg:#ffffff; --soft:#f4f8f6; --soft2:#eaf3ee; --ink:#132019; --ink2:#22332c; --muted:#5b6b64;
+    --line:#e5ece8; --green:#22a35f; --green-d:#178048; --green-l:#2fb46b; --green-bg:#e7f5ec;
+    --dark:#0d2a1e; --dark2:#123c2a; --gold:#e0ad3c;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:18px;}
+  img{max-width:100%;display:block;height:auto;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px;}
+  .kick{color:var(--green);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;}
+
+  .topbar{background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);}
+  .topbar .in{max-width:1120px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:9px;font-weight:800;font-size:.86rem;}
+  .topbar img{height:28px;width:auto;border-radius:5px;}
+
+  /* Ergebnis */
+  .hero{padding:22px 0 8px;text-align:center;background:radial-gradient(620px 360px at 50% -10%,#e2f2e8,transparent 70%);}
+  .hero h1{text-transform:uppercase;font-weight:800;font-size:clamp(1.35rem,5.4vw,2.2rem);line-height:1.1;letter-spacing:-.015em;}
+  .hero h1 span{color:var(--green);}
+  .res{margin:16px auto 0;background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;border-radius:22px;padding:20px 18px;display:flex;gap:16px;align-items:center;box-shadow:0 22px 54px rgba(13,42,30,.24);text-align:left;animation:auf .6s cubic-bezier(.2,.9,.3,1.2);}
+  @keyframes auf{from{transform:translateY(12px) scale(.97);opacity:0;}to{transform:none;opacity:1;}}
+  .res .bu{flex-shrink:0;width:72px;height:72px;border-radius:18px;background:#fff;color:var(--green-d);font-family:Georgia,serif;font-weight:700;font-size:2.6rem;display:flex;align-items:center;justify-content:center;}
+  .res .t{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7fe0a5;}
+  .res .s{font-size:1.02rem;margin-top:4px;color:rgba(255,255,255,.93);}
+
+  /* DER Knopf (Ramy 21.11.: „ganz fett, aber nicht zu fett, animiert – JEDER muss es direkt im Gesicht haben“) */
+  .gcta{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:3px;width:100%;max-width:560px;margin:16px auto 0;
+    text-decoration:none;color:#fff;background:linear-gradient(150deg,#2fb46b,#178048);border:0;border-radius:20px;padding:19px 18px 17px;
+    font:inherit;font-weight:800;font-size:1.22rem;line-height:1.2;cursor:pointer;box-shadow:0 14px 32px rgba(23,128,72,.38);
+    animation:atmen 2.8s ease-in-out infinite;transition:transform .15s;}
+  .gcta small{display:block;font-weight:600;font-size:.86rem;opacity:.95;}
+  .gcta .pf{display:inline-block;animation:schubs 2.8s ease-in-out infinite;}
+  .gcta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-18deg);animation:glanz 3.6s ease-in-out infinite;}
+  .gcta:hover{transform:translateY(-2px);}
+  @keyframes atmen{0%,100%{box-shadow:0 14px 32px rgba(23,128,72,.38),0 0 0 0 rgba(47,180,107,.45);}55%{box-shadow:0 14px 32px rgba(23,128,72,.38),0 0 0 12px rgba(47,180,107,0);}}
+  @keyframes glanz{0%,55%{left:-60%;}85%,100%{left:130%;}}
+  @keyframes schubs{0%,60%,100%{transform:none;}70%{transform:translateX(5px);}80%{transform:none;}88%{transform:translateX(3px);}}
+  @media(prefers-reduced-motion:reduce){.gcta,.gcta .pf,.gcta::after{animation:none;}}
+  .gcta.gold{background:linear-gradient(150deg,#f0c45a,#d79a1f);color:#1d1a0c;box-shadow:0 14px 32px rgba(215,154,31,.38);animation-name:atmenGold;}
+  @keyframes atmenGold{0%,100%{box-shadow:0 14px 32px rgba(215,154,31,.36),0 0 0 0 rgba(240,196,90,.5);}55%{box-shadow:0 14px 32px rgba(215,154,31,.36),0 0 0 12px rgba(240,196,90,0);}}
+  .gunter{text-align:center;color:var(--muted);font-size:.92rem;margin-top:9px;}
+
+  /* Video */
+  .vsec{padding:26px 0 6px;}
+  .vsec h2{font-weight:800;font-size:clamp(1.15rem,4.4vw,1.45rem);text-align:center;margin-bottom:12px;text-transform:uppercase;}
+  .vwrap{position:relative;border-radius:18px;overflow:hidden;background:#0c1c16;box-shadow:0 26px 60px rgba(15,45,32,.28);}
+  .vwrap .ar{position:relative;padding-top:56.25%;}
+  .vwrap video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;object-fit:contain;}
+  .vfacade{position:absolute;inset:0;cursor:pointer;background-size:cover;background-position:center;}
+  .vfacade .vlen{position:absolute;right:12px;bottom:12px;z-index:2;background:rgba(12,28,22,.72);color:#fff;font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:20px;}
+  .vfacade .vlab{position:absolute;left:12px;top:12px;z-index:2;background:rgba(12,28,22,.82);color:#fff;font-size:.76rem;font-weight:700;padding:6px 12px;border-radius:30px;}
+  .vfacade::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,20,.1),rgba(10,26,20,.5));}
+  .vfacade .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(0,0,0,.4);}
+  .vfacade .play::before{content:"";border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent var(--green-d);margin-left:4px;}
+  .vload{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.9rem;background:#0c1c16;}
+  @media(max-width:760px){ .vwrap{border-radius:0;margin-left:-18px;margin-right:-18px;} }
+
+  /* Gespräch */
+  .gesp{padding:26px 0 10px;scroll-margin-top:10px;}
+  .gbox{background:#fff;border:3px solid var(--green);border-radius:24px;padding:22px 18px 18px;box-shadow:0 22px 54px rgba(15,45,32,.13);}
+  .gk{display:inline-block;background:var(--green-bg);color:var(--green-d);font-weight:800;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:30px;}
+  .gbox h2{font-weight:800;font-size:clamp(1.4rem,5.6vw,1.95rem);line-height:1.15;margin-top:10px;text-transform:uppercase;letter-spacing:-.01em;}
+  .gbox h2 em{font-style:normal;color:var(--green);}
+  .gwarum{font-size:1.06rem;color:var(--ink2);margin-top:10px;}
+  .gpunkte{list-style:none;margin:14px 0 0;display:grid;gap:8px;}
+  .gpunkte li{position:relative;padding-left:32px;font-size:1.02rem;line-height:1.4;}
+  .gpunkte li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--green-bg);color:var(--green-d);font-weight:900;font-size:.78rem;display:flex;align-items:center;justify-content:center;}
+  .gpunkte li.gg::before{content:"🎁";background:#fff6dd;font-size:.8rem;}
+  .gpunkte li.gg b{color:#8a5d00;}
+  .kal{margin-top:16px;}
+  .kal-kopf{text-align:center;font-weight:800;font-size:1.06rem;margin-bottom:8px;}
+  .kal-kopf span{display:block;color:var(--muted);font-weight:600;font-size:.88rem;}
+  .kal-box{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:640px;}
+  .kal-box iframe{width:100%;border:0;min-height:640px;display:block;}
+  .kal-laden{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:90px;gap:12px;color:var(--muted);font-weight:700;background:#fff;}
+  .kal-laden i{width:34px;height:34px;border-radius:50%;border:4px solid var(--green-bg);border-top-color:var(--green);animation:dreh 1s linear infinite;}
+  @keyframes dreh{to{transform:rotate(360deg)}}
+  .kal-alt{text-align:center;color:var(--muted);font-size:.9rem;margin-top:10px;}
+  .anruf{margin:14px auto 0;max-width:560px;display:flex;gap:14px;align-items:center;text-align:left;background:#fff;border:2px solid var(--green);border-radius:20px;padding:14px 16px;box-shadow:0 12px 30px rgba(15,45,32,.10);}
+  .anruf img{flex-shrink:0;width:72px;height:72px;border-radius:50%;object-fit:cover;}
+  .anruf b{font-size:1.05rem;}
+  .anruf p{font-size:.95rem;color:var(--ink2);margin-top:3px;line-height:1.45;}
+  .anruf-nr{display:inline-block;margin-top:6px;font-weight:800;font-size:.92rem;color:var(--green-d);text-decoration:underline;}
+  .bkurz{max-width:560px;margin:14px auto 0;font-size:1rem;color:var(--ink2);}
+  .anrufsec{padding:22px 0 6px;}
+  .anruf.gross{max-width:620px;padding:18px;}
+  .anruf.gross img{width:96px;height:96px;}
+  .anruf.gross b{font-size:1.25rem;}
+  .gnoch{text-align:center;color:var(--muted);font-size:.94rem;margin:14px auto 0;max-width:560px;}
+
+  /* Kurs-Karte (26.11., Ramy: nur 4–6 Leute aus dem Typ-Test im Kurs, der Kurs war nur ein kleiner Link ganz unten
+     bzw. ein Geschenk nach der Selbstbuchung, die fast niemand macht). Zweiter Weg, sichtbar, aber ruhiger als der Termin-Knopf. */
+  .kkarte{margin:18px auto 0;max-width:620px;background:var(--green-bg);border:2px solid var(--green);border-radius:22px;padding:20px 18px 18px;text-align:center;}
+  .kk-kopf{font-weight:800;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-d);}
+  .kkarte h3{font-weight:800;font-size:clamp(1.25rem,5vw,1.55rem);line-height:1.2;margin-top:6px;}
+  .kkarte p{font-size:1.04rem;color:var(--ink2);margin:8px auto 0;max-width:520px;}
+  .kcta{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%;max-width:520px;margin:16px auto 0;min-height:60px;justify-content:center;
+    text-decoration:none;background:#fff;color:var(--green-d);border:2px solid var(--green);border-radius:18px;padding:15px 16px 13px;
+    font-weight:800;font-size:1.14rem;line-height:1.2;box-shadow:0 8px 20px rgba(23,128,72,.14);transition:transform .15s;}
+  .kcta small{display:block;font-weight:600;font-size:.86rem;color:var(--muted);}
+  .kcta:hover{transform:translateY(-2px);}
+
+  /* Geschenk nach der Buchung */
+  .geschenk{padding:22px 0 8px;scroll-margin-top:10px;}
+  .gsbox{text-align:center;background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;border-radius:24px;padding:26px 20px 22px;box-shadow:0 22px 54px rgba(13,42,30,.28);animation:auf .6s cubic-bezier(.2,.9,.3,1.2);}
+  .gshak{width:58px;height:58px;border-radius:50%;background:#7fe0a5;color:var(--dark);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:1.7rem;font-weight:900;}
+  .gsbox .gk{background:rgba(127,224,165,.16);color:#7fe0a5;}
+  .gsbox h2{font-weight:800;font-size:clamp(1.4rem,5.6vw,1.9rem);line-height:1.15;margin-top:10px;text-transform:uppercase;}
+  .gsbox p{color:rgba(255,255,255,.88);font-size:1.04rem;max-width:560px;margin:10px auto 0;}
+  .gsbox .gcta{margin-top:18px;}
+  .gsmail{font-size:.9rem !important;color:rgba(255,255,255,.65) !important;}
+
+  /* So geht es weiter */
+  .steps{padding:26px 0 10px;}
+  .steps h2{font-weight:800;font-size:clamp(1.15rem,4.4vw,1.45rem);text-align:center;margin-bottom:14px;text-transform:uppercase;}
+  .st{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px 16px;margin-bottom:10px;box-shadow:0 8px 22px rgba(15,45,32,.05);}
+  .st .n{flex-shrink:0;width:34px;height:34px;border-radius:10px;background:var(--green-bg);color:var(--green-d);font-weight:800;display:flex;align-items:center;justify-content:center;}
+  .st b{display:block;}
+  .st p{color:var(--muted);font-size:.96rem;}
+
+  .bericht{display:block;margin-top:14px;text-align:center;color:var(--green-d);font-weight:700;font-size:.94rem;text-decoration:underline;text-underline-offset:3px;}
+  .kurslink{display:block;text-align:center;margin:20px auto 0;color:var(--green-d);font-weight:700;font-size:.98rem;}
+  .kurslink.stark{display:block;max-width:560px;text-decoration:none;background:var(--green-bg);border:2px solid var(--green);border-radius:16px;padding:15px 14px;color:var(--green-d);font-weight:800;font-size:1.06rem;}
+  .teilen{margin:22px 0 40px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 16px;text-align:center;}
+  .teilen b{font-size:1.02rem;}
+  .teilen p{color:var(--muted);font-size:.94rem;margin-top:4px;}
+  .tknopf{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:12px;}
+  .twa,.tkopie{font:inherit;font-weight:800;font-size:.95rem;border-radius:40px;padding:12px 20px;cursor:pointer;text-decoration:none;}
+  .twa{background:#25d366;color:#fff;border:0;}
+  .tkopie{background:var(--soft);color:var(--ink);border:1px solid var(--line);}
+
+  /* Leiste unten am Handy, bis der Termin steht */
+  .leiste{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:9px 12px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -6px 22px rgba(15,45,32,.12);transform:translateY(110%);transition:transform .25s;}
+  .leiste.an{transform:none;}
+  .leiste .gcta{margin:0 auto;padding:14px 12px;font-size:1.06rem;animation:none;box-shadow:none;}
+  .leiste .gcta::after{animation:none;display:none;}
+  body.mitLeiste .foot{padding-bottom:110px;}
+
+  .foot{background:#0a1c14;color:rgba(255,255,255,.7);font-size:.84rem;padding:28px 20px;text-align:center;}
+  .foot a{color:rgba(255,255,255,.85);text-decoration:none;margin:0 7px;white-space:nowrap;}
+  .foot .hint{margin-top:12px;font-size:.74rem;opacity:.6;max-width:720px;margin-left:auto;margin-right:auto;}
+  [hidden]{display:none !important;}
+
+  /* GHL-Rahmen neutralisieren (wie auf der Test-Seite) */
+  html,body{margin:0 !important;padding:0 !important;background:var(--bg) !important}
+  .c-section,.c-row,.c-column,.c-wrapper,
+  .hl_page-creator--content,.hl_page-creator--row,.hl_page-creator--col,
+  .section-wrap,.row-wrap,.col-wrap,.fullSection,.fullRow,.fullColumn{
+    padding:0 !important;margin:0 !important;max-width:100% !important;width:100% !important;
+    background:transparent !important;border:0 !important}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="in"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="Zentrum für Gesundheitsmedizin"> Zentrum für Gesundheitsmedizin</div></div>
+
+<!-- 21.11. (Ramy): Ein Weg nach vorn. Ergebnis → Hischam erklärt die Typen (professionelles Studio-Video) →
+     kostenloses Kurz-Gespräch, groß und animiert. Erst NACH der Buchung kommt der Kompaktkurs als Geschenk
+     (wer so in den Kurs kommt, sieht dort keine „Termin buchen“-Knöpfe mehr, Kurs-Parameter g=1). -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <h1>Geschafft — <span>hier ist dein Ergebnis</span></h1>
+    <div class="res" id="res">
+      <div class="bu" id="resBu">?</div>
+      <div>
+        <div class="t" id="resT">Dein Muster</div>
+        <div class="s" id="resS">Dein Ergebnis ist gespeichert.</div>
+      </div>
+    </div>
+    <p class="bkurz" id="bKurz">📞 <b>Unser Team ruft dich innerhalb von 24 Stunden an.</b> Lieber eine feste Zeit? Wähl sie direkt hier unten.</p>
+    <a class="gcta" id="ctaOben" href="#gespraech" data-gespraech hidden><span>Termin wählen</span></a>
+    <div id="obenGebucht" hidden></div>
+  </div>
+</section>
+
+
+<section class="geschenk" id="geschenk" hidden>
+  <div class="wrap">
+    <div class="gsbox">
+      <div class="gshak">✓</div>
+      <div class="gk">Dein Termin steht</div>
+      <h2>Danke! Hier ist dein Geschenk 🎁</h2>
+      <p>Bis zu deinem Gespräch schenken wir dir Hischams Kompaktkurs. In 6 kurzen Videos erklärt er dir, warum dein Körper festhält, passend zu deinem Muster. So kommst du gut vorbereitet ins Gespräch.</p>
+      <a class="gcta gold" id="kursKnopf" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0&amp;g=1"><span>🎁 Geschenk öffnen: Kurs starten <span class="pf">→</span></span><small>6 kurze Videos, in deinem Tempo</small></a>
+      <p class="gsmail" id="gsMail" hidden>Den Link zum Kurs schicken wir dir zusätzlich per E-Mail.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gesp" id="gespraech">
+  <div class="wrap">
+    <div class="gbox">
+      <div id="gKopf">
+        <div class="gk">Lieber selbst eine Zeit wählen?</div>
+        <h2>Dein <em>kostenloses Gespräch</em></h2>
+        <p class="gwarum">Dein Ergebnis ist ein erster Hinweis, keine Diagnose. <b>Was bei dir genau dahintersteckt</b> und was dein Körper zuerst braucht, klären wir gemeinsam in einem kurzen, persönlichen Gespräch.</p>
+        <ul class="gpunkte">
+          <li>Lieber eine feste Zeit? Dann wähl sie hier selbst</li>
+          <li>Kostenlos und unverbindlich. Du entscheidest danach in Ruhe</li>
+          <li class="gg"><b>Dazu:</b> Hischams Kompaktkurs, damit du gut vorbereitet ins Gespräch kommst</li>
+        </ul>
+      </div>
+      <div class="kal" id="kal">
+        <div class="kal-kopf" id="kalKopf">👇 Wähle hier deinen Termin<span>Was wir schon wissen, ist vorausgefüllt.</span></div>
+        <div class="kal-box"><div class="kal-laden" id="kalLaden"><i></i>Freie Zeiten werden geladen …</div><iframe id="kalFrame" title="Termin wählen" scrolling="no"></iframe></div>
+        <p class="kal-alt" id="kalAlt">Keine passende Zeit dabei? Antworte einfach auf unsere Mail oder WhatsApp, wir finden eine Lösung.</p>
+      </div>
+    </div>
+    <div class="kkarte" id="kursKarte">
+      <div class="kk-kopf" id="kkKopf">Noch nicht bereit für ein Gespräch?</div>
+      <h3 id="kkTitel">Lern Hischam zuerst in Ruhe kennen</h3>
+      <p>In seinem kostenlosen Kompaktkurs erklärt dir Hischam in 6 kurzen Videos, warum dein Körper festhält, passend zu deinem Muster.</p>
+      <a class="kcta" id="kursOhne" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0"><span id="kkKnopf">▶ Kurs kostenlos starten →</span><small>6 kurze Videos, in deinem Tempo</small></a>
+    </div>
+    <p class="gnoch" id="gNoch">Du bist noch unsicher? Dann musst du nichts tun: Unser Team meldet sich in den nächsten 24 Stunden bei dir. Mit einem festen Termin weißt du aber genau, wann wir nur für dich da sind.</p>
+  </div>
+</section>
+<section class="vsec" id="erklaer">
+  <div class="wrap">
+    <h2>Hischam erklärt dir die drei Muster</h2>
+    <div class="vwrap"><div class="ar" id="vbox"></div></div>
+  </div>
+</section>
+<section class="anrufsec">
+  <div class="wrap">
+    <div class="anruf gross" id="anruf">
+      <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/team.webp" alt="Unser Team" width="120" height="120">
+      <div>
+        <b>Unser Team ruft dich an</b>
+        <p id="anrufText">Innerhalb von 24 Stunden meldet sich unser Team bei dir, um dein Ergebnis mit dir zu besprechen. Wir rufen von <b>05763 5350124</b> an.</p>
+        <a class="anruf-nr" id="anrufNr" href="https://coaching.hischamelsobhi.de/praxis-el-sobhi.vcf">📇 Nummer jetzt speichern, damit du uns erkennst →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <h2>So geht es weiter</h2>
+    <div class="st"><div class="n">1</div><div><b>Wir rufen dich an</b><p>Unser Team meldet sich innerhalb von 24 Stunden. Oder du wählst oben selbst einen Termin, kostenlos.</p></div></div>
+    <div class="st"><div class="n">2</div><div><b>Du bekommst den Kurs geschenkt</b><p>Hischams Kompaktkurs: 6 kurze Videos, in deinem Tempo, passend zu deinem Muster.</p></div></div>
+    <div class="st"><div class="n">3</div><div><b>Wir sprechen über dich</b><p>Dein Muster, deine Geschichte und was bei dir dahintersteckt. Wenn es passt, zeigen wir dir, wie eine Begleitung aussehen kann. Wenn nicht, ist das völlig in Ordnung.</p></div></div>
+    <a class="bericht" id="berichtLink" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/bericht.html" target="_blank" rel="noopener">📄 Deinen ausführlichen Typ-Bericht öffnen (zum Speichern &amp; Weiterleiten)</a>
+    <div class="teilen">
+      <b>Kennst du jemanden, dem es genauso geht?</b>
+      <p>Schick ihr die Typ-Analyse. 3 Minuten, kostenlos, mit sofortigem Ergebnis.</p>
+      <div class="tknopf">
+        <a id="teilenWa" class="twa" href="https://wa.me/?text=Hab%20gerade%20diese%20Typ-Analyse%20gemacht%20%E2%80%93%20sehr%20spannend%2C%20mach%20sie%20auch%20mal%3A%20https%3A%2F%2Fhischamelsobhi.de%2Ftyp-test%3Futm_source%3Dteilen" target="_blank" rel="noopener">Per WhatsApp teilen</a>
+        <button type="button" id="teilenKopie" class="tkopie">Link kopieren</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <div>
+    <a href="https://hischamelsobhi.de/impressum" target="_blank" rel="noopener">Impressum</a> ·
+    <a href="https://hischamelsobhi.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+  </div>
+  <div style="margin-top:12px"><b style="color:#fff">Zentrum für Gesundheitsmedizin</b> · Hischam El-Sobhi · Facharzt</div>
+  <div class="hint">Die Typ-Analyse ist eine erste Orientierung und keine Diagnose. Sie ersetzt keine ärztliche Untersuchung. Keine Heilversprechen.</div>
+</div>
+
+<div class="leiste" id="leiste"><a class="gcta" href="#gespraech" data-gespraech><span>📅 Kostenloses Gespräch sichern</span></a></div>
+
+<script>
+(function(){
+  /* --- EINSTELLUNGEN --- */
+  /* Video: Hischam erklärt die drei Muster (Studio-Video „Typen-Erklärung“, bis „…wenn man genauer hinschaut“,
+     ohne den alten Schluss „Mein Team ruft dich an“). Für alle gleich. */
+  var V6_MEDIA = window.V6_MEDIA || 'https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/v6/media/';
+  var DANKE_VIDEO = V6_MEDIA + 'typen-erklaerung.mp4';
+  var POSTER = V6_MEDIA + 'typen-erklaerung.jpg';
+  var VLAENGE = '1:07 Min';
+  /* Gesprächslänge, wie sie auf der Seite steht. Muss zum Kalender passen. */
+  var MIN = window.V6_GESPRAECH_MIN || 15;   /* Ramy 21.11.: 15 Minuten, Kalender „Ergebnis-Gespräch · Typ-Test“ ebenso */
+  /* Steht „Kurs kommt auch per Mail“ auf der Seite? Erst true, wenn der GHL-Ablauf die Mail wirklich schickt. */
+  var GESCHENK_MAIL = window.V6_GESCHENK_MAIL || true;   /* 21.11.: Mail „T1b – Geschenk Kompaktkurs“ im Workflow „Typ-Test: Termin gebucht“ */
+  var KURS_URL = window.V6_KURS_URL || 'https://hischamelsobhi.de/kompaktkurs-v7k3';
+  var KAL_ID = window.V6_KAL_ID || 'XyzjEW3pZmSzdG4QoDH6';   /* „Ergebnis-Gespräch · Typ-Test“ */
+
+  var $ = function(id){ return document.getElementById(id); };
+  document.querySelectorAll('[data-min]').forEach(function(e){ e.textContent = MIN; });
+
+  var TEXTE = {
+    'A':     ['A · Alarm', 'Dein System steht unter Daueralarm. Der Kopf kommt nicht zur Ruhe, nachts wird es unruhig – und bei Stress hält dein Körper fest, egal wie diszipliniert du bist.'],
+    'B':     ['B · Bunker', 'Dein Körper hat gelernt zu sparen. Du isst wenig, aber er gibt nichts her – und nach jeder Diät hortet er noch mehr. Das ist kein Willensproblem, sondern ein Schutzprogramm.'],
+    'C':     ['C · Crash', 'Deine Reserven sind leer. Du wachst müde auf, die Kraft fehlt – und ein leerer Körper lässt nichts los.'],
+    'A+B':   ['A+B · Alarm im Bunker', 'Zwei Muster gleichzeitig: Der Kopf kommt nicht zur Ruhe – und der Körper spart. Hellwach in der Nacht und trotz wenig Essen bewegt sich nichts.'],
+    'A+C':   ['A+C · Alarm im Crash', 'Innerlich aufgedreht, außen längst leer. Du kannst schlecht abschalten – und hast trotzdem keine Kraft mehr.'],
+    'B+C':   ['B+C · Bunker im Crash', 'Dein Körper spart und die Reserven sind leer. „Ich nehme zu, obwohl ich kaum noch etwas habe“ – das ist kein Widerspruch.'],
+    'A+B+C': ['Alle drei Muster', 'Bei dir zeigen sich alle drei Muster gleichzeitig: Alarm, Bunker und Crash. Hier ist die richtige Reihenfolge besonders wichtig.'],
+    'OFFEN': ['Noch offen', 'Deine Antworten zeigen kein eindeutiges Muster. Das ist nicht ungewöhnlich – manchmal liegt der Grund dort, wo man von außen nicht hinschaut. Genau das klären wir im Gespräch.']
+  };
+  var m = null;
+  try{ m = new URLSearchParams(location.search).get('m') || localStorage.getItem('typ_muster'); }catch(e){}
+  if(m){ m = String(m).toUpperCase().replace(/[ -]/g,'+'); }
+
+  /* Kontakt merken (gleiche Domain wie der Kurs). c = GHL-Kontakt-ID aus Mail-Links, dazu Vorname/Mail/Telefon,
+     wenn GHL sie an die Danke-Adresse hängt. In Kurs-Links wandern nur c und Vorname. */
+  var q = new URLSearchParams(location.search);
+  var kontakt = {};
+  try{ kontakt = JSON.parse(localStorage.getItem('kurs_kontakt') || '{}') || {}; }catch(e){}
+  [['c','c'],['contact_id','c'],['first_name','n'],['n','n'],['email','e'],['phone','t']].forEach(function(p){
+    var v = q.get(p[0]); if(v && !/\{\{/.test(v)) kontakt[p[1]] = v;
+  });
+  if(m) kontakt.m = m;
+  function kontaktSpeichern(){ try{ localStorage.setItem('kurs_kontakt', JSON.stringify(kontakt)); }catch(e){} }
+  kontaktSpeichern();
+  var mm = m && TEXTE[m] ? m.replace(/\+/g,'-') : '';
+  /* Fassung der Kurs-Startseite (17.11.: V/T), nur wer über kurs-start kam */
+  var kv = '', kvVideo = '';
+  try{ if(localStorage.getItem('typ_eingang') === 'kurs') kv = localStorage.getItem('kurs_variante') || ''; }catch(e){}
+  if(/^[VT]$/.test(q.get('kv') || '')) kv = q.get('kv');
+  if(!/^[VT]$/.test(kv)) kv = '';
+  try{ if(kv) kvVideo = localStorage.getItem('kurs_video') || '0'; }catch(e){}
+
+  function kursLink(gebucht){
+    var p = new URLSearchParams({p:'0', q: gebucht ? 'danke_termin' : 'danke'});
+    if(gebucht) p.set('g', '1');
+    if(mm) p.set('m', mm);
+    if(kv) p.set('kv', kv);
+    if(kontakt.c) p.set('c', kontakt.c);
+    if(kontakt.n) p.set('n', kontakt.n);
+    return KURS_URL + '?' + p.toString();
+  }
+
+  /* Meldung an GHL (Kurs-Webhook, Formular-Format im Inhalt) */
+  function melde(ereignis){
+    var W = window.KURS_WEBHOOK || 'https://services.leadconnectorhq.com/hooks/rSmjF755vmdOhFQVTAVz/webhook-trigger/e8a534c2-d61a-4ab2-b1e2-d5a50d51f669';
+    if(!W) return;
+    if(!(kontakt.c || kontakt.e || kontakt.t)) return;
+    var daten = new URLSearchParams({ereignis: ereignis, kontakt: kontakt.c || '', email: kontakt.e || '', telefon: kontakt.t || '', vorname: kontakt.n || '', muster: mm, quelle: 'danke',
+      kurs_variante: kv, kurs_video: kvVideo, kurs_schlagwort: kv ? 'kurs-fassung-' + (kv === 'V' ? 'video' : 'test') : ''});
+    try{ if(!(navigator.sendBeacon && navigator.sendBeacon(W, daten))) fetch(W, {method:'POST', body: daten, keepalive: true, mode:'no-cors'}); }catch(e){}
+  }
+  melde('danke_gesehen');
+  /* A/B-Test 26.11.: welche Fassung der Ergebnisseite (a = diese, b = danke-b.html) */
+  var DANKE_FASSUNG = 'b';
+  melde('danke_variante_' + DANKE_FASSUNG);
+
+  /* Anruf-Hinweis: gewünschte Zeit aus dem Test (typ_erreichbar) einbauen */
+  (function(){
+    var z = '', at = $('anrufText');
+    try{ z = localStorage.getItem('typ_erreichbar') || ''; }catch(e){}
+    var ZEIT = {morgens:'morgens', mittags:'mittags', nachmittags:'nachmittags', abends:'abends'};
+    if(!at) return;
+    if(z === 'whatsapp'){
+      at.innerHTML = 'Innerhalb von 24 Stunden meldet sich unser Team bei dir, wie gewünscht zuerst per WhatsApp. Wir schreiben von <b>05763 5350124</b>.';
+    } else if(ZEIT[z]){
+      at.innerHTML = 'Innerhalb von 24 Stunden meldet sich unser Team bei dir, am liebsten ' + ZEIT[z] + ', wie du es angegeben hast. Wir rufen von <b>05763 5350124</b> an.';
+    }
+  })();
+
+  /* Ergebnis anzeigen */
+  if(TEXTE[m]){
+    var bl = $('berichtLink');
+    if(bl){ bl.href = bl.href.split('?')[0] + '?m=' + encodeURIComponent(mm); }
+    var bu = $('resBu');
+    bu.textContent = m==='OFFEN' ? '?' : (m==='A+B+C' ? 'ABC' : m);
+    if(bu.textContent.length>1) bu.style.fontSize = bu.textContent.length>2 ? '1.4rem' : '1.8rem';
+    $('resT').textContent = 'Dein Muster: '+TEXTE[m][0];
+    $('resS').textContent = TEXTE[m][1];
+  } else {
+    /* Kein Muster auf diesem Gerät (anderes Gerät/Browser, Seite später geöffnet): nie „gespeichert“ ohne Ergebnis zeigen (Ramy 24.11.) */
+    $('resBu').textContent = '✉';
+    var h1 = document.querySelector('h1 span'); if(h1) h1.textContent = 'dein Ergebnis kommt per Mail';
+    $('resT').textContent = 'Dein Ergebnis ist unterwegs';
+    $('resS').textContent = 'Wir haben es dir gerade per E-Mail und WhatsApp geschickt. Nichts in der Mail? Schau bitte auch im Ordner „Werbung“ oder „Spam“ – oder sichere dir direkt dein Gespräch, dort gehen wir es gemeinsam durch.';
+  }
+
+  /* Kurs ohne Termin: eigene Karte direkt unter dem Kalender (seit 26.11., vorher kleiner Link ganz unten).
+     Wer über eine Kurs-Anzeige kam, erwartet den Kurs: dann „Weiter mit deinem Kurs“. */
+  var eingang = '';
+  try{ eingang = localStorage.getItem('typ_eingang') || ''; }catch(e){}
+  var ko = $('kursOhne');
+  ko.href = kursLink(false);
+  if(eingang === 'kurs' || q.get('q') === 'kurs'){
+    $('kkKopf').textContent = 'Dein Kurs wartet';
+    $('kkTitel').textContent = 'Weiter mit deinem Kompaktkurs';
+    $('kkKnopf').textContent = '▶ Weiter mit meinem Kurs →';
+  }
+  ko.addEventListener('click', function(){ try{ localStorage.setItem('typ_weg', 'kurs'); }catch(e){} melde('danke_weg_kurs'); });
+
+  /* ---------- Kalender direkt auf der Seite, sofort geladen ---------- */
+  var kalOffen = false;
+  function kalenderLaden(){
+    if(kalOffen) return; kalOffen = true;
+    var p = new URLSearchParams();
+    ['first_name','last_name','email','phone'].forEach(function(x){ if(q.get(x)) p.set(x, q.get(x)); });
+    if(!p.get('first_name') && kontakt.n) p.set('first_name', kontakt.n);
+    if(!p.get('email') && kontakt.e) p.set('email', kontakt.e);
+    if(!p.get('phone') && kontakt.t) p.set('phone', kontakt.t);
+    /* redirect=false: Nach der Buchung bleibt die Bestätigung im Kalender stehen, die Seite zeigt darüber das Geschenk */
+    p.set('redirect', 'false');
+    var f = $('kalFrame');
+    f.id = KAL_ID + '_' + Date.now();
+    f.src = 'https://api.leadconnectorhq.com/widget/booking/' + KAL_ID + '?' + p;
+    var weg = function(){ var l = $('kalLaden'); if(l) l.remove(); };
+    f.addEventListener('load', function(){ setTimeout(weg, 400); });
+    setTimeout(weg, 9000);
+    if(!document.querySelector('script[src*="form_embed.js"]')){
+      var s = document.createElement('script'); s.src = 'https://link.msgsndr.com/js/form_embed.js'; document.body.appendChild(s);
+    }
+  }
+  document.querySelectorAll('[data-gespraech]').forEach(function(a){
+    a.addEventListener('click', function(ev){
+      ev.preventDefault();
+      kalenderLaden();
+      try{ localStorage.setItem('typ_weg', 'termin'); }catch(e){}
+      melde('danke_weg_termin');
+      try{ if(window.fbq) fbq('trackCustom', 'TypGespraechKlick'); }catch(e){}
+      $('kalKopf').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  /* ---------- Nach der Buchung: Kurs als Geschenk ----------
+     Der GHL-Kalender meldet die Buchung an die Seite: ["msgsndr-booking-complete", {calendarId}].
+     Kurz davor schickt er ["set-sticky-contacts", …, JSON mit Kontakt] – daraus nehmen wir Kontakt-ID und Vorname, wenn vorhanden. */
+  var gebucht = false;
+  function geschenkZeigen(frisch){
+    if(gebucht) return; gebucht = true;
+    $('kursKnopf').href = kursLink(true);
+    $('gsMail').hidden = !GESCHENK_MAIL;
+    $('geschenk').hidden = false;
+    $('ctaOben').hidden = true;
+    if($('anruf')) $('anruf').hidden = true;
+    $('leiste').classList.remove('an'); document.body.classList.remove('mitLeiste');
+    $('gNoch').hidden = true; $('kursKarte').hidden = true;
+    if(frisch){
+      /* Bestätigung des Kalenders bleibt sichtbar, Kopf darüber wird zur Erfolgsmeldung */
+      $('gKopf').hidden = true; $('kalAlt').hidden = true;
+      $('kalKopf').innerHTML = '✓ Dein Termin ist eingetragen<span>Die Bestätigung bekommst du gleich per E-Mail.</span>';
+      /* Der Kalender ändert nach der Buchung seine Höhe, das bricht weiches Scrollen ab: darum zweimal direkt springen */
+      [500, 1400].forEach(function(t){ setTimeout(function(){ $('geschenk').scrollIntoView({block:'start'}); }, t); });
+    } else {
+      /* Später wiederkommen: Gespräch steht schon, also kein Kalender mehr */
+      $('gespraech').hidden = true;
+    }
+  }
+  $('kursKnopf').addEventListener('click', function(){ melde('danke_geschenk_kurs'); });
+  window.addEventListener('message', function(e){
+    var d = e.data;
+    if(!d || !Array.isArray(d) || !/leadconnector|msgsndr|gohighlevel/.test(String(e.origin))) return;
+    if(d[0] === 'set-sticky-contacts' && typeof d[2] === 'string'){
+      try{
+        var j = JSON.parse(d[2]), id = j.contactId || j.contact_id || j.id || '';
+        if(/^[A-Za-z0-9]{15,30}$/.test(id) && !kontakt.c) kontakt.c = id;
+        if(j.first_name && !kontakt.n) kontakt.n = j.first_name;
+        if(j.email && !kontakt.e) kontakt.e = j.email;
+        if(j.phone && !kontakt.t) kontakt.t = j.phone;
+        kontaktSpeichern();
+      }catch(err){}
+    }
+    if(d[0] === 'msgsndr-booking-complete' && (!d[1] || !d[1].calendarId || d[1].calendarId === KAL_ID)){
+      try{ localStorage.setItem('termin_gebucht', new Date().toISOString()); }catch(err){}
+      melde('danke_termin_gebucht');
+      try{ if(window.fbq) fbq('trackCustom', 'TypTerminGebucht'); }catch(err){}
+      geschenkZeigen(true);
+    }
+  });
+  /* Schon gebucht (in den letzten 60 Tagen auf diesem Gerät)? Dann gleich das Geschenk statt des Kalenders. */
+  var vorher = '';
+  try{ vorher = localStorage.getItem('termin_gebucht') || ''; }catch(e){}
+  if(vorher && (Date.now() - new Date(vorher).getTime()) < 60*864e5) geschenkZeigen(false);
+  else setTimeout(kalenderLaden, 700);
+
+  /* Leiste unten (Handy): sobald der obere Knopf aus dem Bild ist und der Kalender noch nicht, bis gebucht */
+  if('IntersectionObserver' in window){
+    var sicht = {oben: true, kal: false};
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(x){ if(x.target.id === 'ctaOben') sicht.oben = x.isIntersecting; else sicht.kal = x.isIntersecting; });
+      var an = !gebucht && !sicht.oben && !sicht.kal && window.innerWidth < 761;
+      $('leiste').classList.toggle('an', an); document.body.classList.toggle('mitLeiste', an);
+    });
+    io.observe($('ctaOben')); io.observe($('gespraech'));
+  }
+
+  /* Teilen: Link kopieren */
+  var tk = $('teilenKopie');
+  if(tk){ tk.addEventListener('click', function(){
+    var url = 'https://hischamelsobhi.de/typ-test?utm_source=teilen';
+    var ok = function(){ tk.textContent = 'Kopiert ✓'; };
+    if(navigator.clipboard){ navigator.clipboard.writeText(url).then(ok, function(){ prompt('Link kopieren:', url); }); }
+    else { prompt('Link kopieren:', url); }
+  }); }
+
+  /* Video: erst auf Klick laden */
+  var box = $('vbox');
+  var f = document.createElement('div');
+  f.className = 'vfacade';
+  f.style.backgroundImage = 'url('+POSTER+')';
+  f.innerHTML = '<div class="vlab">▶ Hischam erklärt dein Ergebnis</div><div class="play" aria-label="Video abspielen"></div>' + (VLAENGE ? '<div class="vlen">'+VLAENGE+'</div>' : '');
+  box.appendChild(f);
+  f.addEventListener('click', function(){
+    var load = document.createElement('div'); load.className='vload'; load.textContent='Video wird geladen …';
+    box.appendChild(load);
+    var v = document.createElement('video');
+    v.src = DANKE_VIDEO; v.controls = true; v.autoplay = true; v.playsInline = true;
+    v.setAttribute('playsinline',''); v.setAttribute('preload','auto');
+    v.oncanplay = function(){ setTimeout(function(){ load.remove(); },200); };
+    v.onerror = function(){ load.textContent='Video konnte nicht geladen werden'; };
+    /* Am Videoende direkt zum Gespräch (oder zum Geschenk) */
+    v.addEventListener('ended', function(){ (gebucht ? $('geschenk') : $('gespraech')).scrollIntoView({behavior:'smooth', block:'start'}); });
+    box.appendChild(v);
+    var p = v.play(); if(p&&p.catch){p.catch(function(){});}
+    f.remove();
+    melde('danke_video_start');
+  });
+})();
+</script>
+
+<script>
+/* GHL-Rahmen aufbrechen (gleicher Fix wie auf der Test-Seite) */
+(function(){
+  function aufbrechen(){
+    var n = document.getElementById('top'); if(!n) return;
+    var tiefe = 0;
+    while (n && n.parentElement && tiefe < 12) {
+      n = n.parentElement;
+      if (n === document.body || n === document.documentElement) {
+        n.style.setProperty('margin','0','important'); n.style.setProperty('padding','0','important');
+        n.style.setProperty('background','var(--bg)','important'); break;
+      }
+      n.style.setProperty('padding','0','important'); n.style.setProperty('margin','0','important');
+      n.style.setProperty('max-width','100%','important'); n.style.setProperty('width','100%','important');
+      n.style.setProperty('background','transparent','important'); n.style.setProperty('border','0','important');
+      tiefe++;
+    }
+  }
+  aufbrechen();
+  document.addEventListener('DOMContentLoaded', aufbrechen);
+  window.addEventListener('load', aufbrechen);
+  setTimeout(aufbrechen, 400); setTimeout(aufbrechen, 1500);
+})();
+</script>
+</body>
+</html>

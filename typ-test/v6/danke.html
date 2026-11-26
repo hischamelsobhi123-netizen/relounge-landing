@@ -85,6 +85,11 @@
   .kal-laden i{width:34px;height:34px;border-radius:50%;border:4px solid var(--green-bg);border-top-color:var(--green);animation:dreh 1s linear infinite;}
   @keyframes dreh{to{transform:rotate(360deg)}}
   .kal-alt{text-align:center;color:var(--muted);font-size:.9rem;margin-top:10px;}
+  .anruf{margin:14px auto 0;max-width:560px;display:flex;gap:14px;align-items:center;text-align:left;background:#fff;border:2px solid var(--green);border-radius:20px;padding:14px 16px;box-shadow:0 12px 30px rgba(15,45,32,.10);}
+  .anruf img{flex-shrink:0;width:72px;height:72px;border-radius:50%;object-fit:cover;}
+  .anruf b{font-size:1.05rem;}
+  .anruf p{font-size:.95rem;color:var(--ink2);margin-top:3px;line-height:1.45;}
+  .anruf-nr{display:inline-block;margin-top:6px;font-weight:800;font-size:.92rem;color:var(--green-d);text-decoration:underline;}
   .gnoch{text-align:center;color:var(--muted);font-size:.94rem;margin:14px auto 0;max-width:560px;}
 
   /* Kurs-Karte (26.11., Ramy: nur 4–6 Leute aus dem Typ-Test im Kurs, der Kurs war nur ein kleiner Link ganz unten
@@ -166,7 +171,16 @@
         <div class="s" id="resS">Dein Ergebnis ist gespeichert.</div>
       </div>
     </div>
-    <a class="gcta" id="ctaOben" href="#gespraech" data-gespraech><span>📅 Kostenloses <span data-min>15</span>-Minuten-Gespräch sichern <span class="pf">→</span></span><small>Was dein Ergebnis für dich bedeutet – persönlich erklärt</small></a>
+    <!-- 26.11. (Ramy): Es muss klar sein, dass wir anrufen. Selbst buchen bleibt möglich. -->
+    <div class="anruf" id="anruf">
+      <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/team.webp" alt="Unser Team" width="88" height="88">
+      <div>
+        <b>📞 Unser Team ruft dich an</b>
+        <p id="anrufText">Innerhalb von 24 Stunden meldet sich unser Team bei dir, um dein Ergebnis mit dir zu besprechen. Wir rufen von <b>05763 5350124</b> an.</p>
+        <a class="anruf-nr" id="anrufNr" href="https://coaching.hischamelsobhi.de/praxis-el-sobhi.vcf">Nummer jetzt speichern, damit du uns erkennst →</a>
+      </div>
+    </div>
+    <a class="gcta" id="ctaOben" href="#gespraech" data-gespraech><span>📅 Lieber gleich selbst einen Termin wählen <span class="pf">→</span></span><small>Kostenloses <span data-min>15</span>-Minuten-Gespräch zu deiner Wunschzeit</small></a>
     <div id="obenGebucht" hidden></div>
   </div>
 </section>
@@ -200,7 +214,7 @@
         <p class="gwarum">Dein Ergebnis ist ein erster Hinweis, keine Diagnose. <b>Was bei dir genau dahintersteckt</b> und was dein Körper zuerst braucht, klären wir gemeinsam in einem kurzen, persönlichen Gespräch.</p>
         <ul class="gpunkte">
           <li>Nur <span data-min>15</span> Minuten, ganz entspannt</li>
-          <li>Du wählst die Zeit selbst, kein Warten auf einen Anruf</li>
+          <li>Du willst nicht auf unseren Anruf warten? Dann wähl hier selbst deine Zeit</li>
           <li>Kostenlos und unverbindlich. Du entscheidest danach in Ruhe</li>
           <li class="gg"><b>Dazu:</b> Hischams Kompaktkurs, damit du gut vorbereitet ins Gespräch kommst</li>
         </ul>
@@ -224,7 +238,7 @@
 <section class="steps">
   <div class="wrap">
     <h2>So geht es weiter</h2>
-    <div class="st"><div class="n">1</div><div><b>Du wählst deinen Termin</b><p><span data-min>15</span> Minuten, kostenlos, zu einer Zeit, die dir passt.</p></div></div>
+    <div class="st"><div class="n">1</div><div><b>Wir rufen dich an</b><p>Unser Team meldet sich innerhalb von 24 Stunden. Oder du wählst oben selbst einen Termin: <span data-min>15</span> Minuten, kostenlos.</p></div></div>
     <div class="st"><div class="n">2</div><div><b>Du bekommst den Kurs geschenkt</b><p>Hischams Kompaktkurs: 6 kurze Videos, in deinem Tempo, passend zu deinem Muster.</p></div></div>
     <div class="st"><div class="n">3</div><div><b>Wir sprechen über dich</b><p>Dein Muster, deine Geschichte und was bei dir dahintersteckt. Wenn es passt, zeigen wir dir, wie eine Begleitung aussehen kann. Wenn nicht, ist das völlig in Ordnung.</p></div></div>
     <a class="bericht" id="berichtLink" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/bericht.html" target="_blank" rel="noopener">📄 Deinen ausführlichen Typ-Bericht öffnen (zum Speichern &amp; Weiterleiten)</a>
@@ -322,6 +336,22 @@
     try{ if(!(navigator.sendBeacon && navigator.sendBeacon(W, daten))) fetch(W, {method:'POST', body: daten, keepalive: true, mode:'no-cors'}); }catch(e){}
   }
   melde('danke_gesehen');
+  /* A/B-Test 26.11.: welche Fassung der Ergebnisseite (a = diese, b = danke-b.html) */
+  var DANKE_FASSUNG = window.DANKE_FASSUNG || 'a';
+  melde('danke_variante_' + DANKE_FASSUNG);
+
+  /* Anruf-Hinweis: gewünschte Zeit aus dem Test (typ_erreichbar) einbauen */
+  (function(){
+    var z = '', at = $('anrufText');
+    try{ z = localStorage.getItem('typ_erreichbar') || ''; }catch(e){}
+    var ZEIT = {morgens:'morgens', mittags:'mittags', nachmittags:'nachmittags', abends:'abends'};
+    if(!at) return;
+    if(z === 'whatsapp'){
+      at.innerHTML = 'Innerhalb von 24 Stunden meldet sich unser Team bei dir, wie gewünscht zuerst per WhatsApp. Wir schreiben von <b>05763 5350124</b>.';
+    } else if(ZEIT[z]){
+      at.innerHTML = 'Innerhalb von 24 Stunden meldet sich unser Team bei dir, am liebsten ' + ZEIT[z] + ', wie du es angegeben hast. Wir rufen von <b>05763 5350124</b> an.';
+    }
+  })();
 
   /* Ergebnis anzeigen */
   if(TEXTE[m]){
@@ -395,6 +425,7 @@
     $('gsMail').hidden = !GESCHENK_MAIL;
     $('geschenk').hidden = false;
     $('ctaOben').hidden = true;
+    if($('anruf')) $('anruf').hidden = true;
     $('leiste').classList.remove('an'); document.body.classList.remove('mitLeiste');
     $('gNoch').hidden = true; $('kursKarte').hidden = true;
     if(frisch){
