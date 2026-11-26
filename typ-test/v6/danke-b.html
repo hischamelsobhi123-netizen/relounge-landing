@@ -163,7 +163,7 @@
 </head>
 <body>
 
-<div class="topbar"><div class="in"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="Zentrum für Gesundheitsmedizin"> Zentrum für Gesundheitsmedizin</div></div>
+<div class="topbar"><div class="in"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="Zentrum für Gesundheit"> Zentrum für Gesundheit</div></div>
 
 <!-- 21.11. (Ramy): Ein Weg nach vorn. Ergebnis → Hischam erklärt die Typen (professionelles Studio-Video) →
      kostenloses Kurz-Gespräch, groß und animiert. Erst NACH der Buchung kommt der Kompaktkurs als Geschenk
@@ -268,7 +268,7 @@
     <a href="https://hischamelsobhi.de/impressum" target="_blank" rel="noopener">Impressum</a> ·
     <a href="https://hischamelsobhi.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
   </div>
-  <div style="margin-top:12px"><b style="color:#fff">Zentrum für Gesundheitsmedizin</b> · Hischam El-Sobhi · Facharzt</div>
+  <div style="margin-top:12px"><b style="color:#fff">Zentrum für Gesundheit</b> · Hischam El-Sobhi · Facharzt für Allgemein- und Ernährungsmedizin</div>
   <div class="hint">Die Typ-Analyse ist eine erste Orientierung und keine Diagnose. Sie ersetzt keine ärztliche Untersuchung. Keine Heilversprechen.</div>
 </div>
 
@@ -510,7 +510,7 @@
     v.src = DANKE_VIDEO; v.controls = true; v.autoplay = true; v.playsInline = true;
     v.setAttribute('playsinline',''); v.setAttribute('preload','auto');
     v.oncanplay = function(){ setTimeout(function(){ load.remove(); },200); };
-    v.onerror = function(){ load.textContent='Video konnte nicht geladen werden'; };
+    v.onerror = function(){ load.textContent='Das Video lädt gerade nicht. Lade die Seite bitte neu.'; };
     /* Am Videoende direkt zum Gespräch (oder zum Geschenk) */
     v.addEventListener('ended', function(){ (gebucht ? $('geschenk') : $('gespraech')).scrollIntoView({behavior:'smooth', block:'start'}); });
     box.appendChild(v);
