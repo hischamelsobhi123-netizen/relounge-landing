@@ -14,26 +14,26 @@
   if (V6 && seiteRoh === 'lp.html' && /[?&]start=kurs(&|$)/.test(location.search)) seiteRoh = 'kurs-start.html';
   var url = base + (V6 && V6_SEITEN[seiteRoh] ? V6_SEITEN[seiteRoh] : seiteRoh);
 
-  /* A/B-Test Ergebnisseite (Ramy 26.11.): zwei eigene Adressen.
-     Seite 1 = hischamelsobhi.de/typ-test-danke   → v6/danke.html (die bisherige Seite)
-     Seite 2 = hischamelsobhi.de/typ-test-danke-2 → v6/danke-b.html (neue Seite, GHL-Schritt „Typ-Test Danke · Seite 2“)
-     Das GHL-Formular leitet immer auf Seite 1. Von dort wird jeder zweite neue Besucher (pro Gerät fest,
-     localStorage „danke_fassung“) mit allen Parametern auf Seite 2 weitergeleitet. ?dv=a bleibt auf Seite 1.
-     Weiterleitung aus: DANKE_B = 0. Die Seiten melden danke_variante_a/_b an GHL. */
-  var DANKE_B = 0.5;
+  /* Zwei getrennte Wege (Ramy 26.11. abends: KEINE 50/50-Aufteilung, Seite 2 bekommt eine eigene Kampagne).
+     Weg 1 = hischamelsobhi.de/typ-test   → Formular → /typ-test-danke   → v6/danke.html   (für alle wie bisher)
+     Weg 2 = hischamelsobhi.de/typ-test-2 → Formular → /typ-test-danke-2 → v6/danke-b.html (nur über die eigene Kampagne)
+     Das GHL-Formular leitet immer auf /typ-test-danke. Nur wer den Test auf /typ-test-2 gemacht hat
+     (localStorage „typ_weg“ = 2, gesetzt von der Testseite), wird von dort mit allen Angaben auf -2 weitergeleitet.
+     Wer danach den normalen Test macht, ist wieder Weg 1. Die Seiten melden danke_variante_a/_b an GHL. */
+  var TEST_2 = /\/typ-test-2(\/|$)/.test(location.pathname);
+  try { localStorage.removeItem('danke_fassung'); } catch (e) {}  /* alte 50/50-Losung vergessen */
+  if (V6 && seiteRoh === 'lp.html') {
+    try { localStorage.setItem('typ_weg', TEST_2 ? '2' : '1'); } catch (e) {}
+  }
   if (V6 && seiteRoh === 'danke.html') {
     if (/\/typ-test-danke-2(\/|$)/.test(location.pathname)) {
-      try { localStorage.setItem('danke_fassung', 'b'); } catch (e) {}
       url = base + 'v6/danke-b.html';
       window.DANKE_FASSUNG = 'b';
     } else {
-      var dv = (location.search.match(/[?&]dv=([ab])(&|$)/) || [])[1] || '';
-      if (!dv) { try { dv = localStorage.getItem('danke_fassung') || ''; } catch (e) {} }
-      if (dv !== 'a' && dv !== 'b') dv = Math.random() < DANKE_B ? 'b' : 'a';
-      if (DANKE_B === 0 && !/[?&]dv=b/.test(location.search)) dv = 'a';
-      try { localStorage.setItem('danke_fassung', dv); } catch (e) {}
-      if (dv === 'b') {
-        location.replace(location.pathname.replace(/\/?$/, '') + '-2' + location.search.replace(/([?&])dv=b(&|$)/, '$1').replace(/[?&]$/, '') + location.hash);
+      var weg = '';
+      try { weg = localStorage.getItem('typ_weg') || ''; } catch (e) {}
+      if (weg === '2') {
+        location.replace(location.pathname.replace(/\/?$/, '') + '-2' + location.search + location.hash);
         return;
       }
       window.DANKE_FASSUNG = 'a';
