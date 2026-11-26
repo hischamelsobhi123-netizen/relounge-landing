@@ -87,6 +87,18 @@
   .kal-alt{text-align:center;color:var(--muted);font-size:.9rem;margin-top:10px;}
   .gnoch{text-align:center;color:var(--muted);font-size:.94rem;margin:14px auto 0;max-width:560px;}
 
+  /* Kurs-Karte (26.11., Ramy: nur 4–6 Leute aus dem Typ-Test im Kurs, der Kurs war nur ein kleiner Link ganz unten
+     bzw. ein Geschenk nach der Selbstbuchung, die fast niemand macht). Zweiter Weg, sichtbar, aber ruhiger als der Termin-Knopf. */
+  .kkarte{margin:18px auto 0;max-width:620px;background:var(--green-bg);border:2px solid var(--green);border-radius:22px;padding:20px 18px 18px;text-align:center;}
+  .kk-kopf{font-weight:800;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-d);}
+  .kkarte h3{font-weight:800;font-size:clamp(1.25rem,5vw,1.55rem);line-height:1.2;margin-top:6px;}
+  .kkarte p{font-size:1.04rem;color:var(--ink2);margin:8px auto 0;max-width:520px;}
+  .kcta{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%;max-width:520px;margin:16px auto 0;min-height:60px;justify-content:center;
+    text-decoration:none;background:#fff;color:var(--green-d);border:2px solid var(--green);border-radius:18px;padding:15px 16px 13px;
+    font-weight:800;font-size:1.14rem;line-height:1.2;box-shadow:0 8px 20px rgba(23,128,72,.14);transition:transform .15s;}
+  .kcta small{display:block;font-weight:600;font-size:.86rem;color:var(--muted);}
+  .kcta:hover{transform:translateY(-2px);}
+
   /* Geschenk nach der Buchung */
   .geschenk{padding:22px 0 8px;scroll-margin-top:10px;}
   .gsbox{text-align:center;background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;border-radius:24px;padding:26px 20px 22px;box-shadow:0 22px 54px rgba(13,42,30,.28);animation:auf .6s cubic-bezier(.2,.9,.3,1.2);}
@@ -190,7 +202,7 @@
           <li>Nur <span data-min>15</span> Minuten, ganz entspannt</li>
           <li>Du wählst die Zeit selbst, kein Warten auf einen Anruf</li>
           <li>Kostenlos und unverbindlich. Du entscheidest danach in Ruhe</li>
-          <li class="gg"><b>Dankeschön:</b> Nach der Buchung bekommst du Hischams Kompaktkurs geschenkt</li>
+          <li class="gg"><b>Dazu:</b> Hischams Kompaktkurs, damit du gut vorbereitet ins Gespräch kommst</li>
         </ul>
       </div>
       <div class="kal" id="kal">
@@ -198,6 +210,12 @@
         <div class="kal-box"><div class="kal-laden" id="kalLaden"><i></i>Freie Zeiten werden geladen …</div><iframe id="kalFrame" title="Termin wählen" scrolling="no"></iframe></div>
         <p class="kal-alt" id="kalAlt">Keine passende Zeit dabei? Antworte einfach auf unsere Mail oder WhatsApp, wir finden eine Lösung.</p>
       </div>
+    </div>
+    <div class="kkarte" id="kursKarte">
+      <div class="kk-kopf" id="kkKopf">Noch nicht bereit für ein Gespräch?</div>
+      <h3 id="kkTitel">Lern Hischam zuerst in Ruhe kennen</h3>
+      <p>In seinem kostenlosen Kompaktkurs erklärt dir Hischam in 6 kurzen Videos, warum dein Körper festhält, passend zu deinem Muster.</p>
+      <a class="kcta" id="kursOhne" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0"><span id="kkKnopf">▶ Kurs kostenlos starten →</span><small>Kapitel 1 dauert rund 6 Minuten</small></a>
     </div>
     <p class="gnoch" id="gNoch">Du bist noch unsicher? Dann musst du nichts tun: Unser Team meldet sich in den nächsten 24 Stunden bei dir. Mit einem festen Termin weißt du aber genau, wann wir nur für dich da sind.</p>
   </div>
@@ -210,7 +228,6 @@
     <div class="st"><div class="n">2</div><div><b>Du bekommst den Kurs geschenkt</b><p>Hischams Kompaktkurs: 6 kurze Videos, in deinem Tempo, passend zu deinem Muster.</p></div></div>
     <div class="st"><div class="n">3</div><div><b>Wir sprechen über dich</b><p>Dein Muster, deine Geschichte und was bei dir dahintersteckt. Wenn es passt, zeigen wir dir, wie eine Begleitung aussehen kann. Wenn nicht, ist das völlig in Ordnung.</p></div></div>
     <a class="bericht" id="berichtLink" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/bericht.html" target="_blank" rel="noopener">📄 Deinen ausführlichen Typ-Bericht öffnen (zum Speichern &amp; Weiterleiten)</a>
-    <a class="kurslink" id="kursOhne" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0">Lieber erst Hischam kennenlernen? Hier geht es zu seinem kostenlosen Kurs →</a>
     <div class="teilen">
       <b>Kennst du jemanden, dem es genauso geht?</b>
       <p>Schick ihr die Typ-Analyse. 3 Minuten, kostenlos, mit sofortigem Ergebnis.</p>
@@ -323,12 +340,17 @@
     $('resS').textContent = 'Wir haben es dir gerade per E-Mail und WhatsApp geschickt. Nichts in der Mail? Schau bitte auch im Ordner „Werbung“ oder „Spam“ – oder sichere dir direkt dein Gespräch, dort gehen wir es gemeinsam durch.';
   }
 
-  /* Kurs ohne Termin: kleiner Link ganz unten. Wer über eine Kurs-Anzeige kam, erwartet den Kurs: dann deutlicher. */
+  /* Kurs ohne Termin: eigene Karte direkt unter dem Kalender (seit 26.11., vorher kleiner Link ganz unten).
+     Wer über eine Kurs-Anzeige kam, erwartet den Kurs: dann „Weiter mit deinem Kurs“. */
   var eingang = '';
   try{ eingang = localStorage.getItem('typ_eingang') || ''; }catch(e){}
   var ko = $('kursOhne');
   ko.href = kursLink(false);
-  if(eingang === 'kurs' || q.get('q') === 'kurs'){ ko.className = 'kurslink stark'; ko.textContent = 'Erst weiter mit meinem Kurs →'; }
+  if(eingang === 'kurs' || q.get('q') === 'kurs'){
+    $('kkKopf').textContent = 'Dein Kurs wartet';
+    $('kkTitel').textContent = 'Weiter mit deinem Kompaktkurs';
+    $('kkKnopf').textContent = '▶ Weiter mit meinem Kurs →';
+  }
   ko.addEventListener('click', function(){ try{ localStorage.setItem('typ_weg', 'kurs'); }catch(e){} melde('danke_weg_kurs'); });
 
   /* ---------- Kalender direkt auf der Seite, sofort geladen ---------- */
@@ -374,7 +396,7 @@
     $('geschenk').hidden = false;
     $('ctaOben').hidden = true;
     $('leiste').classList.remove('an'); document.body.classList.remove('mitLeiste');
-    $('gNoch').hidden = true; $('kursOhne').hidden = true;
+    $('gNoch').hidden = true; $('kursKarte').hidden = true;
     if(frisch){
       /* Bestätigung des Kalenders bleibt sichtbar, Kopf darüber wird zur Erfolgsmeldung */
       $('gKopf').hidden = true; $('kalAlt').hidden = true;
