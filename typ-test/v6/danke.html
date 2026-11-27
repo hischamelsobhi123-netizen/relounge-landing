@@ -337,7 +337,7 @@
   /* Meldung an GHL (Kurs-Webhook, Formular-Format im Inhalt) */
   function melde(ereignis){
     var W = window.KURS_WEBHOOK || 'https://services.leadconnectorhq.com/hooks/rSmjF755vmdOhFQVTAVz/webhook-trigger/e8a534c2-d61a-4ab2-b1e2-d5a50d51f669';
-    if(!W) return;
+    if(!W || window.TYP_TESTMODUS) return;
     if(!(kontakt.c || kontakt.e || kontakt.t)) return;
     var daten = new URLSearchParams({ereignis: ereignis, kontakt: kontakt.c || '', email: kontakt.e || '', telefon: kontakt.t || '', vorname: kontakt.n || '', muster: mm, quelle: 'danke',
       kurs_variante: kv, kurs_video: kvVideo, kurs_schlagwort: kv ? 'kurs-fassung-' + (kv === 'V' ? 'video' : 'test') : ''});

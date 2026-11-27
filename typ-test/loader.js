@@ -68,6 +68,15 @@
      Lead auf der Danke-Seite (= Test abgeschickt) · TypTestStart beim Klick auf „Auswertung starten“.
      So lässt sich „Test angefangen, aber nicht abgeschickt“ als Zielgruppe bauen. */
   var seite = seiteRoh;
+  /* Testmodus (27.11.): ?test=1 oder localhost → kein echter Pixel, keine Meldungen an GHL.
+     Gilt für die ganze Sitzung (auch nach der Weiterleitung auf die Ergebnisseite). */
+  var TESTMODUS = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]test=1(&|$)/.test(location.search);
+  try { if (TESTMODUS) sessionStorage.setItem('typ_test', '1'); else if (sessionStorage.getItem('typ_test') === '1') TESTMODUS = true; } catch (e) {}
+  window.TYP_TESTMODUS = TESTMODUS;
+  if (TESTMODUS) {
+    window.fbq = function(){ try { console.log('[Pixel-Testmodus]', [].slice.call(arguments)); } catch (e) {} };
+    window._typPixel = 1;
+  }
   try {
     if (!window.fbq) {
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -82,9 +91,7 @@
     if (seite === 'termin.html') fbq('track', 'ViewContent', {content_name: 'Typ-Test Termin'});
     if (seite === 'mehr.html') fbq('track', 'ViewContent', {content_name: 'Typ-Test Mehr'});
     if (seite === 'danke.html') fbq('track', 'Lead', {content_name: 'Typ-Test'});
-    document.addEventListener('click', function(e){
-      if (e.target && e.target.closest && e.target.closest('#tStart')) fbq('trackCustom', 'TypTestStart');
-    });
+    /* TypTestStart misst jetzt die Testseite selbst (27.11.: hier kam es wegen stopImmediatePropagation nie an) */
   } catch (e) {}
 
   fetch(url, {cache: 'no-cache'}).then(function(r){ return r.text(); }).then(function(html){
