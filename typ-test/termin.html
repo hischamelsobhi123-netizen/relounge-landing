@@ -102,8 +102,8 @@
 </section>
 
 <div class="wrap">
-  <div class="fragen" id="fragen"></div>
-  <div class="grid" id="buchung" hidden>
+  <div class="fragen" id="fragen" hidden></div>
+  <div class="grid" id="buchung">
     <div class="seite">
       <h2>So läuft das Gespräch</h2>
       <div class="punkt"><div class="n">1</div><div><b>Deine Geschichte</b><span>Was hast du schon versucht, was belastet dich gerade am meisten?</span></div></div>
@@ -211,8 +211,10 @@
     document.getElementById('fneu').onclick = function(){ if(id === 'thema') antw.thema = ''; else antw.wann = ''; speichern(); fi = id === 'thema' ? 0 : 1; frage(); };
   }
   function speichern(){ try{ localStorage.setItem('vertiefung_fragen', JSON.stringify(antw)); }catch(e){} }
-  /* Schon beantwortet (dieses Gerät): direkt zum Kalender */
-  if(fertig()) setTimeout(buchungZeigen, 0); else frage();
+  /* 27.11. abends (Ramy): Fragen raus. Sie doppeln sich mit dem Typ-Test, und „erst mehr verstehen“ war ein Umweg.
+     Wer hier ist, will das Gespräch: Kalender sofort. Zurück auf die Fragen: FRAGEN_AN = true. */
+  var FRAGEN_AN = false;
+  if(!FRAGEN_AN || fertig()) setTimeout(buchungZeigen, 0); else frage();
 })();
 
 (function(){
