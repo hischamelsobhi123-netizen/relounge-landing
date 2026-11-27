@@ -321,19 +321,6 @@
   .tinsight{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin-bottom:18px;}
   .tinsight .tidot{font-size:1.6rem;display:block;margin-bottom:6px;}
   .tinsight .tsub{margin:6px 0 0;}
-  .ttel input{display:block;width:100%;font:inherit;font-size:1.25rem;font-weight:700;letter-spacing:.02em;padding:15px 16px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);margin-bottom:12px;}
-  .ttel input:focus{outline:none;border-color:var(--green);}
-  .ttel input.falsch{border-color:#d4553a;background:#fff6f3;}
-  .tvor{color:var(--green-d);font-weight:700;font-size:.95rem;margin:-4px 0 10px;}
-  .tzeit{margin:6px 0 16px;}
-  .tzeit-q{font-weight:700;font-size:.98rem;margin:0 0 8px;}
-  .tzeit-q span{font-weight:500;color:var(--muted);}
-  .tzeit-o{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-  .tzeitb{font:inherit;font-weight:600;padding:11px 8px;border-radius:12px;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;}
-  .tzeitb.sel{border-color:var(--green);background:var(--green-bg);color:var(--green-d);}
-  .tfehler{color:#b3402a;font-weight:600;font-size:.95rem;margin:-4px 0 12px;}
-  .ttel-nr{font-size:clamp(1.5rem,6vw,1.9rem);font-weight:800;letter-spacing:.03em;color:var(--green-d);background:var(--green-bg);border-radius:14px;padding:14px 16px;text-align:center;}
-  .ttel-aendern{display:block;margin:12px auto 0;background:none;border:0;font:inherit;color:var(--muted);text-decoration:underline;cursor:pointer;padding:6px;}
   .tdemo{border:2px dashed #e0ad3c;border-radius:14px;padding:16px;color:#7a5a12;background:#fff8e6;font-size:.9rem;}
 
   /* ===== FOKUS-MODUS (Ramy 21.11.: „beim Durchklicken immer direkt auf den ersten Blick sehen, was wir wollen“) =====
@@ -754,55 +741,15 @@
     {art:'kapitel', nr:3, titel:'Dein Ziel', text:'Zum Schluss: Wo willst du hin?'},
     {art:'mehr', id:'ziel', q:'Was soll sich in 6 Monaten verändert haben?', hint:'Tippe alles an, was dir wichtig ist.',
       a:['Die Kleidung passt wieder','Mehr Energie im Alltag','Besser schlafen','Ruhe im Kopf','Weniger Heißhunger','Bessere Blutwerte','Mich wieder wohlfühlen']},
-    {art:'zahl', id:'wichtig', q:'Wie wichtig ist dir das gerade?', links:'geht so', rechts:'sehr wichtig'},
-    /* 26.11. (Ramy): Wir rufen alle an. Darum fragen wir die beste Zeit ab (Feld typ_erreichbarkeit)
-       und prüfen die Nummer, bevor das GHL-Formular kommt (15 % falsche Nummern am 23.–26.11.). */
-    /* 27.11.: Zeitfrage ist jetzt optional auf dem Telefon-Schritt (eigener Pflichtschritt hat die Abschlussrate halbiert). */
-    {art:'telefon', id:'telefon', q:'Unter welcher Nummer erreichen wir dich?', hint:'Du bekommst dein Ergebnis zusätzlich per WhatsApp. Und unser Team bespricht es gern kurz mit dir – kostenlos.'}
+    {art:'zahl', id:'wichtig', q:'Wie wichtig ist dir das gerade?', links:'geht so', rechts:'sehr wichtig'}
   ];
-  /* Werte für das GHL-Feld typ_erreichbarkeit (klein, ohne Umlaute – so liest das Portal sie) */
-  var ZEITEN = ['Morgens','Mittags','Nachmittags','Abends'];
-  var ERREICHBAR = {'Morgens':'morgens','Mittags':'mittags','Nachmittags':'nachmittags','Abends':'abends','Lieber per WhatsApp':'whatsapp'};
-
-  /* Telefonnummer prüfen. Erkennt: zu kurz, zu lang, doppelte Vorwahl (0170 0176 …), Buchstaben.
-     Deutsche Nummern werden auf +49… gebracht, ausländische (+43, +41 …) nur grob geprüft.
-     Rückgabe: {ok, e164, schoen} oder {fehler}. */
-  function pruefeNummer(roh){
-    var s = String(roh || '').trim();
-    if(!s) return {fehler:'Bitte gib deine Handynummer ein.', hart:true};
-    if(/[a-z]/i.test(s)) return {fehler:'In der Nummer stehen Buchstaben. Bitte gib nur Ziffern ein.', hart:true};
-    if(s.replace(/\D/g,'').length < 5) return {fehler:'Die Nummer ist zu kurz. Bitte gib deine ganze Handynummer ein.', hart:true};
-    var d = s.replace(/\D/g, ''), nat;
-    if(/^\+/.test(s) || /^00/.test(d)){
-      if(/^00/.test(d)) d = d.slice(2);
-      if(d.indexOf('49') !== 0){
-        if(d.length < 8 || d.length > 15) return {fehler:'Die Nummer hat nicht die richtige Länge. Bitte prüf sie noch einmal.'};
-        return {ok:true, e164:'+'+d, schoen:'+'+d};
-      }
-      nat = d.slice(2);
-    } else if(/^49\d{9,}$/.test(d) && d.length >= 12){
-      nat = d.slice(2);
-    } else {
-      nat = d;
-    }
-    nat = nat.replace(/^0+/, '');
-    var mobil = /^1[5-7]/.test(nat);
-    if(mobil && nat.length > 11 && /^1[5-7]\d{1,2}0?1[5-7]/.test(nat)){
-      return {fehler:'Da steht die Vorwahl wohl doppelt drin (z. B. 0170 0176 …). Bitte gib die Nummer nur einmal ein.'};
-    }
-    if(mobil && nat.length < 10) return {fehler:'Die Nummer ist zu kurz. Fehlt vielleicht eine Ziffer?'};
-    if(mobil && nat.length > 11) return {fehler:'Die Nummer ist zu lang. Bitte prüf sie noch einmal.'};
-    if(!mobil && (nat.length < 6 || nat.length > 11)) return {fehler:'Die Nummer sieht nicht vollständig aus. Bitte prüf sie noch einmal.'};
-    var schoen = mobil ? '0'+nat.slice(0,3)+' '+nat.slice(3,6)+' '+nat.slice(6) : '0'+nat;
-    return {ok:true, e164:'+49'+nat, schoen:schoen};
-  }
   var KEIN = 'Noch nichts davon';
   var werte = {};
   var pos = 0;
   var card = document.getElementById('tcard');
   var sticky = document.getElementById('sticky');
 
-  /* Schritt-Messung für Meta (im Testmodus schreibt der Loader nur in die Konsole) */
+  /* Messung für Meta (im Testmodus schreibt der Loader nur in die Konsole) */
   function px(n, d){ try{ if(window.fbq) fbq('trackCustom', n, d || {}); }catch(e){} }
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
@@ -858,18 +805,8 @@
         h += '<button type="button" class="topt'+(werte[s.id]===o[1]?' sel':'')+'" data-v="'+o[1]+'">'+o[0]+'</button>';
       });
       h += '</div>';
-    } else if(s.art==='telefon'){
-      var mm = auswerten();
-      h += '<div class="tfertig"><div class="tlock"><b>'+(mm==='offen'?'?':mm.replace(/\+/g,''))+'</b><i>🔒</i></div>'
-        + '<div><div class="tft">Dein Ergebnis ist fertig</div><div class="tfs">Noch 2 kurze Angaben, dann siehst du es.</div></div></div>'
-        + '<div class="tq">'+esc(s.q)+'</div><p class="tsub">'+esc(s.hint)+'</p>'
-        + '<div class="ttel"><input type="tel" id="tTel" inputmode="tel" autocomplete="tel" placeholder="z. B. 0170 1234567" value="'+esc(werte.telefon_roh||'')+'">'
-        + '<p class="tvor" id="tTelVor" hidden></p><p class="tfehler" id="tTelFehler" hidden></p></div>'
-        + '<div class="tzeit"><p class="tzeit-q">Wann passt ein kurzer Anruf am besten? <span>(optional)</span></p><div class="tzeit-o">';
-      ZEITEN.forEach(function(t){ h += '<button type="button" class="tzeitb'+(werte.erreichbar===t?' sel':'')+'" data-v="'+t+'">'+t+'</button>'; });
-      h += '</div></div><button type="button" class="cta tgo" id="tTelGo">Weiter →</button>';
     } else if(s.art==='eins'){
-      h += '<div class="tq">'+esc(s.q)+'</div>' + (s.hint ? '<p class="tsub">'+esc(s.hint)+'</p>' : '') + '<div class="topts">';
+      h += '<div class="tq">'+esc(s.q)+'</div><div class="topts">';
       s.a.forEach(function(t){ h += '<button type="button" class="topt'+(werte[s.id]===t?' sel':'')+'" data-v="'+esc(t)+'">'+esc(t)+'</button>'; });
       h += '</div>';
     } else if(s.art==='mehr'){
@@ -884,7 +821,6 @@
     }
     card.innerHTML = h + '</div>';
     nachOben();
-    if(s.art==='kapitel' || s.art==='telefon') px('TypSchritt', {schritt: s.art==='kapitel' ? 'kapitel'+s.nr : 'telefon'});
     setTimeout(function(){var b=card.querySelector('.tbar i'); if(b) b.style.width=((pos+1)/SCHRITTE.length*100)+'%';},30);
 
     var go = document.getElementById('tGo');
@@ -915,45 +851,6 @@
         go.disabled = !gew.length;
       });
     });
-
-    /* Telefon (27.11.): Prüfung warnt nur. Zweiter Tipp auf „Weiter“ mit derselben Nummer geht trotzdem weiter.
-       Nur leer, Buchstaben oder unter 5 Ziffern halten an. */
-    if(s.art==='telefon'){
-      var ein = document.getElementById('tTel'), fe = document.getElementById('tTelFehler'), vor = document.getElementById('tTelVor');
-      var gewarnt = null;
-      var live = function(){
-        var r = pruefeNummer(ein.value);
-        if(r.ok){ vor.textContent = '✓ Wir erreichen dich unter ' + r.schoen; vor.hidden = false; } else { vor.hidden = true; }
-        if(!fe.hidden){ fe.hidden = true; ein.classList.remove('falsch'); }
-      };
-      var pruefen = function(){
-        if(sperre) return;
-        var roh = ein.value.trim(), r = pruefeNummer(roh);
-        if(!r.ok && (r.hart || gewarnt !== roh)){
-          gewarnt = roh;
-          fe.textContent = r.fehler + (r.hart ? '' : ' Wenn sie stimmt, tipp einfach noch einmal auf „Weiter“.');
-          fe.hidden = false; ein.classList.add('falsch'); ein.focus();
-          px('TypNummerWarnung', {art: r.hart ? 'hart' : 'weich'});
-          return;
-        }
-        sperre = true;
-        werte.telefon_roh = roh;
-        werte.telefon = r.ok ? r.e164 : roh;
-        werte.telefon_unsicher = !r.ok;
-        weiter();
-      };
-      document.getElementById('tTelGo').addEventListener('click', pruefen);
-      ein.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); pruefen(); } });
-      ein.addEventListener('input', live);
-      if(ein.value) live();
-      card.querySelectorAll('.tzeitb').forEach(function(b){
-        b.addEventListener('click', function(){
-          var v = b.getAttribute('data-v');
-          werte.erreichbar = (werte.erreichbar === v) ? null : v;
-          card.querySelectorAll('.tzeitb').forEach(function(x){ x.classList.toggle('sel', x.getAttribute('data-v') === werte.erreichbar); });
-        });
-      });
-    }
 
     var back = document.getElementById('tBack');
     if(back) back.addEventListener('click',function(){ if(pos>0){pos--; zeigeSchritt();} });
@@ -994,8 +891,6 @@
       + ' | Seit: '+(werte.seit||'-')
       + ' | Ziel: '+(werte.ziel||[]).join(', ')
       + ' | Wichtig: '+(werte.wichtig||'-')+'/10'
-      + ' | Erreichbar: '+(werte.erreichbar||'-')
-      + (werte.telefon_unsicher ? ' | Nummer ungeprüft: '+werte.telefon_roh : '')
       + ' | Einzelwerte: '+einzel;
   }
 
@@ -1030,10 +925,9 @@
   }
 
   function zeigeFormular(){
+    px('TypFormular');
     var m = auswerten();
-    px('TypFormular', {zeit: werte.erreichbar ? 'ja' : 'nein', nummer: werte.telefon_unsicher ? 'ungeprueft' : 'ok'});
     try{ localStorage.setItem('typ_muster', m); localStorage.setItem('typ_eingang', 'test'); }catch(e){}
-    try{ if(werte.erreichbar) localStorage.setItem('typ_erreichbar', ERREICHBAR[werte.erreichbar] || ''); }catch(e){}
     var text = zusammenfassung();
     /* Ramy 21.11.: Das Formular muss sofort als klarer, einfacher nächster Schritt erkennbar sein.
        Darum: Ergebnis „verschlossen“ zeigen (Neugier), Schritt-Leiste (fast fertig), nur ein Satz, dann direkt das Formular. */
@@ -1042,7 +936,7 @@
       + '<ol class="tschritte"><li class="ok">✓ Fragen</li><li class="jetzt">② Wohin schicken?</li><li>③ Dein Ergebnis</li></ol>'
       + '<div class="tfertig"><div class="tlock"><b>'+(m==='offen'?'?':m.replace(/\+/g,''))+'</b><i>🔒</i></div>'
       + '<div><div class="tft">Dein Ergebnis ist fertig</div><div class="tfs">Trag kurz ein, wohin wir es schicken dürfen – dann siehst du es sofort.</div></div></div>'
-      + '<p class="tform-p" style="margin-top:0">Nur noch <b>Vorname und E-Mail</b>, deine Nummer ist schon eingetragen. Danach erklärt dir Hischam im Video, was dein Muster bedeutet.</p>'
+      + '<p class="tform-p" style="margin-top:0">Nur <b>Vorname, Handy und E-Mail</b>. Danach erklärt dir Hischam im Video, was dein Muster bedeutet.</p>'
       + '<div class="tformbox" id="tForm"></div>'
       + '<p class="tsicher">🔒 Vertraulich · kostenlos · kein Spam</p></div>';
     card.innerHTML = h;
@@ -1064,8 +958,6 @@
     p.set('typ_ergebnis', ERGEBNIS[m] || '');
     p.set('typ_quelle', quelle());
     p.set('typ_video', VIDEO);
-    if(werte.erreichbar) p.set('typ_erreichbarkeit', ERREICHBAR[werte.erreichbar] || '');
-    if(werte.telefon) p.set('phone', werte.telefon);
     var ifr = document.createElement('iframe');
     ifr.src = 'https://api.leadconnectorhq.com/widget/form/'+FORM_ID+'?'+p.toString();
     ifr.id = 'inline-'+FORM_ID;
