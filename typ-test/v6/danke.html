@@ -122,6 +122,13 @@
   .kkarte.haupt p{color:rgba(255,255,255,.88);}
   .kkarte.haupt .kcta{border:0;background:linear-gradient(150deg,#f0c45a,#d79a1f);color:#1d1a0c;}
   .kkarte.haupt .kcta small{color:rgba(29,26,12,.75);}
+  /* 27.11. abends: Video + Vertiefungsgespräch */
+  .vsub{text-align:center;color:var(--muted);font-size:1rem;margin:-4px auto 12px;max-width:560px;}
+  .kweiter{text-align:center;margin:16px auto 0;max-width:560px;}
+  .kweiter a{color:var(--green-d);font-size:.98rem;text-decoration:none;}
+  .kweiter a b{text-decoration:underline;text-underline-offset:3px;}
+  .gbox.hell{animation:hell 1.6s ease-out 2;}
+  @keyframes hell{0%{box-shadow:0 0 0 0 rgba(31,154,89,.55);}100%{box-shadow:0 0 0 22px rgba(31,154,89,0);}}
   /* Geschenk nach der Buchung */
   .geschenk{padding:22px 0 8px;scroll-margin-top:10px;}
   .gsbox{text-align:center;background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;border-radius:24px;padding:26px 20px 22px;box-shadow:0 22px 54px rgba(13,42,30,.28);animation:auf .6s cubic-bezier(.2,.9,.3,1.2);}
@@ -198,14 +205,15 @@
       </div>
     </div>
     <a class="speichern" id="nrSpeichern" href="https://coaching.hischamelsobhi.de/praxis-el-sobhi.vcf"><span class="sp-i" aria-hidden="true">📲</span><span class="sp-t"><b>Jetzt unsere Nummer einspeichern</b><small>Damit du uns erkennst, wenn wir anrufen: <span class="sp-nr">05763 5350124</span></small><em class="sp-ok" id="nrOk" hidden>✓ Danke! Dann weißt du gleich, dass wir es sind.</em></span></a>
-    <a class="gcta" id="ctaOben" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0"><span>▶ Jetzt Hischams Kompaktkurs starten <span class="pf">→</span></span><small>Kostenlos · 6 kurze Videos, passend zu deinem Muster</small></a>
+    <a class="gcta" id="ctaOben" href="#erklaer"><span>▶ Jetzt Hischams Erklärung ansehen <span class="pf">↓</span></span><small>12 Minuten, die vieles erklären</small></a>
     <div id="obenGebucht" hidden></div>
   </div>
 </section>
 
 <section class="vsec" id="erklaer">
   <div class="wrap">
-    <h2>Hischam erklärt dir die drei Muster</h2>
+    <h2>Hischam erklärt dir, was hinter deinem Muster steckt</h2>
+    <p class="vsub">12 Minuten, die vieles erklären. Schau es dir am besten in Ruhe bis zum Ende an.</p>
     <div class="vwrap"><div class="ar" id="vbox"></div></div>
   </div>
 </section>
@@ -216,7 +224,7 @@
       <div class="gshak">✓</div>
       <div class="gk">Dein Termin steht</div>
       <h2>Danke! Hier ist dein Geschenk 🎁</h2>
-      <p>Bis zu deinem Gespräch schenken wir dir Hischams Kompaktkurs. In 6 kurzen Videos erklärt er dir, warum dein Körper festhält, passend zu deinem Muster. So kommst du gut vorbereitet ins Gespräch.</p>
+      <p>Bis zu deinem Vertiefungsgespräch kannst du dich mit Hischams kostenlosem Kompaktkurs vorbereiten: drei kurze Teile, in deinem Tempo.</p>
       <a class="gcta gold" id="kursKnopf" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0&amp;g=1"><span>🎁 Geschenk öffnen: Kurs starten <span class="pf">→</span></span><small>Kapitel 1 dauert nur ein paar Minuten</small></a>
       <p class="gsmail" id="gsMail" hidden>Den Link zum Kurs schicken wir dir zusätzlich per E-Mail.</p>
     </div>
@@ -225,18 +233,26 @@
 
 <section class="gesp" id="gespraech">
   <div class="wrap">
-    <div class="kkarte haupt" id="kursKarte">
-      <div class="kk-kopf" id="kkKopf">Dein nächster Schritt</div>
-      <h3 id="kkTitel">Versteh in Ruhe, warum dein Körper festhält</h3>
-      <p>In seinem kostenlosen Kompaktkurs erklärt dir Hischam in 6 kurzen Videos, warum dein Körper festhält, passend zu deinem Muster.</p>
-      <a class="kcta" id="kursOhne" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0"><span id="kkKnopf">▶ Kurs kostenlos starten →</span><small>Kapitel 1 dauert rund 6 Minuten</small></a>
+    <div class="gbox" id="gbox">
+      <div id="gKopf">
+        <div class="gk">Dein nächster Schritt</div>
+        <h2>Lass uns gemeinsam auf <em>deine Situation</em> schauen</h2>
+        <p class="gwarum">Im <b>Vertiefungsgespräch</b> nehmen wir uns rund 45 Minuten Zeit nur für dich, ganz entspannt per Zoom. Wir hören zu, schauen auf dein Muster und deine Geschichte und sagen dir ehrlich, was wir sehen.</p>
+        <ul class="gpunkte">
+          <li>Kostenlos und unverbindlich</li>
+          <li>Du musst dich zu nichts entscheiden</li>
+          <li>Ein erster Schritt: Ob und wie es weitergeht, entscheidest du danach in Ruhe</li>
+          <li>Bequem von zu Hause, per Zoom</li>
+        </ul>
+      </div>
+      <div class="kal" id="kal">
+        <div class="kal-kopf" id="kalKopf">👇 Wähle hier deine Zeit<span>Dauert etwa eine Minute. Weitere Tage: oben im Kalender mit dem Pfeil › blättern.</span></div>
+        <div class="kal-box"><div class="kal-laden" id="kalLaden"><i></i>Freie Zeiten werden geladen …</div><iframe id="kalFrame" title="Vertiefungsgespräch wählen" scrolling="no"></iframe></div>
+        <p class="kal-alt" id="kalAlt">Keine passende Zeit dabei? Antworte einfach auf unsere Mail oder WhatsApp, wir finden eine Lösung.</p>
+      </div>
     </div>
-    <div class="vtief" id="vtief">
-      <b>Du weißt schon, dass du über eine ärztliche Begleitung sprechen möchtest?</b>
-      <p>Dann wähl dir direkt ein Vertiefungsgespräch: rund 45 Minuten per Zoom mit Hischams Team. Wir schauen auf deine Geschichte und klären ehrlich, ob eine Begleitung zu dir passt.</p>
-      <a class="vlink" id="vtiefLink" href="https://hischamelsobhi.de/typ-test-termin">📅 Vertiefungsgespräch wählen →</a>
-    </div>
-    <p class="gnoch" id="gNoch">Sonst musst du nichts tun: Unser Team meldet sich in den nächsten 24 Stunden bei dir und bespricht dein Ergebnis mit dir.</p>
+    <div class="kweiter" id="kursKarte"><a id="kursOhne" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0">Lieber erst noch mehr verstehen? <b>Hischams kostenloser Kompaktkurs →</b></a></div>
+    <p class="gnoch" id="gNoch">Du musst nichts weiter tun: Unser Team meldet sich ohnehin in den nächsten 24 Stunden bei dir.</p>
   </div>
 </section>
 
@@ -244,7 +260,7 @@
   <div class="wrap">
     <h2>So geht es weiter</h2>
     <div class="st"><div class="n">1</div><div><b>Wir rufen dich an</b><p>Unser Team meldet sich innerhalb von 24 Stunden und bespricht dein Ergebnis mit dir.</p></div></div>
-    <div class="st"><div class="n">2</div><div><b>Du schaust Hischams Kurs</b><p>Hischams Kompaktkurs: 6 kurze Videos, in deinem Tempo, passend zu deinem Muster.</p></div></div>
+    <div class="st"><div class="n">2</div><div><b>Du schaust Hischams Erklärung</b><p>12 Minuten Video, direkt hier auf der Seite.</p></div></div>
     <div class="st"><div class="n">3</div><div><b>Wenn du mehr willst: Vertiefungsgespräch</b><p>Rund 45 Minuten per Zoom: dein Muster, deine Geschichte und ob eine ärztliche Begleitung zu dir passt. Wenn nicht, ist das völlig in Ordnung.</p></div></div>
     <a class="bericht" id="berichtLink" href="https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/bericht.html" target="_blank" rel="noopener">📄 Deinen ausführlichen Typ-Bericht öffnen (zum Speichern &amp; Weiterleiten)</a>
     <div class="teilen">
@@ -267,7 +283,7 @@
   <div class="hint">Die Typ-Analyse ist eine erste Orientierung und keine Diagnose. Sie ersetzt keine ärztliche Untersuchung. Keine Heilversprechen.</div>
 </div>
 
-<div class="leiste" id="leiste"><a class="gcta" id="leisteKurs" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0"><span>▶ Kompaktkurs kostenlos starten</span></a></div>
+<div class="leiste" id="leiste"><a class="gcta" href="#gespraech" data-gespraech><span>📅 Vertiefungsgespräch wählen</span></a></div>
 
 <script>
 (function(){
@@ -275,15 +291,15 @@
   /* Video: Hischam erklärt die drei Muster (Studio-Video „Typen-Erklärung“, bis „…wenn man genauer hinschaut“,
      ohne den alten Schluss „Mein Team ruft dich an“). Für alle gleich. */
   var V6_MEDIA = window.V6_MEDIA || 'https://hischamelsobhi123-netizen.github.io/relounge-landing/typ-test/v6/media/';
-  var DANKE_VIDEO = V6_MEDIA + 'typen-erklaerung.mp4';
-  var POSTER = V6_MEDIA + 'typen-erklaerung.jpg';
-  var VLAENGE = '1:07 Min';
+  var DANKE_VIDEO = 'https://hischamelsobhi123-netizen.github.io/kompaktkurs/v7/media/teil2.mp4';   /* 27.11.: Hischams 12-Minuten-Video (Arzt-Video ohne Erstgesprächs-Schluss) */
+  var POSTER = 'https://hischamelsobhi123-netizen.github.io/kompaktkurs/v7/media/teil2.jpg';
+  var VLAENGE = '12 Min';
   /* Gesprächslänge, wie sie auf der Seite steht. Muss zum Kalender passen. */
   var MIN = window.V6_GESPRAECH_MIN || 15;   /* Ramy 21.11.: 15 Minuten, Kalender „Ergebnis-Gespräch · Typ-Test“ ebenso */
   /* Steht „Kurs kommt auch per Mail“ auf der Seite? Erst true, wenn der GHL-Ablauf die Mail wirklich schickt. */
-  var GESCHENK_MAIL = window.V6_GESCHENK_MAIL || true;   /* 21.11.: Mail „T1b – Geschenk Kompaktkurs“ im Workflow „Typ-Test: Termin gebucht“ */
+  var GESCHENK_MAIL = false;   /* 27.11.: Geschenk-Mail hängt am alten 15-Min-Kalender */   /* 21.11.: Mail „T1b – Geschenk Kompaktkurs“ im Workflow „Typ-Test: Termin gebucht“ */
   var KURS_URL = window.V6_KURS_URL || 'https://hischamelsobhi.de/kompaktkurs-v7k3';
-  var KAL_ID = window.V6_KAL_ID || 'XyzjEW3pZmSzdG4QoDH6';   /* „Ergebnis-Gespräch · Typ-Test“ */
+  var KAL_ID = window.V6_KAL_ID || 'DSTt8vIzLbpJ3oJgKtix';   /* 27.11.: „Typ-Test · Vertiefung · 45 Min (Zoom)“ */
 
   var $ = function(id){ return document.getElementById(id); };
   document.querySelectorAll('[data-min]').forEach(function(e){ e.textContent = MIN; });
@@ -391,7 +407,7 @@
   try{ eingang = localStorage.getItem('typ_eingang') || ''; }catch(e){}
   var ko = $('kursOhne');
   ko.href = kursLink(false);
-  if(eingang === 'kurs' || q.get('q') === 'kurs'){
+  if(false && (eingang === 'kurs' || q.get('q') === 'kurs')){
     $('kkKopf').textContent = 'Dein Kurs wartet';
     $('kkTitel').textContent = 'Weiter mit deinem Kompaktkurs';
     $('kkKnopf').textContent = '▶ Weiter mit meinem Kurs →';
@@ -400,11 +416,8 @@
 
   /* 27.11. (Ramy): kein Selbstbuchen mehr. Knöpfe oben und unten führen in den Kurs,
      der ruhige Link darunter zum Vertiefungsgespräch (45 Min, Zoom) für die, die schon Begleitung wollen. */
-  ['ctaOben', 'leisteKurs'].forEach(function(id){
-    var a = $(id); if(!a) return;
-    a.href = kursLink(false);
-    a.addEventListener('click', function(){ try{ localStorage.setItem('typ_weg', 'kurs'); }catch(e){} melde('danke_weg_kurs'); });
-  });
+  (function(){ var c = $('ctaOben'); if(c) c.addEventListener('click', function(){ melde('danke_cta_video'); }); })();
+
   (function(){
     var v = $('vtiefLink'); if(!v) return;
     var p = new URLSearchParams();
@@ -501,13 +514,17 @@
   var vorher = '';
   try{ vorher = localStorage.getItem('termin_gebucht') || ''; }catch(e){}
   if(vorher && (Date.now() - new Date(vorher).getTime()) < 60*864e5) geschenkZeigen(false);
+  else if('IntersectionObserver' in window){
+    var kio = new IntersectionObserver(function(es){ if(es.some(function(x){ return x.isIntersecting; })){ kalenderLaden(); kio.disconnect(); } }, {rootMargin: '500px 0px'});
+    kio.observe($('gespraech'));
+  } else kalenderLaden();
 
   /* Leiste unten (Handy): sobald der obere Knopf aus dem Bild ist und der Kalender noch nicht, bis gebucht */
   if('IntersectionObserver' in window){
     var sicht = {oben: true, kal: false};
     var io = new IntersectionObserver(function(es){
       es.forEach(function(x){ if(x.target.id === 'ctaOben') sicht.oben = x.isIntersecting; else sicht.kal = x.isIntersecting; });
-      var an = !gebucht && !sicht.oben && !sicht.kal && window.innerWidth < 761;
+      var an = window.LEISTE_FREI && !gebucht && !sicht.kal && window.innerWidth < 761;
       $('leiste').classList.toggle('an', an); document.body.classList.toggle('mitLeiste', an);
     });
     io.observe($('ctaOben')); io.observe($('gespraech'));
@@ -537,12 +554,32 @@
     v.setAttribute('playsinline',''); v.setAttribute('preload','auto');
     v.oncanplay = function(){ setTimeout(function(){ load.remove(); },200); };
     v.onerror = function(){ load.textContent='Das Video lädt gerade nicht. Lade die Seite bitte neu.'; };
-    /* Am Videoende direkt zum Gespräch (oder zum Geschenk) */
-    v.addEventListener('ended', function(){ (gebucht ? $('geschenk') : $('gespraech')).scrollIntoView({behavior:'smooth', block:'start'}); });
+    /* Messung (27.11., Ramy: sehen, wie viele das Video ganz oder halb schauen): einmal je Seitenaufruf */
+    var gemessen = {};
+    function vmess(x){
+      if(gemessen[x]) return; gemessen[x] = 1;
+      melde('danke_vsl_' + x);
+      try{ if(window.fbq) fbq('trackCustom', 'TypVideo' + x); }catch(e){}
+      if(x >= 50) window.LEISTE_FREI = true;
+      if(x >= 75) kalenderLaden();
+    }
+    v.addEventListener('timeupdate', function(){
+      if(!v.duration) return;
+      var p = v.currentTime / v.duration * 100;
+      [10, 25, 50, 75, 90].forEach(function(x){ if(p >= x) vmess(x); });
+    });
+    /* Am Videoende steht das Vertiefungsgespräch direkt vor der Nase (oder das Geschenk, wenn schon gebucht) */
+    v.addEventListener('ended', function(){
+      vmess(100); kalenderLaden();
+      var ziel = gebucht ? $('geschenk') : $('gespraech');
+      ziel.scrollIntoView({behavior:'smooth', block:'start'});
+      var g = $('gbox'); if(g && !gebucht){ g.classList.remove('hell'); void g.offsetWidth; g.classList.add('hell'); }
+    });
     box.appendChild(v);
     var p = v.play(); if(p&&p.catch){p.catch(function(){});}
     f.remove();
     melde('danke_video_start');
+    try{ if(window.fbq) fbq('trackCustom', 'TypVideoStart'); }catch(e){}
   });
 })();
 </script>
