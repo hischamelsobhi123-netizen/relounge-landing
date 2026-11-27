@@ -138,13 +138,15 @@
 <script>
 (function(){
   /* ---------- 3 Fragen vor dem Kalender (Ramy 27.11.: nur wer wirklich über eine Begleitung sprechen will) ---------- */
+  /* 27.11. (Ramys Test): nur echte Werte an den Kalender. Nicht ersetzte GHL-Platzhalter wie {{contact.email}} (auch verschlüsselt als %7B…) und ungültige Mail/Telefon standen sonst im Formular, und „Termin vereinbaren“ ging nicht. */
+  function echt(k, v){ v = String(v == null ? '' : v).trim(); if(!v || /[{}]|%7B|%7D|%25|^(null|undefined)$/i.test(v)) return ''; if(/^(e|email)$/.test(k) && !/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(v)) return ''; if(/^(t|phone)$/.test(k) && !/^\+?[\d\s\/().-]{6,}$/.test(v)) return ''; return v; }
   var FQ = new URLSearchParams(location.search);
   var FK = {};
   try{ FK = JSON.parse(localStorage.getItem('kurs_kontakt') || '{}') || {}; }catch(e){}
-  var fc = FQ.get('c') || FK.c || '', fe = FQ.get('email') || FK.e || '', ft = FQ.get('phone') || FK.t || '';
+  var fc = echt('c', FQ.get('c')) || echt('c', FK.c), fe = echt('e', FQ.get('email')) || echt('e', FK.e), ft = echt('t', FQ.get('phone')) || echt('t', FK.t);
   function fmelde(ereignis, daten){
     if(window.TYP_TESTMODUS || /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || !(fc || fe || ft)) return;
-    var w = Object.assign({ereignis: ereignis, kontakt: fc, email: fe, telefon: ft, vorname: FQ.get('first_name') || FK.n || '', quelle: 'termin_' + (FQ.get('von') || 'direkt'), datum: new Date().toISOString()}, daten || {});
+    var w = Object.assign({ereignis: ereignis, kontakt: fc, email: fe, telefon: ft, vorname: echt('n', FQ.get('first_name')) || echt('n', FK.n), quelle: 'termin_' + (FQ.get('von') || 'direkt'), datum: new Date().toISOString()}, daten || {});
     var W = 'https://services.leadconnectorhq.com/hooks/rSmjF755vmdOhFQVTAVz/webhook-trigger/e8a534c2-d61a-4ab2-b1e2-d5a50d51f669';
     try{ var b = new URLSearchParams(w); if(!(navigator.sendBeacon && navigator.sendBeacon(W, b))) fetch(W, {method:'POST', body: b, keepalive: true, mode:'no-cors'}); }catch(e){}
   }
@@ -228,7 +230,8 @@
   }
   /* Name/Mail/Telefon aus dem Link an den Kalender weiterreichen (GHL füllt das Formular dann vor) */
   var weiter = new URLSearchParams();
-  ['first_name','last_name','email','phone'].forEach(function(k){ if (q.get(k)) weiter.set(k, q.get(k)); });
+  function echt(k, v){ v = String(v == null ? '' : v).trim(); if(!v || /[{}]|%7B|%7D|%25|^(null|undefined)$/i.test(v)) return ''; if(/^(e|email)$/.test(k) && !/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(v)) return ''; if(/^(t|phone)$/.test(k) && !/^\+?[\d\s\/().-]{6,}$/.test(v)) return ''; return v; }
+  ['first_name','last_name','email','phone'].forEach(function(k){ var v = echt(k, q.get(k)); if (v) weiter.set(k, v); });
   var geladen = false;
   window.kalenderLaden = function(){
     if (geladen) return; geladen = true;

@@ -325,11 +325,14 @@
 
   /* Kontakt merken (gleiche Domain wie der Kurs). c = GHL-Kontakt-ID aus Mail-Links, dazu Vorname/Mail/Telefon,
      wenn GHL sie an die Danke-Adresse hängt. In Kurs-Links wandern nur c und Vorname. */
+  /* 27.11. (Ramys Test): nur echte Werte an den Kalender. Nicht ersetzte GHL-Platzhalter wie {{contact.email}} (auch verschlüsselt als %7B…) und ungültige Mail/Telefon standen sonst im Formular, und „Termin vereinbaren“ ging nicht. */
+  function echt(k, v){ v = String(v == null ? '' : v).trim(); if(!v || /[{}]|%7B|%7D|%25|^(null|undefined)$/i.test(v)) return ''; if(/^(e|email)$/.test(k) && !/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(v)) return ''; if(/^(t|phone)$/.test(k) && !/^\+?[\d\s\/().-]{6,}$/.test(v)) return ''; return v; }
   var q = new URLSearchParams(location.search);
   var kontakt = {};
   try{ kontakt = JSON.parse(localStorage.getItem('kurs_kontakt') || '{}') || {}; }catch(e){}
+  ['c','n','e','t'].forEach(function(k){ if(k in kontakt && !echt(k, kontakt[k])) delete kontakt[k]; });
   [['c','c'],['contact_id','c'],['first_name','n'],['n','n'],['email','e'],['phone','t']].forEach(function(p){
-    var v = q.get(p[0]); if(v && !/\{\{/.test(v)) kontakt[p[1]] = v;
+    var v = echt(p[1], q.get(p[0])); if(v) kontakt[p[1]] = v;
   });
   if(m) kontakt.m = m;
   function kontaktSpeichern(){ try{ localStorage.setItem('kurs_kontakt', JSON.stringify(kontakt)); }catch(e){} }
@@ -426,7 +429,7 @@
   (function(){
     var v = $('vtiefLink'); if(!v) return;
     var p = new URLSearchParams();
-    ['first_name','last_name','email','phone'].forEach(function(x){ if(q.get(x)) p.set(x, q.get(x)); });
+    ['first_name','last_name','email','phone'].forEach(function(x){ var v = echt(x, q.get(x)); if(v) p.set(x, v); });
     if(!p.get('first_name') && kontakt.n) p.set('first_name', kontakt.n);
     if(!p.get('email') && kontakt.e) p.set('email', kontakt.e);
     if(!p.get('phone') && kontakt.t) p.set('phone', kontakt.t);
@@ -443,7 +446,7 @@
   function kalenderLaden(){
     if(kalOffen) return; kalOffen = true;
     var p = new URLSearchParams();
-    ['first_name','last_name','email','phone'].forEach(function(x){ if(q.get(x)) p.set(x, q.get(x)); });
+    ['first_name','last_name','email','phone'].forEach(function(x){ var v = echt(x, q.get(x)); if(v) p.set(x, v); });
     if(!p.get('first_name') && kontakt.n) p.set('first_name', kontakt.n);
     if(!p.get('email') && kontakt.e) p.set('email', kontakt.e);
     if(!p.get('phone') && kontakt.t) p.set('phone', kontakt.t);
@@ -511,9 +514,9 @@
       try{
         var j = JSON.parse(d[2]), id = j.contactId || j.contact_id || j.id || '';
         if(/^[A-Za-z0-9]{15,30}$/.test(id) && !kontakt.c) kontakt.c = id;
-        if(j.first_name && !kontakt.n) kontakt.n = j.first_name;
-        if(j.email && !kontakt.e) kontakt.e = j.email;
-        if(j.phone && !kontakt.t) kontakt.t = j.phone;
+        if(echt('n', j.first_name) && !kontakt.n) kontakt.n = j.first_name;
+        if(echt('e', j.email) && !kontakt.e) kontakt.e = j.email;
+        if(echt('t', j.phone) && !kontakt.t) kontakt.t = j.phone;
         kontaktSpeichern();
       }catch(err){}
     }
