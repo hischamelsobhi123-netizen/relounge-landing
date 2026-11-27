@@ -425,6 +425,8 @@
     if(!p.get('email') && kontakt.e) p.set('email', kontakt.e);
     if(!p.get('phone') && kontakt.t) p.set('phone', kontakt.t);
     if(mm) p.set('m', mm);
+    if(kontakt.c) p.set('c', kontakt.c);
+    p.set('von', 'ergebnis');
     v.href = 'https://hischamelsobhi.de/typ-test-termin' + (p.toString() ? '?' + p : '');
     v.addEventListener('click', function(){ try{ localStorage.setItem('typ_weg', 'vertiefung'); }catch(e){} melde('danke_weg_vertiefung');
       try{ if(window.fbq) fbq('trackCustom', 'TypVertiefungKlick'); }catch(e){} });

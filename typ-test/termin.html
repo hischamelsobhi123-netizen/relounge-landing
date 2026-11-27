@@ -56,6 +56,26 @@
   .laden{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);font-size:.92rem;background:#fff;border-radius:22px;}
   .laden i{width:34px;height:34px;border-radius:50%;border:3px solid var(--green-bg);border-top-color:var(--green);animation:dreh .9s linear infinite;}
   @keyframes dreh{to{transform:rotate(360deg);}}
+  /* 3 Fragen vor dem Kalender (27.11.) */
+  .fragen{max-width:640px;margin:clamp(14px,3vw,26px) auto 0;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 44px rgba(15,45,32,.10);padding:20px 18px;}
+  .fragen .fk{font-weight:800;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-d);}
+  .fragen h2{font-size:1.2rem;font-weight:800;line-height:1.25;margin-top:6px;}
+  .fragen .fh{color:var(--muted);font-size:.92rem;margin-top:4px;}
+  .fopt{display:grid;gap:8px;margin-top:14px;}
+  .fopt button{font:inherit;font-weight:700;font-size:1rem;text-align:left;padding:13px 14px;border-radius:14px;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;}
+  .fopt button.sel{border-color:var(--green);background:var(--green-bg);color:var(--green-d);}
+  .fopt.chips2{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .fopt.chips2 button{font-size:.92rem;padding:11px 10px;hyphens:manual;}
+  .grid[hidden],.fragen[hidden]{display:none;}
+  .fgo{display:block;width:100%;margin-top:16px;font:inherit;font-weight:800;font-size:1.08rem;border:0;border-radius:16px;padding:15px;background:var(--green);color:#fff;cursor:pointer;}
+  .fgo[disabled]{opacity:.45;cursor:default;}
+  .fpunkte{display:flex;gap:6px;margin-top:10px;}
+  .fpunkte i{flex:1;height:5px;border-radius:5px;background:var(--line);}
+  .fpunkte i.an{background:var(--green);}
+  .fnein{text-align:center;}
+  .fnein p{color:var(--ink2);font-size:1rem;margin-top:8px;}
+  .fnein a.fk2{display:block;margin:16px auto 0;max-width:460px;text-decoration:none;font-weight:800;border-radius:16px;padding:15px;background:var(--green);color:#fff;}
+  .fnein button{font:inherit;background:none;border:0;color:var(--green-d);font-weight:700;text-decoration:underline;margin-top:12px;cursor:pointer;}
   .alt{text-align:center;color:var(--muted);font-size:.9rem;margin-top:12px;}
   .alt a{color:var(--green-d);font-weight:700;}
 
@@ -82,7 +102,8 @@
 </section>
 
 <div class="wrap">
-  <div class="grid">
+  <div class="fragen" id="fragen"></div>
+  <div class="grid" id="buchung" hidden>
     <div class="seite">
       <h2>So läuft das Gespräch</h2>
       <div class="punkt"><div class="n">1</div><div><b>Deine Geschichte</b><span>Was hast du schon versucht, was belastet dich gerade am meisten?</span></div></div>
@@ -116,6 +137,85 @@
 
 <script>
 (function(){
+  /* ---------- 3 Fragen vor dem Kalender (Ramy 27.11.: nur wer wirklich über eine Begleitung sprechen will) ---------- */
+  var FQ = new URLSearchParams(location.search);
+  var FK = {};
+  try{ FK = JSON.parse(localStorage.getItem('kurs_kontakt') || '{}') || {}; }catch(e){}
+  var fc = FQ.get('c') || FK.c || '', fe = FQ.get('email') || FK.e || '', ft = FQ.get('phone') || FK.t || '';
+  function fmelde(ereignis, daten){
+    if(window.TYP_TESTMODUS || /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || !(fc || fe || ft)) return;
+    var w = Object.assign({ereignis: ereignis, kontakt: fc, email: fe, telefon: ft, vorname: FQ.get('first_name') || FK.n || '', quelle: 'termin_' + (FQ.get('von') || 'direkt'), datum: new Date().toISOString()}, daten || {});
+    var W = 'https://services.leadconnectorhq.com/hooks/rSmjF755vmdOhFQVTAVz/webhook-trigger/e8a534c2-d61a-4ab2-b1e2-d5a50d51f669';
+    try{ var b = new URLSearchParams(w); if(!(navigator.sendBeacon && navigator.sendBeacon(W, b))) fetch(W, {method:'POST', body: b, keepalive: true, mode:'no-cors'}); }catch(e){}
+  }
+  var FRAGEN = [
+    {id:'thema', q:'Worum soll es im Gespräch gehen?', h:'Im Vertiefungsgespräch geht es um eine mögliche ärztliche Begleitung über mehrere Monate.',
+     a:[['begleitung','Ich möchte über eine ärztliche Begleitung sprechen'],['infos','Ich möchte erst einmal nur mehr verstehen']]},
+    {id:'wann', q:'Wann möchtest du etwas verändern?', h:'Es gibt keine falsche Antwort.',
+     a:[['sofort','Am liebsten sofort'],['wochen','In den nächsten Wochen'],['spaeter','Irgendwann später']]},
+    {id:'versucht', q:'Was hast du schon versucht?', h:'Tippe alles an, was passt. So können wir uns gut vorbereiten.', mehr:true,
+     a:[['diaeten','Diäten'],['fasten','Intervallfasten'],['sport','Sport / Fitness'],['beratung','Ernährungs&shy;beratung'],['spritze','Abnehmspritze'],['arzt','Beim Arzt nachgefragt'],['apps','Apps / Programme'],['nichts','Noch nichts davon']]}
+  ];
+  var antw = {}, fi = 0;
+  try{ antw = JSON.parse(localStorage.getItem('vertiefung_fragen') || '{}') || {}; }catch(e){}
+  var KURS = 'https://hischamelsobhi.de/kompaktkurs-v7k3?p=0&q=termin_fragen' + (fc ? '&c=' + encodeURIComponent(fc) : '');
+  function fertig(){ return antw.thema === 'begleitung' && antw.wann && antw.wann !== 'spaeter' && antw.versucht; }
+  function buchungZeigen(){
+    document.getElementById('fragen').hidden = true;
+    document.getElementById('buchung').hidden = false;
+    if(window.kalenderLaden) window.kalenderLaden();
+  }
+  function frage(){
+    var box = document.getElementById('fragen'), f = FRAGEN[fi], h = '';
+    h += '<div class="fk">Frage ' + (fi + 1) + ' von 3</div><div class="fpunkte">' + FRAGEN.map(function(x, i){ return '<i' + (i <= fi ? ' class="an"' : '') + '></i>'; }).join('') + '</div>';
+    h += '<h2 style="margin-top:12px">' + f.q + '</h2><p class="fh">' + f.h + '</p><div class="fopt' + (f.mehr ? ' chips2' : '') + '">';
+    var gew = f.mehr ? (antw[f.id] || '').split(',') : [antw[f.id]];
+    f.a.forEach(function(a){ h += '<button type="button" data-v="' + a[0] + '"' + (gew.indexOf(a[0]) > -1 ? ' class="sel"' : '') + '>' + a[1] + '</button>'; });
+    h += '</div>';
+    if(f.mehr) h += '<button type="button" class="fgo" id="fgo"' + (antw[f.id] ? '' : ' disabled') + '>Weiter zur Terminwahl ›</button>';
+    if(fi > 0) h += '<p style="text-align:center;margin-top:10px"><button type="button" id="fzur" style="font:inherit;background:none;border:0;color:var(--muted);cursor:pointer">‹ zurück</button></p>';
+    box.innerHTML = h;
+    if(document.getElementById('fzur')) document.getElementById('fzur').onclick = function(){ fi--; frage(); };
+    box.querySelectorAll('.fopt button').forEach(function(b){
+      b.onclick = function(){
+        var v = b.getAttribute('data-v');
+        if(f.mehr){
+          var l = (antw[f.id] || '').split(',').filter(Boolean);
+          if(v === 'nichts') l = l.indexOf('nichts') > -1 ? [] : ['nichts'];
+          else { l = l.filter(function(x){ return x !== 'nichts'; }); l = l.indexOf(v) > -1 ? l.filter(function(x){ return x !== v; }) : l.concat(v); }
+          antw[f.id] = l.join(',');
+          frage();
+          return;
+        }
+        antw[f.id] = v; speichern();
+        if((f.id === 'thema' && v === 'infos') || (f.id === 'wann' && v === 'spaeter')){ nochNicht(f.id, v); return; }
+        fi++; frage();
+      };
+    });
+    if(document.getElementById('fgo')) document.getElementById('fgo').onclick = function(){
+      speichern();
+      fmelde('vf_fertig', {vf_thema: antw.thema, vf_wann: antw.wann, vf_versucht: antw.versucht});
+      fmelde('vf_' + antw.wann);
+      try{ if(window.fbq) fbq('trackCustom', 'VertiefungFragenFertig', {wann: antw.wann}); }catch(e){}
+      buchungZeigen();
+      window.scrollTo({top: document.getElementById('buchung').offsetTop - 10, behavior: 'smooth'});
+    };
+  }
+  function nochNicht(id, v){
+    fmelde('vf_noch_nicht', {vf_thema: antw.thema || '', vf_wann: antw.wann || ''});
+    var box = document.getElementById('fragen');
+    box.innerHTML = '<div class="fnein"><div class="fk">Ganz in Ruhe</div><h2 style="margin-top:8px">Dann ist der Kurs jetzt der bessere Schritt</h2>'
+      + '<p>Ein 45-Minuten-Gespräch lohnt sich, wenn du über eine Begleitung sprechen willst. Bis dahin erklärt dir Hischam in seinem kostenlosen Kompaktkurs in drei kurzen Teilen, was hinter deinem Muster steckt. Unser Team meldet sich außerdem bei dir.</p>'
+      + '<a class="fk2" href="' + KURS + '">▶ Zum kostenlosen Kompaktkurs</a>'
+      + '<button type="button" id="fneu">Doch, ich möchte über eine Begleitung sprechen</button></div>';
+    document.getElementById('fneu').onclick = function(){ if(id === 'thema') antw.thema = ''; else antw.wann = ''; speichern(); fi = id === 'thema' ? 0 : 1; frage(); };
+  }
+  function speichern(){ try{ localStorage.setItem('vertiefung_fragen', JSON.stringify(antw)); }catch(e){} }
+  /* Schon beantwortet (dieses Gerät): direkt zum Kalender */
+  if(fertig()) setTimeout(buchungZeigen, 0); else frage();
+})();
+
+(function(){
   var KAL = 'DSTt8vIzLbpJ3oJgKtix';   /* Kalender „Typ-Test · Vertiefung · 45 Min (Zoom)“ (27.11.) */
   var q = new URLSearchParams(location.search);
   var m = (q.get('m') || '').replace(/[^ABCabc+\- offen]/g, '').toUpperCase();
@@ -127,15 +227,20 @@
   /* Name/Mail/Telefon aus dem Link an den Kalender weiterreichen (GHL füllt das Formular dann vor) */
   var weiter = new URLSearchParams();
   ['first_name','last_name','email','phone'].forEach(function(k){ if (q.get(k)) weiter.set(k, q.get(k)); });
-  var f = document.getElementById('kal');
-  f.id = KAL + '_' + Date.now();
-  f.src = 'https://api.leadconnectorhq.com/widget/booking/' + KAL + (weiter.toString() ? '?' + weiter : '');
-  var weg = function(){ var l = document.getElementById('laden'); if (l) l.remove(); };
-  f.addEventListener('load', function(){ setTimeout(weg, 400); });
-  setTimeout(weg, 9000);
-  var s = document.createElement('script');
-  s.src = 'https://link.msgsndr.com/js/form_embed.js';
-  document.body.appendChild(s);
+  var geladen = false;
+  window.kalenderLaden = function(){
+    if (geladen) return; geladen = true;
+    var f = document.getElementById('kal');
+    f.id = KAL + '_' + Date.now();
+    f.src = 'https://api.leadconnectorhq.com/widget/booking/' + KAL + (weiter.toString() ? '?' + weiter : '');
+    var weg = function(){ var l = document.getElementById('laden'); if (l) l.remove(); };
+    f.addEventListener('load', function(){ setTimeout(weg, 400); });
+    setTimeout(weg, 9000);
+    var s = document.createElement('script');
+    s.src = 'https://link.msgsndr.com/js/form_embed.js';
+    document.body.appendChild(s);
+  };
+  if (!document.getElementById('buchung').hidden) window.kalenderLaden();
 })();
 </script>
 </body>
