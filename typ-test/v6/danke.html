@@ -172,6 +172,12 @@
   .foot .hint{margin-top:12px;font-size:.74rem;opacity:.6;max-width:720px;margin-left:auto;margin-right:auto;}
   [hidden]{display:none !important;}
 
+  /* 27.11. (Ramy): Ergebnis -> sofort Video -> Team ruft an + Nummer. Play-Knopf pulsiert. */
+  .anrufsec{padding:18px 0 6px;}
+  .anrufsec .speichern{margin-top:14px;}
+  .vfacade .play{animation:atmen 2.4s ease-in-out infinite;}
+  .vsec{padding-top:6px;}
+
   /* GHL-Rahmen neutralisieren (wie auf der Test-Seite) */
   html,body{margin:0 !important;padding:0 !important;background:var(--bg) !important}
   .c-section,.c-row,.c-column,.c-wrapper,
@@ -198,16 +204,7 @@
         <div class="s" id="resS">Dein Ergebnis ist gespeichert.</div>
       </div>
     </div>
-    <!-- 26.11. (Ramy): Es muss klar sein, dass wir anrufen. 27.11.: Selbst buchen raus, oben geht es in den Kurs. -->
-    <div class="anruf" id="anruf">
-      <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/team.webp" alt="Unser Team" width="88" height="88">
-      <div>
-        <b>📞 Unser Team ruft dich an</b>
-        <p id="anrufText">Innerhalb von 24 Stunden meldet sich unser Team bei dir, um dein Ergebnis mit dir zu besprechen. Wir rufen von <b>05763 5350124</b> an.</p>
-      </div>
-    </div>
-    <a class="speichern" id="nrSpeichern" href="https://coaching.hischamelsobhi.de/praxis-el-sobhi.vcf"><span class="sp-i" aria-hidden="true">📲</span><span class="sp-t"><b>Jetzt unsere Nummer einspeichern</b><small>Damit du uns erkennst, wenn wir anrufen: <span class="sp-nr">05763 5350124</span></small><em class="sp-ok" id="nrOk" hidden>✓ Danke! Dann weißt du gleich, dass wir es sind.</em></span></a>
-    <a class="gcta" id="ctaOben" href="#erklaer"><span>▶ Jetzt Hischams Erklärung ansehen <span class="pf">↓</span></span><small>12 Minuten, die vieles erklären</small></a>
+    <a class="gcta" id="ctaOben" href="#erklaer" hidden><span>▶ Jetzt Hischams Erklärung ansehen <span class="pf">↓</span></span><small>12 Minuten, die vieles erklären</small></a>
     <div id="obenGebucht" hidden></div>
   </div>
 </section>
@@ -217,6 +214,19 @@
     <h2>Hischam erklärt dir, was hinter deinem Muster steckt</h2>
     <p class="vsub">12 Minuten, die vieles erklären. Schau es dir am besten in Ruhe bis zum Ende an.</p>
     <div class="vwrap"><div class="ar" id="vbox"></div></div>
+  </div>
+</section>
+<section class="anrufsec">
+  <div class="wrap">
+    <!-- 26.11. (Ramy): Es muss klar sein, dass wir anrufen. 27.11.: Selbst buchen raus, oben geht es in den Kurs. -->
+    <div class="anruf" id="anruf">
+      <img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/team.webp" alt="Unser Team" width="88" height="88">
+      <div>
+        <b>📞 Unser Team ruft dich an</b>
+        <p id="anrufText">Innerhalb von 24 Stunden meldet sich unser Team bei dir, um dein Ergebnis mit dir zu besprechen. Wir rufen von <b>05763 5350124</b> an.</p>
+      </div>
+    </div>
+    <a class="speichern" id="nrSpeichern" href="https://coaching.hischamelsobhi.de/praxis-el-sobhi.vcf"><span class="sp-i" aria-hidden="true">📲</span><span class="sp-t"><b>Jetzt unsere Nummer einspeichern</b><small>Damit du uns erkennst, wenn wir anrufen: <span class="sp-nr">05763 5350124</span></small><em class="sp-ok" id="nrOk" hidden>✓ Danke! Dann weißt du gleich, dass wir es sind.</em></span></a>
   </div>
 </section>
 
