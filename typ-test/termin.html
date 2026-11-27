@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dein Ergebnis-Gespräch | Facharzt Hischam El-Sobhi</title>
+<title>Dein Vertiefungsgespräch | Facharzt Hischam El-Sobhi</title>
 <meta name="robots" content="noindex">
 <!-- Termin-Seite für Typ-Test-Leads: hischamelsobhi.de/typ-test-termin
      Läuft über loader.js (data-page="termin.html"), Kopie liegt in relounge-landing/typ-test/termin.html.
      Alle Mails und WhatsApps („Neuen Termin wählen“, „Termin selbst wählen“) zeigen hierher.
-     Kalender: „Ergebnis-Gespräch · Typ-Test“ (ID XyzjEW3pZmSzdG4QoDH6). Wechselt der Kalender,
+     Kalender seit 27.11. (Ramy: kein Selbstbuchen des Kurz-Gesprächs mehr): „Typ-Test · Vertiefung · 45 Min (Zoom)“
+     (ID DSTt8vIzLbpJ3oJgKtix). Vorher „Ergebnis-Gespräch · Typ-Test“ (XyzjEW3pZmSzdG4QoDH6). Wechselt der Kalender,
      nur KAL unten ändern – alle verschickten Links bleiben gültig. -->
 <style>
   :root{
@@ -66,16 +67,16 @@
 <body>
 
 <div class="topbar"><div class="in">
-  <div class="l"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="Zentrum für Gesundheitsmedizin"> Zentrum für Gesundheitsmedizin</div>
+  <div class="l"><img src="https://hischamelsobhi123-netizen.github.io/relounge-landing/assets-enm/logo-zfg.webp" width="200" height="112" alt="Zentrum für Gesundheit"> Zentrum für Gesundheit</div>
   <a href="https://hischamelsobhi.de/typ-test-mehr">Hischams Kompaktkurs →</a>
 </div></div>
 
 <section class="hero">
   <div class="wrap">
-    <div class="kick">Für alle, die Begleitung möchten</div>
-    <h1>Wähle dein <span>kostenloses Gespräch</span></h1>
-    <p>Du weißt schon, dass du etwas ändern willst? Dann nimmt sich ein Berater aus Hischams Team 15 Minuten nur für dich: dein Muster, deine Geschichte und was bei dir dahintersteckt.</p>
-    <div class="chips"><span>⏱ ca. 15 Minuten</span><span>📅 Zeit wählst du</span><span>✓ kostenlos</span></div>
+    <div class="kick">Für alle, die über eine Begleitung sprechen möchten</div>
+    <h1>Wähle dein <span>Vertiefungsgespräch</span></h1>
+    <p>Du weißt schon, dass du etwas ändern willst und über eine mögliche ärztliche Begleitung sprechen möchtest? Dann nimmt sich jemand aus Hischams Team rund 45 Minuten per Zoom nur für dich: dein Muster, deine Geschichte und ob eine Begleitung zu dir passt.</p>
+    <div class="chips"><span>⏱ ca. 45 Minuten</span><span>📹 per Zoom</span><span>✓ kostenlos</span></div>
     <div class="muster" id="muster" hidden><b id="mb">B</b> Dein Muster</div>
   </div>
 </section>
@@ -97,7 +98,7 @@
     <div>
       <div class="kal">
         <div class="laden" id="laden"><i></i>Freie Zeiten werden geladen …</div>
-        <iframe id="kal" title="Ergebnis-Gespräch buchen" scrolling="no"></iframe>
+        <iframe id="kal" title="Vertiefungsgespräch buchen" scrolling="no"></iframe>
       </div>
       <p class="alt">Keine passende Zeit dabei? Antworte einfach auf unsere Mail oder WhatsApp – wir finden eine Lösung.</p>
     </div>
@@ -109,13 +110,13 @@
     <a href="https://hischamelsobhi.de/impressum" target="_blank" rel="noopener">Impressum</a> ·
     <a href="https://hischamelsobhi.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
   </div>
-  <div style="margin-top:12px"><b style="color:#fff">Zentrum für Gesundheitsmedizin</b> · Hischam El-Sobhi · Facharzt</div>
-  <div class="hint">Das Ergebnis-Gespräch dient der Orientierung und ersetzt keine ärztliche Untersuchung. Keine Heilversprechen. Ergebnisse sind individuell verschieden.</div>
+  <div style="margin-top:12px"><b style="color:#fff">Zentrum für Gesundheit</b> · Hischam El-Sobhi · Facharzt</div>
+  <div class="hint">Das Vertiefungsgespräch dient der Orientierung und ersetzt keine ärztliche Untersuchung. Keine Heilversprechen. Ergebnisse sind individuell verschieden.</div>
 </div>
 
 <script>
 (function(){
-  var KAL = 'XyzjEW3pZmSzdG4QoDH6';   /* Kalender „Ergebnis-Gespräch · Typ-Test“ */
+  var KAL = 'DSTt8vIzLbpJ3oJgKtix';   /* Kalender „Typ-Test · Vertiefung · 45 Min (Zoom)“ (27.11.) */
   var q = new URLSearchParams(location.search);
   var m = (q.get('m') || '').replace(/[^ABCabc+\- offen]/g, '').toUpperCase();
   if (!m) { try { m = (localStorage.getItem('typ_muster') || '').toUpperCase(); } catch(e) {} }
