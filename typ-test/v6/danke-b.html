@@ -168,9 +168,11 @@
   /* Leiste unten am Handy, bis der Termin steht */
   .leiste{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:9px 12px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -6px 22px rgba(15,45,32,.12);transform:translateY(110%);transition:transform .25s;}
   .leiste.an{transform:none;}
-  .leiste .gcta{margin:0 auto;padding:14px 12px;font-size:1.06rem;animation:none;box-shadow:none;}
+  .leiste{padding-bottom:calc(22px + env(safe-area-inset-bottom));}
+  .leiste .gcta{margin:0 auto;padding:15px 12px;font-size:1.14rem;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+  .leiste .gcta small{font-size:.84rem;}
   .leiste .gcta::after{animation:none;display:none;}
-  body.mitLeiste .foot{padding-bottom:110px;}
+  body.mitLeiste .foot{padding-bottom:140px;}
 
   .foot{background:#0a1c14;color:rgba(255,255,255,.7);font-size:.84rem;padding:28px 20px;text-align:center;}
   .foot a{color:rgba(255,255,255,.85);text-decoration:none;margin:0 7px;white-space:nowrap;}
@@ -211,18 +213,6 @@
 </section>
 
 
-<section class="geschenk" id="geschenk" hidden>
-  <div class="wrap">
-    <div class="gsbox">
-      <div class="gshak">✓</div>
-      <div class="gk">Dein Termin steht</div>
-      <h2>Danke! Hier ist dein Geschenk 🎁</h2>
-      <p>Bis zu deinem Vertiefungsgespräch kannst du dich mit Hischams kostenlosem Kompaktkurs vorbereiten: drei kurze Teile, in deinem Tempo.</p>
-      <a class="gcta gold" id="kursKnopf" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0&amp;g=1"><span>🎁 Geschenk öffnen: Kurs starten <span class="pf">→</span></span><small>6 kurze Videos, in deinem Tempo</small></a>
-      <p class="gsmail" id="gsMail" hidden>Den Link zum Kurs schicken wir dir zusätzlich per E-Mail.</p>
-    </div>
-  </div>
-</section>
 
 <section class="vsec" id="erklaer">
   <div class="wrap">
@@ -251,7 +241,6 @@
         <p class="kal-alt" id="kalAlt">Keine passende Zeit dabei? Antworte einfach auf unsere Mail oder WhatsApp, wir finden eine Lösung.</p>
       </div>
     </div>
-    <div class="kweiter" id="kursKarte"><a id="kursOhne" href="https://hischamelsobhi.de/kompaktkurs-v7k3?p=0">Lieber erst noch mehr verstehen? <b>Hischams kostenloser Kompaktkurs →</b></a></div>
     <p class="gnoch" id="gNoch">Du musst nichts weiter tun: Unser Team meldet sich ohnehin in den nächsten 24 Stunden bei dir.</p>
   </div>
 </section>
@@ -296,7 +285,7 @@
   <div class="hint">Die Typ-Analyse ist eine erste Orientierung und keine Diagnose. Sie ersetzt keine ärztliche Untersuchung. Keine Heilversprechen.</div>
 </div>
 
-<div class="leiste" id="leiste"><a class="gcta" href="#gespraech" data-gespraech><span>📅 Vertiefungsgespräch wählen</span></a></div>
+<div class="leiste" id="leiste"><a class="gcta" href="#gespraech" data-gespraech><span>📅 Vertiefungsgespräch wählen <span class="pf">→</span></span><small>Kostenlos · rund 45 Min. per Zoom</small></a></div>
 
 <script>
 (function(){
@@ -419,13 +408,13 @@
   var eingang = '';
   try{ eingang = localStorage.getItem('typ_eingang') || ''; }catch(e){}
   var ko = $('kursOhne');
-  ko.href = kursLink(false);
+  if(ko) ko.href = kursLink(false);
   if(false && (eingang === 'kurs' || q.get('q') === 'kurs')){
     $('kkKopf').textContent = 'Dein Kurs wartet';
     $('kkTitel').textContent = 'Weiter mit deinem Kompaktkurs';
     $('kkKnopf').textContent = '▶ Weiter mit meinem Kurs →';
   }
-  ko.addEventListener('click', function(){ try{ localStorage.setItem('typ_weg', 'kurs'); }catch(e){} melde('danke_weg_kurs'); });
+  if(ko) ko.addEventListener('click', function(){ try{ localStorage.setItem('typ_weg', 'kurs'); }catch(e){} melde('danke_weg_kurs'); });
 
   /* 27.11. (Ramy): kein Selbstbuchen mehr. Knöpfe oben und unten führen in den Kurs,
      der ruhige Link darunter zum Vertiefungsgespräch (45 Min, Zoom) für die, die schon Begleitung wollen. */
@@ -467,6 +456,21 @@
       var s = document.createElement('script'); s.src = 'https://link.msgsndr.com/js/form_embed.js'; document.body.appendChild(s);
     }
   }
+  /* Zum Kalender springen (27.11., Ramy: am Handy nach dem Video und über die Leiste direkt zum Kalender).
+     Weiches Scrollen klappt in der GHL-Seite am Handy nicht immer: danach prüfen und notfalls hart springen. */
+  function zumKalender(verz){
+    if(gebucht) return;
+    kalenderLaden();
+    setTimeout(function(){
+      var el = $('kalKopf'); if(!el) return;
+      try{ el.scrollIntoView({behavior:'smooth', block:'start'}); }catch(e){ el.scrollIntoView(true); }
+      setTimeout(function(){
+        var t = el.getBoundingClientRect().top;
+        if(t > window.innerHeight * 0.5 || t < -40){ el.scrollIntoView(true); }
+      }, 900);
+      var g = $('gbox'); if(g){ g.classList.remove('hell'); void g.offsetWidth; g.classList.add('hell'); }
+    }, verz || 0);
+  }
   document.querySelectorAll('[data-gespraech]').forEach(function(a){
     a.addEventListener('click', function(ev){
       ev.preventDefault();
@@ -474,35 +478,29 @@
       try{ localStorage.setItem('typ_weg', 'termin'); }catch(e){}
       melde('danke_weg_termin');
       try{ if(window.fbq) fbq('trackCustom', 'TypGespraechKlick'); }catch(e){}
-      $('kalKopf').scrollIntoView({behavior:'smooth', block:'start'});
+      zumKalender();
     });
   });
 
-  /* ---------- Nach der Buchung: Kurs als Geschenk ----------
+  /* ---------- Nach der Buchung: Bestätigung (27.11.: kein Kurs-Geschenk mehr, Ramy) ----------
      Der GHL-Kalender meldet die Buchung an die Seite: ["msgsndr-booking-complete", {calendarId}].
      Kurz davor schickt er ["set-sticky-contacts", …, JSON mit Kontakt] – daraus nehmen wir Kontakt-ID und Vorname, wenn vorhanden. */
   var gebucht = false;
   function geschenkZeigen(frisch){
     if(gebucht) return; gebucht = true;
-    $('kursKnopf').href = kursLink(true);
-    $('gsMail').hidden = !GESCHENK_MAIL;
-    $('geschenk').hidden = false;
     $('ctaOben').hidden = true;
-    if($('anruf')) $('anruf').hidden = true;
     $('leiste').classList.remove('an'); document.body.classList.remove('mitLeiste');
-    $('gNoch').hidden = true; $('kursKarte').hidden = true;
+    $('gNoch').hidden = true;
+    $('gKopf').hidden = true; $('kalAlt').hidden = true;
+    $('kalKopf').innerHTML = '✓ Dein Vertiefungsgespräch ist eingetragen<span>Die Bestätigung mit dem Zoom-Link bekommst du per E-Mail.</span>';
     if(frisch){
-      /* Bestätigung des Kalenders bleibt sichtbar, Kopf darüber wird zur Erfolgsmeldung */
-      $('gKopf').hidden = true; $('kalAlt').hidden = true;
-      $('kalKopf').innerHTML = '✓ Dein Termin ist eingetragen<span>Die Bestätigung bekommst du gleich per E-Mail.</span>';
       /* Der Kalender ändert nach der Buchung seine Höhe, das bricht weiches Scrollen ab: darum zweimal direkt springen */
-      [500, 1400].forEach(function(t){ setTimeout(function(){ $('geschenk').scrollIntoView({block:'start'}); }, t); });
+      [500, 1400].forEach(function(t){ setTimeout(function(){ $('kalKopf').scrollIntoView({block:'start'}); }, t); });
     } else {
-      /* Später wiederkommen: Gespräch steht schon, also kein Kalender mehr */
-      $('gespraech').hidden = true;
+      /* Später wiederkommen: Gespräch steht schon, also kein Kalender mehr, nur der Hinweis */
+      var kb = document.querySelector('#kal .kal-box'); if(kb) kb.hidden = true;
     }
   }
-  $('kursKnopf').addEventListener('click', function(){ melde('danke_geschenk_kurs'); });
   window.addEventListener('message', function(e){
     var d = e.data;
     if(!d || !Array.isArray(d) || !/leadconnector|msgsndr|gohighlevel/.test(String(e.origin))) return;
@@ -532,16 +530,20 @@
     kio.observe($('gespraech'));
   } else kalenderLaden();
 
-  /* Leiste unten (Handy): sobald der obere Knopf aus dem Bild ist und der Kalender noch nicht, bis gebucht */
-  if('IntersectionObserver' in window){
-    var sicht = {oben: true, kal: false};
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(x){ if(x.target.id === 'ctaOben') sicht.oben = x.isIntersecting; else sicht.kal = x.isIntersecting; });
-      var an = window.LEISTE_FREI && !gebucht && !sicht.kal && window.innerWidth < 761;
-      $('leiste').classList.toggle('an', an); document.body.classList.toggle('mitLeiste', an);
-    });
-    io.observe($('ctaOben')); io.observe($('gespraech'));
+  /* Leiste unten (Handy, 27.11. Ramy): von Anfang an sichtbar, bis der Kalender selbst im Bild ist oder gebucht wurde.
+     Prüfung bei jedem Scrollen (auch wenn GHL den body statt des Fensters scrollen lässt: capture auf document). */
+  function leisteCheck(){
+    var k = $('kal'); if(!k) return;
+    var r = k.getBoundingClientRect(), vh = window.innerHeight || document.documentElement.clientHeight;
+    var kalSicht = r.top < vh * 0.8 && r.bottom > 120;
+    var an = !gebucht && !kalSicht && window.innerWidth < 761;
+    $('leiste').classList.toggle('an', an); document.body.classList.toggle('mitLeiste', an);
   }
+  var lWarte = false;
+  var lPlan = function(){ if(lWarte) return; lWarte = true; requestAnimationFrame(function(){ lWarte = false; leisteCheck(); }); };
+  document.addEventListener('scroll', lPlan, {capture:true, passive:true});
+  window.addEventListener('resize', lPlan); window.addEventListener('load', lPlan);
+  leisteCheck(); setTimeout(leisteCheck, 600); setTimeout(leisteCheck, 2000);
 
   /* Teilen: Link kopieren */
   var tk = $('teilenKopie');
@@ -581,13 +583,18 @@
       var p = v.currentTime / v.duration * 100;
       [10, 25, 50, 75, 90].forEach(function(x){ if(p >= x) vmess(x); });
     });
-    /* Am Videoende steht das Vertiefungsgespräch direkt vor der Nase (oder das Geschenk, wenn schon gebucht) */
+    /* Am Videoende und beim Verlassen des Vollbilds (Handy) geht es direkt zum Kalender (Ramy 27.11.) */
     v.addEventListener('ended', function(){
-      vmess(100); kalenderLaden();
-      var ziel = gebucht ? $('geschenk') : $('gespraech');
-      ziel.scrollIntoView({behavior:'smooth', block:'start'});
-      var g = $('gbox'); if(g && !gebucht){ g.classList.remove('hell'); void g.offsetWidth; g.classList.add('hell'); }
+      vmess(100);
+      try{ if(v.webkitDisplayingFullscreen && v.webkitExitFullscreen) v.webkitExitFullscreen(); }catch(e){}
+      try{ if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen(); }catch(e){}
+      zumKalender(350);
     });
+    v.addEventListener('webkitendfullscreen', function(){ zumKalender(400); });   /* iPhone: Vollbild-Player geschlossen */
+    var vollAus = function(){ if(!(document.fullscreenElement || document.webkitFullscreenElement)) zumKalender(300); };
+    var warVoll = function(){ if((document.fullscreenElement || document.webkitFullscreenElement) === v){
+      document.addEventListener('fullscreenchange', vollAus, {once:true}); document.addEventListener('webkitfullscreenchange', vollAus, {once:true}); } };
+    document.addEventListener('fullscreenchange', warVoll); document.addEventListener('webkitfullscreenchange', warVoll);
     box.appendChild(v);
     var p = v.play(); if(p&&p.catch){p.catch(function(){});}
     f.remove();
