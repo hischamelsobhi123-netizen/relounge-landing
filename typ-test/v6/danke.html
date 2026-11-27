@@ -502,7 +502,7 @@
       }catch(err){}
     }
     if(d[0] === 'msgsndr-booking-complete' && (!d[1] || !d[1].calendarId || d[1].calendarId === KAL_ID)){
-      try{ localStorage.setItem('termin_gebucht', new Date().toISOString()); }catch(err){}
+      try{ var jetzt = new Date().toISOString(); localStorage.setItem('vertiefung_gebucht', jetzt); localStorage.setItem('termin_gebucht', jetzt); }catch(err){}   /* termin_gebucht weiter setzen, falls andere Seiten (Kurs) ihn lesen */
       melde('danke_termin_gebucht');
       try{ if(window.fbq) fbq('trackCustom', 'TypTerminGebucht'); }catch(err){}
       geschenkZeigen(true);
@@ -510,7 +510,9 @@
   });
   /* Schon gebucht (in den letzten 60 Tagen auf diesem Gerät)? Dann gleich das Geschenk statt des Kalenders. */
   var vorher = '';
-  try{ vorher = localStorage.getItem('termin_gebucht') || ''; }catch(e){}
+  /* 27.11.: eigener Merker nur für das Vertiefungsgespräch. Der alte Merker „termin_gebucht“ stammt aus dem
+     15-Min-Kalender und darf den Vertiefungs-Kalender nicht mehr verstecken. Im Testmodus (?test=1) immer den Kalender zeigen. */
+  try{ if(!window.TYP_TESTMODUS) vorher = localStorage.getItem('vertiefung_gebucht') || ''; }catch(e){}
   if(vorher && (Date.now() - new Date(vorher).getTime()) < 60*864e5) geschenkZeigen(false);
   else if('IntersectionObserver' in window){
     var kio = new IntersectionObserver(function(es){ if(es.some(function(x){ return x.isIntersecting; })){ kalenderLaden(); kio.disconnect(); } }, {rootMargin: '500px 0px'});
